@@ -14,6 +14,7 @@ namespace IdentityServer.Authentication
         {
 
         }
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -21,6 +22,5 @@ namespace IdentityServer.Authentication
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-
     }
 }

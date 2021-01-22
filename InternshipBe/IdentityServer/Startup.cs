@@ -60,8 +60,6 @@ namespace IdentityServer
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
-
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,10 +81,6 @@ namespace IdentityServer
             {
                 endpoints.MapControllers();
             });
-       
-        
         }
-   
-    
     }
 }

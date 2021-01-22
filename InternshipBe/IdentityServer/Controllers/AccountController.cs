@@ -73,7 +73,5 @@ namespace IdentityServer.Controllers
 
             return Unauthorized();
         }
-
-
     }
 }
