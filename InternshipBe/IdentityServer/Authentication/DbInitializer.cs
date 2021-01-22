@@ -12,7 +12,6 @@ namespace IdentityServer.Authentication
 
         public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-
             if (userManager.Users.Any())
             {
                 return;
