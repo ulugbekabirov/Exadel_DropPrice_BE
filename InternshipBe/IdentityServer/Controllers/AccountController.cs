@@ -30,7 +30,6 @@ namespace IdentityServer.Controllers
         {
             _userManager = userManager;
             _configuration = configuration;
-
         }
 
         [HttpPost]

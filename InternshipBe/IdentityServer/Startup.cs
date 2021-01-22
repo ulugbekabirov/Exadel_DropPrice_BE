@@ -32,7 +32,6 @@ namespace IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(options =>

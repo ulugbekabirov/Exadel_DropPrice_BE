@@ -12,11 +12,11 @@ namespace IdentityServer.Authentication
 
         public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-
             if (userManager.Users.Any())
             {
                 return;
             }
+
             if (!roleManager.Roles.Any())
             {
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
@@ -37,7 +37,10 @@ namespace IdentityServer.Authentication
             };
 
             await userManager.CreateAsync(moderator, password);
+            await userManager.AddToRolesAsync(moderator, new string[] { "Moderator", "User" });
+
             await userManager.CreateAsync(admin, password);
+            await userManager.AddToRolesAsync(admin, new string[] {"Admin", "Moderator", "User" });
 
             for (int i = 0; i < 1200; i++)
             {
