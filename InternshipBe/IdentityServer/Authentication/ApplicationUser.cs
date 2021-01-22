@@ -9,7 +9,5 @@ namespace IdentityServer.Authentication
     public class ApplicationUser: IdentityUser
     {
 
-
-
     }
 }

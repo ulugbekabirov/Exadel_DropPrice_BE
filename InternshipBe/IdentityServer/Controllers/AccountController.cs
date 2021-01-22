@@ -19,11 +19,8 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly ILogger _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
-
 
         public AccountController(
                     UserManager<ApplicationUser> userManager,
@@ -31,31 +28,19 @@ namespace IdentityServer.Controllers
                     ILogger<AccountController> logger,
                     IConfiguration configuration)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            _logger = logger;
+            _userManager = userManager;
             _configuration = configuration;
 
         }
-
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            // Uncomment to create user as you login
-            //ApplicationUser user1 = new ApplicationUser()
-            //{
-            //    Email = model.Email,
-            //    SecurityStamp = Guid.NewGuid().ToString(),
-            //    UserName = model.Email
-            //};
-            //var result = await userManager.CreateAsync(user1, model.Password);
-
-            var user = await userManager.FindByNameAsync(model.Email);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
 
                 var authClaims = new List<Claim>
                 {
@@ -73,7 +58,7 @@ namespace IdentityServer.Controllers
                 var token = new JwtSecurityToken(
                     issuer: _configuration["JWT:ValidIssuer"],
                     audience: _configuration["JWT:ValidAudience"],
-                    //expires: DateTime.Now.AddHours(3),
+                    expires: DateTime.Now.AddHours(24),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
@@ -83,7 +68,6 @@ namespace IdentityServer.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     UserEmail = user.Email,
                     UserRole = userRoles,
-                    //expiration = token.ValidTo
                 });
             }
 

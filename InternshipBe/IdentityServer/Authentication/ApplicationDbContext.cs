@@ -6,15 +6,14 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace IdentityServer.Authentication
-{
+{   
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-
-    {
+    {        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-       : base(options)
+            : base(options)
         {
-        }
 
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -24,5 +23,4 @@ namespace IdentityServer.Authentication
         }
 
     }
-
 }
