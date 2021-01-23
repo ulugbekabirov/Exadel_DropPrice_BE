@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +10,15 @@ namespace IdentityServer.Authentication
     {
         private static readonly string password = "Qwerty123!";
 
-        public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task InitializeDatabase(IServiceProvider services)
+        {
+            using var scope = services.CreateScope();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            await PopulateUsersAndRoles(userManager, rolesManager);
+        }
+
+        public static async Task PopulateUsersAndRoles(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (userManager.Users.Any())
             {
@@ -17,38 +27,47 @@ namespace IdentityServer.Authentication
 
             if (!roleManager.Roles.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole("Admin"));
-                await roleManager.CreateAsync(new IdentityRole("Moderator"));
-                await roleManager.CreateAsync(new IdentityRole("User"));
+                await roleManager.CreateAsync(new IdentityRole(RoleName.Admin));
+                await roleManager.CreateAsync(new IdentityRole(RoleName.Moderator));
+                await roleManager.CreateAsync(new IdentityRole(RoleName.User));
             }
 
-            ApplicationUser admin = new ApplicationUser()
+            var admin = new ApplicationUser()
             {
-                UserName = "admin@exadel.com",
-                Email = "admin@exadel.com",
+                UserName = "admnexadel@gmail.com",
+                Email = "admnexadel@gmail.com",
             };
 
-            ApplicationUser moderator = new ApplicationUser()
+            var moderator = new ApplicationUser()
             {
-                UserName = $"moderator@exadel.com",
-                Email = $"moderator@exadel.com",
+                UserName = "moderatorexadel@gmail.com",
+                Email = "moderatorexadel@gmail.com",
             };
+
+            var demoUser = new ApplicationUser()
+            {
+                UserName = "userexadel@gmail.com",
+                Email = "userexadel@gmail.com",
+            };
+
+            await userManager.CreateAsync(demoUser, password);
+            await userManager.AddToRolesAsync(demoUser, RoleName.GetRolesOfUser() );
 
             await userManager.CreateAsync(moderator, password);
-            await userManager.AddToRolesAsync(moderator, new string[] { "Moderator", "User" });
+            await userManager.AddToRolesAsync(moderator, RoleName.GetRolesOfModerator());
 
             await userManager.CreateAsync(admin, password);
-            await userManager.AddToRolesAsync(admin, new string[] {"Admin", "Moderator", "User" });
+            await userManager.AddToRolesAsync(admin, RoleName.GetRolesOfAdmin());
 
             for (int i = 0; i < 1200; i++)
             {
-                ApplicationUser user = new ApplicationUser()
+                var user = new ApplicationUser()
                 {
-                    UserName = $"user{i}@exadel.com",
-                    Email = $"user{i}@exadel.com",
+                    UserName = $"user{i}@test.com",
+                    Email = $"user{i}@test.com",
                 };
                 await userManager.CreateAsync(user, password);
-                await userManager.AddToRoleAsync(user, "User");
+                await userManager.AddToRolesAsync(user, RoleName.GetRolesOfUser());
             }
         }
     }
