@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IdentityServer.Controllers
 {
@@ -25,6 +26,18 @@ namespace IdentityServer.Controllers
         {
             _userManager = userManager;
             _configuration = configuration;
+        }
+
+        [HttpGet]
+        [Route("getUserInfo")]
+        [Authorize]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return new JsonResult(new { Id = user.Id, Email = user.Email, Roles = roles });
         }
 
         [HttpPost]
