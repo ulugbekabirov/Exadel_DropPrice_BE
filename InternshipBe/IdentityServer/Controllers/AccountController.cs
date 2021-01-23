@@ -1,13 +1,10 @@
 ﻿using IdentityServer.Authentication;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
@@ -24,8 +21,6 @@ namespace IdentityServer.Controllers
 
         public AccountController(
                     UserManager<ApplicationUser> userManager,
-                    SignInManager<ApplicationUser> signInManager,
-                    ILogger<AccountController> logger,
                     IConfiguration configuration)
         {
             _userManager = userManager;
