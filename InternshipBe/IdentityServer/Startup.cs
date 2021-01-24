@@ -25,6 +25,8 @@ namespace IdentityServer
         {
             services.AddControllers();
 
+            services.AddCors();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -62,6 +64,8 @@ namespace IdentityServer
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthentication();
 
