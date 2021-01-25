@@ -18,6 +18,7 @@ namespace DAL.Entities
         public bool ActivityStatus { get; set; }
         public string Promocode { get; set; }
         public string ImagePath { get; set; }
+        public Vendor Vendor { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<PointOfSale> PointOfSales { get; set; }
 
