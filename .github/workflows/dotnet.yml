@@ -27,7 +27,6 @@ jobs:
     - name: Update database
       working-directory: InternshipBe/IdentityServer
       run:|
-       working-directory: InternshipBe/IdentityServer
        dotnet tool install --global dotnet-ef
        dotnet ef database update
     - name: Publish
