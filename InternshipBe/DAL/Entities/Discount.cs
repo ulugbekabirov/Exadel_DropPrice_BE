@@ -19,10 +19,12 @@ namespace DAL.Entities
         public string Promocode { get; set; }
         public string ImagePath { get; set; }
         public ICollection<Tag> Tags { get; set; }
+        public ICollection<PointOfSale> PointOfSales { get; set; }
 
         public Discount()
         {
             Tags = new List<Tag>();
+            PointOfSales = new List<PointOfSale>();
         }
     }
 }
