@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ dev, testdeploy ]
 
 jobs:
   build:
@@ -24,3 +24,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Update database
+      run: |
+       dotnet tool install --global dotnet-ef
+       dotnet tool restore
+       dotnet ef database update --c DataContext --p MyProj --s MyProjFactory
