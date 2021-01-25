@@ -24,11 +24,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    #- name: Update database
-    #  run: |
-    #   working-directory: InternshipBe\IdentityServer
-    #   dotnet tool install --global dotnet-ef
-    #   dotnet ef database update
+    - name: Update database
+      run: |
+       working-directory: InternshipBe/IdentityServer
+       dotnet tool install --global dotnet-ef
+       dotnet ef database update
     - name: Publish
       working-directory: InternshipBe/IdentityServer
       run: dotnet publish IdentityServer.csproj /p:PublishProfile=identity.PublishSettings
