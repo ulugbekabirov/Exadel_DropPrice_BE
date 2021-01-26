@@ -36,3 +36,4 @@ namespace DAL.Entities
 
         public ICollection<SavedDiscount> SavedDiscounts { get; set; }
     }
+}
