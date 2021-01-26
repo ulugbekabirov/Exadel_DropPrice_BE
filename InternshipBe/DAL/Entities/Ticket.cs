@@ -11,7 +11,8 @@ namespace DAL.Entities
     {
         public int Id { get; set; }
 
-        [Required]
+        public int DicountId { get; set; }
+
         public Discount Discount { get; set; }
 
         [Required]

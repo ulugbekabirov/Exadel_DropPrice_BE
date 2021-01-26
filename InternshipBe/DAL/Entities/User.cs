@@ -12,6 +12,7 @@ namespace DAL.Entities
         public User()
         {
             SavedDiscounts = new List<SavedDiscount>();
+            Tickets = new List<Ticket>();
         }
 
         [Required]
@@ -35,5 +36,7 @@ namespace DAL.Entities
         public bool ActivityStatus { get; set; }
 
         public ICollection<SavedDiscount> SavedDiscounts { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }
