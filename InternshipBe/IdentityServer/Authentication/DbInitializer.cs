@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -13,12 +14,12 @@ namespace IdentityServer.Authentication
         public static async Task InitializeDatabase(IServiceProvider services)
         {
             using var scope = services.CreateScope();
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             await PopulateUsersAndRoles(userManager, rolesManager);
         }
 
-        public static async Task PopulateUsersAndRoles(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task PopulateUsersAndRoles(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (userManager.Users.Any())
             {
@@ -32,19 +33,19 @@ namespace IdentityServer.Authentication
                 await roleManager.CreateAsync(new IdentityRole(RoleName.User));
             }
 
-            var admin = new ApplicationUser()
+            var admin = new User()
             {
                 UserName = "admnexadel@gmail.com",
                 Email = "admnexadel@gmail.com",
             };
 
-            var moderator = new ApplicationUser()
+            var moderator = new User()
             {
                 UserName = "moderatorexadel@gmail.com",
                 Email = "moderatorexadel@gmail.com",
             };
 
-            var demoUser = new ApplicationUser()
+            var demoUser = new User()
             {
                 UserName = "userexadel@gmail.com",
                 Email = "userexadel@gmail.com",
@@ -61,7 +62,7 @@ namespace IdentityServer.Authentication
 
             for (int i = 0; i < 1200; i++)
             {
-                var user = new ApplicationUser()
+                var user = new User()
                 {
                     UserName = $"user{i}@test.com",
                     Email = $"user{i}@test.com",
