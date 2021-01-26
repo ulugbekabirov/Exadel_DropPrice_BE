@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class Office
+    class Ticket
     {
         public int Id { get; set; }
+        public Discount Discount { get; set; }
+        public User User { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required]
-        public string Address { get; set; }
-        [Required]
-        public double Latitude { get; set; }
-        [Required]
-        public double Longitude { get; set; }
+        public DateTime OrderDate { get; set; }
     }
 }
