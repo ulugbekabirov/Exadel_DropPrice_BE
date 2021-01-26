@@ -10,10 +10,13 @@ namespace DAL.Entities
     public class Ticket
     {
         public int Id { get; set; }
+
         [Required]
         public Discount Discount { get; set; }
+
         [Required]
         public User User { get; set; }
+
         [Required]
         public DateTime OrderDate { get; set; }
     }

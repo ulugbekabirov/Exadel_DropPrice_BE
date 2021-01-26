@@ -10,8 +10,10 @@ namespace DAL.Entities
     public class SavedDiscount
     {
         public int Id { get; set; }
+
         [Required]
         public User User { get; set; }
+
         [Required]
         public Discount Discount { get; set; }
     }

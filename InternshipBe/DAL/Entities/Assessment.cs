@@ -10,10 +10,13 @@ namespace DAL.Entities
     public class Assessment
     {
         public int Id { get; set; }
+
         [Required]
         public User User { get; set; }
+
         [Required]
         public Discount Discount { get; set; }
+
         [Required]
         public int AssessmentValue { get; set; }
     }
