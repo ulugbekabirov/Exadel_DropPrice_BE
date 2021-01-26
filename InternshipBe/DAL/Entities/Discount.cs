@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +10,21 @@ namespace DAL.Entities
     class Discount
     {
         public int Id { get; set; }
-        public int IdVendor { get; set; }
+        [Required]
+        public Vendor Vendor { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        [Required]
         public int DiscountAmount { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
-        public bool ActivityStatus { get; set; }
+        [Required]
+        public bool ActivityStatus { get; set; } = true;
         public string Promocode { get; set; }
         public string ImagePath { get; set; }
-        public Vendor Vendor { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<PointOfSale> PointOfSales { get; set; }
 
