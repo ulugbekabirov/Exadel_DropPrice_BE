@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class Ticket
+    public class Ticket
     {
         public int Id { get; set; }
         [Required]

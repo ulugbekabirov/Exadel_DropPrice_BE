@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class User
+    public class User
     {
         [Required]
         public Office Office { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class Assessment
+    public class Assessment
     {
         public int Id { get; set; }
         [Required]

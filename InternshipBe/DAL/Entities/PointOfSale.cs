@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class PointOfSale
+    public class PointOfSale
     {
         public int Id { get; set; }
         [Required]
