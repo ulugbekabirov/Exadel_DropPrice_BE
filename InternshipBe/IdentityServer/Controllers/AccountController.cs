@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using DAL.Entities;
 
 namespace IdentityServer.Controllers
 {
@@ -17,11 +18,11 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountController(
-                    UserManager<ApplicationUser> userManager,
+                    UserManager<User> userManager,
                     IConfiguration configuration)
         {
             _userManager = userManager;
