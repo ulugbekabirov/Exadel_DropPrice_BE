@@ -37,12 +37,7 @@ namespace DAL.Repositories
 
         public TEntity GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(TEntity item)
-        {
-            throw new NotImplementedException();
+            return _entities.Find(id);
         }
     }
 }
