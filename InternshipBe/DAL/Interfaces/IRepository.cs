@@ -15,5 +15,7 @@ namespace DAL.Interfaces
         IEnumerable<TEntity> Find(Func<TEntity, Boolean> predicate);
 
         void Create(TEntity item);
+
+        IQueryable<TEntity> GetSpecifiedAmount(int skip, int take);
     }
 }

@@ -39,5 +39,10 @@ namespace DAL.Repositories
         {
             return _entities.Find(id);
         }
+
+        public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
+        {
+            return _entities.Skip(skip).Take(take);
+        }
     }
 }
