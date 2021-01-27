@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL.DTO
 {
-    class UserDTO
+    public class UserDTO
     {
         public int Id { get; set; }
 
