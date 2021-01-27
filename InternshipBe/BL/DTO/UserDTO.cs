@@ -13,8 +13,8 @@ namespace BL.DTO
 
         public string[] Roles { get; set; }
 
-        public double Latitude { get; set; }
+        public double OfficeLatitude { get; set; }
 
-        public double Longitude { get; set; }
+        public double OfficeLongitude { get; set; }
     }
 }
