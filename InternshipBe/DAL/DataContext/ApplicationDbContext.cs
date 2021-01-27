@@ -33,6 +33,8 @@ namespace DAL.DataContext
 
         public DbSet<SavedDiscount> SavedDiscounts { get; set; }
 
+        public DbSet<Town> Towns { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
