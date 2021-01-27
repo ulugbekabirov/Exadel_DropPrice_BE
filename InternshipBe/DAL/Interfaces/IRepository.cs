@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IRepository<T> where T : class
+    interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<T> GetAll();
+        IEnumerable<TEntity> GetAll();
 
-        T GetById(int id);
+        TEntity GetById(int id);
 
-        IEnumerable<T> Find(Func<T, Boolean> predicate);
+        IEnumerable<TEntity> Find(Func<TEntity, Boolean> predicate);
 
-        void Create(T item);
-
-        void Update(T item);
+        void Create(TEntity item);
     }
 }
