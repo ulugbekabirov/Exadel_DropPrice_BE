@@ -22,11 +22,14 @@ namespace DAL.Repositories
             GeoCoordinate location = new GeoCoordinate(latitude, longitude);
 
             var pointOfSales = _context.PointOfSales
-                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(latitude, longitude)) })
+                .Select(p => new { Id = p.Id, Location = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
                 .OrderBy(p => p.Location);
 
-            var allDiscount = _entities.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
+            return _entities.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
+        }
 
+        public IEnumerable<Discount> SearchDiscounts(int skip, int take, double latitude, double longitude, string criteria)
+        {
             throw new NotImplementedException();
         }
 
