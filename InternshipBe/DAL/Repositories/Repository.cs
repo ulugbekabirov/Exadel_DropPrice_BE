@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -23,6 +21,7 @@ namespace DAL.Repositories
         public void Create(TEntity item)
         {
             _entities.Add(item);
+            _context.SaveChanges();
         }
 
         public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate)
