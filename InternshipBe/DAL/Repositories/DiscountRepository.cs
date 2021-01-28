@@ -1,12 +1,10 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
+using GeoCoordinatePortable;
 using System;
 using System.Collections.Generic;
-using System.Device.Location;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
