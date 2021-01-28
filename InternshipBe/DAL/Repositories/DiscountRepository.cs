@@ -22,7 +22,7 @@ namespace DAL.Repositories
             GeoCoordinate location = new GeoCoordinate(latitude, longitude);
 
             var pointOfSales = _context.PointOfSales
-                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(latitude, longitude)) })
+                .Select(c => new { c.Id, Location = location.GetDistanceTo(new GeoCoordinate(latitude, longitude)) })
                 .OrderBy(p => p.Location);
 
             var allDiscount = _entities.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
