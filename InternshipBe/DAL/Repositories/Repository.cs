@@ -21,6 +21,7 @@ namespace DAL.Repositories
         public void Create(TEntity item)
         {
             _entities.Add(item);
+            _context.SaveChanges();
         }
 
         public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate)
