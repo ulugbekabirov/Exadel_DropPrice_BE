@@ -24,7 +24,7 @@ namespace BL.DTO
 
         public int DiscountAmount { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime EndDate { get; set; }
 
         public bool IsSaved { get; set; }
     }
