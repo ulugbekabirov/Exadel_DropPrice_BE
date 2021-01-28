@@ -14,18 +14,23 @@ namespace BL.Services
 {
     public class UserService : Profile, IUserService
     {
-        private readonly Repository<User> _repository;
+        private readonly UserRepository _repository;
 
-        public UserService(Repository<User> repository)
+        public UserService(UserRepository repository)
         {
             _repository = repository;
         }
 
         public UserDTO getUserInfo(User user)
         {
-            CreateMap<User, UserDTO>();
+            var userOffice = _repository.GetUserOffice(user.OfficeId);
 
-            throw new NotImplementedException();
+            //var userRoles = _repository.GetUserRoles(user.Id);
+
+            return new UserDTO()
+            {
+
+            };
         }
     }
 }

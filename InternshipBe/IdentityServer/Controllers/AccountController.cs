@@ -41,7 +41,7 @@ namespace IdentityServer.Controllers
         public async Task<IActionResult> GetUserInfo()
         {
             var user = await _userManager.FindByEmailAsync(User.Identity.Name);
-
+           
             var roles = await _userManager.GetRolesAsync(user);
 
             GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
