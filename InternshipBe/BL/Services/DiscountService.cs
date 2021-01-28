@@ -7,7 +7,7 @@ using BL.DTO;
 using BL.Interfaces;
 namespace BL.Services
 {
-    class DiscountService : IDiscountService
+    public class DiscountService : IDiscountService
     {
         IEnumerable<DiscountDTO> IDiscountService.GetClosestDiscounts(int skip, int take, double latitude, double longitude)
         {
