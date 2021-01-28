@@ -11,6 +11,9 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
+using DAL.DataContext;
+using System.Linq;
+using System.Device.Location;
 
 namespace IdentityServer.Controllers
 {
@@ -18,13 +21,16 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountController(
+                    ApplicationDbContext db,
                     UserManager<User> userManager,
                     IConfiguration configuration)
         {
+            _db = db;
             _userManager = userManager;
             _configuration = configuration;
         }
@@ -38,7 +44,21 @@ namespace IdentityServer.Controllers
 
             var roles = await _userManager.GetRolesAsync(user);
 
-            return new JsonResult(new { Id = user.Id, Email = user.Email, Roles = roles });
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
         }
 
         [HttpPost]
