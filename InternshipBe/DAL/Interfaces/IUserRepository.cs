@@ -11,5 +11,6 @@ namespace DAL.Interfaces
     {
         Office GetUserOffice(int officeId);
 
+        IQueryable<string> GetUserRoles(int userId);
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BL.Services
 {
-    public class UserService : Profile, IUserService
+    public class UserService : IUserService
     {
         private readonly UserRepository _repository;
 
@@ -23,13 +23,15 @@ namespace BL.Services
 
         public UserDTO getUserInfo(User user)
         {
-            var userOffice = _repository.GetUserOffice(user.OfficeId);
+            var Office = _repository.GetUserOffice(user.OfficeId);
 
-            //var userRoles = _repository.GetUserRoles(user.Id);
+            var userRoles = _repository.GetUserRoles(user.Id);
 
             return new UserDTO()
             {
-
+                Roles = userRoles.ToArray(),
+                OfficeLatitude = Office.Latitude,
+                OfficeLongitude = Office.Longitude,
             };
         }
     }
