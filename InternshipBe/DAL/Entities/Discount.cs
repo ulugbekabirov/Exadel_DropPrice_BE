@@ -13,11 +13,13 @@ namespace DAL.Entities
         {
             Tags = new List<Tag>();
             PointOfSales = new List<PointOfSale>();
+            Assessments = new List<Assessment>();
         }
 
         public int Id { get; set; }
 
-        [Required]
+        public int Vendorid { get; set; }
+
         public Vendor Vendor { get; set; }
 
         [Required]
@@ -47,5 +49,7 @@ namespace DAL.Entities
         public ICollection<Tag> Tags { get; set; }
 
         public ICollection<PointOfSale> PointOfSales { get; set; }
+
+        public ICollection<Assessment> Assessments { get; set; }
     }
 }

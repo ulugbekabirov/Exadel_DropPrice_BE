@@ -16,7 +16,8 @@ namespace DAL.Entities
             Tickets = new List<Ticket>();
         }
 
-        [Required]
+        public int OfficeId { get; set; }
+
         public Office Office { get; set; }
 
         [Required]
