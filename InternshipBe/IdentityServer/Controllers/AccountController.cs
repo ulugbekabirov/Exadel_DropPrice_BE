@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
 using DAL.DataContext;
 using System.Linq;
-using System.Device.Location;
+using GeoCoordinatePortable;
 
 namespace IdentityServer.Controllers
 {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         public User()
         {

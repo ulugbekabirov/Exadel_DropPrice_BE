@@ -1,4 +1,5 @@
 ﻿using BL.DTO;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace BL.Interfaces
 {
     interface IUserService
     {
-        UserDTO getUserInfo();
+        UserDTO getUserInfo(User user);
     }
 }

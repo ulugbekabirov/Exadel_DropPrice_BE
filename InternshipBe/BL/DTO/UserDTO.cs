@@ -9,7 +9,7 @@ namespace BL.DTO
 {
     public class UserDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string[] Roles { get; set; }
 
