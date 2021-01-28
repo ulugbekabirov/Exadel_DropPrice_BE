@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entities
 {
+    [Table("User")]
     public class User : IdentityUser<int>
     {
         public User()
