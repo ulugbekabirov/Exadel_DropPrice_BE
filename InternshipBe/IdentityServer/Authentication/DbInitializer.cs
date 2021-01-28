@@ -17,7 +17,7 @@ namespace IdentityServer.Authentication
         {
             using var scope = services.CreateScope();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-            var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
             _db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             await PopulateUsersAndRoles(userManager, rolesManager);
         }
@@ -163,7 +163,7 @@ namespace IdentityServer.Authentication
             _db.SaveChanges();
         }
 
-        public static async Task PopulateUsersAndRoles(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task PopulateUsersAndRoles(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
             if (userManager.Users.Any())
             {
@@ -172,9 +172,9 @@ namespace IdentityServer.Authentication
 
             if (!roleManager.Roles.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole(RoleName.Admin));
-                await roleManager.CreateAsync(new IdentityRole(RoleName.Moderator));
-                await roleManager.CreateAsync(new IdentityRole(RoleName.User));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleName.Admin));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleName.Moderator));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleName.User));
             }
 
             AddTowns();
