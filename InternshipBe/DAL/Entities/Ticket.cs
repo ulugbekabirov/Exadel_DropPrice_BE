@@ -11,12 +11,14 @@ namespace DAL.Entities
     {
         public int Id { get; set; }
 
-        public int DicountId { get; set; }
-
-        public Discount Discount { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public User User { get; set; }
+
+        public int DiscountId { get; set; }
+        
+        public Discount Discount { get; set; }
 
         [Required]
         public DateTime OrderDate { get; set; }

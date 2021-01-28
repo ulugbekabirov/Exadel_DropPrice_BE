@@ -9,6 +9,11 @@ namespace DAL.Entities
 {
     public class Office
     {
+        public Office()
+        {
+            Users = new List<User>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -22,5 +27,7 @@ namespace DAL.Entities
 
         [Required]
         public double Longitude { get; set; }
+
+        public ICollection<User> Users { get; set; }
     }
 }
