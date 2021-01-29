@@ -12,8 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
 using DAL.DataContext;
-using System.Linq;
-using GeoCoordinatePortable;
 using BL.Services;
 
 namespace IdentityServer.Controllers
