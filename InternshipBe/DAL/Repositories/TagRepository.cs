@@ -19,7 +19,7 @@ namespace DAL.Repositories
 
         public IQueryable<Tag> GetPopularTags(int skip, int take)
         {
-            return _entities.Include(t => t.Discounts).ThenInclude(t => t.Tags).Skip(skip).Take(take);
+            return _entities.Skip(skip).Take(take);
         }
     }
 }

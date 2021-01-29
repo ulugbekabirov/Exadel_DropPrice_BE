@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface ITagRepository : IRepository<Tag>
+    public interface ITagRepository : IRepository<Tag>
     {
         IQueryable<Tag> GetPopularTags(int skip, int take);
     }

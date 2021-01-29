@@ -10,7 +10,7 @@ namespace WebApi.Controllers
     public class TownController : ControllerBase
     {
         private readonly ITownService _service;
-        public TownController(ITownService service)
+        public TownController(ITownService service) 
         {
             _service = service;
         }

@@ -1,6 +1,8 @@
-﻿using BL.DTO;
+﻿using AutoMapper;
+using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,16 +14,18 @@ namespace BL.Services
 {
     public class TagService : ITagService
     {
-        private readonly TagRepository _repository;
-
-        public TagService(TagRepository repository)
+        private readonly ITagRepository _repository;
+        private readonly IMapper _mapper;
+        public TagService(ITagRepository repository,
+                           IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Tag> GetSpecifiedTags(int skip, int take)
+        public IEnumerable<TagDTO> GetSpecifiedTags(int skip, int take)
         {
-            return _repository.GetPopularTags(skip, take);
+            return _repository.GetPopularTags(skip, take).Select(_mapper.Map<Tag,TagDTO>);
         }
     }
 }
