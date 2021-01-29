@@ -18,9 +18,9 @@ namespace BL.Services
             _repository = repository;
         }
 
-        public IEnumerable<Town> GetTown()
+        public IEnumerable<Town> GetTowns()
         {
-            return _repository.GetTowns();
+            return _repository.GetAll();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace DAL.Interfaces
 {
     public interface ITownRepository : IRepository<Town>
     {
-        IEnumerable<Town> GetTowns();
+
     }
 }

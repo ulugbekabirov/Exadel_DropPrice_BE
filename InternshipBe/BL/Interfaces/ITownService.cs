@@ -9,6 +9,6 @@ namespace BL.Interfaces
 {
     public interface ITownService
     {
-        IEnumerable<Town> GetTown();
+        IEnumerable<Town> GetTowns();
     }
 }

@@ -15,10 +15,5 @@ namespace DAL.Repositories
         {
 
         }
-
-        public IEnumerable<Town> GetTowns()
-        {
-            return GetAll();
-        }
     }
 }
