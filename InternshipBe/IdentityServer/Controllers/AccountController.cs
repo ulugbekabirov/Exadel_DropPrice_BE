@@ -41,7 +41,7 @@ namespace IdentityServer.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserInfo()
         {            
-            return Ok(_service.getUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(_service.GetUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpPost]

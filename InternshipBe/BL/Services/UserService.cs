@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Repositories;
 using System.Linq;
 
@@ -8,14 +9,14 @@ namespace BL.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public UserService(UserRepository repository)
+        public UserService(IUserRepository repository)
         {
             _repository = repository;
         }
 
-        public UserDTO getUserInfo(User user)
+        public UserDTO GetUserInfo(User user)
         {
             var Office = _repository.GetUserOffice(user.OfficeId);
 
