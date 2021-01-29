@@ -12,7 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
 using DAL.DataContext;
-using BL.Services;
+using System.Linq;
+using GeoCoordinatePortable;
+using BL.Interfaces;
 
 namespace IdentityServer.Controllers
 {
@@ -20,16 +22,14 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUserService _service;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly UserService _service;
 
         public AccountController(
-                    ApplicationDbContext db,
+                    IUserService service,
                     UserManager<User> userManager,
-                    IConfiguration configuration,
-                    UserService service)
+                    IConfiguration configuration)
         {
             _db = db;
             _userManager = userManager;

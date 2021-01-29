@@ -2,7 +2,7 @@
 {
     public class UserDTO
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string[] Roles { get; set; }
 

@@ -2,6 +2,7 @@
 using DAL.Entities;
 using DAL.Interfaces;
 using GeoCoordinatePortable;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,30 +16,19 @@ namespace DAL.Repositories
 
         }
 
-        public IEnumerable<Discount> GetDiscount(int skip, int take, double latitude, double longitude)
+        public IQueryable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude)
         {
             GeoCoordinate location = new GeoCoordinate(latitude, longitude);
 
-            var pointOfSales = _context.PointOfSales
-                .Select(p => new { Id = p.Id, Location = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                .OrderBy(p => p.Location);
-
-            return _entities.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
+            var closestPointsOfSales = _context.PointOfSales
+                .OrderBy(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)));
+            
+            return _entities.Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
         }
 
-        public IEnumerable<Discount> SearchDiscounts(int skip, int take, double latitude, double longitude, string criteria)
+        public IQueryable<SavedDiscount> GetSavedDiscounts(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Discount> SearchDiscountsByDiscountName(int skip, int take, double latitude, double longitude, string DiscountName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Discount> SearchDiscountsByTagName(int skip, int take, double latitude, double longitude, string TagName)
-        {
-            throw new NotImplementedException();
+            return _context.SavedDiscounts.Where(s => s.UserId == user.Id);
         }
     }
 }

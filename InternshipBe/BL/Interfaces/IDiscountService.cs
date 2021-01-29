@@ -1,10 +1,14 @@
 ﻿using BL.DTO;
+using DAL.Entities;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
-    public interface IDiscountService 
+    interface IDiscountService 
     {
-        IEnumerable<DiscountDTO> GetClosestDiscounts(int skip, int take, double latitude, double longitude);
+        IEnumerable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude, User user);
     }
 }

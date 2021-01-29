@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DAL.Entities;
+using BL.Services;
+using BL.Interfaces;
 
 namespace IdentityServer
 {
@@ -28,12 +30,16 @@ namespace IdentityServer
 
             services.AddCors();
 
+
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserService, UserService>(u => new UserService(
+                new DAL.Repositories.UserRepository(services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>())));
 
             services.AddAuthentication(options =>
             {
@@ -53,6 +59,7 @@ namespace IdentityServer
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

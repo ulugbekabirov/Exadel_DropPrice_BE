@@ -1,14 +1,13 @@
 ﻿using DAL.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.Interfaces
 {
-    interface IDiscountRepository : IRepository<Discount>
+    public interface IDiscountRepository : IRepository<Discount>
     {
-        IEnumerable<Discount> GetDiscount(int skip, int take, double latitude, double longitude);
+        IQueryable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude);
 
-        IEnumerable<Discount> SearchDiscountsByDiscountName(int skip, int take, double latitude, double longitude, string DiscountName);
-
-        IEnumerable<Discount> SearchDiscountsByTagName(int skip, int take, double latitude, double longitude, string TagName);
+        IQueryable<SavedDiscount> GetSavedDiscounts(User user);
     }
 }
