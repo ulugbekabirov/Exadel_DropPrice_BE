@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Shared.ExceptionHandling;
 
 namespace IdentityServer
 {
@@ -60,6 +61,8 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseGlobalExceptionMiddleware();
 
             app.UseRouting();
 
