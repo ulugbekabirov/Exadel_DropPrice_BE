@@ -19,9 +19,6 @@ namespace DAL.Entities
         public string Description { get; set; }
 
         [Required]
-        public string Address { get; set; }
-
-        [Required]
         public string Email { get; set; }
 
         [Required]
