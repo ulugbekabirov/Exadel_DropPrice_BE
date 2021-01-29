@@ -1,14 +1,8 @@
-﻿using BL.DTO;
-using BL.Interfaces;
-using BL.Services;
+﻿using BL.Interfaces;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
@@ -27,7 +21,7 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("getUserInfo")]
+        [HttpGet("user")]
         public async Task<IActionResult> GetUserInfo()
         {
             return Ok(_service.GetUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));

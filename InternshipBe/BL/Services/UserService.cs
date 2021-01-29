@@ -2,7 +2,6 @@
 using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using DAL.Repositories;
 using System.Linq;
 
 namespace BL.Services
@@ -18,16 +17,15 @@ namespace BL.Services
 
         public UserDTO GetUserInfo(User user)
         {
-            var Office = _repository.GetUserOffice(user.OfficeId);
+            var userOffice = _repository.GetUserOffice(user.OfficeId);
 
             var userRoles = _repository.GetUserRoles(user.Id).ToArray();
 
             return new UserDTO()
             {
-                Id = user.Id,
                 Roles = userRoles,
-                OfficeLatitude = Office.Latitude,
-                OfficeLongitude = Office.Longitude,
+                OfficeLatitude = userOffice.Latitude,
+                OfficeLongitude = userOffice.Longitude,
             };
         }
     }
