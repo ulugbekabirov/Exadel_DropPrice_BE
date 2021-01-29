@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Repositories;
 
 namespace BL.Services
 {
     public class DiscountService : IDiscountService
     {
-        private readonly DiscountRepository _repository;
+        private readonly IDiscountRepository _repository;
 
-        public DiscountService(DiscountRepository repository)
+        public DiscountService(IDiscountRepository repository)
         {
             _repository = repository;
         }
