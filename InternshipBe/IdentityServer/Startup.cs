@@ -28,7 +28,9 @@ namespace IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(options =>
+                    { options.JsonSerializerOptions.PropertyNamingPolicy = null;});
 
             services.AddCors();
 
