@@ -24,6 +24,6 @@ namespace DAL.Entities
         [Required]
         public double Longitude { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

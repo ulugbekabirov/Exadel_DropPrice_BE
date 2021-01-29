@@ -10,10 +10,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DAL.Entities;
-using BL.Services;
-using BL.Interfaces;
-using DAL.Interfaces;
-using DAL.Repositories;
 using System.Text.Json;
 
 namespace IdentityServer
@@ -35,17 +31,12 @@ namespace IdentityServer
 
             services.AddCors();
 
-
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
-
-            services.AddScoped<IUserService, UserService>();
-
-            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAuthentication(options =>
             {

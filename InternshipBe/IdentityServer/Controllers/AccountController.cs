@@ -22,26 +22,15 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IUserService _service;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountController(
-                    IUserService service,
                     UserManager<User> userManager,
                     IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
-            _service = service;
-        }
-
-        [HttpGet]
-        [Route("getUserInfo")]
-        [Authorize]
-        public async Task<IActionResult> GetUserInfo()
-        {            
-            return Ok(_service.GetUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpPost]

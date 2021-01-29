@@ -17,7 +17,7 @@ namespace DAL.Entities
 
         public int Vendorid { get; set; }
 
-        public Vendor Vendor { get; set; }
+        public virtual Vendor Vendor { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -43,10 +43,10 @@ namespace DAL.Entities
 
         public string ImagePath { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
 
-        public ICollection<PointOfSale> PointOfSales { get; set; }
+        public virtual ICollection<PointOfSale> PointOfSales { get; set; }
 
-        public ICollection<Assessment> Assessments { get; set; }
+        public virtual ICollection<Assessment> Assessments { get; set; }
     }
 }

@@ -25,9 +25,8 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("getDiscounts")]
-        
-        public async Task<IActionResult> GetUserInfo(int skip, int take, double latitude,  double longitude)
+        [HttpGet("discounts")]
+        public async Task<IActionResult> GetDiscounts(int skip, int take, double latitude, double longitude)
         {
             return Ok(_service.GetClosestDiscounts(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
         }

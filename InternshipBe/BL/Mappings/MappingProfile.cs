@@ -13,6 +13,10 @@ namespace BL.Mapping
             CreateMap<TownDTO, Town>()
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TownName));
 
+            CreateMap<User, UserDTO>()
+                .ForMember(u => u.OfficeLatitude, source => source.MapFrom(s => s.Office.Latitude))
+                .ForMember(u => u.OfficeLongitude, source => source.MapFrom(s => s.Office.Longitude));
+
             CreateMap<Tag, TagDTO>()
                 .ForMember(t => t.TagName, source => source.MapFrom(s => s.Name))
                 .ForMember(t => t.TagId, source => source.MapFrom(s => s.Id));

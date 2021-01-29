@@ -16,7 +16,7 @@ namespace DAL.Entities
 
         public int OfficeId { get; set; }
 
-        public Office Office { get; set; }
+        public virtual Office Office { get; set; }
 
         [Required]
         [MaxLength(30)]
@@ -35,8 +35,8 @@ namespace DAL.Entities
         [Required]
         public bool ActivityStatus { get; set; }
 
-        public ICollection<SavedDiscount> SavedDiscounts { get; set; }
+        public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

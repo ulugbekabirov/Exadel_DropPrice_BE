@@ -199,6 +199,7 @@ namespace IdentityServer.Authentication
                 LastName = $"admin",
                 Phone = $"375447777777",
                 ActivityStatus = true,
+                Office = _db.Offices.Find(1),
             };
 
             var moderator = new User()
@@ -210,6 +211,7 @@ namespace IdentityServer.Authentication
                 LastName = $"moderator",
                 Phone = $"375447777777",
                 ActivityStatus = true,
+                Office = _db.Offices.Find(1),
             };
 
             var demoUser = new User()
@@ -221,6 +223,7 @@ namespace IdentityServer.Authentication
                 LastName = $"user",
                 Phone = $"375447777777",
                 ActivityStatus = true,
+                Office = _db.Offices.Find(1),
             };
 
             await userManager.CreateAsync(admin, password);
@@ -257,8 +260,9 @@ namespace IdentityServer.Authentication
                     OfficeId = 2,
                     FirstName = $"user{i}",
                     LastName = $"user{i}",
-                    Phone = $"37544{i}{i}{i}{i}{i}{i}{i}",
+                    Phone = $"375441111111",
                     ActivityStatus = true,
+                    Office = _db.Offices.Find(2),
                 };
                 await userManager.CreateAsync(user, password);
                 await userManager.AddToRolesAsync(user, RoleName.GetRolesOfUser());

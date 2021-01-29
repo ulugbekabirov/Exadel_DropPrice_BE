@@ -15,6 +15,6 @@ namespace DAL.Entities
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Discount> Discounts { get; set; }
+        public virtual ICollection<Discount> Discounts { get; set; }
     }
 }
