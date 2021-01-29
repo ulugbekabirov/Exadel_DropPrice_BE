@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetUserInfo()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var userDTO = _service.getUserInfo(user);
+            var userDTO = _service.GetUserInfo(user);
             return Ok(userDTO);
         }
 

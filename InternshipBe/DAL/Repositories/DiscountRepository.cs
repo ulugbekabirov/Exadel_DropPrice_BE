@@ -18,12 +18,12 @@ namespace DAL.Repositories
 
         public IQueryable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude)
         {
-            GeoCoordinate location = new GeoCoordinate(latitude, longitude);
+            var location = new GeoCoordinate(latitude, longitude);
 
             var closestPointsOfSales = _context.PointOfSales
                 .OrderBy(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)));
             
-            return _entities.Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id)).Skip(skip).Take(take);
+            return GetSpecifiedAmount(skip,take).Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id));
         }
 
         public IQueryable<SavedDiscount> GetSavedDiscounts(User user)
