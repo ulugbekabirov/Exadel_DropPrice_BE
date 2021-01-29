@@ -1,5 +1,6 @@
 using AutoMapper;
 using BL.Interfaces;
+using BL.Mapping;
 using BL.Services;
 using DAL.DataContext;
 using DAL.Entities;
@@ -17,7 +18,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
-using BL.Mapping;
 
 namespace WebApi
 {
@@ -58,6 +58,10 @@ namespace WebApi
             services.AddScoped<IDiscountService, DiscountService>();
 
             services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+            services.AddScoped<ITagService, TagService>();
+
+            services.AddScoped<ITagRepository, TagRepository>();
 
             services.AddAuthentication(options =>
             {

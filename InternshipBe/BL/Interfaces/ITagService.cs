@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BL.DTO;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace BL.Interfaces
 {
     public interface ITagService 
     {
-        IEnumerable<Tag> GetSpecifiedTags(int skip, int take);
+        IEnumerable<TagDTO> GetSpecifiedTags(int skip, int take);
     }
 }
