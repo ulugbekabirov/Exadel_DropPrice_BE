@@ -30,7 +30,7 @@ namespace IdentityServer
         {
             services.AddControllers()
                     .AddJsonOptions(options =>
-                    { options.JsonSerializerOptions.PropertyNamingPolicy = null;});
+                    { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
 
             services.AddCors();
 
