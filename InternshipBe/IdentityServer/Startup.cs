@@ -12,6 +12,8 @@ using System.Text;
 using DAL.Entities;
 using BL.Services;
 using BL.Interfaces;
+using DAL.Interfaces;
+using DAL.Repositories;
 
 namespace IdentityServer
 {
@@ -38,8 +40,9 @@ namespace IdentityServer
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
 
-            services.AddScoped<IUserService, UserService>(u => new UserService(
-                new DAL.Repositories.UserRepository(services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>())));
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAuthentication(options =>
             {
