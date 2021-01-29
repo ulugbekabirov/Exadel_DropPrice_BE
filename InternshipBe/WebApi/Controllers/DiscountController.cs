@@ -1,6 +1,4 @@
-﻿using BL.DTO;
-using BL.Interfaces;
-using BL.Services;
+﻿using BL.Interfaces;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,21 +14,22 @@ namespace WebApi.Controllers
     [Route("api/")]
     [ApiController]
     [Authorize]
-    public class UserController : ControllerBase
+    public class DiscountController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly IDiscountService _service;
         private readonly UserManager<User> _userManager;
 
-        public UserController(IUserService service, UserManager<User> userManager)
+        public DiscountController(IDiscountService service, UserManager<User> userManager)
         {
             _service = service;
             _userManager = userManager;
         }
 
-        [HttpGet("getUserInfo")]
-        public async Task<IActionResult> GetUserInfo()
+        [HttpGet("getDiscounts")]
+        
+        public async Task<IActionResult> GetUserInfo(int skip, int take, double latitude,  double longitude)
         {
-            return Ok(_service.GetUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(_service.GetClosestDiscounts(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
