@@ -14,11 +14,6 @@ namespace DAL.Repositories
 
         }
 
-        public Office GetUserOffice(int officeId)
-        {
-            return _context.Offices.Find(officeId);
-        }
-
         public IQueryable<string> GetUserRoles(int userId)
         {
             return _context.Roles
