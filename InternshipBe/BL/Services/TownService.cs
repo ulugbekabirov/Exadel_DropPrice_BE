@@ -1,26 +1,27 @@
-﻿using BL.Interfaces;
+﻿using AutoMapper;
+using BL.DTO;
+using BL.Interfaces;
 using DAL.Entities;
-using DAL.Repositories;
-using System;
+using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL.Services
 {
     public class TownService : ITownService
     {
-        private readonly TownRepository _repository;
+        private readonly ITownRepository _repository;
+        private readonly IMapper _mapper;
 
-        public TownService(TownRepository repository)
+        public TownService(ITownRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Town> GetTowns()
+        public IEnumerable<TownDTO> GetTowns()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().Select(_mapper.Map<Town, TownDTO>);
         }
     }
 }

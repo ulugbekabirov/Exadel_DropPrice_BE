@@ -1,3 +1,4 @@
+using AutoMapper;
 using BL.Interfaces;
 using BL.Services;
 using DAL.DataContext;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
+using BL.Mapping;
 
 namespace WebApi
 {
@@ -36,6 +38,7 @@ namespace WebApi
 
             services.AddCors();
 
+            services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -47,6 +50,10 @@ namespace WebApi
             services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ITownService, TownService>();
+
+            services.AddScoped<ITownRepository, TownRepository>();
 
             services.AddScoped<IDiscountService, DiscountService>();
 
