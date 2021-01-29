@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
@@ -10,7 +7,7 @@ using DAL.Repositories;
 
 namespace BL.Services
 {
-    class DiscountService : IDiscountService
+    public class DiscountService : IDiscountService
     {
         private readonly DiscountRepository _repository;
 

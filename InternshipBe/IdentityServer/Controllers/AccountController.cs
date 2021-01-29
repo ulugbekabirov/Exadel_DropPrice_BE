@@ -14,8 +14,6 @@ using DAL.Entities;
 using DAL.DataContext;
 using System.Linq;
 using GeoCoordinatePortable;
-using BL.Services;
-using BL.Interfaces;
 
 namespace IdentityServer.Controllers
 {
@@ -26,15 +24,18 @@ namespace IdentityServer.Controllers
         private readonly IUserService _service;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly UserService _service;
 
         public AccountController(
                     IUserService service,
                     UserManager<User> userManager,
-                    IConfiguration configuration)
+                    IConfiguration configuration,
+                    UserService service)
         {
             _service = service;
             _userManager = userManager;
             _configuration = configuration;
+            _service = service;
         }
 
         [HttpGet]
@@ -43,6 +44,134 @@ namespace IdentityServer.Controllers
         public async Task<IActionResult> GetUserInfo()
         {
             return Ok(_service.getUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
+
+            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
+
+            var pointOfSales = _db.PointOfSales
+                .ToList()
+                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
+                .OrderBy(p => p.Location);
+
+            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
+
+            return Ok(new { 
+                roles = roles, 
+                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
+                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
+                distansy = pointOfSales.ToList(),
+            });
         }
 
         [HttpPost]
