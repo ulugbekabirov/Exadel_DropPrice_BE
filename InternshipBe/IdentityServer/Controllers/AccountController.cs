@@ -14,6 +14,8 @@ using DAL.Entities;
 using DAL.DataContext;
 using System.Linq;
 using GeoCoordinatePortable;
+using BL.Services;
+using BL.Interfaces;
 
 namespace IdentityServer.Controllers
 {
@@ -21,16 +23,16 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUserService _service;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountController(
-                    ApplicationDbContext db,
+                    IUserService service,
                     UserManager<User> userManager,
                     IConfiguration configuration)
         {
-            _db = db;
+            _service = service;
             _userManager = userManager;
             _configuration = configuration;
         }
@@ -40,25 +42,7 @@ namespace IdentityServer.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserInfo()
         {
-            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
-           
-            var roles = await _userManager.GetRolesAsync(user);
-
-            GeoCoordinate location = new GeoCoordinate(53.9005961, 27.5589895);
-
-            var pointOfSales = _db.PointOfSales
-                .ToList()
-                .Select(c => new { Id = c.Id, Location = location.GetDistanceTo(new GeoCoordinate(c.Latitude, c.Longitude)) })
-                .OrderBy(p => p.Location);
-
-            var allDiscount = _db.Discounts.Where(d => pointOfSales.Select(p => p.Id).Contains(d.Id)).Skip(0).Take(5).Select(d => d).ToList();
-
-            return Ok(new { 
-                roles = roles, 
-                officeLatilude = _db.Offices.Find(user.OfficeId).Latitude, 
-                officeLongitude = _db.Offices.Find(user.OfficeId).Longitude,
-                distansy = pointOfSales.ToList(),
-            });
+            return Ok(_service.getUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpPost]

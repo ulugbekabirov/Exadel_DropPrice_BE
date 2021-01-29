@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         Office GetUserOffice(int officeId);
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
-    interface IUserService
+    public interface IUserService
     {
         UserDTO getUserInfo(User user);
     }

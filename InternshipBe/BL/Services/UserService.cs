@@ -25,11 +25,12 @@ namespace BL.Services
         {
             var Office = _repository.GetUserOffice(user.OfficeId);
 
-            var userRoles = _repository.GetUserRoles(user.Id);
+            var userRoles = _repository.GetUserRoles(user.Id).ToArray();
 
             return new UserDTO()
             {
-                Roles = userRoles.ToArray(),
+                Id = user.Id,
+                Roles = userRoles,
                 OfficeLatitude = Office.Latitude,
                 OfficeLongitude = Office.Longitude,
             };
