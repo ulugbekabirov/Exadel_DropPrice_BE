@@ -31,7 +31,6 @@ namespace IdentityServer.Controllers
                     UserManager<User> userManager,
                     IConfiguration configuration)
         {
-            _db = db;
             _userManager = userManager;
             _configuration = configuration;
             _service = service;
@@ -41,10 +40,8 @@ namespace IdentityServer.Controllers
         [Route("getUserInfo")]
         [Authorize]
         public async Task<IActionResult> GetUserInfo()
-        {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var userDTO = _service.getUserInfo(user);
-            return Ok(userDTO);
+        {            
+            return Ok(_service.getUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpPost]
