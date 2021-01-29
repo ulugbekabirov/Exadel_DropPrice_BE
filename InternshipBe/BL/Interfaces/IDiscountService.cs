@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
-    interface IDiscountService 
+    public interface IDiscountService 
     {
         IEnumerable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude, User user);
     }
