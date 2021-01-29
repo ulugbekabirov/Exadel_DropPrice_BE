@@ -2,12 +2,12 @@
 {
     public class TownDTO
     {
-        public int townId { get; set; }
+        public int TownId { get; set; }
 
-        public string townName { get; set; }
+        public string TownName { get; set; }
 
-        public double latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public double longitude { get; set; }
+        public double Longitude { get; set; }
     }
 }
