@@ -17,25 +17,25 @@ namespace DAL.DbInitializer
 
         public void InitializeDiscounts()
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                AddDiscount(1, "Coffee Plus", "The best coffee PLUS", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                AddDiscount(1, $"Coffee Plus{i}", "The best coffee PLUS", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _db.Vendors.Find(1), 
                     _db.PointOfSales.Where(p => p.Name == "Coffee").ToList(),
                     _db.Tags.Where(t => t.Name == "Plus" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
             }
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                AddDiscount(1, "Food", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                AddDiscount(1, $"Food{i}", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _db.Vendors.Find(2), 
                     _db.PointOfSales.Where(p => p.Name == "Food").ToList(),
                     _db.Tags.Where(p => p.Name == "Food").ToList());
             }
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                AddDiscount(1, "Reebok", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                AddDiscount(1, $"Reebok{i}", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _db.Vendors.Find(3), 
                     _db.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
                     _db.Tags.Where(t => t.Name == "ReeBok").ToList());
