@@ -27,8 +27,6 @@ namespace BL.Services
         {
             var discounts = _repository.GetClosestDiscounts(skip, take, latitude, longitude).Select(_mapper.Map<Discount,DiscountDTO>);
 
-            var saved = _repository.GetSavedDiscounts(user);
-
             return discounts;
         }
     }
