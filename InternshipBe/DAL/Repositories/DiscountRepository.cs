@@ -25,7 +25,7 @@ namespace DAL.Repositories
                 .Select(p=> new {Id = p.Id, Discounts = p.Discounts ,Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
                 .OrderBy(p=>p.Distanse);
 
-            var closestDiscounts = closestPointsOfSales.SelectMany(d => d.Discounts).Distinct().Skip(skip).Take(take);
+            var closestDiscounts = closestPointsOfSales.SelectMany(d => d.Discounts).Skip(skip).Take(take);
 
             return closestDiscounts.AsQueryable();
         }
