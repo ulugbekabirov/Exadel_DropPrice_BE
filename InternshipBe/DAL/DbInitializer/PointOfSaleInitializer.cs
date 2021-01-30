@@ -5,7 +5,7 @@ namespace DAL.DbInitializer
 {
     public class PointOfSaleInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public PointOfSaleInitializer(ApplicationDbContext db)
         {

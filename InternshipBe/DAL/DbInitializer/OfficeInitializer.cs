@@ -5,7 +5,7 @@ namespace DAL.DbInitializer
 {
     public class OfficeInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public OfficeInitializer(ApplicationDbContext db)
         {

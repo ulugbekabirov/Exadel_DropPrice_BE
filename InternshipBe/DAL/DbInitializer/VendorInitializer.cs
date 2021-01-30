@@ -5,7 +5,7 @@ namespace DAL.DbInitializer
 {
     public class VendorInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public VendorInitializer(ApplicationDbContext db)
         {
