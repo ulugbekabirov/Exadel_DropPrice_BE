@@ -1,6 +1,7 @@
 ﻿using BL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("tags")]
-        public IActionResult GetTags(int skip, int take)
+        public async Task<IActionResult> GetTags(int skip, int take)
         {
-            return Ok(_tagService.GetSpecifiedAmountAsync(skip, take));
+            return Ok(await _tagService.GetSpecifiedAmountAsync(skip, take));
         }
     }
 }

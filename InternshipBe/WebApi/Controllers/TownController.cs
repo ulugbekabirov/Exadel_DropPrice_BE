@@ -1,6 +1,7 @@
 ﻿using BL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("towns")]
-        public IActionResult GetTowns()
+        public async Task<IActionResult> GetTowns()
         {
-            return Ok(_service.GetTownsAsync());
+            return Ok(await _service.GetTownsAsync());
         }
     }
 }
