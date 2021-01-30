@@ -10,6 +10,6 @@ namespace BL.Interfaces
 {
     public interface ITagService 
     {
-        IEnumerable<TagDTO> GetSpecifiedTags(int skip, int take);
+        Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(int skip, int take);
     }
 }

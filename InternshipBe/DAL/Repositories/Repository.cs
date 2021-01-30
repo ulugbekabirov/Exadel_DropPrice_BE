@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -18,30 +19,27 @@ namespace DAL.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public void Create(TEntity item)
+        public async Task CreateAsync(TEntity item)
         {
-            _entities.Add(item);
-            _context.SaveChanges();
+            await _entities.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate)
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return _entities.Where(predicate);
+            return await _entities.ToListAsync();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return _entities.ToList();
+            return await _entities.FindAsync(id);
         }
 
-        public TEntity GetById(int id)
+        public async Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take)
         {
-            return _entities.Find(id);
-        }
+            var task = await _entities.Skip(skip).Take(take).ToListAsync();
 
-        public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
-        {
-            return _entities.Skip(skip).Take(take);
+            return task.AsQueryable();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace DAL.DbInitializer
 {
     public class SavedDiscountInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public SavedDiscountInitializer(ApplicationDbContext db)
         {

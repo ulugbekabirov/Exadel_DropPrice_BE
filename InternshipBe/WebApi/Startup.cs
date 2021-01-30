@@ -55,13 +55,13 @@ namespace WebApi
 
             services.AddScoped<ITownRepository, TownRepository>();
 
-            services.AddScoped<IDiscountService, DiscountService>();
-
-            services.AddScoped<IDiscountRepository, DiscountRepository>();
-
             services.AddScoped<ITagService, TagService>();
 
             services.AddScoped<ITagRepository, TagRepository>();
+
+            services.AddScoped<IDiscountService, DiscountService>();
+
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
 
             services.AddAuthentication(options =>
             {

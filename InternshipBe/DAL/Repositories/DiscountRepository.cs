@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -16,19 +17,17 @@ namespace DAL.Repositories
 
         }
 
-        public IQueryable<Discount> GetClosestDiscounts(int skip, int take, double latitude, double longitude)
+        public async Task<IQueryable<Discount>> GetClosestDiscountsAsync(int skip, int take, double latitude, double longitude)
         {
             var location = new GeoCoordinate(latitude, longitude);
 
-            var closestPointsOfSales = _context.PointOfSales
-                .OrderBy(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)));
-            
-            return GetSpecifiedAmount(skip,take).Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id));
-        }
+            var closestPointsOfSales = _context.PointOfSales.ToList()
+                .Select(p=> new {Id = p.Id, Discounts = p.Discounts ,Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                .OrderBy(p=>p.Distanse);
 
-        public IQueryable<SavedDiscount> GetSavedDiscounts(User user)
-        {
-            return _context.SavedDiscounts.Where(s => s.UserId == user.Id);
+            var closestDiscounts = closestPointsOfSales.SelectMany(d => d.Discounts).Skip(skip).Take(take);
+
+            return closestDiscounts.AsQueryable();
         }
     }
 }

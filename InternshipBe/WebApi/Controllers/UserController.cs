@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpGet("user")]
         public async Task<IActionResult> GetUserInfo()
         {
-            return Ok(_service.GetUserInfo(await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _service.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

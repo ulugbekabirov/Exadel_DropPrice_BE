@@ -5,6 +5,7 @@ using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BL.Services
 {
@@ -19,9 +20,11 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<TownDTO> GetTowns()
+        public async Task<IEnumerable<TownDTO>> GetTownsAsync()
         {
-            return _repository.GetAll().Select(_mapper.Map<Town, TownDTO>);
+            var towns = await _repository.GetAllAsync();
+
+            return towns.Select(_mapper.Map<Town, TownDTO>);
         }
     }
 }

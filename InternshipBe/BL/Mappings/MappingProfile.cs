@@ -2,6 +2,7 @@
 using BL.DTO;
 using DAL.Entities;
 
+
 namespace BL.Mapping
 {
     public class MappingProfile : Profile
@@ -23,6 +24,12 @@ namespace BL.Mapping
             CreateMap<TagDTO, Tag>()
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
                 .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId)); ;
+
+
+            CreateMap<Discount, DiscountDTO>()
+                .ForMember(t => t.DiscountName, source => source.MapFrom(s => s.Name));
+            CreateMap<DiscountDTO, Discount>();
+                
         }
     }
 }
