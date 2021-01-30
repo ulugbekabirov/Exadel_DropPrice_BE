@@ -25,7 +25,9 @@ namespace BL.Services
 
         IEnumerable<DiscountDTO>  IDiscountService.GetClosest(int skip, int take, double latitude, double longitude, User user)
         {
-            var discounts = _repository.GetClosestDiscounts(skip, take, latitude, longitude).Select(_mapper.Map<Discount,DiscountDTO>);
+            var discounts = _repository.GetClosestDiscountsAsync(skip, take, latitude, longitude);
+            
+            discounts.Select(_mapper.Map<Discount,DiscountDTO>);
 
             return discounts;
         }

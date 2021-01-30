@@ -7,6 +7,6 @@ namespace DAL.Interfaces
 {
     public interface IDiscountRepository : IRepository<Discount>
     {
-        Task<IQueryable<Discount>> GetClosestDiscounts(int skip, int take, double latitude, double longitude);
+        Task<IQueryable<Discount>> GetClosestDiscountsAsync(int skip, int take, double latitude, double longitude);
     }
 }

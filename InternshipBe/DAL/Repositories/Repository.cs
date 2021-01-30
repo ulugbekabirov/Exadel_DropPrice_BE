@@ -19,7 +19,7 @@ namespace DAL.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public async Task Create(TEntity item)
+        public async Task CreateAsync(TEntity item)
         {
             await _entities.AddAsync(item);
             await _context.SaveChangesAsync();
@@ -30,17 +30,17 @@ namespace DAL.Repositories
             return _entities.Where(predicate);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _entities.ToListAsync();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
             return await _entities.FindAsync(id);
         }
 
-        public async Task<IQueryable<TEntity>> GetSpecifiedAmount(int skip, int take)
+        public async Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take)
         {
             var task = await _entities.Skip(skip).Take(take).ToListAsync();
 

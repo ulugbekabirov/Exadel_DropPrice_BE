@@ -17,14 +17,14 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IQueryable<Discount>> GetClosestDiscounts(int skip, int take, double latitude, double longitude)
+        public async Task<IQueryable<Discount>> GetClosestDiscountsAsync(int skip, int take, double latitude, double longitude)
         {
             var location = new GeoCoordinate(latitude, longitude);
 
             var closestPointsOfSales = _context.PointOfSales
                 .OrderBy(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)));
 
-            var discounts = await GetSpecifiedAmount(skip, take);
+            var discounts = await GetSpecifiedAmountAsync(skip, take);
 
             return discounts.Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id));
         }
