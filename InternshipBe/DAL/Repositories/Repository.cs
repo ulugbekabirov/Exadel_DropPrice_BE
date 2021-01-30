@@ -25,11 +25,6 @@ namespace DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate)
-        {
-            return _entities.Where(predicate);
-        }
-
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _entities.ToListAsync();

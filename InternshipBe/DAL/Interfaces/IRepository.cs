@@ -11,8 +11,6 @@ namespace DAL.Interfaces
 
         Task<TEntity> GetByIdAsync(int id);
 
-        IEnumerable<TEntity> Find(Func<TEntity, Boolean> predicate);
-
         Task CreateAsync(TEntity item);
 
         Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take);
