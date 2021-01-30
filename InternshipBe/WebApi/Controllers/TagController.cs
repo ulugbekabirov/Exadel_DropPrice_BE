@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         [HttpGet("tags")]
         public IActionResult GetTags(int skip, int take)
         {
-            return Ok(_tagService.GetSpecifiedAmount(skip, take));
+            return Ok(_tagService.GetSpecifiedAmountAsync(skip, take));
         }
     }
 }

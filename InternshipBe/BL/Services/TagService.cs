@@ -23,9 +23,10 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<TagDTO> GetSpecifiedAmount(int skip, int take)
+        public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(int skip, int take)
         {
-            return _repository.GetPopularAsync(skip, take).Select(_mapper.Map<Tag,TagDTO>);
+            var tags = await _repository.GetPopularAsync(skip, take);
+            return tags.Select(_mapper.Map<Tag, TagDTO>);
         }
     }
 }
