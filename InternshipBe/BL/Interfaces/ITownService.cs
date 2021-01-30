@@ -6,6 +6,6 @@ namespace BL.Interfaces
 {
     public interface ITownService
     {
-        Task<IEnumerable<TownDTO>> GetTowns();
+        Task<IEnumerable<TownDTO>> GetTownsAsync();
     }
 }

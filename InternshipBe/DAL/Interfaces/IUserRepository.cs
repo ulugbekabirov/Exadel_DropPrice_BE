@@ -6,6 +6,6 @@ namespace DAL.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<IQueryable<string>> GetUserRoles(int userId);
+        Task<IQueryable<string>> GetUserRolesAsync(int userId);
     }
 }

@@ -15,7 +15,7 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IQueryable<string>> GetUserRoles(int userId)
+        public async Task<IQueryable<string>> GetUserRolesAsync(int userId)
         {
             var roles = await _context.Roles
                                 .Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id))

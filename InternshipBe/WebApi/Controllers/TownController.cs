@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         [HttpGet("towns")]
         public IActionResult GetTowns()
         {
-            return Ok(_service.GetTowns());
+            return Ok(_service.GetTownsAsync());
         }
     }
 }

@@ -20,7 +20,7 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TownDTO>> GetTowns()
+        public async Task<IEnumerable<TownDTO>> GetTownsAsync()
         {
             var towns = await _repository.GetAllAsync();
 
