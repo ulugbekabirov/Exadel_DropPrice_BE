@@ -17,9 +17,10 @@ namespace DAL.Repositories
 
         }
 
-        public IQueryable<Tag> GetPopularTags(int skip, int take)
+        public async Task<IQueryable<Tag>> GetPopularAsync(int skip, int take)
         {
-            return _entities.Skip(skip).Take(take);
+            var tags = await _entities.Skip(skip).Take(take).ToListAsync();
+            return tags.AsQueryable();
         }
     }
 }
