@@ -4,6 +4,7 @@ using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BL.Services
 {
@@ -18,13 +19,13 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public UserDTO GetUserInfo(User user)
+        public async Task<UserDTO> GetUserInfoAsync(User user)
         {
-            var userRoles = _repository.GetUserRoles(user.Id).ToArray();
+            var userRoles = await _repository.GetUserRoles(user.Id);
 
             var userDTO = _mapper.Map<User, UserDTO>(user);
 
-            userDTO.Roles = userRoles;
+            userDTO.Roles = userRoles.ToArray();
 
             return userDTO;
         }
