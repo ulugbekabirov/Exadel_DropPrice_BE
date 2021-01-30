@@ -24,9 +24,24 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user)
         {
-            var discounts = await _repository.GetClosestDiscountsAsync(skip, take, latitude, longitude);
+            int i = 0;
+
+            var typle = await _repository.GetClosestDiscountsAsync(latitude, longitude);
+
+            List<DiscountDTO> DTOs = new List<DiscountDTO>();
             
-            return discounts.Select(_mapper.Map<Discount, DiscountDTO>);
+            foreach (var discounts in typle.Item1)
+            {
+                ++i;
+                foreach (var discount in discounts)
+                {
+                    var dto = _mapper.Map<Discount, DiscountDTO>(discount);
+                    dto.Distance = (int)typle.Item2[i];
+                    DTOs.Add(dto);
+                }
+            }
+
+            return DTOs.Skip(skip).Take(take);
         }
     }
 }

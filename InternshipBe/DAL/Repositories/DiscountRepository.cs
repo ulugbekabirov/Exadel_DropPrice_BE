@@ -17,17 +17,19 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IQueryable<Discount>> GetClosestDiscountsAsync(int skip, int take, double latitude, double longitude)
+        public async Task<(IQueryable<ICollection<Discount>>, Dictionary<int, double>)> GetClosestDiscountsAsync(double latitude, double longitude)
         {
+            int i = 0;
+
             var location = new GeoCoordinate(latitude, longitude);
 
             var closestPointsOfSales = _context.PointOfSales.ToList()
-                .Select(p=> new {Id = p.Id, Discounts = p.Discounts ,Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                .OrderBy(p=>p.Distanse);
+                .Select(p => new { Id = p.Id, Discounts = p.Discounts, Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                .OrderBy(p => p.Distanse);
 
-            var closestDiscounts = closestPointsOfSales.SelectMany(d => d.Discounts).Skip(skip).Take(take);
+            var closestDiscounts = closestPointsOfSales.Select(d => new { Id = ++i, Discounts = d.Discounts, Distance = d.Distanse });
 
-            return closestDiscounts.AsQueryable();
+            return (closestDiscounts.Select(d => d.Discounts).AsQueryable(), closestDiscounts.ToDictionary(k => k.Id, v => v.Distance));
         }
     }
 }
