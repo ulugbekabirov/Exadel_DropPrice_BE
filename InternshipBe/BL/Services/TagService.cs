@@ -25,7 +25,7 @@ namespace BL.Services
 
         public IEnumerable<TagDTO> GetSpecifiedAmount(int skip, int take)
         {
-            return _repository.GetPopularTags(skip, take).Select(_mapper.Map<Tag,TagDTO>);
+            return _repository.GetPopularAsync(skip, take).Select(_mapper.Map<Tag,TagDTO>);
         }
     }
 }
