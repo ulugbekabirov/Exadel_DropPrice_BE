@@ -21,7 +21,7 @@ namespace BL.Services
         {
             var discounts = _repository.GetClosestDiscounts(skip, take, latitude, longitude);
 
-            var saved = _repository.GetSavedDiscounts(user);
+            //var saved = _repository.GetSavedDiscounts(user);
 
             return discounts;
         }

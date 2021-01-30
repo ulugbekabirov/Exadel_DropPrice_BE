@@ -5,7 +5,7 @@ namespace DAL.DbInitializer
 {
     public class TownInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public TownInitializer(ApplicationDbContext db)
         {
