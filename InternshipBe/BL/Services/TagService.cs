@@ -23,7 +23,7 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<TagDTO> GetSpecifiedTags(int skip, int take)
+        public IEnumerable<TagDTO> GetSpecifiedAmount(int skip, int take)
         {
             return _repository.GetPopularTags(skip, take).Select(_mapper.Map<Tag,TagDTO>);
         }

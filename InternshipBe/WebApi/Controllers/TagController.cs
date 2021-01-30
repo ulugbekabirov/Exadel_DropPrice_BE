@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     [Route("api/")]
-    [ApiController]
+    [Authorize]
     public class TagController : ControllerBase
     {
         public ITagService _tagService;
@@ -19,12 +19,11 @@ namespace WebApi.Controllers
         {
             _tagService = tagService;
         }
+
         [HttpGet("tags")]
-        [Authorize]
         public IActionResult GetTags(int skip, int take)
         {
-            return Ok(_tagService.GetSpecifiedTags(skip, take));
+            return Ok(_tagService.GetSpecifiedAmount(skip, take));
         }
-
     }
 }
