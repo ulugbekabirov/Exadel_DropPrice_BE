@@ -7,8 +7,8 @@ namespace DAL.DbInitializer
 {
     public class UserInitializer
     {
-        private ApplicationDbContext _db;
-        private UserManager<User> _userManager;
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<User> _userManager;
         private const string password = "Qwerty123!";
 
         public UserInitializer(ApplicationDbContext db, UserManager<User> userManager)

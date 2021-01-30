@@ -8,7 +8,7 @@ namespace DAL.DbInitializer
 {
     public class DiscountInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public DiscountInitializer(ApplicationDbContext db)
         {

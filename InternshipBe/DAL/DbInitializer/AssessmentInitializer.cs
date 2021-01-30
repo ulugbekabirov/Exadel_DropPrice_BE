@@ -6,7 +6,7 @@ namespace DAL.DbInitializer
 {
     public class AssessmentInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public AssessmentInitializer(ApplicationDbContext db)
         {

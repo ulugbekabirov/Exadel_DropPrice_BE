@@ -5,7 +5,7 @@ namespace DAL.DbInitializer
 {
     public class TagInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public TagInitializer(ApplicationDbContext db)
         {

@@ -6,7 +6,7 @@ namespace DAL.DbInitializer
 {
     public class TicketInitializer
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public TicketInitializer(ApplicationDbContext db)
         {
