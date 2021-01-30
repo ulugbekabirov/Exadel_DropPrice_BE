@@ -64,9 +64,6 @@ namespace DAL.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -325,10 +322,6 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -522,7 +515,7 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Assessments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -546,7 +539,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Entities.SavedDiscount", b =>
                 {
                     b.HasOne("DAL.Entities.Discount", "Discount")
-                        .WithMany()
+                        .WithMany("SavedDiscounts")
                         .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -565,7 +558,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Entities.Ticket", b =>
                 {
                     b.HasOne("DAL.Entities.Discount", "Discount")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -676,6 +669,10 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Entities.Discount", b =>
                 {
                     b.Navigation("Assessments");
+
+                    b.Navigation("SavedDiscounts");
+
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("DAL.Entities.Office", b =>
@@ -685,6 +682,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.User", b =>
                 {
+                    b.Navigation("Assessments");
+
                     b.Navigation("SavedDiscounts");
 
                     b.Navigation("Tickets");

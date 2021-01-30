@@ -1,3 +1,4 @@
+using DAL.DbInitializer;
 using IdentityServer.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +16,7 @@ namespace IdentityServer
         {
             var host = CreateHostBuilder(args).Build();
 
-            await DbInitializer.InitializeDatabase(host.Services);
+            await Initializer.InitializeDatabase(host.Services);
 
             host.Run();
         }

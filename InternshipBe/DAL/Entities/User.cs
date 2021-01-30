@@ -12,6 +12,7 @@ namespace DAL.Entities
         {
             SavedDiscounts = new List<SavedDiscount>();
             Tickets = new List<Ticket>();
+            Assessments = new List<Assessment>();
         }
 
         public int OfficeId { get; set; }
@@ -38,5 +39,7 @@ namespace DAL.Entities
         public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
+
+        public virtual ICollection<Assessment> Assessments { get; set; }
     }
 }

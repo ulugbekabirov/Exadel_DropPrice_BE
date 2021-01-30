@@ -11,6 +11,8 @@ namespace DAL.Entities
             Tags = new List<Tag>();
             PointOfSales = new List<PointOfSale>();
             Assessments = new List<Assessment>();
+            SavedDiscounts = new List<SavedDiscount>();
+            Tickets = new List<Ticket>();
         }
 
         public int Id { get; set; }
@@ -41,12 +43,14 @@ namespace DAL.Entities
 
         public string Promocode { get; set; }
 
-        public string ImagePath { get; set; }
-
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<PointOfSale> PointOfSales { get; set; }
 
+        public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
+
         public virtual ICollection<Assessment> Assessments { get; set; }
+
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }
