@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
@@ -21,15 +22,11 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-
-
-        IEnumerable<DiscountDTO>  IDiscountService.GetClosest(int skip, int take, double latitude, double longitude, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user)
         {
-            var discounts = _repository.GetClosestDiscountsAsync(skip, take, latitude, longitude);
+            var discounts = await _repository.GetClosestDiscountsAsync(skip, take, latitude, longitude);
             
-            discounts.Select(_mapper.Map<Discount,DiscountDTO>);
-
-            return discounts;
+            return discounts.Select(_mapper.Map<Discount, DiscountDTO>);
         }
     }
 }

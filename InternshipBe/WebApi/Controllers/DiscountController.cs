@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         [HttpGet("discounts")]
         public async Task<IActionResult> GetDiscounts(int skip, int take, double latitude, double longitude, string sortBy = "name")
         {
-            return Ok(_service.GetClosest(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(_service.GetClosestAsync(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

@@ -10,6 +10,6 @@ namespace BL.Interfaces
 {
     public interface IDiscountService 
     {
-        IEnumerable<DiscountDTO> GetClosest(int skip, int take, double latitude, double longitude, User user);
+        Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user);
     }
 }
