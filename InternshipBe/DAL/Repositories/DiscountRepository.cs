@@ -21,12 +21,13 @@ namespace DAL.Repositories
         {
             var location = new GeoCoordinate(latitude, longitude);
 
-            var closestPointsOfSales = _context.PointOfSales
-                .OrderBy(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)));
+            var closestPointsOfSales = _context.PointOfSales.ToList()
+                .Select(p=> new {Id = p.Id, Discounts = p.Discounts ,Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                .OrderBy(p=>p.Distanse);
 
-            var discounts = await GetSpecifiedAmountAsync(skip, take);
+            var closestDiscounts = closestPointsOfSales.SelectMany(d => d.Discounts).Skip(skip).Take(take);
 
-            return discounts.Where(d => closestPointsOfSales.Select(p => p.Id).Contains(d.Id));
+            return closestDiscounts.AsQueryable();
         }
     }
 }
