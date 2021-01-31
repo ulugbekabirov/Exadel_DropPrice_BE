@@ -17,9 +17,9 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<(IQueryable<ICollection<Discount>>, Dictionary<int, double>)> GetClosestDiscountsAsync(double latitude, double longitude)
+        public (IQueryable<ICollection<Discount>>, Dictionary<int, double>) GetClosestDiscounts(double latitude, double longitude)
         {
-            int i = 0;
+            int key = 0;
 
             var location = new GeoCoordinate(latitude, longitude);
 
@@ -27,7 +27,7 @@ namespace DAL.Repositories
                 .Select(p => new { Id = p.Id, Discounts = p.Discounts, Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
                 .OrderBy(p => p.Distanse);
 
-            var closestDiscounts = closestPointsOfSales.Select(d => new { Id = ++i, Discounts = d.Discounts, Distance = d.Distanse });
+            var closestDiscounts = closestPointsOfSales.Select(d => new { Id = ++key, Discounts = d.Discounts, Distance = d.Distanse });
 
             return (closestDiscounts.Select(d => d.Discounts).AsQueryable(), closestDiscounts.ToDictionary(k => k.Id, v => v.Distance));
         }
