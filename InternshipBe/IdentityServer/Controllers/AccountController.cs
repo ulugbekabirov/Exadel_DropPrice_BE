@@ -10,6 +10,11 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using DAL.Entities;
+using DAL.DataContext;
+using System.Linq;
+using GeoCoordinatePortable;
+using BL.Interfaces;
 
 namespace IdentityServer.Controllers
 {
@@ -17,27 +22,15 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountController(
-                    UserManager<ApplicationUser> userManager,
+                    UserManager<User> userManager,
                     IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
-        }
-
-        [HttpGet]
-        [Route("getUserInfo")]
-        [Authorize]
-        public async Task<IActionResult> GetUserInfo()
-        {
-            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
-
-            var roles = await _userManager.GetRolesAsync(user);
-
-            return new JsonResult(new { Id = user.Id, Email = user.Email, Roles = roles });
         }
 
         [HttpPost]
