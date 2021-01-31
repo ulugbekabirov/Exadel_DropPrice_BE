@@ -17,7 +17,7 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<(IQueryable<ICollection<Discount>>, Dictionary<int, double>)> GetClosestDiscountsAsync(double latitude, double longitude)
+        public (IQueryable<ICollection<Discount>>, Dictionary<int, double>) GetClosestDiscounts(double latitude, double longitude)
         {
             int i = 0;
 
