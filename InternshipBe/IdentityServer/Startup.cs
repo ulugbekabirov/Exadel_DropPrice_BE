@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DAL.Entities;
 using System.Text.Json;
+using Shared.ExceptionHandling;
 
 namespace IdentityServer
 {
@@ -65,6 +66,8 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseGlobalExceptionMiddleware();
 
             app.UseRouting();
 
