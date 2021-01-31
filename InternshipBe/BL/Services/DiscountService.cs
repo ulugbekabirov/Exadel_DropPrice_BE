@@ -26,17 +26,17 @@ namespace BL.Services
         {
             int i = 0;
 
-            var typle = await _repository.GetClosestDiscountsAsync(latitude, longitude);
+            var tuple = _repository.GetClosestDiscounts(latitude, longitude);
 
-            List<DiscountDTO> DTOs = new List<DiscountDTO>();
+            var DTOs = new List<DiscountDTO>();
             
-            foreach (var discounts in typle.Item1)
+            foreach (var discounts in tuple.Item1)
             {
                 ++i;
                 foreach (var discount in discounts)
                 {
                     var dto = _mapper.Map<Discount, DiscountDTO>(discount);
-                    dto.Distance = (int)typle.Item2[i];
+                    dto.Distance = (int)tuple.Item2[i];
                     DTOs.Add(dto);
                 }
             }
