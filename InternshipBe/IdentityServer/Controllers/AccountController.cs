@@ -9,12 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
-using DAL.DataContext;
-using System.Linq;
-using GeoCoordinatePortable;
-using BL.Interfaces;
 
 namespace IdentityServer.Controllers
 {
@@ -66,8 +61,6 @@ namespace IdentityServer.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    UserEmail = user.Email,
-                    UserRole = userRoles,
                 });
             }
 
