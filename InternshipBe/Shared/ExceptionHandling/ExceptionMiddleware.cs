@@ -2,35 +2,62 @@
 using System;
 using System.Threading.Tasks;
 using System.Net;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shared.ExceptionHandling
 {
     public class ExceptionMiddleware
     {
-        private readonly RequestDelegate _next;
+        private const string JsonContentType = "application/json";
+        private readonly RequestDelegate request;
 
         public ExceptionMiddleware(RequestDelegate next)
         {
-            _next = next;
+            this.request = next;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext)
+
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await _next(httpContext);
+                await this.request(context);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                await HandleGlobalExceptionAsync(httpContext, ex);
-            }
+                var httpStatusCode = ConfigurateExceptionTypes(exception);
+
+                context.Response.StatusCode = httpStatusCode;
+                context.Response.ContentType = JsonContentType;
+
+                await context.Response.WriteAsync(
+                    JsonConvert.SerializeObject(new GlobalErrorDetails
+                    {
+                        Message = exception.Message
+                    }));
+
+                context.Response.Headers.Clear();
+            }   
         }
 
-        private static Task HandleGlobalExceptionAsync(HttpContext context, Exception exception)
+        private static int ConfigurateExceptionTypes(Exception exception)
         {
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return context.Response.WriteAsync("Something went wrong !Internal Server Error");
+            int httpStatusCode;
+
+            switch (exception)
+            {
+                case var _ when exception is ValidationException:
+                    httpStatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                default:
+                    httpStatusCode = (int)HttpStatusCode.InternalServerError;
+                    break;
+            }
+
+            return httpStatusCode;
         }
     }
+
 }
+

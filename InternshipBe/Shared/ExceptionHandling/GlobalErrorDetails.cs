@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace Shared.ExceptionHandling
 {
+
     public class GlobalErrorDetails
     {
-        int StatusCode { get; set; }
-
-        string Message { get; set; }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
+        public string Message { get; set; }
     }
 }
