@@ -1,4 +1,4 @@
-using IdentityServer.Authentication;
+using DAL.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DAL.Entities;
+using System.Text.Json;
+using Shared.ExceptionHandling;
 
 namespace IdentityServer
 {
@@ -23,14 +26,16 @@ namespace IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(options =>
+                    { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
 
             services.AddCors();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
 
@@ -52,6 +57,7 @@ namespace IdentityServer
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,6 +66,8 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseGlobalExceptionMiddleware();
 
             app.UseRouting();
 
