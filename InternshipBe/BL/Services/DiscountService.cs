@@ -24,7 +24,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user)
         {
-            int i = 0;
+            int key = 0;
 
             var tuple = _repository.GetClosestDiscounts(latitude, longitude);
 
@@ -32,11 +32,11 @@ namespace BL.Services
             
             foreach (var discounts in tuple.Item1)
             {
-                ++i;
+                ++key;
                 foreach (var discount in discounts)
                 {
                     var dto = _mapper.Map<Discount, DiscountDTO>(discount);
-                    dto.Distance = (int)tuple.Item2[i];
+                    dto.Distance = (int)tuple.Item2[key];
                     DTOs.Add(dto);
                 }
             }
