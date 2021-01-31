@@ -20,7 +20,7 @@ namespace DAL.DbInitializer
 
             AddPointOfSales("Food in Minsk", "улица Пономаренко 35а, Минск 220015", 53.8928202, 27.4925566);
             AddPointOfSales("Food", "Władysława Raginisa 5, 15-161 Białystok, Польша", 53.1507469, 23.1876433);
-            AddPointOfSales("Food in Тошкент", "9 Shota Rustaveli ko'chasi, Тошкент, Узбекистан", 41.2950347, 69.2681766);
+            AddPointOfSales("Food", "9 Shota Rustaveli ko'chasi, Тошкент, Узбекистан", 41.2950347, 69.2681766);
 
             AddPointOfSales("Reebok", "Tashkent 100173, Узбекистан", 41.2945188, 69.1936755);
             AddPointOfSales("Reebok in Minsk", "пр-т. Победителей 65, Минск", 53.9269855, 27.5166321);
