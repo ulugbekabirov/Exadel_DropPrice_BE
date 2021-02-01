@@ -28,7 +28,6 @@ namespace BL.Mapping
             CreateMap<Discount, DiscountDTO>()
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name));
             CreateMap<DiscountDTO, Discount>();
-                
         }
     }
 }
