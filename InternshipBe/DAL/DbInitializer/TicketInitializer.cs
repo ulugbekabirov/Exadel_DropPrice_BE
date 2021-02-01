@@ -1,5 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
+using System;
 using System.Linq;
 
 namespace DAL.DbInitializer
@@ -34,12 +35,10 @@ namespace DAL.DbInitializer
             {
                 UserId = userId,
                 DiscountId = discountId,
+                OrderDate = DateTime.Now,
             };
 
             _context.Tickets.Add(ticket);
-
-            _context.SaveChanges();
-
             _context.Users.Find(userId).Tickets.Add(ticket);
             _context.Discounts.Find(discountId).Tickets.Add(ticket);
 

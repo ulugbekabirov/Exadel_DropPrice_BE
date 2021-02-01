@@ -38,9 +38,6 @@ namespace DAL.DbInitializer
             };
 
             _context.Assessments.Add(assessment);
-
-            _context.SaveChanges();
-
             _context.Users.Find(userId).Assessments.Add(assessment);
             _context.Discounts.Find(discountId).Assessments.Add(assessment);
 

@@ -36,6 +36,8 @@ namespace DAL.DbInitializer
                 Latitude = latitude,
                 Longitude = longitude,
             });
+
+            _context.SaveChanges();
         }
     }
 }

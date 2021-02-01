@@ -62,8 +62,6 @@ namespace DAL.DbInitializer
 
             _context.Discounts.Add(discount);
 
-            _context.SaveChanges();  
-
             AddDiscountToVendor(vendorId, discount);
 
             AddDiscountToPointOfSales(pointOfSales, discount);

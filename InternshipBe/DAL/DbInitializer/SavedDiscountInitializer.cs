@@ -37,9 +37,6 @@ namespace DAL.DbInitializer
             };
 
             _context.SavedDiscounts.Add(savedDiscount);
-
-            _context.SaveChanges();
-
             _context.Users.Find(userId).SavedDiscounts.Add(savedDiscount);
             _context.Discounts.Find(discountId).SavedDiscounts.Add(savedDiscount);
 

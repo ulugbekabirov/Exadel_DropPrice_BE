@@ -27,6 +27,8 @@ namespace DAL.DbInitializer
             {
                 Name = name,
             });
+
+            _context.SaveChanges();
         }
     }
 }
