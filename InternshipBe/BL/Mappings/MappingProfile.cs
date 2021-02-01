@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using DAL.Entities;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BL.Mapping
 {

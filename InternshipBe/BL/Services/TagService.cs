@@ -16,18 +16,18 @@ namespace BL.Services
 {
     public class TagService : ITagService
     {
-        private readonly ITagRepository _repository;
+        private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
         public TagService(ITagRepository repository,
                            IMapper mapper)
         {
-            _repository = repository;
+            _tagRepository = repository;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel model)
         {
-            var tags = await _repository.GetPopularAsync(model.Skip, model.Take);
+            var tags = await _tagRepository.GetPopularAsync(model.Skip, model.Take);
 
             return _mapper.Map<TagDTO[]>(tags);
         }
