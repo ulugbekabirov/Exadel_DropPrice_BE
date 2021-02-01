@@ -27,7 +27,7 @@ namespace BL.Services
         {
             int i = 0;
 
-            var tuple = _repository.GetClosestDiscounts(model.latitude, model.longitude);
+            var tuple = _repository.GetClosestDiscounts(model.Latitude, model.Longitude);
 
             var DTOs = new List<DiscountDTO>();
             
@@ -42,7 +42,7 @@ namespace BL.Services
                 }
             }
 
-            return DTOs.Skip(model.skip).Take(model.take);
+            return DTOs.Skip(model.Skip).Take(model.Take);
         }
     }
 }
