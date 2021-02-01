@@ -3,19 +3,18 @@ using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _repository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public UserService(IUserRepository repository, IMapper mapper)
         {
-            _repository = repository;
+            _userRepository = repository;
             _mapper = mapper;
         }
 
@@ -23,7 +22,7 @@ namespace BL.Services
         {
             var userDTO = _mapper.Map<UserDTO>(user);
 
-            return _mapper.Map(await _repository.GetUserRolesAsync(user.Id), userDTO);
+            return _mapper.Map(await _userRepository.GetUserRolesAsync(user.Id), userDTO);
         }
     }
 }
