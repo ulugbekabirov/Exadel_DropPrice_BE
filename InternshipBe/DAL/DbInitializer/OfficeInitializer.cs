@@ -5,11 +5,11 @@ namespace DAL.DbInitializer
 {
     public class OfficeInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public OfficeInitializer(ApplicationDbContext db)
+        public OfficeInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializeOffices()
@@ -21,7 +21,7 @@ namespace DAL.DbInitializer
 
         public void AddOffice(string name, string address, double latitude, double longitude)
         {
-            _db.Offices.Add(new Office()
+            _context.Offices.Add(new Office()
             {
                 Name = name,
                 Address = address,
@@ -29,7 +29,7 @@ namespace DAL.DbInitializer
                 Longitude = longitude,
             });
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

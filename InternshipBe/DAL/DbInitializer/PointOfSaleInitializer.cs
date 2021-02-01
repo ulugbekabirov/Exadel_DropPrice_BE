@@ -5,11 +5,11 @@ namespace DAL.DbInitializer
 {
     public class PointOfSaleInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public PointOfSaleInitializer(ApplicationDbContext db)
+        public PointOfSaleInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializePointOfSales()
@@ -29,7 +29,7 @@ namespace DAL.DbInitializer
 
         public void AddPointOfSales(string name, string address, double latitude, double longitude)
         {
-            _db.PointOfSales.Add(new PointOfSale()
+            _context.PointOfSales.Add(new PointOfSale()
             {
                 Name = name,
                 Address = address,

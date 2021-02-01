@@ -6,26 +6,26 @@ namespace DAL.DbInitializer
 {
     public class TicketInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public TicketInitializer(ApplicationDbContext db)
+        public TicketInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializerTickets()
         {
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 1);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 2);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 3);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 1);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 2);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 3);
 
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 4);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 5);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 6);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 4);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 5);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 6);
 
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 7);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 8);
-            AddTicket(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 9);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 7);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 8);
+            AddTicket(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 9);
         }
 
         public void AddTicket(int userId, int discountId)
@@ -36,14 +36,14 @@ namespace DAL.DbInitializer
                 DiscountId = discountId,
             };
 
-            _db.Tickets.Add(ticket);
+            _context.Tickets.Add(ticket);
 
-            _db.SaveChanges();
+            _context.SaveChanges();
 
-            _db.Users.Find(userId).Tickets.Add(ticket);
-            _db.Discounts.Find(discountId).Tickets.Add(ticket);
+            _context.Users.Find(userId).Tickets.Add(ticket);
+            _context.Discounts.Find(discountId).Tickets.Add(ticket);
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }
