@@ -29,7 +29,7 @@ namespace BL.Services
         {
             var tags = await _repository.GetPopularAsync(model.Skip, model.Take);
 
-            return _mapper.Map<Tag[], TagDTO[]>(tags.ToArray());
+            return _mapper.Map<TagDTO[]>(tags);
         }
     }
 }
