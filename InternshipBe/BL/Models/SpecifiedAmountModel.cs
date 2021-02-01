@@ -8,8 +8,8 @@ namespace BL.Models
 {
     public class SpecifiedAmountModel
     {
-        public int skip { get; set; }
+        public int Skip { get; set; }
 
-        public int take { get; set; }
+        public int Take { get; set; }
     }
 }

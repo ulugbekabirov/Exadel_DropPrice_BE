@@ -8,8 +8,8 @@ namespace BL.Models
 {
     public class LocationModel : SpecifiedAmountModel
     {
-        public double latitude { get; set; }
+        public double latitude;
 
-        public double longitude { get; set; }
+        public double longitude;
     }
 }
