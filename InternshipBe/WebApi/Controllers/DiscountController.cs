@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("discounts")]
-        public async Task<IActionResult> GetDiscounts(LocationModel model, string sortBy = "name")
+        public async Task<IActionResult> GetDiscounts(LocationModel model, string SortBy = "name")
         {
             return Ok(await _service.GetClosestAsync(model, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
