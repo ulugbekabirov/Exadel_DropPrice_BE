@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     [Route("api/")]
-    [ApiController]
     [Authorize]
     public class DiscountController : ControllerBase
     {
