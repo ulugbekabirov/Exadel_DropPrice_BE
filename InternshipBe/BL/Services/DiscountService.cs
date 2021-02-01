@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repositories;
@@ -22,26 +23,26 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(LocationModel model, User user)
         {
-            int key = 0;
+            int i = 0;
 
-            var tuple = _repository.GetClosestDiscounts(latitude, longitude);
+            var tuple = _repository.GetClosestDiscounts(model.latitude, model.longitude);
 
             var DTOs = new List<DiscountDTO>();
             
             foreach (var discounts in tuple.Item1)
             {
-                ++key;
+                ++i;
                 foreach (var discount in discounts)
                 {
                     var dto = _mapper.Map<Discount, DiscountDTO>(discount);
-                    dto.Distance = (int)tuple.Item2[key];
+                    dto.Distance = (int)tuple.Item2[i];
                     DTOs.Add(dto);
                 }
             }
 
-            return DTOs.Skip(skip).Take(take);
+            return DTOs.Skip(model.skip).Take(model.take);
         }
     }
 }
