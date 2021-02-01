@@ -1,4 +1,5 @@
 ﻿using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +27,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("discounts")]
-        public async Task<IActionResult> GetDiscounts(int skip, int take, double latitude, double longitude, string sortBy = "name")
+        public async Task<IActionResult> GetDiscounts(LocationModel model, string sortBy = "name")
         {
-            return Ok(await _service.GetClosestAsync(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _service.GetClosestAsync(model, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
