@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +25,11 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(int skip, int take)
+        public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel model)
         {
-            var tags = await _repository.GetPopularAsync(skip, take);
-            return tags.Select(_mapper.Map<Tag, TagDTO>);
+            var tags = await _repository.GetPopularAsync(model.Skip, model.Take);
+
+            return _mapper.Map<Tag[], TagDTO[]>(tags.ToArray());
         }
     }
 }
