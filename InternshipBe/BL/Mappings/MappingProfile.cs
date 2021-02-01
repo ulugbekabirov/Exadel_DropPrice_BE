@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using DAL.Entities;
+using GeoCoordinatePortable;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BL.Mapping
 {
@@ -27,9 +29,15 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
                 .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId)); ;
 
-            CreateMap<Discount, DiscountDTO>()
-                .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name));
-            CreateMap<DiscountDTO, Discount>();
+            CreateMap<(Discount discount, int userId, GeoCoordinate location), DiscountDTO>()
+                .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.discount.Id))
+                .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.discount.Name))
+                .ForMember(d => d.VendorName, source => source.MapFrom(s => s.discount.Vendor.Name))
+                .ForMember(d => d.DistanceInMeters, source => source.MapFrom(s => s.discount.PointOfSales
+                    .Select(p => new { Distance = (int)s.location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                    .OrderBy(p => p.Distance)
+                    .FirstOrDefault().Distance))
+                .ForMember(d => d.DiscountRating, source => source.MapFrom(s => s.discount.Assessments.Where(a => a.DiscountId == s.discount.Id).Average(a => a.AssessmentValue)));
         }
     }
 }

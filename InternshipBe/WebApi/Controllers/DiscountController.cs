@@ -17,19 +17,19 @@ namespace WebApi.Controllers
     [Authorize]
     public class DiscountController : ControllerBase
     {
-        private readonly IDiscountService _service;
+        private readonly IDiscountService _discountService;
         private readonly UserManager<User> _userManager;
 
         public DiscountController(IDiscountService service, UserManager<User> userManager)
         {
-            _service = service;
+            _discountService = service;
             _userManager = userManager;
         }
 
         [HttpGet("discounts")]
-        public async Task<IActionResult> GetDiscounts(LocationModel model, string SortBy = "name")
+        public async Task<IActionResult> GetDiscounts(LocationModel model)
         {
-            return Ok(await _service.GetClosestAsync(model, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.GetClosestAsync(model, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

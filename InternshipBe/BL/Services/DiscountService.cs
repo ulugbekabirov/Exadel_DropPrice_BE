@@ -9,40 +9,28 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repositories;
+using GeoCoordinatePortable;
 
 namespace BL.Services
 {
     public class DiscountService : IDiscountService
     {
-        private readonly IDiscountRepository _repository;
+        private readonly IDiscountRepository _discountRepository;
         private readonly IMapper _mapper;
         public DiscountService(IDiscountRepository repository,
                                 IMapper mapper)
         {
-            _repository = repository;
+            _discountRepository = repository;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(LocationModel model, User user)
         {
-            int i = 0;
+            var discounts = await _discountRepository.GetAllAsync();
 
-            var tuple = _repository.GetClosestDiscounts(model.Latitude, model.Longitude);
+            return _mapper.Map<DiscountDTO[]>((discounts, user.Id, new GeoCoordinate(model.Latitude, model.Longitude)));
 
-            var DTOs = new List<DiscountDTO>();
-            
-            foreach (var discounts in tuple.Item1)
-            {
-                ++i;
-                foreach (var discount in discounts)
-                {
-                    var dto = _mapper.Map<Discount, DiscountDTO>(discount);
-                    dto.Distance = (int)tuple.Item2[i];
-                    DTOs.Add(dto);
-                }
-            }
-
-            return DTOs.Skip(model.Skip).Take(model.Take);
+            //discounts = _mapper.Map<DiscountDTO>(discounts);
         }
     }
 }
