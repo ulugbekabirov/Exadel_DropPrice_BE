@@ -4,7 +4,7 @@ namespace BL.DTO
 {
     public class DiscountDTO
     {
-        public int Id { get; set; }
+        public int DiscountId { get; set; }
 
         public int VendorId { get; set; }
 
@@ -12,11 +12,9 @@ namespace BL.DTO
 
         public string VendorName { get; set; }
 
-        public int Distance { get; set; }
+        public int DistanceInMeters { get; set; }
 
-        public int DiscountRaing { get; set; }
-
-        public int VendorRating { get; set; }
+        public int DiscountRating { get; set; }
 
         public int DiscountAmount { get; set; }
 
