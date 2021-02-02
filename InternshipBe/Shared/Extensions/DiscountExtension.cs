@@ -32,7 +32,7 @@ namespace BL.Extensions
             return discount.Assessments.Average(a => a.AssessmentValue);
         }
 
-        public static (string, int?) GetPointOfSale(this Discount discount, GeoCoordinate location)
+        public static (string, int?) GetAddressAndDistanceOfPointOfSale(this Discount discount, GeoCoordinate location)
         {
             if (discount.PointOfSales.Count == 0)
             {

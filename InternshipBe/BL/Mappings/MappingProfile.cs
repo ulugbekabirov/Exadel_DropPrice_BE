@@ -56,7 +56,7 @@ namespace BL.Mapping
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .AfterMap((source, dto) =>
                 {
-                    var pointOfSale = source.Discount.GetPointOfSale(source.Location);
+                    var pointOfSale = source.Discount.GetAddressAndDistanceOfPointOfSale(source.Location);
                     dto.Address = pointOfSale.Item1;
                     dto.DistanceInMeters = pointOfSale.Item2;
                     dto.DiscountRating = source.Discount.DiscountRating();
