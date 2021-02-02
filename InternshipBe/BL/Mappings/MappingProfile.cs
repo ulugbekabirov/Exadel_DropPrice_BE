@@ -22,7 +22,7 @@ namespace BL.Mapping
                 .ForMember(u => u.OfficeLongitude, source => source.MapFrom(s => s.Office.Longitude));
             CreateMap<IEnumerable<string>, UserDTO>()
                 .ForMember(u => u.Roles, source => source.MapFrom(s => s));
-            
+
             CreateMap<Tag, TagDTO>()
                 .ForMember(t => t.TagName, source => source.MapFrom(s => s.Name))
                 .ForMember(t => t.TagId, source => source.MapFrom(s => s.Id));
@@ -32,8 +32,11 @@ namespace BL.Mapping
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
-              .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name));
-            //.AfterMap((entity, dto)=> dto.VendorRating = entity.Discounts.Select(d => d.Assessments.Any)? )
+              .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name))
+              .AfterMap((source, dto) =>
+              {
+                  dto.VendorRating = source.Discounts.Any() ? source.Discounts.Select(d => d.Assessments.Average(a => a.AssessmentValue)).Average(a => a) : null;
+              });
 
             CreateMap<VendorDTO, Vendor>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
@@ -59,7 +62,7 @@ namespace BL.Mapping
                         .OrderBy(p => p.Distance).FirstOrDefault().Distance;
 
                     dto.DiscountRating = source.Discount.Assessments.Any() ?
-                    source.Discount.Assessments.Where(a => a.DiscountId == source.Discount.Id).Average(a => a.AssessmentValue) : null;
+                    source.Discount.Assessments.Average(a => a.AssessmentValue) : null;
 
                     dto.IsSaved = source.Discount.SavedDiscounts.Any() ?
                     source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : false;
