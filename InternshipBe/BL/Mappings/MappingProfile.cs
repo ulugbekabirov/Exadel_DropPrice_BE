@@ -3,7 +3,6 @@ using BL.DTO;
 using BL.Models;
 using DAL.Entities;
 using GeoCoordinatePortable;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,12 +38,6 @@ namespace BL.Mapping
             CreateMap<VendorDTO, Vendor>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
-
-            CreateMap<Discount, DiscountModel>();
-            CreateMap<int, DiscountModel>()
-                .ForMember(d => d.UserId, source => source.MapFrom(s => s));
-            CreateMap<GeoCoordinate, DiscountModel>()
-                .ForMember(d => d.Location, source => source.MapFrom(s => s));
 
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
