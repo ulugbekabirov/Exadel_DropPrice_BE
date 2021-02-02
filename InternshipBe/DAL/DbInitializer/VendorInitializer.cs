@@ -5,11 +5,11 @@ namespace DAL.DbInitializer
 {
     public class VendorInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public VendorInitializer(ApplicationDbContext db)
+        public VendorInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializeVendors()
@@ -21,7 +21,7 @@ namespace DAL.DbInitializer
 
         public void AddVendor(string name, string description, string email, string phone, string socialNetworkLink)
         {
-            _db.Vendors.Add(new Vendor()
+            _context.Vendors.Add(new Vendor()
             {
                 Name = name,
                 Description = description,
@@ -30,7 +30,7 @@ namespace DAL.DbInitializer
                 SocialNetworkLink = socialNetworkLink,
             });
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

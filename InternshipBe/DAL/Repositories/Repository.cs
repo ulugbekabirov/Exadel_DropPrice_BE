@@ -35,11 +35,9 @@ namespace DAL.Repositories
             return await _entities.FindAsync(id);
         }
 
-        public async Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take)
+        public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
         {
-            var task = await _entities.Skip(skip).Take(take).ToListAsync();
-
-            return task.AsQueryable();
+            return _entities.Skip(skip).Take(take);
         }
     }
 }

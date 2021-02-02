@@ -7,32 +7,32 @@ namespace DAL.DbInitializer
 {
     public class UserInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private const string password = "Qwerty123!";
 
-        public UserInitializer(ApplicationDbContext db, UserManager<User> userManager)
+        public UserInitializer(ApplicationDbContext context, UserManager<User> userManager)
         {
-            _db = db;
+            _context = context;
             _userManager = userManager;
         }
 
         public async Task InitializeUsers()
         {
-            await AddUser(1, "admnexadel@gmail.com", "admin", "admin", "admin", "+375447777777", true, _db.Offices.Find(1), RolesName.Admin);
+            await AddUser(1, "admnexadel@gmail.com", "admin", "admin", "admin", "+375447777777", true, _context.Offices.Find(1), RolesName.Admin);
 
-            await AddUser(1, "moderatorexadel@gmail.com", "moderator", "moderator", "moderator", "+375447777777", true, _db.Offices.Find(1), RolesName.Moderator);
+            await AddUser(1, "moderatorexadel@gmail.com", "moderator", "moderator", "moderator", "+375447777777", true, _context.Offices.Find(1), RolesName.Moderator);
 
-            await AddUser(1, "userexadel@gmail.com", "demoUser", "demoUser", "demoUser", "+375447777777", true, _db.Offices.Find(1), RolesName.User);
+            await AddUser(1, "userexadel@gmail.com", "demoUser", "demoUser", "demoUser", "+375447777777", true, _context.Offices.Find(1), RolesName.User);
 
             for (int i = 1; i <= 10; i++)
             {
-                await AddUser(2, $"user{i}@test.com", $"user{i}", $"офисГродно", null, "+375447777777", true, _db.Offices.Find(2), RolesName.User);
+                await AddUser(2, $"user{i}@test.com", $"user{i}", $"офисГродно", null, "+375447777777", true, _context.Offices.Find(2), RolesName.User);
             }
 
             for (int i = 11; i <= 20; i++)
             {
-                await AddUser(3, $"user{i}@test.com", $"user{i}", $"офисБелосток", null, "+375447777777", true, _db.Offices.Find(3), RolesName.User);
+                await AddUser(3, $"user{i}@test.com", $"user{i}", $"офисБелосток", null, "+375447777777", true, _context.Offices.Find(3), RolesName.User);
             }
         }
 
@@ -66,7 +66,7 @@ namespace DAL.DbInitializer
                 await _userManager.AddToRolesAsync(await _userManager.FindByNameAsync(email), RolesName.GetRolesOfAdmin());
             }
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

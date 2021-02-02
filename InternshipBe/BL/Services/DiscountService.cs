@@ -5,43 +5,57 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using DAL.Repositories;
+using GeoCoordinatePortable;
 
 namespace BL.Services
 {
     public class DiscountService : IDiscountService
     {
-        private readonly IDiscountRepository _repository;
+        private readonly IDiscountRepository _discountRepository;
         private readonly IMapper _mapper;
+
         public DiscountService(IDiscountRepository repository,
                                 IMapper mapper)
         {
-            _repository = repository;
+            _discountRepository = repository;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user)
         {
-            int key = 0;
+            var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
-            var tuple = _repository.GetClosestDiscounts(latitude, longitude);
+            var discounts = await _discountRepository.GetAllAsync();
 
-            var DTOs = new List<DiscountDTO>();
-            
-            foreach (var discounts in tuple.Item1)
+            var discountModels = GetDiscountModel(discounts, user.Id, location);
+
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
+
+            var sortedModels = SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
+
+            return sortedModels.Skip(sortModel.Skip).Take(sortModel.Take);
+        }
+
+        public static List<DiscountModel> GetDiscountModel(IEnumerable<Discount> discounts, int userId, GeoCoordinate location)
+        {
+            var discountModels = new List<DiscountModel>();
+
+            foreach (var discount in discounts)
             {
-                ++key;
-                foreach (var discount in discounts)
+                var discountModel = new DiscountModel()
                 {
-                    var dto = _mapper.Map<Discount, DiscountDTO>(discount);
-                    dto.Distance = (int)tuple.Item2[key];
-                    DTOs.Add(dto);
-                }
+                    Discount = discount,
+                    UserId = userId,
+                    Location = location,
+                };
+
+                discountModels.Add(discountModel);
             }
 
-            return DTOs.Skip(skip).Take(take);
+            return discountModels;
         }
     }
 }

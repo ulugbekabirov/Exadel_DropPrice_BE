@@ -12,19 +12,19 @@ namespace WebApi.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly IUserService _userService;
         private readonly UserManager<User> _userManager;
 
-        public UserController(IUserService service, UserManager<User> userManager)
+        public UserController(IUserService userService, UserManager<User> userManager)
         {
-            _service = service;
+            _userService = userService;
             _userManager = userManager;
         }
 
         [HttpGet("user")]
         public async Task<IActionResult> GetUserInfo()
         {
-            return Ok(await _service.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

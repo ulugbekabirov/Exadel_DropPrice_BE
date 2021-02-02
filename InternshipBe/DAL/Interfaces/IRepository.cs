@@ -12,6 +12,6 @@ namespace DAL.Interfaces
 
         Task CreateAsync(TEntity item);
 
-        Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take);
+        IQueryable<TEntity> GetSpecifiedAmount(int skip, int take);
     }
 }
