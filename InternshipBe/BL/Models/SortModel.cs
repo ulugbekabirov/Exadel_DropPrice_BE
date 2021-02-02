@@ -18,7 +18,7 @@ namespace BL.Models
     {
         public string SortBy { get; set; } = "DistanceAsc";
 
-        public static IEnumerable<DiscountDTO> SortDiscountsBy(IEnumerable<DiscountDTO> discounts, Sorts sortBy)
+        public static IEnumerable<DiscountDTO> SortDiscountsBy(DiscountDTO[] discounts, Sorts sortBy)
             => sortBy switch
             {
                 Sorts.AlphabetAsc => discounts.OrderBy(d => d.DiscountName).ThenBy(d => d.DistanceInMeters),

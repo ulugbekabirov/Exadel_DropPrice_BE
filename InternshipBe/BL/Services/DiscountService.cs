@@ -32,7 +32,7 @@ namespace BL.Services
 
             var discountModels = GetDiscountModel(discounts, user.Id, location);
 
-            var discountDTOs =  _mapper.Map<DiscountDTO[]>(discountModels);
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
 
             var sortedModels = SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
 

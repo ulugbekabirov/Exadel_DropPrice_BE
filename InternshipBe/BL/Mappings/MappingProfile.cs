@@ -56,18 +56,11 @@ namespace BL.Mapping
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .AfterMap((source, dto) =>
                 {
-                    var pointOfSale = source.Discount.PointOfSales.Select(p => new { Address = p.Address, Distance = (int)source.Location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                        .OrderBy(p => p.Distance).FirstOrDefault();
-
-                    dto.DistanceInMeters = pointOfSale.Distance;
-                    dto.Address = pointOfSale.Address;
-
-                    dto.DiscountRating = source.Discount.Assessments.Any() ?
-                    source.Discount.Assessments.Average(a => a.AssessmentValue) : null;
-
-                    dto.IsSaved = source.Discount.SavedDiscounts.Any() ?
-                    source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : false;
-
+                    var pointOfSale = source.Discount.GetPointOfSale(source.Location);
+                    dto.Address = pointOfSale.Item1;
+                    dto.DistanceInMeters = pointOfSale.Item2;
+                    dto.DiscountRating = source.Discount.DiscountRating();
+                    dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
                     dto.Tags = source.Discount.GetTags();
                 });
         }
