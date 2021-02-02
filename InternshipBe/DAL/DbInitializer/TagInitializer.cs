@@ -14,7 +14,7 @@ namespace DAL.DbInitializer
 
         public void InitializeTags()
         {
-            AddTag("CoffePlus");
+            AddTag("CoffeePlus");
             AddTag("Coffee");
             AddTag("TheBestCoffee");
             AddTag("Food");

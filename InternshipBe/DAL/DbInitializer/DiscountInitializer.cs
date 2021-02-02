@@ -22,7 +22,7 @@ namespace DAL.DbInitializer
                 AddDiscount(1, $"Coffee Plus{i}", "The best coffee PLUS", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _context.Vendors.Find(1), 
                     _context.PointOfSales.Where(p => p.Name == "Coffee").ToList(),
-                    _context.Tags.Where(t => t.Name == "Plus" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
+                    _context.Tags.Where(t => t.Name == "Coffee" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
             }
 
             for (int i = 1; i <= 5; i++)
