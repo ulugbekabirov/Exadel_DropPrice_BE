@@ -21,14 +21,13 @@ namespace BL.Models
         public static IEnumerable<DiscountDTO> SortDiscountsBy(IEnumerable<DiscountDTO> discounts, Sorts sortBy)
             => sortBy switch
             {
-                Sorts.AlphabetAsc => discounts.OrderBy(d => d.DistanceInMeters).ThenBy(d => d.DiscountName),
-                Sorts.AlphabetDesc => discounts.OrderBy(d => d.DistanceInMeters).ThenByDescending(d => d.DiscountName),
-                Sorts.DiscountRatingAsc => discounts.OrderBy(d => d.DistanceInMeters).ThenBy(d => d.DiscountRating),
-                Sorts.DiscountRatingDesc => discounts.OrderBy(d => d.DistanceInMeters).ThenByDescending(d => d.DiscountRating),
+                Sorts.AlphabetAsc => discounts.OrderBy(d => d.DiscountName).ThenBy(d => d.DistanceInMeters),
+                Sorts.AlphabetDesc => discounts.OrderByDescending(d => d.DiscountName).ThenBy(d => d.DistanceInMeters),
+                Sorts.DiscountRatingAsc => discounts.OrderBy(d => d.DiscountRating).ThenBy(d => d.DistanceInMeters),
+                Sorts.DiscountRatingDesc => discounts.OrderByDescending(d => d.DiscountRating).ThenBy(d => d.DistanceInMeters),
                 Sorts.DistanceAsc => discounts.OrderBy(d => d.DistanceInMeters),
                 Sorts.DistanceDesc => discounts.OrderByDescending(d => d.DistanceInMeters),
                 _ => discounts.OrderBy(d => d.DistanceInMeters),
             };
-
     }
 }
