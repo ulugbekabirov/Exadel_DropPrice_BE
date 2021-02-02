@@ -53,7 +53,7 @@ namespace BL.Mapping
                     source.Discount.Assessments.Where(a => a.DiscountId == source.Discount.Id).Average(a => a.AssessmentValue) : null;
 
                     dto.IsSaved = source.Discount.SavedDiscounts.Any() ?
-                    source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : null;
+                    source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : false;
                 });
         }
     }
