@@ -8,6 +8,6 @@ namespace BL.Interfaces
 {
     public interface IDiscountService 
     {
-        Task<IEnumerable<DiscountDTO>> GetClosestAsync(LocationModel model, User user);
+        Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel model, User user);
     }
 }
