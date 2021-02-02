@@ -20,6 +20,6 @@ namespace BL.DTO
         
         public string SocialNetworkLink { get; set; }
         
-        public double VendorRating { get; set; }
+        public double? VendorRating { get; set; }
     }
 }
