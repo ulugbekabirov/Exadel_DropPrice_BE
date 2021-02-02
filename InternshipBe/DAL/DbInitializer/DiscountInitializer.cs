@@ -27,7 +27,7 @@ namespace DAL.DbInitializer
 
             for (int i = 1; i <= 5; i++)
             {
-                AddDiscount(1, $"Food{i}", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                AddDiscount(2, $"Food{i}", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _context.Vendors.Find(2), 
                     _context.PointOfSales.Where(p => p.Name == "Food").ToList(),
                     _context.Tags.Where(p => p.Name == "Food").ToList());
@@ -35,7 +35,7 @@ namespace DAL.DbInitializer
 
             for (int i = 1; i <= 5; i++)
             {
-                AddDiscount(1, $"Reebok{i}", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                AddDiscount(3, $"Reebok{i}", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
                     _context.Vendors.Find(3), 
                     _context.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
                     _context.Tags.Where(t => t.Name == "ReeBok").ToList());
