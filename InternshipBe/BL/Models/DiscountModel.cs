@@ -1,6 +1,5 @@
 ﻿using DAL.Entities;
 using GeoCoordinatePortable;
-using System.Collections.Generic;
 
 namespace BL.Models
 {

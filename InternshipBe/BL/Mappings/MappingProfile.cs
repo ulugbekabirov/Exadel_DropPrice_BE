@@ -42,30 +42,33 @@ namespace BL.Mapping
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
 
-            CreateMap<Discount, DiscountModel>();
-            CreateMap<int, DiscountModel>()
-                .ForMember(d => d.UserId, source => source.MapFrom(s => s));
-            CreateMap<GeoCoordinate, DiscountModel>()
-                .ForMember(d => d.Location, source => source.MapFrom(s => s));
-
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
                 .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.Vendorid))
                 .ForMember(d => d.VendorName, soucre => soucre.MapFrom(s => s.Discount.Vendor.Name))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Discount.Name))
+                .ForMember(d => d.Description, source => source.MapFrom(s => s.Discount.Description))
+                .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.Discount.ActivityStatus))
                 .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
+                .ForMember(d => d.StartDate, source => source.MapFrom(s => s.Discount.StartDate))
+                .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .AfterMap((source, dto) =>
                 {
-                    dto.DistanceInMeters = source.Discount.PointOfSales
-                        .Select(p => new { Distance = (int)source.Location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                        .OrderBy(p => p.Distance).FirstOrDefault().Distance;
+                    var pointOfSale = source.Discount.PointOfSales.Select(p => new { Address = p.Address, Distance = (int)source.Location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                        .OrderBy(p => p.Distance).FirstOrDefault();
+
+                    dto.DistanceInMeters = pointOfSale.Distance;
+                    dto.Address = pointOfSale.Address;
 
                     dto.DiscountRating = source.Discount.Assessments.Any() ?
                     source.Discount.Assessments.Average(a => a.AssessmentValue) : null;
 
                     dto.IsSaved = source.Discount.SavedDiscounts.Any() ?
                     source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : false;
+
+                    dto.Tags = source.Discount.Tags.Any() ?
+                    source.Discount.Tags.Select(t => t.Name).ToList() : null;
                 });
         }
     }
