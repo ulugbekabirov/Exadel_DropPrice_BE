@@ -8,7 +8,6 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using DAL.Repositories;
 using GeoCoordinatePortable;
 
 namespace BL.Services
@@ -17,6 +16,7 @@ namespace BL.Services
     {
         private readonly IDiscountRepository _discountRepository;
         private readonly IMapper _mapper;
+
         public DiscountService(IDiscountRepository repository,
                                 IMapper mapper)
         {
@@ -24,13 +24,36 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(LocationModel model, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user)
         {
+            var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
+
             var discounts = await _discountRepository.GetAllAsync();
 
-            return _mapper.Map<DiscountDTO[]>((discounts, user.Id, new GeoCoordinate(model.Latitude, model.Longitude)));
+            var discountModel = GetDiscountModel(discounts, user.Id, location);
 
-            //discounts = _mapper.Map<DiscountDTO>(discounts);
+            var discountDTOs =  _mapper.Map<DiscountDTO[]>(discountModel).Where(d => d.DistanceInMeters <= 50000);
+
+            return SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
+        }
+
+        public static List<DiscountModel> GetDiscountModel(IEnumerable<Discount> discounts, int userId, GeoCoordinate location)
+        {
+            var discountModels = new List<DiscountModel>();
+
+            foreach (var discount in discounts)
+            {
+                var testModel = new DiscountModel()
+                {
+                    Discount = discount,
+                    UserId = userId,
+                    Location = location,
+                };
+
+                discountModels.Add(testModel);
+            }
+
+            return discountModels;
         }
     }
 }

@@ -2,12 +2,8 @@
 using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
@@ -26,9 +22,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("discounts")]
-        public async Task<IActionResult> GetDiscounts(LocationModel model)
+        public async Task<IActionResult> GetDiscounts(SortModel sortModel)
         {
-            return Ok(await _discountService.GetClosestAsync(model, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.GetClosestAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
