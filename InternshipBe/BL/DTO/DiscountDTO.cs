@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace BL.DTO
 {
@@ -14,7 +16,7 @@ namespace BL.DTO
 
         public int DistanceInMeters { get; set; }
 
-        public int DiscountRating { get; set; }
+        public double? DiscountRating { get; set; }
 
         public int DiscountAmount { get; set; }
 
