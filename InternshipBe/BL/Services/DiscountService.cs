@@ -42,14 +42,14 @@ namespace BL.Services
 
             foreach (var discount in discounts)
             {
-                var testModel = new DiscountModel()
+                var discountModel = new DiscountModel()
                 {
                     Discount = discount,
                     UserId = userId,
                     Location = location,
                 };
 
-                discountModels.Add(testModel);
+                discountModels.Add(discountModel);
             }
 
             return discountModels;

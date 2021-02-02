@@ -48,19 +48,18 @@ namespace WebApi
                     .AddDefaultTokenProviders();
 
             services.AddScoped<IUserService, UserService>();
-
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ITownService, TownService>();
-
             services.AddScoped<ITownRepository, TownRepository>();
 
             services.AddScoped<ITagService, TagService>();
-
             services.AddScoped<ITagRepository, TagRepository>();
 
-            services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IVendorService, VendorService>();
+            services.AddScoped<IRepository<Vendor>, Repository<Vendor>>();
 
+            services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IDiscountRepository, DiscountRepository>();
 
             services.AddAuthentication(options =>
