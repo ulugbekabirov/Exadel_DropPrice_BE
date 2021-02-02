@@ -5,18 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.ExceptionHandling.Extensions
+namespace Shared.Extensions
 {
     public static class VendorExtension
     {
-        public static double? GetRating(this Vendor vendor)
+        public static double? GetVendorRating(this Vendor vendor)
         {
-            var number = vendor.Discounts.Select(d => d.Assessments.Count);
-            if (vendor.Discounts.Count == 0)
-            {
-
-            }
-            return vendor.Discounts.Select(d => d.Assessments.Average(a => a.AssessmentValue)).Average(a => a);
+            return vendor.Discounts.Select(d => d.DiscountRating()).Average(a=>a);
         }
     }
 }

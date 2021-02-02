@@ -36,7 +36,7 @@ namespace BL.Mapping
               .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name))
               .AfterMap((source, dto) =>
               {
-                  dto.VendorRating = source.Discounts.Any() ? source.Discounts.Select(d => d.Assessments.Average(a => a.AssessmentValue)).Average(a => a) : null;
+                  dto.VendorRating = source.GetVendorRating();
               });
 
             CreateMap<VendorDTO, Vendor>()
