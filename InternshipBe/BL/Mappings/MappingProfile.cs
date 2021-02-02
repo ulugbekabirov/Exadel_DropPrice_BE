@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using BL.DTO;
-using BL.Extensions;
 using BL.Models;
 using DAL.Entities;
 using GeoCoordinatePortable;
+using Shared.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 

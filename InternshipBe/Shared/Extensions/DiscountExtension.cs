@@ -3,7 +3,7 @@ using GeoCoordinatePortable;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BL.Extensions
+namespace Shared.Extensions
 {
     public static class DiscountExtension
     {
