@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.DTO;
+using BL.Extensions;
 using BL.Models;
 using DAL.Entities;
 using GeoCoordinatePortable;
@@ -67,8 +68,7 @@ namespace BL.Mapping
                     dto.IsSaved = source.Discount.SavedDiscounts.Any() ?
                     source.Discount.SavedDiscounts.Any(sd => sd.DiscountId == dto.DiscountId && sd.UserId == source.UserId) : false;
 
-                    dto.Tags = source.Discount.Tags.Any() ?
-                    source.Discount.Tags.Select(t => t.Name).ToList() : null;
+                    dto.Tags = source.Discount.GetTags();
                 });
         }
     }
