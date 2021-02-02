@@ -29,6 +29,5 @@ namespace BL.Models
                 Sorts.DistanceDesc => discounts.OrderByDescending(d => d.DistanceInMeters),
                 _ => discounts.OrderBy(d => d.DistanceInMeters),
             };
-
     }
 }
