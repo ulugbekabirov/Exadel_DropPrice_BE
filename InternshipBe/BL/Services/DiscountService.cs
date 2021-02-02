@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
@@ -30,9 +29,9 @@ namespace BL.Services
 
             var discounts = await _discountRepository.GetAllAsync();
 
-            var discountModel = GetDiscountModel(discounts, user.Id, location);
+            var discountModels = GetDiscountModel(discounts, user.Id, location);
 
-            var discountDTOs =  _mapper.Map<DiscountDTO[]>(discountModel).Where(d => d.DistanceInMeters <= 50000);
+            var discountDTOs =  _mapper.Map<DiscountDTO[]>(discountModels);
 
             return SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
         }

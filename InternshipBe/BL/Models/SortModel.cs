@@ -16,7 +16,7 @@ namespace BL.Models
 
     public class SortModel : LocationModel
     {
-        public string SortBy { get; set; } = "DistanceDesc";
+        public string SortBy { get; set; } = "DistanceAsc";
 
         public static IEnumerable<DiscountDTO> SortDiscountsBy(IEnumerable<DiscountDTO> discounts, Sorts sortBy)
             => sortBy switch
