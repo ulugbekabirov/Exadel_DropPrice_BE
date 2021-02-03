@@ -65,5 +65,13 @@ namespace BL.Services
 
             return _mapper.Map<DiscountDTO[]>(discounts);
         }
+
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int id)
+        {
+            //TBD
+            var discount = await _discountRepository.GetByIdAsync(id);
+
+            return _mapper.Map<DiscountDTO>(discount);
+        }
     }
 }

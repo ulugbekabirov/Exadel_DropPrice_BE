@@ -27,6 +27,12 @@ namespace WebApi.Controllers
             return Ok(await _discountService.GetClosestAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDiscountById(int id)
+        {
+            return Ok(await _discountService.GetDiscountByIdAsync(id));
+        }
+
         [HttpGet("search")]
         public async Task<IActionResult> SearchDiscounts(string searchQuery)
         {

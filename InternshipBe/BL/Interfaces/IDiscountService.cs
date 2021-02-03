@@ -11,5 +11,7 @@ namespace BL.Interfaces
         Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user);
 
         Task<IEnumerable<DiscountDTO>> SearchAsync(string searchQuery);
+
+        Task<DiscountDTO> GetDiscountByIdAsync(int id);
     }
 }
