@@ -40,7 +40,7 @@ namespace Shared.Extensions
             }
 
             var pointOfSale = discount.PointOfSales
-                .Select(p => new { Address = p.Address, Distance = (int)location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
+                .Select(p => new { p.Address, Distance = (int)location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
                 .OrderBy(p => p.Distance).FirstOrDefault();
 
             return (pointOfSale.Address, pointOfSale.Distance);
