@@ -32,12 +32,20 @@ namespace Shared.ExceptionHandling
 
                 context.Response.StatusCode = httpStatusCode;
                 context.Response.ContentType = JsonContentType;
-                if (httpStatusCode != 500)
+                if (httpStatusCode == 400)
                 {
                     await context.Response.WriteAsync(
                         JsonConvert.SerializeObject(new GlobalErrorDetails
                         {
                             Message = "Bad Request"
+                        }));
+                }
+                if(httpStatusCode == 401)
+                {
+                    await context.Response.WriteAsync(
+                        JsonConvert.SerializeObject(new GlobalErrorDetails
+                        {
+                            Message = "You Are Not Welcome Here"
                         }));
                 }
                 else
@@ -59,6 +67,9 @@ namespace Shared.ExceptionHandling
             {
                 case var _ when exception is ValidationException:
                     httpStatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                case var _ when exception is UnauthorizedAccessException:
+                    httpStatusCode = (int)HttpStatusCode.Unauthorized;
                     break;
                 default:
                     httpStatusCode = (int)HttpStatusCode.InternalServerError;
