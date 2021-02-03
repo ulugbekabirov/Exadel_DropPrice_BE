@@ -10,14 +10,14 @@ namespace DAL.DbInitializer
 {
     public class Initializer
     {
-        private static ApplicationDbContext _db;
+        private static ApplicationDbContext _context;
 
         public static async Task InitializeDatabase(IServiceProvider services)
         {
             using var scope = services.CreateScope();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
-            _db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            _context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             await PopulateUsersAndRoles(userManager, rolesManager);
         }
 
@@ -35,37 +35,37 @@ namespace DAL.DbInitializer
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.User));
             }
 
-            var towns = new TownInitializer(_db);
+            var towns = new TownInitializer(_context);
             towns.InitializeTowns();
 
-            var offices = new OfficeInitializer(_db);
+            var offices = new OfficeInitializer(_context);
             offices.InitializeOffices();
 
-            var users = new UserInitializer(_db, userManager);
+            var users = new UserInitializer(_context, userManager);
             await users.InitializeUsers();
 
-            var vendors = new VendorInitializer(_db);
+            var vendors = new VendorInitializer(_context);
             vendors.InitializeVendors();
 
-            var tags = new TagInitializer(_db);
+            var tags = new TagInitializer(_context);
             tags.InitializeTags();
 
-            var pointOfSales = new PointOfSaleInitializer(_db);
+            var pointOfSales = new PointOfSaleInitializer(_context);
             pointOfSales.InitializePointOfSales();
 
-            var discounts = new DiscountInitializer(_db);
+            var discounts = new DiscountInitializer(_context);
             discounts.InitializeDiscounts();
 
-            var savedDicounts = new SavedDiscountInitializer(_db);
+            var savedDicounts = new SavedDiscountInitializer(_context);
             savedDicounts.InitializeSavedDiscounts();
 
-            var tickets = new TicketInitializer(_db);
+            var tickets = new TicketInitializer(_context);
             tickets.InitializerTickets();
 
-            var assessments = new AssessmentInitializer(_db);
+            var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

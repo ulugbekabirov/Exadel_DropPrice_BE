@@ -1,15 +1,13 @@
 ﻿using BL.DTO;
+using BL.Models;
 using DAL.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
     public interface IDiscountService 
     {
-        Task<IEnumerable<DiscountDTO>> GetClosestAsync(int skip, int take, double latitude, double longitude, User user);
+        Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
     public class SavedDiscount
     {
