@@ -31,9 +31,15 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
                 .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
 
-            CreateMap<Ticket, TicketDTO>();
-            CreateMap<TicketDTO, Ticket>();
-
+            CreateMap<Ticket, TicketDTO>()
+                .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
+                .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
+                .ForMember(t => t.Patronymic, source => source.MapFrom(s => s.User.Patronymic))
+                .ForMember(t => t.VendorName, source => source.MapFrom(s => s.Discount.Vendor.Name))
+                .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
+                .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
+                .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.Promocode));
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
