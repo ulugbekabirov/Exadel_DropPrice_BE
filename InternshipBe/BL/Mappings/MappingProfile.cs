@@ -29,7 +29,9 @@ namespace BL.Mapping
                 .ForMember(t => t.TagId, source => source.MapFrom(s => s.Id));
             CreateMap<TagDTO, Tag>()
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
-                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId)); ;
+                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
+
+            CreateMap<Ticket, TicketDTO>();
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
@@ -38,7 +40,6 @@ namespace BL.Mapping
               {
                   dto.VendorRating = source.GetVendorRating();
               });
-
             CreateMap<VendorDTO, Vendor>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
