@@ -3,9 +3,6 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -17,22 +14,28 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<Ticket> GetOrCreateTicketForUser(int discountId, User user)
+        public async Task<Ticket> GetOrCreateTicketForUserAsync(int discountId, User user)
         {
-            var ticket = await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == user.Id && d.OrderDate == DateTime.Today);
-
+            var ticket = await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == user.Id && d.OrderDate.Date == DateTime.Today.Date);
+            
             if (ticket is null)
             {
+                var discount = await _context.Discounts.FindAsync(discountId);
+
                 var newTicket = new Ticket()
                 {
                     DiscountId = discountId,
                     UserId = user.Id,
                     OrderDate = DateTime.Now,
                     User = user,
-                    Discount = await _context.Discounts.SingleAsync(d => d.Id == discountId),
+                    Discount = discount,
                 };
 
+                user.Tickets.Add(newTicket);
+                discount.Tickets.Add(newTicket);
+                
                 await CreateAsync(newTicket);
+
                 return newTicket;
             }
 
