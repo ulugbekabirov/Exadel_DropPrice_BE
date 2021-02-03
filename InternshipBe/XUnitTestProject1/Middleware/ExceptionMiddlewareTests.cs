@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
+using Shared.ExceptionHandling;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Newtonsoft.Json;
+using System.Net;
+using System.ComponentModel.DataAnnotations;
+
+namespace XUnitTests.Middleware
+{
+    public class ExceptionMiddlewareTests
+    {
+        [Fact]
+        public async Task InvokeAsync_NoExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
+        {
+            //arrange
+            var middleWare = new ExceptionMiddleware(next: async (innerHttpContext) =>
+                {
+                    await Task.Run(() =>
+                    {
+                        throw new Exception();
+                    });
+                });
+            var context = new DefaultHttpContext();
+            context.Response.Body = new MemoryStream();
+
+            //act
+            await middleWare.InvokeAsync(context);
+
+            //assert
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            var reader = new StreamReader(context.Response.Body);
+            var body = reader.ReadToEnd();
+            Assert.NotEqual("", body);
+        }
+
+        [Fact]
+        public async Task InvokeAsync_NoInternalServerErrorThrownInsideMiddleware_ContextResponseNotModifiedAsync()
+        {
+            //arrange
+            string expectedOutput = "{\"Message\":\"internal server error\"}";
+            var middleWare = new ExceptionMiddleware(next: async (innerHttpContext) =>
+                {
+                    await Task.Run(() =>
+                    {
+                        throw new Exception();
+                    });
+                });
+            var context = new DefaultHttpContext();
+            context.Response.Body = new MemoryStream();
+
+            //act
+            await middleWare.InvokeAsync(context);
+
+            //assert
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            var reader = new StreamReader(context.Response.Body);
+            var body = reader.ReadToEnd();
+            Assert.Equal(expectedOutput, body);
+        }
+
+        [Fact]
+        public async Task InvokeAsync_NoValidationExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
+        {
+            //arrange
+            string expectedOutput = "{\"Message\":\"Bad Request\"}";
+            var middleWare = new ExceptionMiddleware(next: async (innerHttpContext) =>
+            {
+                await Task.Run(() =>
+                {
+                    throw new ValidationException();
+                });
+            });
+            var context = new DefaultHttpContext();
+            context.Response.Body = new MemoryStream();
+
+            //act
+            await middleWare.InvokeAsync(context);
+
+            //assert
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            var reader = new StreamReader(context.Response.Body);
+            var body = reader.ReadToEnd();
+            Assert.Equal(expectedOutput, body);
+        }
+    }
+}

@@ -67,7 +67,6 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStatusCodePages("text/plain", "Error. Status code : {0}");
 
             app.UseGlobalExceptionMiddleware();
 

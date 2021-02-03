@@ -15,6 +15,7 @@ using DAL.DataContext;
 using System.Linq;
 using GeoCoordinatePortable;
 using BL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace IdentityServer.Controllers
 {
