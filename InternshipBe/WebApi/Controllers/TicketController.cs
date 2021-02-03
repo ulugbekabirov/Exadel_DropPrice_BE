@@ -1,12 +1,8 @@
 ﻿using BL.Interfaces;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
@@ -27,7 +23,7 @@ namespace WebApi.Controllers
         [HttpGet("ticket")]
         public async Task<IActionResult> GetTicketForUser(int discountId)
         {
-            return Ok(_ticketService.GetOrCreateTicket(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _ticketService.GetOrCreateTicketAsync(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
