@@ -9,5 +9,7 @@ namespace BL.Interfaces
     public interface IDiscountService 
     {
         Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user);
+
+        Task<IEnumerable<DiscountDTO>> SearchAsync(string searchQuery);
     }
 }

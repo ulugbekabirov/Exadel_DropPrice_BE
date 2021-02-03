@@ -14,5 +14,10 @@ namespace DAL.Repositories
         {
 
         }
+
+        public IQueryable<Discount> SearchDiscounts(string searchQuery)
+        {
+            return _context.Discounts.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
+        }
     }
 }

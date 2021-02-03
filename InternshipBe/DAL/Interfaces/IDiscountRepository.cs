@@ -7,6 +7,6 @@ namespace DAL.Interfaces
 {
     public interface IDiscountRepository : IRepository<Discount>
     {
-
+        IQueryable<Discount> SearchDiscounts(string searchQuery);
     }
 }
