@@ -9,6 +9,6 @@ namespace DAL.Interfaces
 {
     public interface ITicketRepository : IRepository<Ticket>
     {
-        Task<Ticket> GetTicketForUser(int discountId, User user);
+        Task<Ticket> GetOrCreateTicketForUser(int discountId, User user);
     }
 }

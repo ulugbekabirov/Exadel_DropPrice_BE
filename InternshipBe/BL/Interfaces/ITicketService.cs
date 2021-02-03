@@ -10,6 +10,6 @@ namespace BL.Interfaces
 {
     public interface ITicketService 
     {
-        Task<TicketDTO> GetTicket(int discountId, User user);
+        Task<TicketDTO> GetOrCreateTicket(int discountId, User user);
     }
 }

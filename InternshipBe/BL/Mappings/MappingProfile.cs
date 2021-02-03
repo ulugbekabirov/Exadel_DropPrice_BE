@@ -32,6 +32,8 @@ namespace BL.Mapping
                 .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
 
             CreateMap<Ticket, TicketDTO>();
+            CreateMap<TicketDTO, Ticket>();
+
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))

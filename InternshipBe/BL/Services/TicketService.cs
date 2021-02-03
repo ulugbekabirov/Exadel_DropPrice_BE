@@ -22,9 +22,9 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<TicketDTO> GetTicket(int discountId, User user)
+        public async Task<TicketDTO> GetOrCreateTicket(int discountId, User user)
         {
-            var userTicket = await _ticketRepository.GetTicketForUser(discountId, user);
+            var userTicket = await _ticketRepository.GetOrCreateTicketForUser(discountId, user);
 
             return _mapper.Map<TicketDTO>(userTicket);
         }

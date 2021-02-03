@@ -17,7 +17,7 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<Ticket> GetTicketForUser(int discountId, User user)
+        public async Task<Ticket> GetOrCreateTicketForUser(int discountId, User user)
         {
             var ticket = await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == user.Id && d.OrderDate == DateTime.Today);
 
