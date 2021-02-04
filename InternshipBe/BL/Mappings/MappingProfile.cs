@@ -19,6 +19,7 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TownName));
 
             CreateMap<User, UserDTO>()
+                .ForMember(u => u.FIO, source => source.MapFrom(s => $"{s.FirstName} {s.LastName} {s.Patronymic}"))
                 .ForMember(u => u.OfficeLatitude, source => source.MapFrom(s => s.Office.Latitude))
                 .ForMember(u => u.OfficeLongitude, source => source.MapFrom(s => s.Office.Longitude));
             CreateMap<IEnumerable<string>, UserDTO>()

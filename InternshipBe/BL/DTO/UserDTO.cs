@@ -7,5 +7,13 @@
         public double OfficeLatitude { get; set; }
 
         public double OfficeLongitude { get; set; }
+
+        public string FIO { get; set; }
+
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Office { get; set; }
     }
 }
