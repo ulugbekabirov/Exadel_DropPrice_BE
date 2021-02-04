@@ -20,7 +20,7 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("ticket")] 
+        [HttpGet("tickets")] 
         public async Task<IActionResult> GetTicketForUser(int discountId)
         {
             return Ok(await _ticketService.GetOrCreateTicketAsync(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
