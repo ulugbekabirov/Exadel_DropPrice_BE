@@ -15,6 +15,11 @@ namespace DAL.Repositories
 
         }
 
+        public Discount SaveOrUnsaveDiscount(int discountId, int userId)
+        {
+            _context.SavedDiscounts.Select();
+        }
+
         public IQueryable<Discount> SearchDiscounts(string searchQuery)
         {
             return _context.Discounts.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
