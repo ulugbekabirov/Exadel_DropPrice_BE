@@ -38,5 +38,11 @@ namespace WebApi.Controllers
         {
             return Ok(await _discountService.SearchAsync(searchQuery));
         }
+
+        [HttpGet("{id}/save")]
+        public async Task<IActionResult> SaveDiscount(int discountId)
+        {
+            return
+        }
     }
 }

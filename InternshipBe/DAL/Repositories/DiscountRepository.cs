@@ -15,9 +15,9 @@ namespace DAL.Repositories
 
         }
 
-        public Discount SaveOrUnsaveDiscount(int discountId, int userId)
+        public SavedDiscount GetSavedDiscount(int discountId, int userId)
         {
-            _context.SavedDiscounts.Select();
+            return _context.SavedDiscounts.FirstOrDefault(d => d.DiscountId == discountId && d.UserId == userId);
         }
 
         public IQueryable<Discount> SearchDiscounts(string searchQuery)
