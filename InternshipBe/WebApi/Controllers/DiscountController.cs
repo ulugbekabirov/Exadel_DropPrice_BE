@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("id/save")]
-        public async Task<IActionResult> SaveOrUnsaveDicount(int discountId)
+        public async Task<IActionResult> SaveOrUnsaveUserDicount(int discountId)
         {
             return Ok(await _discountService.SaveOrUnsaveUserDisocuntAsync(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
         }

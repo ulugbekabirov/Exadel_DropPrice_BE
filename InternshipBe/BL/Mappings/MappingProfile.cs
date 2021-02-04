@@ -5,7 +5,6 @@ using DAL.Entities;
 using GeoCoordinatePortable;
 using Shared.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BL.Mapping
 {
