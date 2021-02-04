@@ -39,5 +39,10 @@ namespace DAL.Repositories
         {
             return _entities.Skip(skip).Take(take);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

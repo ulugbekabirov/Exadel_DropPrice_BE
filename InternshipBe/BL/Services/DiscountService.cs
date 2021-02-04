@@ -87,6 +87,7 @@ namespace BL.Services
             else
             {
                 savedDiscount.IsSaved = !savedDiscount.IsSaved;
+                await _discountRepository.SaveChangesAsync();
             }
 
             return _mapper.Map<SavedDTO>(savedDiscount);
