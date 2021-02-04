@@ -79,7 +79,7 @@ namespace BL.Services
         {
             var savedDiscount = await _discountRepository.GetSavedDiscountAsync(discountId, user.Id);
 
-            if (savedDiscount == null)
+            if (savedDiscount is null)
             {
                 var discount = await _discountRepository.GetByIdAsync(discountId);
                 savedDiscount = await _discountRepository.CreateSavedDiscountAsync(discount, user);
