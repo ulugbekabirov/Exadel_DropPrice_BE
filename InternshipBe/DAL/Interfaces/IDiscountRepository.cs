@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +10,6 @@ namespace DAL.Interfaces
 
         Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId);
 
-        SavedDiscount CreateSavedDiscount(Discount discount, User user);
+        Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user);
     }
 }

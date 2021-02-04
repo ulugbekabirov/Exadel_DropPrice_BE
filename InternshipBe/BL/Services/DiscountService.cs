@@ -82,12 +82,13 @@ namespace BL.Services
             if (savedDiscount == null)
             {
                 var discount = await _discountRepository.GetByIdAsync(discountId);
-                savedDiscount = _discountRepository.CreateSavedDiscount(discount, user);
+                savedDiscount = await _discountRepository.CreateSavedDiscountAsync(discount, user);
             }
             else
             {
                 savedDiscount.IsSaved = !savedDiscount.IsSaved;
             }
+
             return _mapper.Map<SavedDTO>(savedDiscount);
         }
     }
