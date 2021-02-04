@@ -10,5 +10,7 @@ namespace DAL.Interfaces
         IQueryable<Discount> SearchDiscounts(string searchQuery);
 
         SavedDiscount GetSavedDiscount(int discountId, int userId);
+
+        SavedDiscount CreateSavedDiscount(Discount discount, User user);
     }
 }
