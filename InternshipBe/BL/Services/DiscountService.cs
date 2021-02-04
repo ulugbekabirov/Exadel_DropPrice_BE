@@ -75,7 +75,7 @@ namespace BL.Services
             return _mapper.Map<DiscountDTO>(discountModel);
         }
 
-        public async Task<SavedDTO> SaveOrUnsaveUserDisocuntAsync(int discountId, User user)
+        public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int discountId, User user)
         {
             var savedDiscount = await _discountRepository.GetSavedDiscountAsync(discountId, user.Id);
 
