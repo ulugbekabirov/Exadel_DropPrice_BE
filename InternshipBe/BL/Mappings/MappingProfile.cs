@@ -5,7 +5,6 @@ using DAL.Entities;
 using GeoCoordinatePortable;
 using Shared.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BL.Mapping
 {
@@ -61,6 +60,12 @@ namespace BL.Mapping
                 .ForMember(d=> d.Id, source=> source.MapFrom(s=>s.DiscountId))
                 .ForMember(d=> d.Name, source => source.MapFrom(s => s.DiscountName))
                 .ReverseMap();
+
+            CreateMap<Discount, DiscountModel>()
+                .ForMember(d => d.Discount, source => source.MapFrom(s => s));
+            CreateMap<User, DiscountModel>()
+                .ForMember(d => d.UserId, source => source.MapFrom(s => s.Id))
+                .ForMember(d => d.Location, source => source.MapFrom(s => new GeoCoordinate(s.Office.Latitude, s.Office.Longitude)));
 
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
