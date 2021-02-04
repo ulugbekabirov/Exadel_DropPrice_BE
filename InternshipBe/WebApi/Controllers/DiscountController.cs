@@ -27,10 +27,10 @@ namespace WebApi.Controllers
             return Ok(await _discountService.GetClosestAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDiscountById(int id)
+        [HttpGet("id")]
+        public async Task<IActionResult> GetDiscountById(int discountId)
         {
-            return Ok(await _discountService.GetDiscountByIdAsync(id));
+            return Ok(await _discountService.GetDiscountByIdAsync(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpGet("search")]
