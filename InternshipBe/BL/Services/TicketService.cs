@@ -24,7 +24,8 @@ namespace BL.Services
 
             if(userTicket is null)
             {
-                userTicket = await _ticketRepository.CreateTicketAsync(discountId, user); 
+                userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
+                await _ticketRepository.SaveChangesAsync();
             }
 
             return _mapper.Map<Ticket, TicketDTO>(userTicket);
