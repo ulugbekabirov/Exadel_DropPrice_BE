@@ -147,6 +147,9 @@ namespace DAL.Migrations
                     b.Property<int>("DiscountId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsSaved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -321,6 +324,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
