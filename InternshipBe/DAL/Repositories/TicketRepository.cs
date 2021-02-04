@@ -14,32 +14,28 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<Ticket> GetOrCreateTicketForUserAsync(int discountId, User user)
+        public async Task<Ticket> GetTicketAsync(int discountId, int userId)
         {
-            var ticket = await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == user.Id && d.OrderDate.Date == DateTime.Today.Date);
-            
-            if (ticket is null)
+            return await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == userId && d.OrderDate.Date == DateTime.Today.Date);
+        }
+
+        public async Task<Ticket> CreateTicketAsync(int discountId, User user)
+        {
+            var discount = await _context.Discounts.FindAsync(discountId);
+
+            var newTicket = new Ticket()
             {
-                var discount = await _context.Discounts.FindAsync(discountId);
-
-                var newTicket = new Ticket()
-                {
-                    DiscountId = discountId,
-                    UserId = user.Id,
-                    OrderDate = DateTime.Now,
-                    User = user,
-                    Discount = discount,
-                };
-
-                user.Tickets.Add(newTicket);
-                discount.Tickets.Add(newTicket);
-                
-                await CreateAsync(newTicket);
-
-                return newTicket;
-            }
-
-            return ticket;
+                DiscountId = discount.Id,
+                UserId = user.Id,
+                OrderDate = DateTime.Now,
+                User = user,
+                Discount = discount,
+            };
+            user.Tickets.Add(newTicket);
+            discount.Tickets.Add(newTicket);
+            await CreateAsync(newTicket);
+            
+            return newTicket;
         }
     }
 }

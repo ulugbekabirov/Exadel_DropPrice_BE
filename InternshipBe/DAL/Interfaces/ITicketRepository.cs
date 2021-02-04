@@ -5,6 +5,8 @@ namespace DAL.Interfaces
 {
     public interface ITicketRepository : IRepository<Ticket>
     {
-        Task<Ticket> GetOrCreateTicketForUserAsync(int discountId, User user);
+        Task<Ticket> GetTicketAsync(int discountId, int userId);
+
+        Task<Ticket> CreateTicketAsync(int discountId, User user);
     }
 }

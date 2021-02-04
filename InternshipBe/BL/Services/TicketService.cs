@@ -20,7 +20,12 @@ namespace BL.Services
 
         public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
         {
-            var userTicket = await _ticketRepository.GetOrCreateTicketForUserAsync(discountId, user);
+            var userTicket = await _ticketRepository.GetTicketAsync(discountId, user.Id);
+
+            if(userTicket is null)
+            {
+                userTicket = await _ticketRepository.CreateTicketAsync(discountId, user); 
+            }
 
             return _mapper.Map<Ticket, TicketDTO>(userTicket);
         }
