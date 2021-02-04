@@ -14,6 +14,6 @@ namespace BL.Interfaces
 
         Task<DiscountDTO> GetDiscountByIdAsync(int id);
 
-        Task<DiscountDTO> SaveOrUnSaveUserDisocunt(int discountId, User user);
+        Task<SavedDTO> SaveOrUnsaveUserDisocuntAsync(int discountId, User user);
     }
 }

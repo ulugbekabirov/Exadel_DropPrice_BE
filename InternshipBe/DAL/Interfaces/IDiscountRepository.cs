@@ -9,6 +9,6 @@ namespace DAL.Interfaces
     {
         IQueryable<Discount> SearchDiscounts(string searchQuery);
 
-        Task<Discount> UpdateUserSave(int discountId, User user);
+        Task<SavedDiscount> UpdateUserSaveAsync(int discountId, User user);
     }
 }

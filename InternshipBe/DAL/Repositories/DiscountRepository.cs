@@ -1,8 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,11 +18,11 @@ namespace DAL.Repositories
             return _context.Discounts.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
         }
 
-        public async Task<Discount> UpdateUserSave(int discountId, User user)
+        public async Task<SavedDiscount> UpdateUserSaveAsync(int discountId, User user)
         {
-            var savedDiscount = user.SavedDiscounts.FirstOrDefault(s => s.DiscountId == discountId && s.UserId == user.Id);
+            var savedDiscount = _context.SavedDiscounts.SingleOrDefault(s => s.DiscountId == discountId && s.UserId == user.Id);
 
-            var discount = await _context.Discounts.FindAsync(discountId);
+            var discount = await GetByIdAsync(discountId);
 
             if (savedDiscount is null)
             {
@@ -34,7 +32,7 @@ namespace DAL.Repositories
                     DiscountId = discountId,
                     User = user,
                     Discount = discount,
-                    
+                    IsSaved = true,
                 };
 
                 user.SavedDiscounts.Add(newSavedDiscount);
@@ -42,12 +40,12 @@ namespace DAL.Repositories
             }
             else
             {
-                _context.SavedDiscounts.Remove(savedDiscount);
+                savedDiscount.IsSaved = !savedDiscount.IsSaved;
             }
 
             await _context.SaveChangesAsync();
 
-            return discount;
+            return savedDiscount;
         }
     }
 }
