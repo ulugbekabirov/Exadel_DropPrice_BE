@@ -1,6 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,9 +14,9 @@ namespace DAL.Repositories
 
         }
 
-        public SavedDiscount GetSavedDiscount(int discountId, int userId)
+        public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
         {
-            return _context.SavedDiscounts.SingleOrDefault(s => s.DiscountId == discountId && s.UserId == userId);
+            return await _context.SavedDiscounts.SingleOrDefaultAsync(s => s.DiscountId == discountId && s.UserId == userId);
         }
 
         public SavedDiscount CreateSavedDiscount(Discount discount, User user)

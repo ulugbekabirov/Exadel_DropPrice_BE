@@ -77,7 +77,7 @@ namespace BL.Services
 
         public async Task<SavedDTO> SaveOrUnsaveUserDisocuntAsync(int discountId, User user)
         {
-            var savedDiscount = _discountRepository.GetSavedDiscount(discountId, user.Id);
+            var savedDiscount = await _discountRepository.GetSavedDiscountAsync(discountId, user.Id);
 
             if (savedDiscount == null)
             {
