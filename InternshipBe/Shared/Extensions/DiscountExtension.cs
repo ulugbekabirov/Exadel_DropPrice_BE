@@ -19,7 +19,14 @@ namespace Shared.Extensions
 
         public static bool IsSavedDiscount(this Discount discount, int userId)
         {
-            return discount.SavedDiscounts.Any(sd => sd.DiscountId == discount.Id && sd.UserId == userId);
+            var savedDiscount = discount.SavedDiscounts.SingleOrDefault(s => s.DiscountId == discount.Id && s.UserId == userId);
+
+            if (savedDiscount is null)
+            {
+                return false;
+            }
+
+            return savedDiscount.IsSaved;
         }
 
         public static double? DiscountRating(this Discount discount)
