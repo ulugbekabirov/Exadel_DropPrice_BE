@@ -9,6 +9,7 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using GeoCoordinatePortable;
+using Microsoft.EntityFrameworkCore;
 
 namespace BL.Services
 {
@@ -56,6 +57,40 @@ namespace BL.Services
             }
 
             return discountModels;
+        }
+
+        public async Task<IEnumerable<DiscountDTO>> SearchAsync(string searchQuery)
+        {
+            var discounts = await _discountRepository.SearchDiscounts(searchQuery).ToListAsync();
+
+            return _mapper.Map<DiscountDTO[]>(discounts);
+        }
+
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int discountId, User user)
+        {
+            var discount = await _discountRepository.GetByIdAsync(discountId);
+
+            var discountModel = _mapper.Map(user, _mapper.Map<DiscountModel>(discount));
+
+            return _mapper.Map<DiscountDTO>(discountModel);
+        }
+
+        public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int discountId, User user)
+        {
+            var savedDiscount = await _discountRepository.GetSavedDiscountAsync(discountId, user.Id);
+
+            if (savedDiscount is null)
+            {
+                var discount = await _discountRepository.GetByIdAsync(discountId);
+                savedDiscount = await _discountRepository.CreateSavedDiscountAsync(discount, user);
+            }
+            else
+            {
+                savedDiscount.IsSaved = !savedDiscount.IsSaved;
+                await _discountRepository.SaveChangesAsync();
+            }
+
+            return _mapper.Map<SavedDTO>(savedDiscount);
         }
     }
 }

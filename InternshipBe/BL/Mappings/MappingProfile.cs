@@ -5,7 +5,6 @@ using DAL.Entities;
 using GeoCoordinatePortable;
 using Shared.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BL.Mapping
 {
@@ -19,6 +18,7 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TownName));
 
             CreateMap<User, UserDTO>()
+                .ForMember(u => u.FIO, source => source.MapFrom(s => $"{s.FirstName} {s.LastName} {s.Patronymic}"))
                 .ForMember(u => u.OfficeLatitude, source => source.MapFrom(s => s.Office.Latitude))
                 .ForMember(u => u.OfficeLongitude, source => source.MapFrom(s => s.Office.Longitude));
             CreateMap<IEnumerable<string>, UserDTO>()
@@ -29,7 +29,21 @@ namespace BL.Mapping
                 .ForMember(t => t.TagId, source => source.MapFrom(s => s.Id));
             CreateMap<TagDTO, Tag>()
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
-                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId)); ;
+                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
+
+            CreateMap<SavedDiscount, SavedDTO>()
+                .ForMember(s => s.DiscountID, source => source.MapFrom(s => s.DiscountId))
+                .ForMember(s => s.IsSaved, source => source.MapFrom(s => s.IsSaved));
+
+            CreateMap<Ticket, TicketDTO>()
+                .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
+                .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
+                .ForMember(t => t.Patronymic, source => source.MapFrom(s => s.User.Patronymic))
+                .ForMember(t => t.VendorName, source => source.MapFrom(s => s.Discount.Vendor.Name))
+                .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
+                .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
+                .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.Promocode));
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
@@ -38,10 +52,20 @@ namespace BL.Mapping
               {
                   dto.VendorRating = source.GetVendorRating();
               });
-
             CreateMap<VendorDTO, Vendor>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
+
+            CreateMap<DiscountDTO, Discount>()
+                .ForMember(d=> d.Id, source=> source.MapFrom(s=>s.DiscountId))
+                .ForMember(d=> d.Name, source => source.MapFrom(s => s.DiscountName))
+                .ReverseMap();
+
+            CreateMap<Discount, DiscountModel>()
+                .ForMember(d => d.Discount, source => source.MapFrom(s => s));
+            CreateMap<User, DiscountModel>()
+                .ForMember(d => d.UserId, source => source.MapFrom(s => s.Id))
+                .ForMember(d => d.Location, source => source.MapFrom(s => new GeoCoordinate(s.Office.Latitude, s.Office.Longitude)));
 
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
@@ -60,7 +84,7 @@ namespace BL.Mapping
                     dto.Address = pointOfSale.Item1;
                     dto.DistanceInMeters = pointOfSale.Item2;
                     dto.DiscountRating = source.Discount.DiscountRating();
-                    dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
+                    dto.IsSaved =  source.Discount.IsSavedDiscount(source.UserId);
                     dto.Tags = source.Discount.GetTags();
                 });
         }

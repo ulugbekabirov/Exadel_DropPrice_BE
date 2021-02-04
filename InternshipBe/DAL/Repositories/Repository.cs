@@ -1,7 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +37,11 @@ namespace DAL.Repositories
         public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
         {
             return _entities.Skip(skip).Take(take);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

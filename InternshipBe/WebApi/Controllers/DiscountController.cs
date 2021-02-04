@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/")]
+    [Route("api/discounts")]
     [Authorize]
     public class DiscountController : ControllerBase
     {
@@ -21,10 +21,28 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("discounts")]
+        [HttpGet]
         public async Task<IActionResult> GetDiscounts(SortModel sortModel)
         {
             return Ok(await _discountService.GetClosestAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDiscountById(int id)
+        {
+            return Ok(await _discountService.GetDiscountByIdAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchDiscounts(string searchQuery)
+        {
+            return Ok(await _discountService.SearchAsync(searchQuery));
+        }
+        
+        [HttpGet("{id}/save")]
+        public async Task<IActionResult> SaveDiscount(int id)
+        {
+            return Ok(await _discountService.SaveOrUnsaveDisocuntAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

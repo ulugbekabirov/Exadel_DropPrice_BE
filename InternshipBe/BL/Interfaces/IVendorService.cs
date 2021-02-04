@@ -7,5 +7,6 @@ namespace BL.Interfaces
     public interface IVendorService
     {
         Task<IEnumerable<VendorDTO>> GetVendorsAsync();
+        Task<VendorDTO> GetVendorByIdAsync(int id);
     }
 }

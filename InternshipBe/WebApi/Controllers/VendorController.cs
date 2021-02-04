@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/")]
+    [Route("api/vendors")]
     [Authorize]
     public class VendorController : ControllerBase
     {
@@ -15,10 +15,16 @@ namespace WebApi.Controllers
             _vendorService = vendorService;
         }
 
-        [HttpGet("vendors")]
+        [HttpGet]
         public async Task<IActionResult> GetVendors()
         {
             return Ok(await _vendorService.GetVendorsAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetVendorById(int id)
+        {
+            return Ok(await _vendorService.GetVendorByIdAsync(id));
         }
     }
 }
