@@ -8,5 +8,7 @@ namespace DAL.Interfaces
     public interface IDiscountRepository : IRepository<Discount>
     {
         IQueryable<Discount> SearchDiscounts(string searchQuery);
+
+        Task<Discount> UpdateUserSave(int discountId, User user);
     }
 }

@@ -38,5 +38,11 @@ namespace WebApi.Controllers
         {
             return Ok(await _discountService.SearchAsync(searchQuery));
         }
+
+        [HttpGet("save")]
+        public async Task<IActionResult> SaveOrUnSaveDicount(int discountId)
+        {
+            return Ok(_discountService.SaveOrUnSaveUserDisocunt(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
     }
 }
