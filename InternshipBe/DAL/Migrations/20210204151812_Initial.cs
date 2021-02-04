@@ -91,6 +91,7 @@ namespace DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SocialNetworkLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -351,6 +352,7 @@ namespace DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    IsSaved = table.Column<bool>(type: "bit", nullable: false),
                     DiscountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

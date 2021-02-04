@@ -32,6 +32,10 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
                 .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
 
+            CreateMap<SavedDiscount, SavedDTO>()
+                .ForMember(s => s.DiscountID, source => source.MapFrom(s => s.DiscountId))
+                .ForMember(s => s.IsSaved, source => source.MapFrom(s => s.IsSaved));
+
             CreateMap<Ticket, TicketDTO>()
                 .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
                 .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
@@ -75,7 +79,7 @@ namespace BL.Mapping
                     dto.Address = pointOfSale.Item1;
                     dto.DistanceInMeters = pointOfSale.Item2;
                     dto.DiscountRating = source.Discount.DiscountRating();
-                    dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
+                    dto.IsSaved =  source.Discount.IsSavedDiscount(source.UserId);
                     dto.Tags = source.Discount.GetTags();
                 });
         }
