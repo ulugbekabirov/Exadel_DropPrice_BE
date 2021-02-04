@@ -18,7 +18,7 @@ namespace DAL.Repositories
             return _context.SavedDiscounts.SingleOrDefault(s => s.DiscountId == discountId && s.UserId == userId);
         }
 
-        public SavedDiscount CreateSavedDiscount(Discount discount, User user)
+        public async Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user)
         {
             var newSavedDiscount = new SavedDiscount()
             {
@@ -31,7 +31,7 @@ namespace DAL.Repositories
 
             user.SavedDiscounts.Add(newSavedDiscount);
             discount.SavedDiscounts.Add(newSavedDiscount);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return newSavedDiscount;
         }
 
