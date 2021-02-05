@@ -38,19 +38,5 @@ namespace Shared.Extensions
 
             return discount.Assessments.Average(a => a.AssessmentValue);
         }
-
-        public static (string, int?) GetAddressAndDistanceOfPointOfSale(this Discount discount, GeoCoordinate location)
-        {
-            if (discount.PointOfSales.Count == 0)
-            {
-                return (null, null);
-            }
-
-            var pointOfSale = discount.PointOfSales
-                .Select(p => new { p.Address, Distance = (int)location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                .OrderBy(p => p.Distance).FirstOrDefault();
-
-            return (pointOfSale.Address, pointOfSale.Distance);
-        }
     }
 }
