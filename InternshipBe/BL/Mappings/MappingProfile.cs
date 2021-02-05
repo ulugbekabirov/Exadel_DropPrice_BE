@@ -61,32 +61,19 @@ namespace BL.Mapping
                 .ForMember(d=> d.Name, source => source.MapFrom(s => s.DiscountName))
                 .ReverseMap();
 
-            CreateMap<Discount, DiscountModel>()
-                .ForMember(d => d.Discount, source => source.MapFrom(s => s));
-            CreateMap<User, DiscountModel>()
-                .ForMember(d => d.UserId, source => source.MapFrom(s => s.Id))
-                .ForMember(d => d.Location, source => source.MapFrom(s => new GeoCoordinate(s.Office.Latitude, s.Office.Longitude)));
-
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
                 .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.Vendorid))
-                .ForMember(d => d.VendorName, soucre => soucre.MapFrom(s => s.Discount.Vendor.Name))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Discount.Name))
+                .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Discount.Vendor.Name))
                 .ForMember(d => d.Description, source => source.MapFrom(s => s.Discount.Description))
                 .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.Discount.ActivityStatus))
                 .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
                 .ForMember(d => d.StartDate, source => source.MapFrom(s => s.Discount.StartDate))
                 .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
-                .AfterMap((source, dto) =>
-                {
-                    var pointOfSale = source.Discount.GetAddressAndDistanceOfPointOfSale(source.Location);
-                    dto.Address = pointOfSale.Item1;
-                    dto.DistanceInMeters = pointOfSale.Item2;
-                    dto.DiscountRating = source.Discount.DiscountRating();
-                    dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
-                    dto.Tags = source.Discount.GetTags();
-                });
+                .ForMember(d => d.DistanceInMeters, source => source.MapFrom(s => s.PointOfSaleDTO.DistanceInMeters))
+                .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address));
         }
     }
 }
