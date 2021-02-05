@@ -52,9 +52,24 @@ namespace DAL.Repositories
             return newSavedDiscount;
         }
 
-        public IQueryable<Discount> SearchDiscounts(string searchQuery)
+        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags)
         {
-            return _context.Discounts.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
+            var searchResults = _context.Discounts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
+            }
+
+            if (tags.Length != 0)
+            {
+                foreach (var tag in tags)
+                {
+                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Name).Contains(tag));
+                }
+            }
+
+            return await searchResults.ToListAsync();
         }
     }
 }
