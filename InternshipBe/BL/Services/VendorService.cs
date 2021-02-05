@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
@@ -32,6 +33,13 @@ namespace BL.Services
             var vendors = await _vendorRepository.GetAllAsync();
 
             return _mapper.Map<VendorDTO[]>(vendors);
+        }
+
+        public async Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(int vendorId, User user)
+        {
+            var vendor = await _vendorRepository.GetByIdAsync(vendorId);
+
+            return _mapper.Map<DiscountDTO[]>(vendor.Discounts);
         }
     }
 }
