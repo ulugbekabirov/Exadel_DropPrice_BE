@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDiscounts(SortModel sortModel)
         {
-            return Ok(await _discountService.GetClosestDiscountsAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.GetDiscountsAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpGet("{id}")]
@@ -36,9 +36,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchDiscounts(string searchQuery)
+        public async Task<IActionResult> SearchDiscounts(SearchModel searchmodel)
         {
-            return Ok(await _discountService.SearchAsync(searchQuery));
+            return Ok(await _discountService.SearchAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpGet("{id}/createTicket")]
