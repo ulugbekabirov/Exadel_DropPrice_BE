@@ -25,6 +25,15 @@ namespace DAL.DbInitializer
             AddPointOfSales("Reebok", "Tashkent 100173, Узбекистан", 41.2945188, 69.1936755);
             AddPointOfSales("Reebok in Minsk", "пр-т. Победителей 65, Минск", 53.9269855, 27.5166321);
             AddPointOfSales("Reebok in Grodno", "ул. Суворова 254а, Гродно 230001", 53.6523708, 23.7923098);
+
+            AddPointOfSales("KFC Rossini", "Ташкент, Шайхантахурский район, массив Хадра, 23", 41.3289341, 69.2478162);
+            AddPointOfSales("KFC in Minsk", "пр-т. Независимости 23, Минск", 53.9062502, 27.5520951);
+            AddPointOfSales("KFC Triniti", "просп. Я. Купалы 87, Гродно 230026", 53.6502601, 23.8557723);
+
+            AddPointOfSales("Mcdonalds in Minsk", "пр-т. Независимости 23, Минск", 53.9013598, 27.5597421);
+            AddPointOfSales("Mcdonalds Galileo", "ул. Бобруйская, 6, Минск", 53.8905815, 27.5534423);
+            AddPointOfSales("Mcdonalds in Grodno", "ул. Горновых 9, Гродно", 53.6694679, 23.8215089);
+
         }
 
         public void AddPointOfSales(string name, string address, double latitude, double longitude)

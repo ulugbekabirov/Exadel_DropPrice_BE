@@ -19,6 +19,9 @@ namespace DAL.DbInitializer
             AddTag("TheBestCoffee");
             AddTag("Food");
             AddTag("Reebok");
+            AddTag("KfC");
+            AddTag("Mcdonald's");
+            AddTag("fastfood");
         }
         
         public void AddTag(string name)

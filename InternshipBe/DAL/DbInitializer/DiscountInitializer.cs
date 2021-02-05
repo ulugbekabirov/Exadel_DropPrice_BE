@@ -40,6 +40,23 @@ namespace DAL.DbInitializer
                     _context.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
                     _context.Tags.Where(t => t.Name == "ReeBok").ToList());
             }
+
+            for (int i = 1; i <= 5; i++)
+            {
+                AddDiscount(4, $"Mcdonalds {i}", "The best fastfood", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                    _context.Vendors.Find(4),
+                    _context.PointOfSales.Where(p => p.Name == "Mcdonalds ").ToList(),
+                    _context.Tags.Where(p => p.Name == "Mcdonalds ").ToList());
+            }
+
+            for (int i = 1; i <= 5; i++)
+            {
+                AddDiscount(5, $"KFC {i}", "The best chicken", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                    _context.Vendors.Find(5),
+                    _context.PointOfSales.Where(p => p.Name == "KFC ").ToList(),
+                    _context.Tags.Where(p => p.Name == "KFC ").ToList());
+            }
+
         }
 
         public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus,
