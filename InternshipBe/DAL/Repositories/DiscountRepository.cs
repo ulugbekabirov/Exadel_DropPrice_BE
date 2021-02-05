@@ -55,7 +55,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags)
         {
-            var searchResults = _context.Discounts.AsQueryable();
+            var searchResults = _context.Discounts.AsQueryable().Where(d=>d.ActivityStatus==true);
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
