@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
+using BL.Extensions;
 using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
+using Shared.Extensions;
 
 namespace BL.Services
 {
@@ -25,38 +27,17 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetClosestAsync(SortModel sortModel, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetClosestDiscountsAsync(SortModel sortModel, User user)
         {
             var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
-            var discounts = await _discountRepository.GetAllAsync();
-
-            var discountModels = GetDiscountModel(discounts, user.Id, location);
+            var closestDiscounts = await _discountRepository.GetSpecifiedClosestActiveDiscounts(location, sortModel.Skip, sortModel.Take);
+                
+            var discountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id));
 
             var discountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
 
-            var sortedModels = SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
-
-            return sortedModels.Skip(sortModel.Skip).Take(sortModel.Take);
-        }
-
-        public static List<DiscountModel> GetDiscountModel(IEnumerable<Discount> discounts, int userId, GeoCoordinate location)
-        {
-            var discountModels = new List<DiscountModel>();
-
-            foreach (var discount in discounts)
-            {
-                var discountModel = new DiscountModel()
-                {
-                    Discount = discount,
-                    UserId = userId,
-                    Location = location,
-                };
-
-                discountModels.Add(discountModel);
-            }
-
-            return discountModels;
+            return SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
         }
 
         public async Task<IEnumerable<DiscountDTO>> SearchAsync(string searchQuery)
@@ -70,7 +51,7 @@ namespace BL.Services
         {
             var discount = await _discountRepository.GetByIdAsync(discountId);
 
-            var discountModel = _mapper.Map(user, _mapper.Map<DiscountModel>(discount));
+            var discountModel = discount.CreateDiscountModel(new GeoCoordinate(user.Office.Latitude, user.Office.Longitude), user.Id);
 
             return _mapper.Map<DiscountDTO>(discountModel);
         }
