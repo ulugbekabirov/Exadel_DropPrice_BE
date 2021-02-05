@@ -84,7 +84,7 @@ namespace BL.Mapping
                     dto.Address = pointOfSale.Item1;
                     dto.DistanceInMeters = pointOfSale.Item2;
                     dto.DiscountRating = source.Discount.DiscountRating();
-                    dto.IsSaved =  source.Discount.IsSavedDiscount(source.UserId);
+                    dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
                     dto.Tags = source.Discount.GetTags();
                 });
         }

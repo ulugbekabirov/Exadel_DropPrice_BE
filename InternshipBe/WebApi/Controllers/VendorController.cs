@@ -1,5 +1,7 @@
 ﻿using BL.Interfaces;
+using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,9 +12,12 @@ namespace WebApi.Controllers
     public class VendorController : ControllerBase
     {
         private readonly IVendorService _vendorService;
-        public VendorController(IVendorService vendorService)
+        private readonly UserManager<User> _userManager;
+
+        public VendorController(IVendorService vendorService, UserManager<User> userManager)
         {
             _vendorService = vendorService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -25,6 +30,12 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetVendorById(int id)
         {
             return Ok(await _vendorService.GetVendorByIdAsync(id));
+        }
+
+        [HttpGet("{id}/discounts")]
+        public async Task<IActionResult> GetVendorDiscounts(int id)
+        {
+            return Ok(await _vendorService.GetVendorDiscountsAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
