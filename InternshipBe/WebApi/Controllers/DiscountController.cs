@@ -40,9 +40,9 @@ namespace WebApi.Controllers
         }
         
         [HttpPut("{id}/save")]
-        public async Task<IActionResult> SaveDiscount([FromBody]int discountId)
+        public async Task<IActionResult> SaveDiscount(int id)
         {
-            return Ok(await _discountService.SaveOrUnsaveDisocuntAsync(discountId, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.SaveOrUnsaveDisocuntAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }
