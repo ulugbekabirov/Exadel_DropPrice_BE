@@ -16,7 +16,7 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IEnumerable<Discount>> GetSpecifiedClosestActiveDiscounts(GeoCoordinate location, int skip, int take)
+        public async Task<IEnumerable<Discount>> GetSpecifiedClosestActiveDiscountsAsync(GeoCoordinate location, int skip, int take)
         {
             var activeDiscounts = _entities.Where(d => d.ActivityStatus == true).OrderBy(d => d.PointOfSales
                    .Select(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)))

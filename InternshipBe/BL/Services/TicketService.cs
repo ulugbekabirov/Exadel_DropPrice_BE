@@ -22,7 +22,7 @@ namespace BL.Services
         {
             var userTicket = await _ticketRepository.GetTicketAsync(discountId, user.Id);
 
-            if(userTicket is null)
+            if (userTicket is null)
             {
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
                 await _ticketRepository.SaveChangesAsync();
