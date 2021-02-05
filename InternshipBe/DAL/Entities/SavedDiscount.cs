@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
     public class SavedDiscount
     {
@@ -9,6 +7,8 @@ namespace DAL.Entities
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        public bool IsSaved { get; set; }
 
         public int DiscountId { get; set; }
 

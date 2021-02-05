@@ -2,10 +2,8 @@
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -17,10 +15,9 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IQueryable<Tag>> GetPopularAsync(int skip, int take)
+        public async Task<IEnumerable<Tag>> GetPopularAsync(int skip, int take)
         {
-            var tags = await _entities.Skip(skip).Take(take).ToListAsync();
-            return tags.AsQueryable();
+            return await GetSpecifiedAmount(skip, take).OrderBy(d => d.Discounts.Count).ToListAsync();
         }
     }
 }

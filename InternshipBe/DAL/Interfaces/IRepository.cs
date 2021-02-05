@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +12,8 @@ namespace DAL.Interfaces
 
         Task CreateAsync(TEntity item);
 
-        Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take);
+        IQueryable<TEntity> GetSpecifiedAmount(int skip, int take);
+
+        Task SaveChangesAsync();
     }
 }

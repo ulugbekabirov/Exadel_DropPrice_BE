@@ -1,34 +1,48 @@
 ﻿using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/")]
-    [ApiController]
+    [Route("api/discounts")]
     [Authorize]
     public class DiscountController : ControllerBase
     {
-        private readonly IDiscountService _service;
+        private readonly IDiscountService _discountService;
         private readonly UserManager<User> _userManager;
 
         public DiscountController(IDiscountService service, UserManager<User> userManager)
         {
-            _service = service;
+            _discountService = service;
             _userManager = userManager;
         }
 
-        [HttpGet("discounts")]
-        public async Task<IActionResult> GetDiscounts(int skip, int take, double latitude, double longitude, string sortBy = "name")
+        [HttpGet]
+        public async Task<IActionResult> GetDiscounts(SortModel sortModel)
         {
-            return Ok(await _service.GetClosestAsync(skip, take, latitude, longitude, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.GetClosestAsync(sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDiscountById(int id)
+        {
+            return Ok(await _discountService.GetDiscountByIdAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchDiscounts(string searchQuery)
+        {
+            return Ok(await _discountService.SearchAsync(searchQuery));
+        }
+        
+        [HttpGet("{id}/save")]
+        public async Task<IActionResult> SaveDiscount(int id)
+        {
+            return Ok(await _discountService.SaveOrUnsaveDisocuntAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

@@ -6,26 +6,26 @@ namespace DAL.DbInitializer
 {
     public class SavedDiscountInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public SavedDiscountInitializer(ApplicationDbContext db)
+        public SavedDiscountInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializeSavedDiscounts()
         {
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 1);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 2);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 3);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 1);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 2);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 3);
 
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 4);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 5);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 6);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 4);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 5);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "moderatorexadel@gmail.com").Id, 6);
 
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 7);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 8);
-            AddSavedDiscount(_db.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 9);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 7);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 8);
+            AddSavedDiscount(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 9);
         }
 
         public void AddSavedDiscount(int userId, int discountId)
@@ -36,14 +36,11 @@ namespace DAL.DbInitializer
                 DiscountId =discountId,
             };
 
-            _db.SavedDiscounts.Add(savedDiscount);
+            _context.SavedDiscounts.Add(savedDiscount);
+            _context.Users.Find(userId).SavedDiscounts.Add(savedDiscount);
+            _context.Discounts.Find(discountId).SavedDiscounts.Add(savedDiscount);
 
-            _db.SaveChanges();
-
-            _db.Users.Find(userId).SavedDiscounts.Add(savedDiscount);
-            _db.Discounts.Find(discountId).SavedDiscounts.Add(savedDiscount);
-
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

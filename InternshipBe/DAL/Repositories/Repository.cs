@@ -1,7 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,11 +34,14 @@ namespace DAL.Repositories
             return await _entities.FindAsync(id);
         }
 
-        public async Task<IQueryable<TEntity>> GetSpecifiedAmountAsync(int skip, int take)
+        public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
         {
-            var task = await _entities.Skip(skip).Take(take).ToListAsync();
+            return _entities.Skip(skip).Take(take);
+        }
 
-            return task.AsQueryable();
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

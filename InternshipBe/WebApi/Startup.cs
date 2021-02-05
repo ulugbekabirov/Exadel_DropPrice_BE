@@ -9,7 +9,6 @@ using DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -48,20 +47,22 @@ namespace WebApi
                     .AddDefaultTokenProviders();
 
             services.AddScoped<IUserService, UserService>();
-
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ITownService, TownService>();
-
             services.AddScoped<ITownRepository, TownRepository>();
 
             services.AddScoped<ITagService, TagService>();
-
             services.AddScoped<ITagRepository, TagRepository>();
 
-            services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IVendorService, VendorService>();
+            services.AddScoped<IRepository<Vendor>, Repository<Vendor>>();
 
+            services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+            services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
 
             services.AddAuthentication(options =>
             {

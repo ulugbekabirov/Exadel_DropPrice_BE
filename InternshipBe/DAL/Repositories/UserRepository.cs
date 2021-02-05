@@ -3,6 +3,7 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,13 +16,9 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IQueryable<string>> GetUserRolesAsync(int userId)
+        public async Task<IEnumerable<string>> GetUserRolesAsync(int userId)
         {
-            var roles = await _context.Roles
-                                .Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id))
-                                .Select(r => r.Name).ToListAsync();
-
-            return  roles.AsQueryable();
+            return await _context.Roles.Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id)).Select(r => r.Name).ToListAsync();
         }
     }
 }

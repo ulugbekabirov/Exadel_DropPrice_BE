@@ -5,11 +5,11 @@ namespace DAL.DbInitializer
 {
     public class TownInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public TownInitializer(ApplicationDbContext db)
+        public TownInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializeTowns()
@@ -21,14 +21,14 @@ namespace DAL.DbInitializer
 
         public void AddTown(string name, double latitude, double longitude)
         {
-            _db.Towns.Add(new Town()
+            _context.Towns.Add(new Town()
             {
                 Name = name,
                 Latitude = latitude,
                 Longitude = longitude,
             });
 
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

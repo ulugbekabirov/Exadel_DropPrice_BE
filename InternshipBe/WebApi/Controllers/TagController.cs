@@ -1,4 +1,5 @@
 ﻿using BL.Interfaces;
+using BL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,9 +18,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("tags")]
-        public async Task<IActionResult> GetTags(int skip, int take)
+        public async Task<IActionResult> GetTags(SpecifiedAmountModel model)
         {
-            return Ok(await _tagService.GetSpecifiedAmountAsync(skip, take));
+            return Ok(await _tagService.GetSpecifiedAmountAsync(model));
         }
     }
 }

@@ -9,13 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Authorization;
 using DAL.Entities;
-using DAL.DataContext;
-using System.Linq;
-using GeoCoordinatePortable;
-using BL.Interfaces;
-using System.ComponentModel.DataAnnotations;
 
 namespace IdentityServer.Controllers
 {
@@ -59,7 +53,7 @@ namespace IdentityServer.Controllers
                 var token = new JwtSecurityToken(
                     issuer: _configuration["JWT:ValidIssuer"],
                     audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(24),
+                    expires: DateTime.Now.AddHours(240),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
@@ -67,8 +61,6 @@ namespace IdentityServer.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    UserEmail = user.Email,
-                    UserRole = userRoles,
                 });
             }
 
