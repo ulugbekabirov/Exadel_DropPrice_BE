@@ -10,8 +10,8 @@ namespace BL.Interfaces
     {
         Task<IEnumerable<VendorDTO>> GetVendorsAsync();
 
-        Task<VendorDTO> GetVendorByIdAsync(int vendorId);
+        Task<VendorDTO> GetVendorByIdAsync(int id);
 
-        Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(VendorModel vendorModel, User user);
+        Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(int id, SortModel vendorModel, User user);
     }
 }

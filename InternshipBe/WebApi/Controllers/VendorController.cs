@@ -33,10 +33,10 @@ namespace WebApi.Controllers
             return Ok(await _vendorService.GetVendorByIdAsync(id));
         }
 
-        [HttpGet("id/discounts")]
-        public async Task<IActionResult> GetVendorDiscounts(VendorModel vendorModel)
+        [HttpGet("{id}/discounts")]
+        public async Task<IActionResult> GetVendorDiscounts(int id, SortModel sortModel)
         {
-            return Ok(await _vendorService.GetVendorDiscountsAsync(vendorModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _vendorService.GetVendorDiscountsAsync(id, sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

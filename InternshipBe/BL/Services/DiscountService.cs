@@ -31,7 +31,7 @@ namespace BL.Services
         {
             var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
-            var closestDiscounts = await _discountRepository.GetSpecifiedClosestActiveDiscounts(location, sortModel.Skip, sortModel.Take);
+            var closestDiscounts = await _discountRepository.GetSpecifiedClosestActiveDiscountsAsync(location, sortModel.Skip, sortModel.Take);
                 
             var discountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id));
 

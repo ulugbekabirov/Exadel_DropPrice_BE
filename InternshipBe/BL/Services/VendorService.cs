@@ -28,7 +28,6 @@ namespace BL.Services
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
             return _mapper.Map<VendorDTO>(vendor);
-
         }
 
         public async Task<IEnumerable<VendorDTO>> GetVendorsAsync()
@@ -38,26 +37,26 @@ namespace BL.Services
             return _mapper.Map<VendorDTO[]>(vendors);
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(VendorModel vendorModel, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(int id, SortModel sortModel, User user)
         {
-            var vendor = await _vendorRepository.GetByIdAsync(vendorModel.VendorId);
+            var vendor = await _vendorRepository.GetByIdAsync(id);
 
             var location = new GeoCoordinate(user.Office.Latitude, user.Office.Longitude);
 
-            if (vendorModel.Latitude != 0 && vendorModel.Longitude != 0)
+            if (sortModel.Latitude != 0 && sortModel.Longitude != 0)
             {
-                location = new GeoCoordinate(vendorModel.Latitude, vendorModel.Longitude);
+                location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
             }
 
             var discountsModels = vendor.Discounts
                 .Select(d => d.CreateDiscountModel(location, user.Id))
                 .OrderBy(d => d.PointOfSaleDTO.DistanceInMeters)
-                .Skip(vendorModel.Skip)
-                .Take(vendorModel.Take);
+                .Skip(sortModel.Skip)
+                .Take(sortModel.Take);
 
             var disocuntDTOs = _mapper.Map<DiscountDTO[]>(discountsModels);
                 
-            return SortModel.SortDiscountsBy(disocuntDTOs, (Sorts)Enum.Parse(typeof(Sorts), vendorModel.SortBy));
+            return SortModel.SortDiscountsBy(disocuntDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
         }
     }
 }
