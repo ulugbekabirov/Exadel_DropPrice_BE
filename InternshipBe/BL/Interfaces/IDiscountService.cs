@@ -8,9 +8,9 @@ namespace BL.Interfaces
 {
     public interface IDiscountService 
     {
-        Task<IEnumerable<DiscountDTO>> GetClosestDiscountsAsync(SortModel sortModel, User user);
+        Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user);
 
-        Task<IEnumerable<DiscountDTO>> SearchAsync(string searchQuery);
+        Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user);
 
         Task<DiscountDTO> GetDiscountByIdAsync(int discountId, User user);
 
