@@ -18,15 +18,15 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Discount>> GetSpecifiedClosestActiveDiscounts(GeoCoordinate location, int skip, int take)
         {
-            var activeDiscounts = await _entities.Where(d => d.ActivityStatus == true).ToListAsync();
-
-            return activeDiscounts.
-                OrderBy(d => d.PointOfSales
-                    .Select(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)))
-                    .OrderBy(p => p)
-                    .FirstOrDefault())
+            var activeDiscounts = _entities.Where(d => d.ActivityStatus == true).OrderBy(d => d.PointOfSales
+                   .Select(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)))
+                   .OrderBy(p => p)
+                   .FirstOrDefault())
                 .Skip(skip)
                 .Take(take);
+
+            return await activeDiscounts.ToListAsync();
+               
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
@@ -49,6 +49,7 @@ namespace DAL.Repositories
             user.SavedDiscounts.Add(newSavedDiscount);
             discount.SavedDiscounts.Add(newSavedDiscount);
             await _context.SaveChangesAsync();
+
             return newSavedDiscount;
         }
 
