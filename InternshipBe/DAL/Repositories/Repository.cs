@@ -1,5 +1,4 @@
 ﻿using DAL.DataContext;
-using DAL.Entities;
 using DAL.Interfaces;
 using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
