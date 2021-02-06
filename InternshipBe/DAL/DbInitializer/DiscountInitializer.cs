@@ -17,26 +17,24 @@ namespace DAL.DbInitializer
 
         public void InitializeDiscounts()
         {
+            //Pizza
+            AddDiscount(2, $"Акция Супер шестерка", "6 больших пицц 31 см: 4 сыра+ Ромео+ Деревенская +Пикантная +Гавайская +Народная",
+                20, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                _context.Vendors.Find(2),
+                _context.PointOfSales.Where(p => p.Name == "Пицца темпо Мстиславца").ToList(),
+                _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно").ToList());
 
-            AddDiscount(1, $"Coffee Plus", "The best coffee PLUS", 15, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                _context.Vendors.Find(1),
-                _context.PointOfSales.Where(p => p.Name == "Coffee").ToList(),
-                _context.Tags.Where(t => t.Name == "Coffee" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
+            AddDiscount(2, $"Акция Пышное трио", "3 большие пиццы 31 см. с пышным краем: Супер Пепперони + Аппетитная + Народная", 
+                10, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, "7777",
+                _context.Vendors.Find(2),
+                _context.PointOfSales.Where(p => p.Name == "Пицца темпо Громова" || p.Name == "Пицца темпо Бобруйская").ToList(),
+                _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Уютное место" || t.Name == "Пицца").ToList());
 
-
-
-            AddDiscount(2, $"Food", "The best food", 10, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                    _context.Vendors.Find(2),
-                    _context.PointOfSales.Where(p => p.Name == "Food").ToList(),
-                    _context.Tags.Where(p => p.Name == "Food").ToList());
-
-
-
-            AddDiscount(3, $"Reebok", "The best snickers", 20, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                _context.Vendors.Find(3),
-                _context.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
-                _context.Tags.Where(t => t.Name == "ReeBok").ToList());
-
+            AddDiscount(2, $"Акция ХИТ - трик тонкое тесто", "3 большие пиццы 31см :Супер Пепперони + Везувий +Чикен Барбекю+ Coca-Cola 1литр",
+                30, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                _context.Vendors.Find(2),
+                _context.PointOfSales.Where(p => p.Name == "Пицца темпо Громова" || p.Name == "Пицца темпо Бобруйская" || p.Name == "Пицца темпо Мстиславца").ToList(),
+                _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно" || t.Name == "Уютное место").ToList());
         }
 
         public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus,
