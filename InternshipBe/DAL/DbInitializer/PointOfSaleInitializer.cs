@@ -34,8 +34,6 @@ namespace DAL.DbInitializer
             AddPointOfSales("KFC Warszawa", "Polska, wieś Opacz-Kolonia, aleja Jerozolimskie, 11/19", 52.230824, 21.017336);
             AddPointOfSales("KFC Walnut Creek", "635 Contra Costa Blvd, Pleasant Hill, CA 94523, United States", 37.957380, -122.037167);
 
-            
-            //Парфюмерия
             AddPointOfSales("Chanel Boutique Ташкент", "11-uy, Bunyodkor Avenue, Tashkent 100115, Uzbekistan", 41.293243, 69.225569);
             AddPointOfSales("AnnaClair Минск", "ул. В. Хоружей 1а, ТЦ «Силуэт» 1 этаж ряд 6 место 9, Minsk 220005, Belarus", 53.916285, 27.581274);
             AddPointOfSales("Cravt Минск", "ТЦ «Титан», Prospekt Dzerzhinskogo 104/2, Minsk 220089, Belarus", 53.860912, 27.476941);
