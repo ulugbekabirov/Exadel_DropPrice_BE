@@ -14,9 +14,7 @@ namespace DAL.DbInitializer
 
         public void InitializeVendors()
         {
-            AddVendor("Coffee", "The best coffee", "vendorexadel@gmail.com", "ул. Академика Купревича 3, Минск 220141", "+375447777777", "www.instagram.com/vendor");
-            AddVendor("Food", "The best food", "vendorexadel@gmail.com", "ул. Максима Горького 1/1, Гродно 230023", "+375447777777", "www.instagram.com/vendor");
-            AddVendor("Reebok", "The best snickers", "vendorexadel@gmail.com","Inkubator Technologiczny, Żurawia 71, 15-540 Białystok, Польша", "+375447777777", "www.instagram.com/vendor");
+            AddVendor("Пицца Темпо", @"Пицца Темпо – крупнейшая сеть пиццерий в Республике Беларусь: 20 уютных пиццерий расположились в городе Минске, Гродно, Могилеве и Молодечно более 1 500 000 пицц ежегодно радуют наших Гостей в залах пиццерий и с доставкой", "vendorexadel@gmail.com", "г.Минск, пр-т Победителей 89, комн.", "+375 (017) 375-77-73", "https://www.instagram.com/pizzatempo/");
         }
 
         public void AddVendor(string name, string description, string email, string address, string phone, string socialNetworkLink)
