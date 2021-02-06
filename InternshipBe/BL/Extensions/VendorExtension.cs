@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BL.Extensions;
+using DAL.Entities;
 using System.Linq;
 
 namespace Shared.Extensions
@@ -7,7 +8,7 @@ namespace Shared.Extensions
     {
         public static double? GetVendorRating(this Vendor vendor)
         {
-            return vendor.Discounts.Select(d => d.DiscountRating()).Average(a=>a);
+            return vendor.Discounts.Select(d => d.DiscountRating()).Average(a => a);
         }
     }
 }
