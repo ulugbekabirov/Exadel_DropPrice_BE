@@ -22,6 +22,8 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", "Луисвилл, Кентукки, США", "+375296470730", "https://www.instagram.com/kfcbyofficial/");
             AddVendor("IKEA", @"IKEA — основанная в Швеции нидерландская производственно - торговая группа компаний, владелец одной из крупнейших в мире торговых сетей по продаже мебели и товаров для дома.",
                  "vendorexadel@gmail.com", "Olof Palmestraat 1, 2616 LN Delft, Нидерланды", "+31503168772", "https://www.instagram.com/ikeausa/");
+            AddVendor("Chanel", @"Chanel is a French fashion house that focuses on women's high fashion and ready-to-wear clothes, luxury goods and accessories. The company is owned by Alain Wertheimer and Gérard Wertheimer, grandsons of Pierre Wertheimer, who was an early business partner of the couturière Coco Chanel.",
+                "vendorexadel@gmail.com", "France, Paris, Neuilly-sur-Seine 135 Avenue Charles de Gaulle", "+33 1 42 60 58 58", "https://www.instagram.com/chanelofficial/");
         }
 
         public void AddVendor(string name, string description, string email, string address, string phone, string socialNetworkLink)
