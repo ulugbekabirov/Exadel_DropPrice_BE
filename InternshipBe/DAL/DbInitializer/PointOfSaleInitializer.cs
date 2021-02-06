@@ -28,6 +28,10 @@ namespace DAL.DbInitializer
             AddPointOfSales("KFC Кристall", "ул. Ильича 333, Гомель 246013", 52.3568891, 31.0290813);
             AddPointOfSales("KFC Fayz", "д. 105, Тошкент, Узбекистан", 41.3267623, 69.3308544);
             AddPointOfSales("KFC Чиланзар", "Tashkent 100097, Узбекистан", 41.2753875, 69.2044044);
+
+            AddPointOfSales("IKEA USA", "4400 Shellmound St, Emeryville, CA 94608, Соединенные Штаты", 37.8317513, -122.2919726);
+            AddPointOfSales("IKEA Warszawa", "al. Jerozolimskie 179, 02-222 Warszawa, Польша", 52.2126557, 20.9560347);
+            AddPointOfSales("IKEA Минск", "улица Кульман 11 Минск BY, 220108", 53.9221336, 27.5770569);
         }
 
         public void AddPointOfSales(string name, string address, double latitude, double longitude)
