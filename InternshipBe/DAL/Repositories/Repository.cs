@@ -46,7 +46,7 @@ namespace DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public GeoCoordinate GetLocation(double latittude, double longitude, double officeLatitude, double officeLongitude)
+        public GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0)
         {
             if (latittude == 0 && longitude == 0)
             {

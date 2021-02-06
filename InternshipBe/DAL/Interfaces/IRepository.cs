@@ -18,6 +18,6 @@ namespace DAL.Interfaces
 
         Task SaveChangesAsync();
 
-        GeoCoordinate GetLocation(double latittude, double longitude, double officeLatitude, double officeLongitude);
+        GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0);
     }
 }
