@@ -39,10 +39,12 @@ namespace BL.Services
         {
             var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
+            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
+
             var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location);
                 
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
-                .SortDiscountsBy((Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy))
+                .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
                 .Take(sortModel.Take);
 
@@ -53,11 +55,16 @@ namespace BL.Services
         {
             var location = new GeoCoordinate(searchModel.Latitude, searchModel.Longitude);
 
+            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
+
             var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags);
 
-            var discountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id));
+            var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
+                                                       .SortDiscountsBy(sortBy)
+                                                       .Skip(searchModel.Skip)
+                                                        .Take(searchModel.Take);
 
-            var discountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
 
             return discountDTOs;
         }
