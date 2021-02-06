@@ -21,7 +21,7 @@ namespace DAL.Repositories
         {
             var activeDiscounts = await _entities.Where(d => d.ActivityStatus == true).ToListAsync();
 
-            return activeDiscounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 50000);
+            return activeDiscounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
