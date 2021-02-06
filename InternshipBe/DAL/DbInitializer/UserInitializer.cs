@@ -25,15 +25,15 @@ namespace DAL.DbInitializer
 
             await AddUser(1, "userexadel@gmail.com", "demoUser", "demoUser", "demoUser", "+375447777777", true, _context.Offices.Find(1), RolesName.User);
 
-            for (int i = 1; i <= 10; i++)
-            {
-                await AddUser(2, $"user{i}@test.com", $"user{i}", $"офисГродно", null, "+375447777777", true, _context.Offices.Find(2), RolesName.User);
-            }
+            await AddUser(1, $"userМинск@test.com", "офис", "Минск", "Минск", "+375447777777", false, _context.Offices.Find(1), RolesName.User);
 
-            for (int i = 11; i <= 20; i++)
-            {
-                await AddUser(3, $"user{i}@test.com", $"user{i}", $"офисБелосток", null, "+375447777777", true, _context.Offices.Find(3), RolesName.User);
-            }
+            await AddUser(2, $"userГомель@test.com", "офис", "Гомель", "Гомель", "+375447777777", true, _context.Offices.Find(2), RolesName.User);
+
+            await AddUser(3, $"userВаршава@test.com", "офис", "Варшава", "Варшава", "+48 228 236 200", true, _context.Offices.Find(3), RolesName.User);
+
+            await AddUser(4, $"userТашкент@test.com", "офис", "Ташкент", "Ташкент", "+78-140-09-09", true, _context.Offices.Find(4), RolesName.User);
+           
+            await AddUser(5, $"userСША@test.com", "офис", "Walnut Creek", "Walnut Creek", "+1 (916) 555 0166", true, _context.Offices.Find(5), RolesName.User);
         }
 
         public async Task AddUser(int officeId, string email, string firstName, string LastName, string patronymic, string phone, bool activityStatus, Office office, string role)
