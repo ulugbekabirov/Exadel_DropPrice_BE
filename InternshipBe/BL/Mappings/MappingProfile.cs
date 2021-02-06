@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.DTO;
+using BL.Extensions;
 using BL.Models;
 using DAL.Entities;
 using Shared.Extensions;
