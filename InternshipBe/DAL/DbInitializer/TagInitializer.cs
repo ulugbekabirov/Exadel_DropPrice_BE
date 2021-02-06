@@ -14,6 +14,9 @@ namespace DAL.DbInitializer
 
         public void InitializeTags()
         {
+            AddTag("Кондитерские изделия");
+            AddTag("Фастфуд");
+            AddTag("Напитки");
             AddTag("Пицца");
             AddTag("Уютное место");
             AddTag("Еда навынос");
