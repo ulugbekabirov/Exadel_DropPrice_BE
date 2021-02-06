@@ -41,22 +41,15 @@ namespace BL.Services
         {
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
-            var location = new GeoCoordinate(user.Office.Latitude, user.Office.Longitude);
-
-            if (sortModel.Latitude != 0 && sortModel.Longitude != 0)
-            {
-                location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
-            }
+            var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
             var discountsModels = vendor.Discounts
                 .Select(d => d.CreateDiscountModel(location, user.Id))
-                .OrderBy(d => d.PointOfSaleDTO.DistanceInMeters)
+                .SortDiscountsBy((Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy))
                 .Skip(sortModel.Skip)
                 .Take(sortModel.Take);
-
-            var disocuntDTOs = _mapper.Map<DiscountDTO[]>(discountsModels);
                 
-            return SortModel.SortDiscountsBy(disocuntDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
+            return _mapper.Map<DiscountDTO[]>(discountsModels);
         }
     }
 }
