@@ -22,11 +22,11 @@ namespace DAL.DbInitializer
             AddPointOfSales("Пицца темпо Бобруйская", "ул. Бобруйская 6, Минск", 53.8904302, 27.5539899);
             AddPointOfSales("Пицца темпо Мстиславца", "ул. Петра Мстиславца 11, Минск 220020", 53.9336182, 27.6521158);
 
-
-
             AddPointOfSales("IKEA USA", "4400 Shellmound St, Emeryville, CA 94608, Соединенные Штаты", 37.8317513, -122.2919726);
             AddPointOfSales("IKEA Warszawa", "al. Jerozolimskie 179, 02-222 Warszawa, Польша", 52.2126557, 20.9560347);
             AddPointOfSales("IKEA Минск", "улица Кульман 11 Минск BY, 220108", 53.9221336, 27.5770569);
+            AddPointOfSales("IKEA Ташкент", "3-A улица Темур Малик, дом, Тошкент 100015, Uzbekistan", 41.353240, 69.352407);
+            AddPointOfSales("IKEA Гомель", "Рэчыцкі праспект 5В, Гомель 246027", 52.416728, 30.961430);
 
             AddPointOfSales("KFC Минск", "ул. Бобруйская 19, Минск", 53.8906515, 27.5547945);
             AddPointOfSales("KFC Гомель", "ул. Советская 19, Гомель 246022", 52.4287905, 31.0127735);
