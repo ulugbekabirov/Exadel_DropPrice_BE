@@ -20,6 +20,8 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", "г.Минск, пр-т Победителей 89, комн.", "+375 (017) 375-77-73", "https://www.instagram.com/pizzatempo/");
             AddVendor("КФС", @"Kentucky Fried Chicken, сокращённо KFC — международная сеть ресторанов общественного питания, специализирующаяся на блюдах из курицы. Штаб-квартира компании располагается в городе Луисвилле в штате Кентукки. KFC — вторая по торговому обороту сеть кафе в мире, уступающая лишь компании McDonald's.",
                 "vendorexadel@gmail.com", "Луисвилл, Кентукки, США", "+375296470730", "https://www.instagram.com/kfcbyofficial/");
+            AddVendor("IKEA", @"IKEA — основанная в Швеции нидерландская производственно - торговая группа компаний, владелец одной из крупнейших в мире торговых сетей по продаже мебели и товаров для дома.",
+                 "vendorexadel@gmail.com", "Olof Palmestraat 1, 2616 LN Delft, Нидерланды", "+31503168772", "https://www.instagram.com/ikeausa/");
         }
 
         public void AddVendor(string name, string description, string email, string address, string phone, string socialNetworkLink)
