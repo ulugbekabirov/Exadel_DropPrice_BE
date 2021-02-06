@@ -2,14 +2,8 @@
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
-using DAL.Entities;
 using DAL.Interfaces;
-using DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -25,9 +19,9 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel model)
+        public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel specifiedAmountModel)
         {
-            var tags = await _tagRepository.GetPopularAsync(model.Skip, model.Take);
+            var tags = await _tagRepository.GetPopularAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
             return _mapper.Map<TagDTO[]>(tags);
         }

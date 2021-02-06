@@ -7,6 +7,6 @@ namespace BL.Interfaces
 {
     public interface ITagService 
     {
-        Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel model);
+        Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel specifiedAmountModel);
     }
 }

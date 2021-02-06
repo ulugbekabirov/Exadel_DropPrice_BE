@@ -1,5 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Interfaces;
+using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,15 @@ namespace DAL.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0)
+        {
+            if (latittude == 0 && longitude == 0)
+            {
+                return new GeoCoordinate(officeLatitude, officeLongitude);
+            }
+            return new GeoCoordinate(latittude, longitude);
         }
     }
 }
