@@ -1,8 +1,10 @@
 ﻿using BL.DTO;
 using BL.Models;
+using BL.Services;
 using DAL.Entities;
 using GeoCoordinatePortable;
 using Shared.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BL.Extensions
@@ -41,5 +43,17 @@ namespace BL.Extensions
 
             return pointOfSaleDTO;
         }
+
+        public static IEnumerable<DiscountModel> SortDiscountsBy(this IEnumerable<DiscountModel> discounts, Sorts sortBy)
+            => sortBy switch
+            {
+                Sorts.AlphabetAsc => discounts.OrderBy(d => d.Discount.Name).ThenBy(d => d.PointOfSaleDTO.DistanceInMeters),
+                Sorts.AlphabetDesc => discounts.OrderByDescending(d => d.Discount.Name).ThenBy(d => d.PointOfSaleDTO.DistanceInMeters),
+                Sorts.DiscountRatingAsc => discounts.OrderBy(d => d.DiscountRating).ThenBy(d => d.PointOfSaleDTO.DistanceInMeters),
+                Sorts.DiscountRatingDesc => discounts.OrderByDescending(d => d.DiscountRating).ThenBy(d => d.PointOfSaleDTO.DistanceInMeters),
+                Sorts.DistanceAsc => discounts.OrderBy(d => d.PointOfSaleDTO.DistanceInMeters),
+                Sorts.DistanceDesc => discounts.OrderByDescending(d => d.PointOfSaleDTO.DistanceInMeters),
+                _ => discounts.OrderBy(d => d.PointOfSaleDTO.DistanceInMeters),
+            };
     }
 }

@@ -12,8 +12,8 @@ namespace BL.Interfaces
 
         Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user);
 
-        Task<DiscountDTO> GetDiscountByIdAsync(int discountId, User user);
+        Task<DiscountDTO> GetDiscountByIdAsync(int id, User user);
 
-        Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int discountId, User user);
+        Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user);
     }
 }
