@@ -14,11 +14,10 @@ namespace DAL.DbInitializer
 
         public void InitializeTags()
         {
-            AddTag("CoffeePlus");
-            AddTag("Coffee");
-            AddTag("TheBestCoffee");
-            AddTag("Food");
-            AddTag("Reebok");
+            AddTag("Пицца");
+            AddTag("Уютное место");
+            AddTag("Еда навынос");
+            AddTag("Доставка");
         }
         
         public void AddTag(string name)
