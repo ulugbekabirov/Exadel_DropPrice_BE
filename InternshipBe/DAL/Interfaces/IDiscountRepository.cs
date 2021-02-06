@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Repositories;
 using GeoCoordinatePortable;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace DAL.Interfaces
 
         Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user);
 
-        Task<IEnumerable<Discount>> GetSpecifiedClosestActiveDiscountsAsync(GeoCoordinate location, int skip, int take);
+        Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location);
     }
 }

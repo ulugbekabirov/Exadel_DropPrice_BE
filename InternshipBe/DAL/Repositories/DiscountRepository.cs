@@ -11,22 +11,16 @@ namespace DAL.Repositories
 {
     public class DiscountRepository : Repository<Discount>, IDiscountRepository
     {
+
         public DiscountRepository(ApplicationDbContext context) : base(context)
         {
 
         }
 
-        public async Task<IEnumerable<Discount>> GetSpecifiedClosestActiveDiscountsAsync(GeoCoordinate location, int skip, int take)
+        public async Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location)
         {
-            var activeDiscounts = _entities.Where(d => d.ActivityStatus == true).OrderBy(d => d.PointOfSales
-                   .Select(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)))
-                   .OrderBy(p => p)
-                   .FirstOrDefault())
-                .Skip(skip)
-                .Take(take);
-
-            return await activeDiscounts.ToListAsync();
-               
+            var x = await _entities.Where(d => d.ActivityStatus == true).ToListAsync();
+                return x.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 50000);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)

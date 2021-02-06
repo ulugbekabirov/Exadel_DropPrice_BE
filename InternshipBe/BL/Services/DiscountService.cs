@@ -10,11 +10,19 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using GeoCoordinatePortable;
-using Microsoft.EntityFrameworkCore;
-using Shared.Extensions;
 
 namespace BL.Services
 {
+    public enum Sorts
+    {
+        DiscountRatingAsc,
+        DiscountRatingDesc,
+        DistanceAsc,
+        DistanceDesc,
+        AlphabetAsc,
+        AlphabetDesc,
+    }
+
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
@@ -31,13 +39,14 @@ namespace BL.Services
         {
             var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
 
-            var closestDiscounts = await _discountRepository.GetSpecifiedClosestActiveDiscountsAsync(location, sortModel.Skip, sortModel.Take);
+            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location);
                 
-            var discountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id));
+            var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
+                .SortDiscountsBy((Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy))
+                .Skip(sortModel.Skip)
+                .Take(sortModel.Take);
 
-            var discountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
-
-            return SortModel.SortDiscountsBy(discountDTOs, (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy));
+            return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
         }
 
         public async Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user)
@@ -53,22 +62,22 @@ namespace BL.Services
             return discountDTOs;
         }
         
-        public async Task<DiscountDTO> GetDiscountByIdAsync(int discountId, User user)
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, User user)
         {
-            var discount = await _discountRepository.GetByIdAsync(discountId);
+            var discount = await _discountRepository.GetByIdAsync(id);
 
             var discountModel = discount.CreateDiscountModel(new GeoCoordinate(user.Office.Latitude, user.Office.Longitude), user.Id);
 
             return _mapper.Map<DiscountDTO>(discountModel);
         }
 
-        public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int discountId, User user)
+        public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user)
         {
-            var savedDiscount = await _discountRepository.GetSavedDiscountAsync(discountId, user.Id);
+            var savedDiscount = await _discountRepository.GetSavedDiscountAsync(id, user.Id);
 
             if (savedDiscount is null)
             {
-                var discount = await _discountRepository.GetByIdAsync(discountId);
+                var discount = await _discountRepository.GetByIdAsync(id);
                 savedDiscount = await _discountRepository.CreateSavedDiscountAsync(discount, user);
             }
             else
