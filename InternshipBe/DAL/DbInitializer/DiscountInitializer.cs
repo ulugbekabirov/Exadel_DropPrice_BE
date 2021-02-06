@@ -17,29 +17,26 @@ namespace DAL.DbInitializer
 
         public void InitializeDiscounts()
         {
-            for (int i = 1; i <= 5; i++)
-            {
-                AddDiscount(1, $"Coffee Plus{i}", "The best coffee PLUS", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                    _context.Vendors.Find(1), 
-                    _context.PointOfSales.Where(p => p.Name == "Coffee").ToList(),
-                    _context.Tags.Where(t => t.Name == "Coffee" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
-            }
 
-            for (int i = 1; i <= 5; i++)
-            {
-                AddDiscount(2, $"Food{i}", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                    _context.Vendors.Find(2), 
+            AddDiscount(1, $"Coffee Plus{i}", "The best coffee PLUS", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                _context.Vendors.Find(1),
+                _context.PointOfSales.Where(p => p.Name == "Coffee").ToList(),
+                _context.Tags.Where(t => t.Name == "Coffee" || t.Name == "CoffeePlus" || t.Name == "TheBestCoffee").ToList());
+
+
+
+            AddDiscount(2, $"Food{i}", "The best food", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                    _context.Vendors.Find(2),
                     _context.PointOfSales.Where(p => p.Name == "Food").ToList(),
                     _context.Tags.Where(p => p.Name == "Food").ToList());
-            }
 
-            for (int i = 1; i <= 5; i++)
-            {
-                AddDiscount(3, $"Reebok{i}", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
-                    _context.Vendors.Find(3), 
-                    _context.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
-                    _context.Tags.Where(t => t.Name == "ReeBok").ToList());
-            }
+
+
+            AddDiscount(3, $"Reebok{i}", "The best snickers", i * i, DateTime.Now, DateTime.Now.Add(new TimeSpan(100, 0, 0, 0)), true, null,
+                _context.Vendors.Find(3),
+                _context.PointOfSales.Where(p => p.Name == "Reebok").ToList(),
+                _context.Tags.Where(t => t.Name == "ReeBok").ToList());
+
         }
 
         public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus,
