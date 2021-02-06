@@ -41,11 +41,13 @@ namespace BL.Services
         {
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
-            var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
+            var location = _vendorRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
+
+            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
 
             var discountsModels = vendor.Discounts
                 .Select(d => d.CreateDiscountModel(location, user.Id))
-                .SortDiscountsBy((Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy))
+                .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
                 .Take(sortModel.Take);
                 

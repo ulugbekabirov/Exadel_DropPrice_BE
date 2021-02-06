@@ -37,12 +37,12 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user)
         {
-            var location = new GeoCoordinate(sortModel.Latitude, sortModel.Longitude);
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
 
             var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location);
-                
+
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
@@ -53,7 +53,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user)
         {
-            var location = new GeoCoordinate(searchModel.Latitude, searchModel.Longitude);
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
 
@@ -68,12 +68,14 @@ namespace BL.Services
 
             return discountDTOs;
         }
-        
+
         public async Task<DiscountDTO> GetDiscountByIdAsync(int id, User user)
         {
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude);
+
             var discount = await _discountRepository.GetByIdAsync(id);
 
-            var discountModel = discount.CreateDiscountModel(new GeoCoordinate(user.Office.Latitude, user.Office.Longitude), user.Id);
+            var discountModel = discount.CreateDiscountModel(location, user.Id);
 
             return _mapper.Map<DiscountDTO>(discountModel);
         }
