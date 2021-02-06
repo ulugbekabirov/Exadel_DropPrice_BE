@@ -26,6 +26,7 @@ namespace DAL.DbInitializer
             AddTag("Мебель");
             AddTag("Дешево");
             AddTag("Для дома");
+            AddTag("Выгодно");
         }
         
         public void AddTag(string name)
