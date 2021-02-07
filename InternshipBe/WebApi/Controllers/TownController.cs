@@ -10,16 +10,16 @@ namespace WebApi.Controllers
     [Authorize]
     public class TownController : ControllerBase
     {
-        private readonly ITownService _service;
+        private readonly ITownService _townService;
         public TownController(ITownService service) 
         {
-            _service = service;
+            _townService = service;
         }
 
         [HttpGet("towns")]
         public async Task<IActionResult> GetTowns()
         {
-            return Ok(await _service.GetTownsAsync());
+            return Ok(await _townService.GetTownsAsync());
         }
     }
 }

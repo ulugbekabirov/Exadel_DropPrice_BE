@@ -11,20 +11,18 @@ namespace BL.Services
 {
     public class TownService : ITownService
     {
-        private readonly ITownRepository _repository;
+        private readonly ITownRepository _townRepository;
         private readonly IMapper _mapper;
 
         public TownService(ITownRepository repository, IMapper mapper)
         {
-            _repository = repository;
+            _townRepository = repository;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<TownDTO>> GetTownsAsync()
         {
-            var towns = await _repository.GetAllAsync();
-
-            return towns.Select(_mapper.Map<Town, TownDTO>);
+            return _mapper.Map<TownDTO[]>(await _townRepository.GetAllAsync());
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using DAL.Entities;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<IQueryable<string>> GetUserRolesAsync(int userId);
+        Task<IEnumerable<string>> GetUserRolesAsync(int userId);
     }
 }

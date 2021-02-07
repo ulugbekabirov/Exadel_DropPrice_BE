@@ -1,10 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,19 +14,32 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<(IQueryable<ICollection<Discount>>, Dictionary<int, double>)> GetClosestDiscountsAsync(double latitude, double longitude)
+        public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
         {
-            int i = 0;
+            return await _context.SavedDiscounts.SingleOrDefaultAsync(s => s.DiscountId == discountId && s.UserId == userId);
+        }
 
-            var location = new GeoCoordinate(latitude, longitude);
+        public async Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user)
+        {
+            var newSavedDiscount = new SavedDiscount()
+            {
+                UserId = user.Id,
+                DiscountId = discount.Id,
+                User = user,
+                Discount = discount,
+                IsSaved = true,
+            };
 
-            var closestPointsOfSales = _context.PointOfSales.ToList()
-                .Select(p => new { Id = p.Id, Discounts = p.Discounts, Distanse = location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude)) })
-                .OrderBy(p => p.Distanse);
+            await _context.SavedDiscounts.AddAsync(newSavedDiscount);
+            user.SavedDiscounts.Add(newSavedDiscount);
+            discount.SavedDiscounts.Add(newSavedDiscount);
+            await _context.SaveChangesAsync();
+            return newSavedDiscount;
+        }
 
-            var closestDiscounts = closestPointsOfSales.Select(d => new { Id = ++i, Discounts = d.Discounts, Distance = d.Distanse });
-
-            return (closestDiscounts.Select(d => d.Discounts).AsQueryable(), closestDiscounts.ToDictionary(k => k.Id, v => v.Distance));
+        public IQueryable<Discount> SearchDiscounts(string searchQuery)
+        {
+            return _context.Discounts.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
         }
     }
 }

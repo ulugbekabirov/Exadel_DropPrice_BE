@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using BL.DTO;
+using BL.Models;
 using DAL.Entities;
-
+using GeoCoordinatePortable;
+using Shared.Extensions;
+using System.Collections.Generic;
 
 namespace BL.Mapping
 {
@@ -15,21 +18,75 @@ namespace BL.Mapping
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TownName));
 
             CreateMap<User, UserDTO>()
+                .ForMember(u => u.FIO, source => source.MapFrom(s => $"{s.FirstName} {s.LastName} {s.Patronymic}"))
                 .ForMember(u => u.OfficeLatitude, source => source.MapFrom(s => s.Office.Latitude))
                 .ForMember(u => u.OfficeLongitude, source => source.MapFrom(s => s.Office.Longitude));
+            CreateMap<IEnumerable<string>, UserDTO>()
+                .ForMember(u => u.Roles, source => source.MapFrom(s => s));
 
             CreateMap<Tag, TagDTO>()
                 .ForMember(t => t.TagName, source => source.MapFrom(s => s.Name))
                 .ForMember(t => t.TagId, source => source.MapFrom(s => s.Id));
             CreateMap<TagDTO, Tag>()
                 .ForMember(t => t.Name, source => source.MapFrom(s => s.TagName))
-                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId)); ;
+                .ForMember(t => t.Id, source => source.MapFrom(s => s.TagId));
 
+            CreateMap<SavedDiscount, SavedDTO>()
+                .ForMember(s => s.DiscountID, source => source.MapFrom(s => s.DiscountId))
+                .ForMember(s => s.IsSaved, source => source.MapFrom(s => s.IsSaved));
 
-            CreateMap<Discount, DiscountDTO>()
-                .ForMember(t => t.DiscountName, source => source.MapFrom(s => s.Name));
-            CreateMap<DiscountDTO, Discount>();
-                
+            CreateMap<Ticket, TicketDTO>()
+                .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
+                .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
+                .ForMember(t => t.Patronymic, source => source.MapFrom(s => s.User.Patronymic))
+                .ForMember(t => t.VendorName, source => source.MapFrom(s => s.Discount.Vendor.Name))
+                .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
+                .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
+                .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.Promocode));
+
+            CreateMap<Vendor, VendorDTO>()
+              .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
+              .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name))
+              .AfterMap((source, dto) =>
+              {
+                  dto.VendorRating = source.GetVendorRating();
+              });
+            CreateMap<VendorDTO, Vendor>()
+                .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
+                .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
+
+            CreateMap<DiscountDTO, Discount>()
+                .ForMember(d=> d.Id, source=> source.MapFrom(s=>s.DiscountId))
+                .ForMember(d=> d.Name, source => source.MapFrom(s => s.DiscountName))
+                .ReverseMap();
+
+            CreateMap<Discount, DiscountModel>()
+                .ForMember(d => d.Discount, source => source.MapFrom(s => s));
+            CreateMap<User, DiscountModel>()
+                .ForMember(d => d.UserId, source => source.MapFrom(s => s.Id))
+                .ForMember(d => d.Location, source => source.MapFrom(s => new GeoCoordinate(s.Office.Latitude, s.Office.Longitude)));
+
+            CreateMap<DiscountModel, DiscountDTO>()
+                .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
+                .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.Vendorid))
+                .ForMember(d => d.VendorName, soucre => soucre.MapFrom(s => s.Discount.Vendor.Name))
+                .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Discount.Name))
+                .ForMember(d => d.Description, source => source.MapFrom(s => s.Discount.Description))
+                .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.Discount.ActivityStatus))
+                .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
+                .ForMember(d => d.StartDate, source => source.MapFrom(s => s.Discount.StartDate))
+                .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
+                .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
+                .AfterMap((source, dto) =>
+                {
+                    var pointOfSale = source.Discount.GetAddressAndDistanceOfPointOfSale(source.Location);
+                    dto.Address = pointOfSale.Item1;
+                    dto.DistanceInMeters = pointOfSale.Item2;
+                    dto.DiscountRating = source.Discount.DiscountRating();
+                    dto.IsSaved =  source.Discount.IsSavedDiscount(source.UserId);
+                    dto.Tags = source.Discount.GetTags();
+                });
         }
     }
 }

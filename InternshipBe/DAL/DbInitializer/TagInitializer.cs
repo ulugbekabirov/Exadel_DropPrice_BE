@@ -5,16 +5,16 @@ namespace DAL.DbInitializer
 {
     public class TagInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public TagInitializer(ApplicationDbContext db)
+        public TagInitializer(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public void InitializeTags()
         {
-            AddTag("CoffePlus");
+            AddTag("CoffeePlus");
             AddTag("Coffee");
             AddTag("TheBestCoffee");
             AddTag("Food");
@@ -23,10 +23,12 @@ namespace DAL.DbInitializer
         
         public void AddTag(string name)
         {
-            _db.Tags.Add(new Tag
+            _context.Tags.Add(new Tag
             {
                 Name = name,
             });
+
+            _context.SaveChanges();
         }
     }
 }
