@@ -17,6 +17,19 @@ namespace DAL.DbInitializer
 
         public void InitializeDiscounts()
         {
+            //Evos 
+            AddDiscount(1, "Evos Lavash XALAPENIE", @"Тесто – лаваш, нежное куриное филе (Halal) в фирменной панировке, листья салата, перец Халапеньо, свежие помидоры, маринованные огурцы, соусы Майонез и Кетчуп",
+                12, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                _context.Vendors.Find(1),
+                _context.PointOfSales.Where(p => p.Name == "Evos Lavash Center М.Юсуфа" || p.Name == "Evos Lavash Center А.Дониша" || p.Name == "Evos Lavash Center Мукими").ToList(),
+                _context.Tags.Where(t => t.Name == "Вкусно" || t.Name == "Еда навынос" || t.Name == "Доставка" || t.Name == "Дешево" || t.Name== "Фастфуд").ToList());
+
+            AddDiscount(1, "Evos WINGS/9PC", @"Хрустящие куриные крылышки (Halal) в фирменной панировке",
+               12, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+               _context.Vendors.Find(1),
+               _context.PointOfSales.Where(p => p.Name == "Evos Lavash Center М.Юсуфа" || p.Name == "Evos Lavash Center А.Дониша" || p.Name == "Evos Lavash Center Мукими").ToList(),
+               _context.Tags.Where(t => t.Name == "Вкусно" || t.Name == "Еда навынос" || t.Name == "Доставка" || t.Name == "Дешево" || t.Name == "Фастфуд").ToList());
+
             //Pizza
             AddDiscount(2, "Акция Супер шестерка", "6 больших пицц 31 см: 4 сыра+ Ромео+ Деревенская +Пикантная +Гавайская +Народная",
                 20, DateTime.Now, DateTime.Now.AddDays(170), true, "1111",
