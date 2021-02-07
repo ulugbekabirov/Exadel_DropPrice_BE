@@ -2,10 +2,7 @@
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
-using DAL.Entities;
 using DAL.Interfaces;
-using DAL.Repositories;
-using System;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -32,7 +29,9 @@ namespace BL.Services
         {
             var config = _сonfigRepository.GetConfig();
             config.Value = newConfigs.Value;
+
             await _сonfigRepository.SaveChangesAsync();
+
             return _mapper.Map<ConfigVariableDTO>(config);
         }
     }

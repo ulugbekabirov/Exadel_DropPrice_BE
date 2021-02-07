@@ -1,8 +1,6 @@
 ﻿using BL.Interfaces;
 using BL.Models;
-using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -24,7 +22,6 @@ namespace WebApi.Controllers
         {
             return Ok(_configService.GetConfig());
         }
-
 
         [HttpPut("config")]
         [Authorize(Roles = "Admin")]
