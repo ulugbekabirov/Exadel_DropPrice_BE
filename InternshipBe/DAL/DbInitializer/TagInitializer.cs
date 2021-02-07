@@ -36,6 +36,7 @@ namespace DAL.DbInitializer
             AddTag("Одежда");
             AddTag("Обувь");
             AddTag("Красота");
+            AddTag("Макияж");
             AddTag("Дорого");
             AddTag("Тренировка");
             AddTag("Голод");
