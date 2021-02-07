@@ -70,13 +70,13 @@ namespace DAL.DbInitializer
 
             //Chanel
             AddDiscount(5, "Chanel N°5 for Women Парфюмерная вода для женщин", $"Тип аромата: Альдегидные, Цветочные{Environment.NewLine}Начальная нота: Альдегиды, Бергамот, Иланг - иланг, Нероли, Персик, Лимон{Environment.NewLine}Нота сердца: Жасмин, Ирис, Ландыш, Роза, Корень ириса",
-                39, DateTime.Now, DateTime.Now.AddDays(95), true, null,
+                39, DateTime.Now, DateTime.Now.AddDays(95), true, "FRAICHE",
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Cravt Минск" || p.Name == "AnnaClair Минск").ToList(),
                 _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Парфюмерия" || t.Name == "Духи").ToList());
 
             AddDiscount(5, "Босоножки", $"Кожа ягненка; Золотистый; Арт.G36876 X55079 0K203{Environment.NewLine}высота каблука 50 mm",
-                5, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                5, DateTime.Now, DateTime.Now.AddDays(80), true, "TENDRE",
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "Cravt Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Мода" || t.Name == "Обувь" || t.Name == "Красота").ToList());
