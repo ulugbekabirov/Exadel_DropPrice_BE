@@ -68,6 +68,12 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "IKEA Минск" || p.Name == "IKEA Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
 
+            AddDiscount(4, "СВЕТИЛЬНИК НА СОЛНЕЧНОЙ БАТАРЕЕ", "Легко использовать, так как провода и розетки не нужны.Батарея трансформирует солнечный свет в электроэнергию: никаких затрат на электричество и забота об экологии.",
+                29, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                _context.Vendors.Find(4),
+                _context.PointOfSales.Where(p => p.Name == "IKEA Минск").ToList(),
+                _context.Tags.Where(t => t.Name == "Светильник" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
+
             //Chanel
             AddDiscount(5, "Chanel N°5 for Women Парфюмерная вода для женщин", $"Тип аромата: Альдегидные, Цветочные{Environment.NewLine}Начальная нота: Альдегиды, Бергамот, Иланг - иланг, Нероли, Персик, Лимон{Environment.NewLine}Нота сердца: Жасмин, Ирис, Ландыш, Роза, Корень ириса",
                 39, DateTime.Now, DateTime.Now.AddDays(95), true, "FRAICHE",
