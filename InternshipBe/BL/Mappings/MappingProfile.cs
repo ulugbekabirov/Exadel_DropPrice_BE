@@ -78,7 +78,8 @@ namespace BL.Mapping
                 .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .ForMember(d => d.DistanceInMeters, source => source.MapFrom(s => s.PointOfSaleDTO.DistanceInMeters))
-                .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address));
+                .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address))
+                .ForMember(d => d.PromoCode, act => act.NullSubstitute("Not Available"));
         }
     }
 }
