@@ -3,10 +3,6 @@ using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -22,11 +18,17 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<TicketDTO> GetOrCreateTicket(int discountId, User user)
+        public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
         {
-            var userTicket = await _ticketRepository.GetOrCreateTicketForUser(discountId, user);
+            var userTicket = await _ticketRepository.GetTicketAsync(discountId, user.Id);
 
-            return _mapper.Map<TicketDTO>(userTicket);
+            if (userTicket is null)
+            {
+                userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
+                await _ticketRepository.SaveChangesAsync();
+            }
+
+            return _mapper.Map<Ticket, TicketDTO>(userTicket);
         }
     }
 }

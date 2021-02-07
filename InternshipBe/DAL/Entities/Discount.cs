@@ -39,7 +39,7 @@ namespace DAL.Entities
         public DateTime EndDate { get; set; }
 
         [Required]
-        public bool ActivityStatus { get; set; } = true;
+        public bool ActivityStatus { get; set; }
 
         public string Promocode { get; set; }
 

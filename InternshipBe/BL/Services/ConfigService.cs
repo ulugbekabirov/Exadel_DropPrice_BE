@@ -32,7 +32,7 @@ namespace BL.Services
         {
             var _config = _сonfigRepository.GetConfig();
             _config.Value = newConfigs.Value;
-            _сonfigRepository.save
+            _сonfigRepository.SaveChangesAsync();
             return _mapper.Map<ConfigVariableDTO>(_config);
         }
     }

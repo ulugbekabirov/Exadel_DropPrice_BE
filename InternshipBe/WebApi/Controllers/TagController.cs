@@ -18,9 +18,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("tags")]
-        public async Task<IActionResult> GetTags(SpecifiedAmountModel model)
+        public async Task<IActionResult> GetTags(SpecifiedAmountModel specifiedAmountModel)
         {
-            return Ok(await _tagService.GetSpecifiedAmountAsync(model));
+            return Ok(await _tagService.GetSpecifiedAmountAsync(specifiedAmountModel));
         }
     }
 }
