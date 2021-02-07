@@ -65,9 +65,9 @@ namespace DAL.Repositories
                 }
             }
 
-            await searchResults.ToListAsync();
+            var discounts = await searchResults.ToListAsync();
 
-            return searchResults.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000).Where(d => d.ActivityStatus == true);
+            return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000).Where(d => d.ActivityStatus == true);
         }
     }
 }
