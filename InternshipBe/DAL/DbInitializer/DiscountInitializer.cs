@@ -19,19 +19,19 @@ namespace DAL.DbInitializer
         {
             //Pizza
             AddDiscount(2, "Акция Супер шестерка", "6 больших пицц 31 см: 4 сыра+ Ромео+ Деревенская +Пикантная +Гавайская +Народная",
-                20, DateTime.Now, DateTime.Now.AddDays(170), true, null,
+                20, DateTime.Now, DateTime.Now.AddDays(170), true, "1111",
                 _context.Vendors.Find(2),
                 _context.PointOfSales.Where(p => p.Name == "Пицца темпо Мстиславца").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно").ToList());
 
-            AddDiscount(2, "Акция Пышное трио", "3 большие пиццы 31 см. с пышным краем: Супер Пепперони + Аппетитная + Народная", 
+            AddDiscount(2, "Акция Пышное трио", "3 большие пиццы 31 см. с пышным краем: Супер Пепперони + Аппетитная + Народная",
                 10, DateTime.Now, DateTime.Now.AddDays(140), true, "7777",
                 _context.Vendors.Find(2),
                 _context.PointOfSales.Where(p => p.Name == "Пицца темпо Громова" || p.Name == "Пицца темпо Бобруйская").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Уютное место" || t.Name == "Пицца").ToList());
 
             AddDiscount(2, "Акция ХИТ - трик тонкое тесто", "3 большие пиццы 31см :Супер Пепперони + Везувий +Чикен Барбекю+ Coca-Cola 1литр",
-                30, DateTime.Now, DateTime.Now.AddDays(150), true, null,
+                30, DateTime.Now, DateTime.Now.AddDays(150), true, "7773",
                 _context.Vendors.Find(2),
                 _context.PointOfSales.Where(p => p.Name == "Пицца темпо Громова" || p.Name == "Пицца темпо Бобруйская" || p.Name == "Пицца темпо Мстиславца").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно" || t.Name == "Уютное место").ToList());
@@ -47,6 +47,12 @@ namespace DAL.DbInitializer
                 50, DateTime.Now, DateTime.Now.AddDays(190), true, "7070",
                 _context.Vendors.Find(3),
                 _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент" || p.Name == "KFC Warszawa" || p.Name == "KFC Walnut Creek").ToList(),
+                _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
+
+            AddDiscount(3, "Шефбургер", "Шефбургера Де Люкс со скидкой 50%! И острый, и оригинальный – ждут тебя! А мы ждем вас в наших ресторанах!",
+                50, DateTime.Now, DateTime.Now.AddDays(30), true, "1717",
+                _context.Vendors.Find(3),
+                _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             //IKEA
@@ -73,13 +79,13 @@ namespace DAL.DbInitializer
                 5, DateTime.Now, DateTime.Now.AddDays(80), true, null,
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "Cravt Гомель").ToList(),
-                _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Мода" || t.Name == "Обувь" || t.Name ==   "Красота").ToList());
+                _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Мода" || t.Name == "Обувь" || t.Name == "Красота").ToList());
 
             AddDiscount(5, "Набор Chanel Chance Perfume Pencils", $"Набор Chanel Chance Perfume Pencils из 4 парфюмерных карандашей (духи - карандаш), 4 х 1,2g{Environment.NewLine}Страна производитель: Китай",
                 10, DateTime.Now, DateTime.Now.AddDays(120), true, null,
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "Cravt Гомель" || p.Name == "AnnaClair Минск" || p.Name == "Cravt Минск").ToList(),
-                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Красота" || t.Name=="Макияж").ToList());
+                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Красота" || t.Name == "Макияж").ToList());
 
             AddDiscount(5, "CHANCE EAU VIVE Туалетная вода спрей", @"Цветочный пикантный аромат в круглом флаконе. Настоящая волна энергии и ярких впечатлений. Не упустите свой незабываемый шанс. Цветочный пикантный аромат, пронизанный бодрящими нотами грейпфрута и красного апельсина.Верхние ноты дарят взрывную свежесть.В сердце аромата - нежный, женственный жасмин.Аккорды кедра и ириса раскрывают истинную элегантность композиции, оставляя за собой мягкий шлейф.",
                 15, DateTime.Now, DateTime.Now.AddDays(60), true, "LION",
