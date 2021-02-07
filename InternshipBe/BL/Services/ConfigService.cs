@@ -30,8 +30,10 @@ namespace BL.Services
 
         public ConfigVariableDTO ChangeConfig(ConfigModel newConfigs, ConfigVariable config)
         {
-            config.Value = newConfigs.Value;
-            return _mapper.Map<ConfigVariableDTO>(config);
+            var _config = _сonfigRepository.GetConfig();
+            _config.Value = newConfigs.Value;
+            _сonfigRepository.save
+            return _mapper.Map<ConfigVariableDTO>(_config);
         }
     }
 }

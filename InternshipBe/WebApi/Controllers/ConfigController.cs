@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         [HttpGet("config")]
         public IActionResult GetRadius()
         {
-            return Ok(_configService.GetConfig().ConfigValue);
+            return Ok(_configService.GetConfig());
         }
 
 
