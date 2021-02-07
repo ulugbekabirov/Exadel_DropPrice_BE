@@ -65,6 +65,13 @@ namespace DAL.DbInitializer
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
 
+            _context.ConfigVariables.Add(new ConfigVariable
+            {
+                Name = "Radius",
+                Value = "40000",
+                Description = "Radius in meters"
+            });
+
             _context.SaveChanges();
         }
     }

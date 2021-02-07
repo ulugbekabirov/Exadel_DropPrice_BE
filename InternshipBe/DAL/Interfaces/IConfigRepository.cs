@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using DAL.DataContext;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IConfigRepository : IRepository<ConfigVariables>
+    public interface IConfigRepository : IRepository<ConfigVariable>
     {
-        ConfigVariables GetConfig();
-
+        ConfigVariable GetConfig();
     }
 }

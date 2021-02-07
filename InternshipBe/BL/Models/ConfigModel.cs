@@ -5,6 +5,9 @@ namespace BL.Models
 {
     public class ConfigModel
     {
-        public ConfigVariables RadiusInMeters { get; set; }
+        public int Id { get; set; }
+
+        public string Value { get; set; }
+
     }
 }

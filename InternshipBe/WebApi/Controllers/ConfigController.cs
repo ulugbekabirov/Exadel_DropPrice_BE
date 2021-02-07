@@ -13,25 +13,24 @@ namespace WebApi.Controllers
     public class ConfigController : ControllerBase
     {
         private readonly IConfigService _configService;
-        private readonly UserManager<User> _userManager;
 
-        public ConfigController(IConfigService service, UserManager<User> userManager)
+        public ConfigController(IConfigService service)
         {
             _configService = service;
-            _userManager = userManager;
         }
 
         [HttpGet("config")]
         public IActionResult GetRadius()
         {
-            return Ok(_configService.GetConfig().RadiusInMeters);
+            return Ok(_configService.GetConfig().ConfigValue);
         }
 
 
-        [HttpPost("config")]
-        public async Task<IActionResult> ChangeRadius([FromBody] ConfigModel newradius)
+        [HttpPut("config")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult ChangeRadius([FromBody] ConfigModel newConfigs, ConfigVariable config)
         {
-            return Ok(await _configService.ChangeConfig(newradius));
+            return Ok(_configService.ChangeConfig(newConfigs, config));
         }
     }
 }

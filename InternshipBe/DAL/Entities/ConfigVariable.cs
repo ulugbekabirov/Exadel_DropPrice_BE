@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class ConfigVariables
+    public class ConfigVariable
     {
         public int Id { get; set; }
 
-        public int RadiusInMeters{ get; set; } = 40000;
+        public string Value { get; set; }
+
+        public string Description { get; set; }
+
+        public string Name { get; set; }
     }
 }

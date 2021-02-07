@@ -65,6 +65,9 @@ namespace WebApi
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<ITicketRepository, TicketRepository>();
 
+            services.AddScoped<IConfigService, ConfigService>();
+            services.AddScoped<IConfigRepository, ConfigRepository>();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

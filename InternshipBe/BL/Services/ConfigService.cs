@@ -21,19 +21,17 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        ConfigVariablesDTO IConfigService.GetConfig()
+        ConfigVariableDTO IConfigService.GetConfig()
         {
             var config = _сonfigRepository.GetConfig();
             
-            return _mapper.Map<ConfigVariablesDTO>(config);
+            return _mapper.Map<ConfigVariableDTO>(config);
         }
 
-        public async Task<ConfigVariablesDTO> ChangeConfig(ConfigModel newconfig)
+        public ConfigVariableDTO ChangeConfig(ConfigModel newConfigs, ConfigVariable config)
         {
-            _context.ConfigVariablesDTO.Update(newconfig);
-            await _context.SaveChangesAsync();
-            return Ok();
-
+            config.Value = newConfigs.Value;
+            return _mapper.Map<ConfigVariableDTO>(config);
         }
     }
 }

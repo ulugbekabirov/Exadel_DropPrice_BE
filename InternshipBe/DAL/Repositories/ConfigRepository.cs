@@ -9,27 +9,18 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ConfigRepository : Repository<ConfigVariables>, IConfigRepository
+    public class ConfigRepository : Repository<ConfigVariable>, IConfigRepository
     {
         public ConfigRepository(ApplicationDbContext context) : base(context)
         {
 
         }
 
-        public ConfigVariables GetConfig()
+        public ConfigVariable GetConfig()
         {
-            var config = _context.ConfigVariables.SingleOrDefault();
+            var config = _context.ConfigVariables.Where(p => p.Id == 1).SingleOrDefault();
 
             return config;
         }
-
-        public async Task<ConfigVariables> ChangeConfig(ConfigModel newconfig)
-        {
-            _context.ConfigVariables.Update(newconfig);
-            await _context.SaveChangesAsync();
-            return Ok();
-
-        }
-
     }
 }

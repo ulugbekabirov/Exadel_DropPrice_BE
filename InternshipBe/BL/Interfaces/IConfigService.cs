@@ -1,5 +1,6 @@
 ﻿using BL.DTO;
 using BL.Models;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace BL.Interfaces
 {
     public interface IConfigService
     {
-        ConfigVariablesDTO GetConfig();
+        ConfigVariableDTO GetConfig();
 
-        Task<ConfigVariablesDTO> ChangeConfig(ConfigModel newConfig);
+        ConfigVariableDTO ChangeConfig(ConfigModel newConfigs, ConfigVariable config);
     }
 }

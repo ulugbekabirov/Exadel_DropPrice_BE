@@ -66,6 +66,16 @@ namespace BL.Mapping
                     dto.IsSaved = source.Discount.IsSavedDiscount(source.UserId);
                     dto.Tags = source.Discount.GetTags();
                 });
+
+            CreateMap<ConfigVariableDTO, ConfigVariable>()
+                .ForMember(v => v.Id, source => source.MapFrom(s => s.ConfigId))
+                .ForMember(v => v.Value, source => source.MapFrom(s => s.ConfigValue))
+                .ForMember(v => v.Name, source => source.MapFrom(s => s.ConfigName));
+
+            CreateMap<ConfigVariable, ConfigVariableDTO>()
+                .ForMember(v => v.ConfigId, source => source.MapFrom(s => s.Id))
+                .ForMember(v => v.ConfigValue, source => source.MapFrom(s => s.Value))
+                .ForMember(v => v.ConfigName, source => source.MapFrom(s => s.Name));
         }
     }
 }
