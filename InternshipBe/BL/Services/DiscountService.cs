@@ -45,7 +45,7 @@ namespace BL.Services
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
-                .Take(sortModel.Take);
+                .Take(sortModel.Take); 
 
             return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
         }
@@ -56,7 +56,7 @@ namespace BL.Services
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags);
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location);
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)

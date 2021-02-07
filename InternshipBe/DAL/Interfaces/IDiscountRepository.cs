@@ -7,7 +7,7 @@ namespace DAL.Interfaces
 {
     public interface IDiscountRepository : IRepository<Discount>
     {
-        Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags);
+        Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags, GeoCoordinate location);
 
         Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId);
 
