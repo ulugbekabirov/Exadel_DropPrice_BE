@@ -78,7 +78,21 @@ namespace BL.Mapping
                 .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .ForMember(d => d.DistanceInMeters, source => source.MapFrom(s => s.PointOfSaleDTO.DistanceInMeters))
-                .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address));
+                .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address))
+                .ForMember(d => d.PromoCode, act => act.NullSubstitute("Not Available"));
+
+
+            CreateMap<ConfigVariableDTO, ConfigVariable>()
+                .ForMember(v => v.Id, source => source.MapFrom(s => s.ConfigId))
+                .ForMember(v => v.Value, source => source.MapFrom(s => s.ConfigValue))
+                .ForMember(v => v.Description, source => source.MapFrom(s => s.ConfigDescription))
+                .ForMember(v => v.Name, source => source.MapFrom(s => s.ConfigName)); 
+
+            CreateMap<ConfigVariable, ConfigVariableDTO>()
+                .ForMember(v => v.ConfigId, source => source.MapFrom(s => s.Id))
+                .ForMember(v => v.ConfigValue, source => source.MapFrom(s => s.Value))
+                .ForMember(v => v.ConfigDescription, source => source.MapFrom(s => s.Description))
+                .ForMember(v => v.ConfigName, source => source.MapFrom(s => s.Name));
         }
     }
 }

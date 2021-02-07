@@ -23,6 +23,21 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ConfigVariables",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigVariables", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Offices",
                 columns: table => new
                 {
@@ -508,6 +523,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Assessments");
+
+            migrationBuilder.DropTable(
+                name: "ConfigVariables");
 
             migrationBuilder.DropTable(
                 name: "DiscountPointOfSale");

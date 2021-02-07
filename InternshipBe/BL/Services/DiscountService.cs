@@ -9,7 +9,6 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 
 namespace BL.Services
 {
@@ -46,7 +45,7 @@ namespace BL.Services
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
-                .Take(sortModel.Take);
+                .Take(sortModel.Take); 
 
             return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
         }
@@ -57,21 +56,21 @@ namespace BL.Services
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags);
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location);
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)
                                                        .Skip(searchModel.Skip)
-                                                        .Take(searchModel.Take);
+                                                       .Take(searchModel.Take);
 
             var discountDTOs = _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
 
             return discountDTOs;
         }
 
-        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, User user)
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, LocationModel locationModel, User user)
         {
-            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude);
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
 
             var discount = await _discountRepository.GetByIdAsync(id);
 

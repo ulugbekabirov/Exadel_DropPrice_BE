@@ -48,7 +48,7 @@ namespace DAL.Repositories
             return newSavedDiscount;
         }
 
-        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags)
+        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags, GeoCoordinate location)
         {
             var searchResults = _context.Discounts.AsQueryable().Where(d => d.ActivityStatus == true);
 
@@ -65,7 +65,9 @@ namespace DAL.Repositories
                 }
             }
 
-            return await searchResults.ToListAsync();
+            await searchResults.ToListAsync();
+
+            return searchResults.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
         }
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json;
 
@@ -36,6 +37,10 @@ namespace WebApi
                     { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
 
             services.AddCors();
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Web API" });
+            });
 
             services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
 
@@ -64,6 +69,9 @@ namespace WebApi
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<ITicketRepository, TicketRepository>();
 
+            services.AddScoped<IConfigService, ConfigService>();
+            services.AddScoped<IConfigRepository, ConfigRepository>();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -89,6 +97,8 @@ namespace WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
             }
 
             app.UseRouting();

@@ -30,9 +30,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDiscountById(int id)
+        public async Task<IActionResult> GetDiscountById(int id, LocationModel locationModel)
         {
-            return Ok(await _discountService.GetDiscountByIdAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.GetDiscountByIdAsync(id, locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpGet("search")]
