@@ -28,12 +28,12 @@ namespace BL.Services
             return _mapper.Map<ConfigVariableDTO>(config);
         }
 
-        public ConfigVariableDTO ChangeConfig(ConfigModel newConfigs, ConfigVariable config)
+        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs)
         {
-            var _config = _сonfigRepository.GetConfig();
-            _config.Value = newConfigs.Value;
-            _сonfigRepository.SaveChangesAsync();
-            return _mapper.Map<ConfigVariableDTO>(_config);
+            var config = _сonfigRepository.GetConfig();
+            config.Value = newConfigs.Value;
+            await _сonfigRepository.SaveChangesAsync();
+            return _mapper.Map<ConfigVariableDTO>(config);
         }
     }
 }

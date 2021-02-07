@@ -13,6 +13,6 @@ namespace BL.Interfaces
     {
         ConfigVariableDTO GetConfig();
 
-        ConfigVariableDTO ChangeConfig(ConfigModel newConfigs, ConfigVariable config);
+        Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs);
     }
 }

@@ -28,9 +28,9 @@ namespace WebApi.Controllers
 
         [HttpPut("config")]
         [Authorize(Roles = "Admin")]
-        public IActionResult ChangeRadius([FromBody] ConfigModel newConfigs, ConfigVariable config)
+        public async Task<IActionResult> ChangeRadius([FromBody] ConfigModel newConfigs)
         {
-            return Ok(_configService.ChangeConfig(newConfigs, config));
+            return Ok(await _configService.ChangeConfigAsync(newConfigs));
         }
     }
 }
