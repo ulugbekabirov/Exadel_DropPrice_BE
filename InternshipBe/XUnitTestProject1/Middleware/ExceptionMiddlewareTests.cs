@@ -23,7 +23,7 @@ namespace XUnitTests.Middleware
                 {
                     await Task.Run(() =>
                     {
-                        throw new Exception();
+                        return HttpStatusCode.OK;
                     });
                 });
             var context = new DefaultHttpContext();
@@ -36,14 +36,14 @@ namespace XUnitTests.Middleware
             context.Response.Body.Seek(0, SeekOrigin.Begin);
             var reader = new StreamReader(context.Response.Body);
             var body = reader.ReadToEnd();
-            Assert.NotEqual("", body);
+            Assert.Equal("", body);
         }
 
         [Fact]
-        public async Task InvokeAsync_NoInternalServerErrorThrownInsideMiddleware_ContextResponseNotModifiedAsync()
+        public async Task InvokeAsync_InternalServerErrorThrownInsideMiddleware_ContextResponseModifiedAsync()
         {
             //arrange
-            string expectedOutput = "{\"Message\":\"internal server error\"}";
+            string expectedOutput = "{\"Message\":\"Internal server error\"}";
             var middleWare = new ExceptionMiddleware(next: async (innerHttpContext) =>
                 {
                     await Task.Run(() =>
@@ -65,7 +65,7 @@ namespace XUnitTests.Middleware
         }
 
         [Fact]
-        public async Task InvokeAsync_NoValidationExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
+        public async Task InvokeAsync_ValidationExceptionThrownInsideMiddleware_ContextResponseModifiedAsync()
         {
             //arrange
             string expectedOutput = "{\"Message\":\"Bad Request\"}";
@@ -88,5 +88,31 @@ namespace XUnitTests.Middleware
             var body = reader.ReadToEnd();
             Assert.Equal(expectedOutput, body);
         }
+
+        [Fact]
+        public async Task InvokeAsync_UnauthorizedAccessExceptionThrownInsideMiddleware_ContextResponseModifiedAsync()
+        {
+            //arrange
+            string expectedOutput = "{\"Message\":\"You have no access\"}";
+            var middleWare = new ExceptionMiddleware(next: async (innerHttpContext) =>
+            {
+                await Task.Run(() =>
+                {
+                    throw new UnauthorizedAccessException();
+                });
+            });
+            var context = new DefaultHttpContext();
+            context.Response.Body = new MemoryStream();
+
+            //act
+            await middleWare.InvokeAsync(context);
+
+            //assert
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            var reader = new StreamReader(context.Response.Body);
+            var body = reader.ReadToEnd();
+            Assert.Equal(expectedOutput, body);
+        }
+
     }
 }

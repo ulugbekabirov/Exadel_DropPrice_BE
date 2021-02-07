@@ -28,57 +28,34 @@ namespace Shared.ExceptionHandling
             }
             catch (Exception exception)
             {
-                var httpStatusCode = ConfigurateExceptionTypes(exception);
-
-                context.Response.StatusCode = httpStatusCode;
                 context.Response.ContentType = JsonContentType;
-                if (httpStatusCode == 400)
+
+                void SetErrorMessage(string message)
                 {
-                    await context.Response.WriteAsync(
+                    context.Response.WriteAsync(
                         JsonConvert.SerializeObject(new GlobalErrorDetails
                         {
-                            Message = "Bad Request"
+                            Message = message
                         }));
                 }
-                if(httpStatusCode == 401)
+
+                switch (exception)
                 {
-                    await context.Response.WriteAsync(
-                        JsonConvert.SerializeObject(new GlobalErrorDetails
-                        {
-                            Message = "You Are Not Welcome Here"
-                        }));
-                }
-                else
-                {
-                    await context.Response.WriteAsync(
-                        JsonConvert.SerializeObject(new GlobalErrorDetails
-                        {
-                            Message = "internal server error"
-                        }));
-                }
+                    case var _ when exception is ValidationException:
+                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        SetErrorMessage("Bad Request");
+                        break;
+                    case var _ when exception is UnauthorizedAccessException:
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        SetErrorMessage("You have no access");
+                        break;
+                    default:
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        SetErrorMessage("Internal server error");
+                        break;
+                }                
             }
-        }
-
-        private static int ConfigurateExceptionTypes(Exception exception)
-        {
-            int httpStatusCode;
-
-            switch (exception)
-            {
-                case var _ when exception is ValidationException:
-                    httpStatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                case var _ when exception is UnauthorizedAccessException:
-                    httpStatusCode = (int)HttpStatusCode.Unauthorized;
-                    break;
-                default:
-                    httpStatusCode = (int)HttpStatusCode.InternalServerError;
-                    break;
-            }
-
-            return httpStatusCode;
         }
     }
-
 }
 
