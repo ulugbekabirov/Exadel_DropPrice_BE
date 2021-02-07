@@ -29,6 +29,10 @@ namespace DAL.DbInitializer
             AddTag("Выгодно");
             AddTag("Быстро");
             AddTag("Вкусно");
+            AddTag("Мода");
+            AddTag("Парфюмерия");
+            AddTag("Уход за кожей");
+            AddTag("Роскошь");
         }
         
         public void AddTag(string name)
