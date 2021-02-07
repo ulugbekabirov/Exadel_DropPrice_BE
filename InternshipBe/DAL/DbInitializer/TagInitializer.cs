@@ -42,6 +42,7 @@ namespace DAL.DbInitializer
             AddTag("Голод");
             AddTag("Лекарство");
             AddTag("Духи");
+            AddTag("Светильник");
         }
         
         public void AddTag(string name)
