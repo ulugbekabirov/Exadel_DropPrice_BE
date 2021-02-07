@@ -9,7 +9,6 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 
 namespace BL.Services
 {
@@ -62,7 +61,7 @@ namespace BL.Services
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)
                                                        .Skip(searchModel.Skip)
-                                                        .Take(searchModel.Take);
+                                                       .Take(searchModel.Take);
 
             var discountDTOs = _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
 
