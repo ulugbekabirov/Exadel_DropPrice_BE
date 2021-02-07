@@ -68,9 +68,9 @@ namespace BL.Services
             return discountDTOs;
         }
 
-        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, User user)
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, LocationModel locationModel, User user)
         {
-            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude);
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
 
             var discount = await _discountRepository.GetByIdAsync(id);
 
