@@ -52,6 +52,11 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user)
         {
+            if (string.IsNullOrEmpty(searchModel.SearchQuery) && searchModel.Tags.Length == 0)
+            {
+                throw new ArgumentNullException("Both searchQuery and tags cannot be null");
+            }
+
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
