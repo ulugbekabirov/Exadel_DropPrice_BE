@@ -32,21 +32,21 @@ namespace DAL.DbInitializer
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 8, 3);
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userexadel@gmail.com").Id, 9, 4);
 
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userГомель@test.com").Id, 6, 5);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userГомель@test.com").Id, 8, 4);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userГомель@test.com").Id, 13, 4);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userGomel@test.com").Id, 6, 5);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userGomel@test.com").Id, 8, 4);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userGomel@test.com").Id, 13, 4);
 
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userВаршава@test.com").Id, 4, 2);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userВаршава@test.com").Id, 7, 3);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userВаршава@test.com").Id, 5, 4);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userWarszawa@test.com").Id, 4, 2);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userWarszawa@test.com").Id, 7, 3);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userWarszawa@test.com").Id, 5, 4);
 
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userТашкент@test.com").Id, 5, 4);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userТашкент@test.com").Id, 11, 3);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userТашкент@test.com").Id, 12, 4);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 5, 4);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 11, 3);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 12, 4);
 
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userСША@test.com").Id, 7, 3);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userСША@test.com").Id, 8, 3);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userСША@test.com").Id, 4, 5);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 7, 3);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 8, 3);
+            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 4, 5);
         }
 
         public void AddAssesment(int userId, int discountId, int value)
