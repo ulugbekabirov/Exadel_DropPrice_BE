@@ -34,11 +34,13 @@ namespace DAL.DbInitializer
             AddTag("Уход за кожей");
             AddTag("Роскошь");
             AddTag("Одежда");
+            AddTag("Обувь");
             AddTag("Красота");
             AddTag("Дорого");
             AddTag("Тренировка");
             AddTag("Голод");
             AddTag("Лекарство");
+            AddTag("Духи");
         }
         
         public void AddTag(string name)
