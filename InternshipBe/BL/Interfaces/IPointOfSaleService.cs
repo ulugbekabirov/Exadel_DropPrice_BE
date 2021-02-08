@@ -6,6 +6,6 @@ namespace BL.Interfaces
 {
     public interface IPointOfSaleService
     {
-        Task<IEnumerable<PointOfSaleDTO>> GetPointOfSales();
+        Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync();
     }
 }

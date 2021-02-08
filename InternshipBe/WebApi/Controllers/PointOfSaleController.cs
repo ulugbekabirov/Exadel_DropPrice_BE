@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPointOfSales()
         {
-            return Ok(await _pointOfSaleService.GetPointOfSales());
+            return Ok(await _pointOfSaleService.GetPointOfSalesAsync());
         }
     }
 }

@@ -18,7 +18,7 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSales()
+        public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync()
         {
             var pointOfdSales = await _pointOfSaleRepository.GetAllAsync();
 
