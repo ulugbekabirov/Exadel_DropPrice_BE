@@ -8,7 +8,7 @@ namespace BL.Models
     {
         public Discount Discount { get; set; }
 
-        public PointOfSaleDTO PointOfSaleDTO { get; set; }
+        public DiscountLocationDTO PointOfSaleDTO { get; set; }
 
         public bool IsSaved { get; set; }
 
