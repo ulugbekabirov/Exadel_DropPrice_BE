@@ -104,6 +104,9 @@ namespace WebApi
             services.AddScoped<IConfigService, ConfigService>();
             services.AddScoped<IConfigRepository, ConfigRepository>();
 
+            services.AddScoped<IPointOfSaleService, PointOfSaleService>();
+            services.AddScoped<IRepository<PointOfSale>, Repository<PointOfSale>>();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
