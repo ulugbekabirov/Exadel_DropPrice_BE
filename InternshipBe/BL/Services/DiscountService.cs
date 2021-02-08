@@ -54,7 +54,7 @@ namespace BL.Services
         {
             if (string.IsNullOrEmpty(searchModel.SearchQuery) && searchModel.Tags.Length == 0)
             {
-                throw new ArgumentNullException("Both searchQuery and tags cannot be null");
+                return await GetDiscountsAsync(searchModel, user);
             }
 
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
