@@ -31,6 +31,8 @@ namespace DAL.DataContext
 
         public DbSet<Town> Towns { get; set; }
 
+        public DbSet<ConfigVariable> ConfigVariables { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

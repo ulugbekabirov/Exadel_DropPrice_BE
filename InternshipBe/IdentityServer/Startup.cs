@@ -12,7 +12,6 @@ using System.Text;
 using DAL.Entities;
 using System.Text.Json;
 using Shared.ExceptionHandling;
-using Microsoft.AspNetCore.Http;
 
 namespace IdentityServer
 {

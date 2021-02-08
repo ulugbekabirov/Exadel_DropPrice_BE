@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 
 namespace Shared.ExceptionHandling
 {

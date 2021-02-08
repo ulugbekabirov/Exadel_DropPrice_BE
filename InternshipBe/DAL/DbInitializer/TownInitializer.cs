@@ -15,8 +15,10 @@ namespace DAL.DbInitializer
         public void InitializeTowns()
         {
             AddTown("Минск", 53.9005961, 27.5589895);
-            AddTown("Гродно", 53.6688496, 23.8221359);
+            AddTown("Гомель", 52.4313156, 30.9938049);
             AddTown("Ташкент", 41.2994958, 69.2400734);
+            AddTown("Walnut Creek", 37.9100754, -122.0653152);
+            AddTown("Варшава", 52.231164, 21.0113525);
         }
 
         public void AddTown(string name, double latitude, double longitude)

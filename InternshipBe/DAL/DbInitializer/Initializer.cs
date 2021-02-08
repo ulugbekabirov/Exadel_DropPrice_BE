@@ -56,14 +56,21 @@ namespace DAL.DbInitializer
             var discounts = new DiscountInitializer(_context);
             discounts.InitializeDiscounts();
 
-            var savedDicounts = new SavedDiscountInitializer(_context);
-            savedDicounts.InitializeSavedDiscounts();
+            //var savedDicounts = new SavedDiscountInitializer(_context);
+            //savedDicounts.InitializeSavedDiscounts();
 
-            var tickets = new TicketInitializer(_context);
-            tickets.InitializerTickets();
+            //var tickets = new TicketInitializer(_context);
+            //tickets.InitializerTickets();
 
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
+
+            _context.ConfigVariables.Add(new ConfigVariable
+            {
+                Name = "Radius",
+                Value = "40000",
+                Description = "Radius in meters"
+            });
 
             _context.SaveChanges();
         }
