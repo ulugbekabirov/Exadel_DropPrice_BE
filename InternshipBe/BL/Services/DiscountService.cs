@@ -101,5 +101,16 @@ namespace BL.Services
 
             return _mapper.Map<SavedDTO>(savedDiscount);
         }
+
+        public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id, User user)
+        {
+            var discount = await _discountRepository.GetByIdAsync(id);
+
+            discount.ActivityStatus = !discount.ActivityStatus;
+
+            await _discountRepository.SaveChangesAsync();
+
+            return _mapper.Map<ArchivedDiscountDTO>(discount);
+        }
     }
 }
