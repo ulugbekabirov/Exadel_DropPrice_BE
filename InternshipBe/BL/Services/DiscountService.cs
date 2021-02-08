@@ -102,7 +102,7 @@ namespace BL.Services
             return _mapper.Map<SavedDTO>(savedDiscount);
         }
 
-        public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id, User user)
+        public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id)
         {
             var discount = await _discountRepository.GetByIdAsync(id);
 

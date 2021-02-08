@@ -57,7 +57,7 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> ArchiveDiscount(int id)
         {
-            return Ok(await _discountService.ArchiveOrUnarchiveDiscount(id, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.ArchiveOrUnarchiveDiscount(id));
         }
     }
 }
