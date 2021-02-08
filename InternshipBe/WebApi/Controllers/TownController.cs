@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/")]
+    [Route("api/towns")]
     [ApiController]
     [Authorize]
     public class TownController : ControllerBase
@@ -16,7 +16,7 @@ namespace WebApi.Controllers
             _townService = service;
         }
 
-        [HttpGet("towns")]
+        [HttpGet]
         public async Task<IActionResult> GetTowns()
         {
             return Ok(await _townService.GetTownsAsync());
