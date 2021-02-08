@@ -66,6 +66,8 @@ namespace BL.Mapping
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
                 .ForMember(d => d.Tags, source => source.MapFrom(s => s.GetTags()));
 
+            CreateMap<Discount, ArchivedDiscountDTO>();
+
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
                 .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.Vendorid))
