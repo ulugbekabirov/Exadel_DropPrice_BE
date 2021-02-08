@@ -81,7 +81,6 @@ namespace BL.Mapping
                 .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address))
                 .ForMember(d => d.PromoCode, act => act.NullSubstitute("Not Available"));
 
-
             CreateMap<ConfigVariableDTO, ConfigVariable>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.ConfigId))
                 .ForMember(v => v.Value, source => source.MapFrom(s => s.ConfigValue))
