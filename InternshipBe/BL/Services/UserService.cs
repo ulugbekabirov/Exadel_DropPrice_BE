@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ namespace BL.Services
             return _mapper.Map(await _userRepository.GetUserRolesAsync(user.Id), userDTO);
         }
 
-        public async Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user)
+        public async Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user, SpecifiedAmountModel specifiedAmountModel)
         {
-            var tickets = await _ticketRepository.GetTicketsAsync(user.Id);
+            var tickets = await _ticketRepository.GetTicketsAsync(user.Id, specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
             return _mapper.Map<TicketDTO[]>(tickets);        
         }
