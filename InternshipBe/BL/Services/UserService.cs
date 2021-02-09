@@ -30,7 +30,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user)
         {
-            var tickets = await _ticketRepository.GetTicketAsync(user.Id);
+            var tickets = await _ticketRepository.GetTicketsAsync(user.Id);
 
             return _mapper.Map<TicketDTO[]>(tickets);        
         }
