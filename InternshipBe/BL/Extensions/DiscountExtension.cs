@@ -17,7 +17,7 @@ namespace BL.Extensions
             {
                 Discount = discount,
                 DiscountRating = discount.DiscountRating(),
-                PointOfSaleDTO = discount.GetPointOfSaleDTO(location),
+                PointOfSaleDTO = discount.GetDiscountLocationDTO(location),
                 IsSaved = discount.IsSavedDiscount(userId),
                 Tags = discount.GetTags(),
             };
@@ -25,7 +25,7 @@ namespace BL.Extensions
             return discountModel;
         }
 
-        public static PointOfSaleDTO GetPointOfSaleDTO(this Discount discount, GeoCoordinate location)
+        public static DiscountLocationDTO GetDiscountLocationDTO(this Discount discount, GeoCoordinate location)
         {
             if (discount.PointOfSales.Count == 0)
             {
@@ -33,7 +33,7 @@ namespace BL.Extensions
             }
 
             var pointOfSaleDTO = discount.PointOfSales
-                .Select(p => new PointOfSaleDTO()
+                .Select(p => new DiscountLocationDTO()
                 {
                     Address = p.Address,
                     DistanceInMeters = (int)location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))
