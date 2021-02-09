@@ -26,7 +26,7 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", "France, Paris, Neuilly-sur-Seine 135 Avenue Charles de Gaulle", "+33 1 42 60 58 58", "https://www.instagram.com/chanelofficial/");
         }
 
-        public void AddVendor(string name, string description, string email, string address, string phone, string socialNetworkLink)
+        public void AddVendor(string name, string description, string email, string address, string phone, string instagramLink)
         {
             _context.Vendors.Add(new Vendor()
             {
@@ -35,7 +35,11 @@ namespace DAL.DbInitializer
                 Email = email,
                 Address = address,
                 Phone = phone,
-                SocialNetworkLink = socialNetworkLink,
+                InstagramLink = instagramLink,
+                FacebookLink = "https://www.facebook.com",
+                TwitterLink = "https://twitter.com",
+                VkLink = "https://vk.com/",
+                WebSite ="web site",
             });
 
             _context.SaveChanges();
