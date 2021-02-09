@@ -358,6 +358,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FacebookLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -366,7 +372,13 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SocialNetworkLink")
+                    b.Property<string>("TwitterLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VkLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebSite")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

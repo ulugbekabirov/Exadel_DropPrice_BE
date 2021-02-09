@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210207124451_Initial")]
+    [Migration("20210209080111_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -360,6 +360,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FacebookLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -368,7 +374,13 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SocialNetworkLink")
+                    b.Property<string>("TwitterLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VkLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebSite")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

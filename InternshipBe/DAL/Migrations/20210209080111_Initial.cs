@@ -108,7 +108,11 @@ namespace DAL.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SocialNetworkLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FacebookLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstagramLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VkLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TwitterLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebSite = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
