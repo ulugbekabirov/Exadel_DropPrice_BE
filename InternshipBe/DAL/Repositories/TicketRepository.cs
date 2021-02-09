@@ -3,6 +3,8 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -18,6 +20,12 @@ namespace DAL.Repositories
         {
             return await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == userId && d.OrderDate.Date == DateTime.Today.Date);
         }
+
+        public async Task<IEnumerable<Ticket>> GetTicketAsync(int userId)
+        {
+            return await _entities.Where((d => d.UserId == userId && d.OrderDate.Date == DateTime.Today.Date)).ToListAsync();
+        }
+
 
         public async Task<Ticket> CreateTicketAsync(int discountId, User user)
         {
