@@ -35,7 +35,7 @@ namespace DAL.Entities
 
         public string TwitterLink { get; set; }
 
-        public string WebSite { get; set; }
+        public string WebSiteLink { get; set; }
 
         public virtual ICollection<Discount> Discounts { get; set; }
     }

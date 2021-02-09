@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210209080111_Initial")]
+    [Migration("20210209082144_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -380,7 +380,7 @@ namespace DAL.Migrations
                     b.Property<string>("VkLink")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WebSite")
+                    b.Property<string>("WebSiteLink")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

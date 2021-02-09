@@ -20,7 +20,7 @@
 
         public string TwitterLink { get; set; }
 
-        public string WebSite { get; set; }
+        public string WebSiteLink { get; set; }
 
         public double? VendorRating { get; set; }
     }

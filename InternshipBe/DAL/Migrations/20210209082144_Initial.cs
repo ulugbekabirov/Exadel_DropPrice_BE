@@ -112,7 +112,7 @@ namespace DAL.Migrations
                     InstagramLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VkLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TwitterLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WebSite = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    WebSiteLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

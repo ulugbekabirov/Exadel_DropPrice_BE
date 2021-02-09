@@ -378,7 +378,7 @@ namespace DAL.Migrations
                     b.Property<string>("VkLink")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WebSite")
+                    b.Property<string>("WebSiteLink")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
