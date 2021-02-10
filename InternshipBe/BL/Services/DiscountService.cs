@@ -169,6 +169,9 @@ namespace BL.Services
 
                 var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
 
+                discount.Tags.Clear();
+                discount.PointOfSales.Clear();
+
                 discount.Name = discountViewModel.DiscountName;
                 discount.VendorId = vendorDiscount.Id;
                 discount.Vendor = vendorDiscount;
