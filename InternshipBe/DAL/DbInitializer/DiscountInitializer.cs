@@ -124,7 +124,7 @@ namespace DAL.DbInitializer
         {
             var discount = new Discount()
             {
-                Vendorid = vendorId,
+                VendorId = vendorId,
                 Name = name,
                 Description = description,
                 DiscountAmount = discountAmount,

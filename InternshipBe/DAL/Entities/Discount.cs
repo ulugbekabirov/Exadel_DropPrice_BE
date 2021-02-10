@@ -17,7 +17,7 @@ namespace DAL.Entities
 
         public int Id { get; set; }
 
-        public int Vendorid { get; set; }
+        public int VendorId { get; set; }
 
         public virtual Vendor Vendor { get; set; }
 
