@@ -39,8 +39,8 @@ namespace DAL.Repositories
                 Discount = discount,
             };
 
-            user.Tickets.Add(newTicket);
-            discount.Tickets.Add(newTicket);
+            //user.Tickets.Add(newTicket);
+            //discount.Tickets.Add(newTicket);
 
             await CreateAsync(newTicket);
             
