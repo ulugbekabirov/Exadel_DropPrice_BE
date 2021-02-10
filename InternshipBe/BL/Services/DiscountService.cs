@@ -155,13 +155,13 @@ namespace BL.Services
             }
         }
 
-        public async Task<DiscountViewModel> UpdateDiscountAsync(int id, DiscountViewModel discountViewModel)
+        public async Task<DiscountViewModel> UpdateDiscountAsync(DiscountViewModel discountViewModel)
         {
             using var transaction = await _discountRepository.BeginTrancation();
 
             try
             {
-                var discount = await _discountRepository.GetByIdAsync(id);
+                var discount = await _discountRepository.GetByIdAsync(discountViewModel.Id);
 
                 var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
 
