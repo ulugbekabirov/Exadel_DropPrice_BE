@@ -27,15 +27,7 @@ namespace DAL.Entities
         [Required]
         public string Phone { get; set; }
 
-        public string FacebookLink { get; set; }
-
-        public string InstagramLink { get; set; }
-
-        public string VkLink { get; set; }
-
-        public string TwitterLink { get; set; }
-
-        public string WebSiteLink { get; set; }
+        public string SocialLinks { get; set; }
 
         public virtual ICollection<Discount> Discounts { get; set; }
     }
