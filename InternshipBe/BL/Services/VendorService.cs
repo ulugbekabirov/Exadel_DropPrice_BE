@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace BL.Services
 {
@@ -52,6 +53,17 @@ namespace BL.Services
                 .Take(sortModel.Take);
                 
             return _mapper.Map<DiscountDTO[]>(discountsModels);
+        }
+
+        public async Task<VendorViewModel> CreateVendor(VendorViewModel vendorViewModel)
+        {
+            var vendor = _mapper.Map<Vendor>(vendorViewModel);
+
+            await _vendorRepository.CreateAsync(vendor);
+
+            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor); 
+
+            return vendorViewModelCreated;
         }
     }
 }
