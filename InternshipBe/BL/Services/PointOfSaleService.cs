@@ -13,20 +13,11 @@ namespace BL.Services
     {
         private readonly IRepository<PointOfSale> _pointOfSaleRepository;
         private readonly IMapper _mapper;
+
         public PointOfSaleService(IRepository<PointOfSale> pointOfSaleRepository, IMapper mapper)
         {
             _pointOfSaleRepository = pointOfSaleRepository;
             _mapper = mapper;
-        }
-
-        public async Task AddPointOfSalesToDiscountAsync(Discount discount, List<PointOfSale> pointOfSales)
-        {
-            for (int i = 0; i < pointOfSales.Count; i++)
-            {
-                pointOfSales[i].Discounts.Add(discount);
-            }
-
-            await _pointOfSaleRepository.SaveChangesAsync();
         }
 
         public async Task<List<PointOfSale>> GetPointOfSalesAndCreateIfNotExistAsync(PointOfSale[] pointOfSales)

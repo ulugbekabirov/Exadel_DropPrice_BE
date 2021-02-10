@@ -7,7 +7,7 @@ using WebApi.ViewModels;
 
 namespace BL.Interfaces
 {
-    public interface IDiscountService 
+    public interface IDiscountService
     {
         Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user);
 
@@ -20,5 +20,7 @@ namespace BL.Interfaces
         Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id);
 
         Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel);
+
+        Task<DiscountViewModel> UpdateDiscountAsync(int id, DiscountViewModel discountViewModel);
     }
 }

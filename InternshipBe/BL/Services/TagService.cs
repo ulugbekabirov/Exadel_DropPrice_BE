@@ -22,16 +22,6 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task AddDiscountToTagsAsync(Discount discount, List<Tag> tags)
-        {
-            for (int i = 0; i < tags.Count; i++)
-            {
-                tags[i].Discounts.Add(discount);
-            }
-
-            await _tagRepository.SaveChangesAsync();
-        }
-
         public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel specifiedAmountModel)
         {
             var tags = await _tagRepository.GetPopularAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
