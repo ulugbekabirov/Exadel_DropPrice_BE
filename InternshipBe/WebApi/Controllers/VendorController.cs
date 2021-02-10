@@ -49,12 +49,13 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> UpdateVendor([FromBody]VendorViewModel vendorViewModel)
+        public async Task<IActionResult> UpdateVendor(int id, [FromBody]VendorViewModel vendorViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(vendorViewModel);
+                return BadRequest("Vendor Model is not valid");
             }
+            vendorViewModel.Id = id;
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
     }
