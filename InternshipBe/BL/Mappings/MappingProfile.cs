@@ -5,6 +5,7 @@ using BL.Models;
 using DAL.Entities;
 using Shared.Extensions;
 using System.Collections.Generic;
+using WebApi.ViewModels;
 
 namespace BL.Mapping
 {
@@ -69,10 +70,21 @@ namespace BL.Mapping
             CreateMap<Discount, ArchivedDiscountDTO>();
 
             CreateMap<PointOfSale, PointOfSaleDTO>();
+            CreateMap<PointOfSaleViewModel, PointOfSale>();
+
+            CreateMap<DiscountViewModel, Discount>()
+                .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName))
+                .ForMember(d => d.Description, source => source.MapFrom(s => s.Description))
+                .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.DiscountAmount))
+                .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.ActivityStatus))
+                .ForMember(d => d.StartDate, source => source.MapFrom(s => s.StartDate))
+                .ForMember(d => d.EndDate, source => source.MapFrom(s => s.EndDate))
+                .ForMember(d => d.Promocode, source => source.MapFrom(s => s.PromoCode))
+                .ForAllOtherMembers(m => m.Ignore());
 
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
-                .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.Vendorid))
+                .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Discount.VendorId))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Discount.Name))
                 .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Discount.Vendor.Name))
                 .ForMember(d => d.Description, source => source.MapFrom(s => s.Discount.Description))
