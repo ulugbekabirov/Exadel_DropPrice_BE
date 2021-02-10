@@ -15,6 +15,8 @@ namespace BL.Interfaces
 
         Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(int id, SortModel vendorModel, User user);
 
-        Task<VendorViewModel> CreateVendor(VendorViewModel vendorViewModel);
+        Task<VendorViewModel> CreateVendorAsync(VendorViewModel vendorViewModel);
+
+        Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel);
     }
 }
