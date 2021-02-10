@@ -5,6 +5,7 @@ using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace BL.Services
 {
@@ -16,6 +17,45 @@ namespace BL.Services
         {
             _pointOfSaleRepository = pointOfSaleRepository;
             _mapper = mapper;
+        }
+
+        public async Task AddPointOfSalesToDiscountAsync(Discount discount, List<PointOfSale> pointOfSales)
+        {
+            for (int i = 0; i < pointOfSales.Count; i++)
+            {
+                pointOfSales[i].Discounts.Add(discount);
+            }
+
+            await _pointOfSaleRepository.SaveChangesAsync();
+        }
+
+        public async Task<List<PointOfSale>> GetPointOfSalesAndCreateIfNotExistAsync(PointOfSale[] pointOfSales)
+        {
+            var result = new List<PointOfSale>();
+
+            var allPointOfSales = await _pointOfSaleRepository.GetAllAsync();
+
+            result.AddRange(allPointOfSales.Where(p => pointOfSales.Select(p => p.Name).Contains(p.Name)));
+
+            var notExistingPointOfSales = pointOfSales.Where(p => !allPointOfSales.Select(a => a.Name).Contains(p.Name));
+
+            for (int i = 0; i < notExistingPointOfSales.Count(); i++)
+            {
+                var pointOfSale = new PointOfSale()
+                {
+                    Name = notExistingPointOfSales.ElementAt(i).Name,
+                    Address = notExistingPointOfSales.ElementAt(i).Address,
+                    Latitude = notExistingPointOfSales.ElementAt(i).Latitude,
+                    Longitude = notExistingPointOfSales.ElementAt(i).Longitude,
+                };
+
+                result.Add(pointOfSale);
+                await _pointOfSaleRepository.CreateAsync(pointOfSale);
+            }
+
+            await _pointOfSaleRepository.SaveChangesAsync();
+
+            return result;
         }
 
         public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync()
