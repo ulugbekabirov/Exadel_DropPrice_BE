@@ -41,7 +41,7 @@ namespace DAL.Entities
         [Required]
         public bool ActivityStatus { get; set; }
 
-        public string Promocode { get; set; }
+        public string PromoCode { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
 

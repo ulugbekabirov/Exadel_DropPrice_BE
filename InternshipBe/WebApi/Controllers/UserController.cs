@@ -1,4 +1,5 @@
 ﻿using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -27,9 +28,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("user/tickets")]
-        public async Task<IActionResult> GetUserTickets()
+        public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
         {
-            return Ok(await _userService.GetUserTicketsAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _userService.GetUserTicketsAsync(await _userManager.FindByNameAsync(User.Identity.Name), specifiedAmountModel));
         }
     }
 }

@@ -20,9 +20,7 @@ namespace IdentityServer.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AccountController(
-                    UserManager<User> userManager,
-                    IConfiguration configuration)
+        public AccountController(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;

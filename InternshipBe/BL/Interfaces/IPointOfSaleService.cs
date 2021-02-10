@@ -10,7 +10,5 @@ namespace BL.Interfaces
         Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync();
 
         Task<List<PointOfSale>> GetPointOfSalesAndCreateIfNotExistAsync(PointOfSale[] pointOfSales);
-
-        Task AddPointOfSalesToDiscountAsync(Discount discount, List<PointOfSale> pointOfSales);
     }
 }

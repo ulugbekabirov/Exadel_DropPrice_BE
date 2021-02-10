@@ -5,7 +5,6 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,7 @@ namespace BL.Services
     {
         private readonly IRepository<Vendor> _vendorRepository;
         private readonly IMapper _mapper;
+
         public VendorService(IRepository<Vendor> vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;

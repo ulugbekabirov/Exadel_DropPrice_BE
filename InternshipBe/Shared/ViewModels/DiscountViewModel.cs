@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace WebApi.ViewModels
 {
     public class DiscountViewModel
     {
         public int Id { get; set; }
+
         public string VendorName { get; set; }
 
         public string DiscountName { get; set; }

@@ -45,7 +45,7 @@ namespace BL.Mapping
                 .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
                 .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
-                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.Promocode));
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode));
 
             CreateMap<VendorViewModel, Vendor>();
             CreateMap<Vendor, VendorViewModel>();
@@ -73,17 +73,17 @@ namespace BL.Mapping
             CreateMap<Discount, ArchivedDiscountDTO>();
 
             CreateMap<PointOfSale, PointOfSaleDTO>();
-            CreateMap<PointOfSaleViewModel, PointOfSale>();
+            CreateMap<PointOfSaleViewModel, PointOfSale>().ReverseMap();
 
             CreateMap<DiscountViewModel, Discount>()
                 .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName))
-                .ForMember(d => d.Description, source => source.MapFrom(s => s.Description))
-                .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.DiscountAmount))
-                .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.ActivityStatus))
-                .ForMember(d => d.StartDate, source => source.MapFrom(s => s.StartDate))
-                .ForMember(d => d.EndDate, source => source.MapFrom(s => s.EndDate))
-                .ForMember(d => d.Promocode, source => source.MapFrom(s => s.PromoCode))
-                .ForAllOtherMembers(m => m.Ignore());
+                .ForMember(d => d.Tags, source => source.Ignore())
+                .ForMember(d => d.PointOfSales, source => source.Ignore());
+            CreateMap<Discount, DiscountViewModel>()
+                .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
+                .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Vendor.Name))
+                .ForMember(d => d.PointOfSales, source => source.Ignore())
+                .ForMember(d => d.Tags, source => source.Ignore());
 
             CreateMap<DiscountModel, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Discount.Id))
@@ -94,7 +94,7 @@ namespace BL.Mapping
                 .ForMember(d => d.ActivityStatus, source => source.MapFrom(s => s.Discount.ActivityStatus))
                 .ForMember(d => d.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
                 .ForMember(d => d.StartDate, source => source.MapFrom(s => s.Discount.StartDate))
-                .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.Promocode))
+                .ForMember(d => d.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode))
                 .ForMember(d => d.EndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .ForMember(d => d.DistanceInMeters, source => source.MapFrom(s => s.PointOfSaleDTO.DistanceInMeters))
                 .ForMember(d => d.Address, source => source.MapFrom(s => s.PointOfSaleDTO.Address))

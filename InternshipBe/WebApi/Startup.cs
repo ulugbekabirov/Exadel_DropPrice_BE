@@ -68,8 +68,7 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                            new string[] {}
-
+                          new string[] {}
                     }
                 });
             });
@@ -87,7 +86,7 @@ namespace WebApi
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ITownService, TownService>();
-            services.AddScoped<ITownRepository, TownRepository>();
+            services.AddScoped<IRepository<Town>, Repository<Town>>();
 
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ITagRepository, TagRepository>();

@@ -117,14 +117,14 @@ namespace BL.Services
             return _mapper.Map<ArchivedDiscountDTO>(discount);
         }
 
-        public async Task<int> CreateDiscountWithPointOfSalesAndTags(DiscountViewModel discountViewModel)
+        public async Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel)
         {
             using var transaction = await _discountRepository.BeginTrancation();
 
-            var discount = _mapper.Map<Discount>(discountViewModel);
-
             try
             {
+                var discount = _mapper.Map<Discount>(discountViewModel);
+
                 var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
@@ -138,21 +138,67 @@ namespace BL.Services
 
                 await _discountRepository.CreateAsync(discount);
 
-                await _tagRepository.AddDiscountToTagsAsync(discount, tags);
-
-                await _pointOfSaleService.AddPointOfSalesToDiscountAsync(discount, pointOfSales);
-
                 await _discountRepository.SaveChangesAsync();
 
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                createDiscountViewModel.Tags = discountViewModel.Tags;
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+
                 await transaction.CommitAsync();
+
+                return createDiscountViewModel;
             }
             catch (Exception)
             {
                 await transaction.RollbackAsync();
-                return 500;
+                throw;
             }
+        }
 
-            return 200;
+        public async Task<DiscountViewModel> UpdateDiscountAsync(int id, DiscountViewModel discountViewModel)
+        {
+            using var transaction = await _discountRepository.BeginTrancation();
+
+            try
+            {
+                var discount = await _discountRepository.GetByIdAsync(id);
+
+                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
+
+                var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
+
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+
+                discount.Tags.Clear();
+                discount.PointOfSales.Clear();
+
+                discount.Name = discountViewModel.DiscountName;
+                discount.VendorId = vendorDiscount.Id;
+                discount.Vendor = vendorDiscount;
+                discount.Description = discountViewModel.Description;
+                discount.PromoCode = discountViewModel.PromoCode;
+                discount.DiscountAmount = discountViewModel.DiscountAmount;
+                discount.ActivityStatus = discountViewModel.ActivityStatus;
+                discount.StartDate = discountViewModel.StartDate;
+                discount.EndDate = discountViewModel.EndDate;
+                discount.Tags = tags;
+                discount.PointOfSales = pointOfSales;
+
+                await _discountRepository.SaveChangesAsync();
+
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                createDiscountViewModel.Tags = discountViewModel.Tags;
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+
+                await transaction.CommitAsync();
+
+                return createDiscountViewModel;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
     }
 }

@@ -69,7 +69,15 @@ namespace WebApi.Controllers
             {
                 return BadRequest(discountViewModel);
             }
-            return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTags(discountViewModel));
+
+            return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTagsAsync(discountViewModel));
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> UpdateDiscount(int id, [FromBody] DiscountViewModel discountViewModel)
+        {
+            return Ok(await _discountService.UpdateDiscountAsync(id, discountViewModel));
         }
     }
 }

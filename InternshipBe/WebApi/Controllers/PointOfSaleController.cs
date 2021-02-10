@@ -10,6 +10,7 @@ namespace WebApi.Controllers
     public class PointOfSaleController : ControllerBase
     {
         private readonly IPointOfSaleService _pointOfSaleService;
+
         public PointOfSaleController(IPointOfSaleService pointOfSaleService)
         {
             _pointOfSaleService = pointOfSaleService;
