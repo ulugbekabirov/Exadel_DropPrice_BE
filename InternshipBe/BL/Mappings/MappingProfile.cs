@@ -48,6 +48,7 @@ namespace BL.Mapping
                 .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.Promocode));
 
             CreateMap<VendorViewModel, Vendor>();
+            CreateMap<Vendor, VendorViewModel>();
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
