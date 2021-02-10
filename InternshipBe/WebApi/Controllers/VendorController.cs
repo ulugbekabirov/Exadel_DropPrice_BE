@@ -51,6 +51,10 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> UpdateVendor([FromBody]VendorViewModel vendorViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(vendorViewModel);
+            }
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
     }

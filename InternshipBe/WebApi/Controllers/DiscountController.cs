@@ -63,8 +63,13 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> AddDiscount([FromBody] DiscountViewModel discountViewModel)
+        public async Task<IActionResult> CreateDiscount([FromBody] DiscountViewModel discountViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(discountViewModel);
+            }
+
             return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTagsAsync(discountViewModel));
         }
 
