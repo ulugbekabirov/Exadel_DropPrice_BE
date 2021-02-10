@@ -21,9 +21,9 @@ namespace DAL.Repositories
             return await _context.Tickets.SingleOrDefaultAsync(d => d.DiscountId == discountId && d.UserId == userId && d.OrderDate.Date == DateTime.Today.Date);
         }
 
-        public async Task<IEnumerable<Ticket>> GetTicketsAsync(int userId)
+        public async Task<IEnumerable<Ticket>> GetTicketsAsync(int userId, int skip, int take)
         {
-            return await _entities.Where((d => d.UserId == userId)).ToListAsync();
+            return await GetSpecifiedAmount(skip, take).Where((d => d.UserId == userId)).ToListAsync();
         }
 
         public async Task<Ticket> CreateTicketAsync(int discountId, User user)
