@@ -4,6 +4,7 @@ using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Infrastructure.Filters;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
 
@@ -42,6 +43,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
+        [ValidateModelFilter]
         public async Task<IActionResult> CreateVendor([FromBody] VendorViewModel vendorViewModel)
         {
             return Ok(await _vendorService.CreateVendorAsync(vendorViewModel));
@@ -49,12 +51,9 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Moderator")]
+        [ValidateModelFilter]
         public async Task<IActionResult> UpdateVendor(int id, [FromBody]VendorViewModel vendorViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Vendor Model is not valid");
-            }
             vendorViewModel.Id = id;
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
