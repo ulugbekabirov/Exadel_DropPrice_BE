@@ -55,6 +55,7 @@ namespace WebApi.Controllers
             {
                 return BadRequest(vendorViewModel);
             }
+
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
     }

@@ -69,7 +69,6 @@ namespace WebApi
                                 }
                             },
                             new string[] {}
-
                     }
                 });
             });
