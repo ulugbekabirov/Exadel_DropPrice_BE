@@ -21,6 +21,6 @@ namespace BL.Interfaces
 
         Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel);
 
-        Task<DiscountViewModel> UpdateDiscountAsync(int id, DiscountViewModel discountViewModel);
+        Task<DiscountViewModel> UpdateDiscountAsync(DiscountViewModel discountViewModel);
     }
 }

@@ -77,7 +77,8 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> UpdateDiscount(int id, [FromBody] DiscountViewModel discountViewModel)
         {
-            return Ok(await _discountService.UpdateDiscountAsync(id, discountViewModel));
+            discountViewModel.Id = id;
+            return Ok(await _discountService.UpdateDiscountAsync(discountViewModel));
         }
     }
 }
