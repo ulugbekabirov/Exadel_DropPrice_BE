@@ -69,5 +69,10 @@ namespace DAL.Repositories
 
             return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
         }
+
+        public async Task<Vendor> GetVendorByNameAsync(string vendorName)
+        {
+            return await _context.Vendors.SingleAsync(v => v.Name == vendorName);
+        }
     }
 }

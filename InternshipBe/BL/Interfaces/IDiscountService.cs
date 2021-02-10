@@ -3,6 +3,7 @@ using BL.Models;
 using DAL.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace BL.Interfaces
 {
@@ -17,5 +18,7 @@ namespace BL.Interfaces
         Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user);
 
         Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id);
+
+        Task<int> CreateDiscountWithPointOfSalesAndTags(DiscountViewModel discountViewModel);
     }
 }

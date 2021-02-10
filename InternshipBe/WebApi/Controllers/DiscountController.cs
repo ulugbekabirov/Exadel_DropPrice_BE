@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace WebApi.Controllers
 {
@@ -54,10 +55,17 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/archive")]
-        [Authorize(Roles = "Admin,Moderator")]
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> ArchiveDiscount(int id)
         {
             return Ok(await _discountService.ArchiveOrUnarchiveDiscount(id));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> AddDiscount([FromBody] DiscountViewModel discountViewModel)
+        {
+            return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTags(discountViewModel));
         }
     }
 }
