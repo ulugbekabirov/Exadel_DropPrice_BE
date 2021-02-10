@@ -131,7 +131,7 @@ namespace DAL.DbInitializer
                 EndDate = endDate,
                 StartDate = startDate,
                 ActivityStatus = activityStatus,
-                Promocode = promoCode,
+                PromoCode = promoCode,
                 Vendor = vendor,
                 PointOfSales = pointOfSales,
                 Tags = tags,

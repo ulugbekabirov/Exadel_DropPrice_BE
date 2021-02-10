@@ -41,14 +41,7 @@ namespace BL.Services
 
             for (int i = 0; i < notExistingPointOfSales.Count(); i++)
             {
-                var pointOfSale = new PointOfSale()
-                {
-                    Name = notExistingPointOfSales.ElementAt(i).Name,
-                    Address = notExistingPointOfSales.ElementAt(i).Address,
-                    Latitude = notExistingPointOfSales.ElementAt(i).Latitude,
-                    Longitude = notExistingPointOfSales.ElementAt(i).Longitude,
-                };
-
+                var pointOfSale = notExistingPointOfSales.ElementAt(i);
                 result.Add(pointOfSale);
                 await _pointOfSaleRepository.CreateAsync(pointOfSale);
             }

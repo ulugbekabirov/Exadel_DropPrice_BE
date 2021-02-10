@@ -117,14 +117,14 @@ namespace BL.Services
             return _mapper.Map<ArchivedDiscountDTO>(discount);
         }
 
-        public async Task<int> CreateDiscountWithPointOfSalesAndTags(DiscountViewModel discountViewModel)
+        public async Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel)
         {
             using var transaction = await _discountRepository.BeginTrancation();
 
-            var discount = _mapper.Map<Discount>(discountViewModel);
-
             try
             {
+                var discount = _mapper.Map<Discount>(discountViewModel);
+
                 var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
@@ -144,15 +144,20 @@ namespace BL.Services
 
                 await _discountRepository.SaveChangesAsync();
 
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                var x = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+                createDiscountViewModel.Tags = discountViewModel.Tags;
+                createDiscountViewModel.PointOfSales = x;
+
                 await transaction.CommitAsync();
+
+                return createDiscountViewModel;
             }
             catch (Exception)
             {
                 await transaction.RollbackAsync();
-                return 500;
+                throw;
             }
-
-            return 200;
         }
     }
 }
