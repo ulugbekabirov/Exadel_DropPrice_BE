@@ -42,9 +42,6 @@ namespace DAL.Repositories
 
             await _context.SavedDiscounts.AddAsync(newSavedDiscount);
 
-            user.SavedDiscounts.Add(newSavedDiscount);
-            discount.SavedDiscounts.Add(newSavedDiscount);
-
             await _context.SaveChangesAsync();
 
             return newSavedDiscount;
