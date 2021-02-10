@@ -1,12 +1,13 @@
 ﻿using BL.DTO;
 using BL.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
     public interface IConfigService
     {
-        ConfigVariableDTO GetConfig();
+        Task<IEnumerable<ConfigVariableDTO>> GetConfigs();
 
         Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs);
     }

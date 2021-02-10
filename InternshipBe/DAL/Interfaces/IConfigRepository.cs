@@ -1,9 +1,13 @@
 ﻿using DAL.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
     public interface IConfigRepository : IRepository<ConfigVariable>
     {
-        ConfigVariable GetConfig();
+        Task<IEnumerable<ConfigVariable>> GetConfigs();
+
+        ConfigVariable GetConfig(int id);
     }
 }

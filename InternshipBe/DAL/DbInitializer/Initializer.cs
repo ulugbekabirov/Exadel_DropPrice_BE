@@ -72,6 +72,13 @@ namespace DAL.DbInitializer
                 Description = "Radius in meters"
             });
 
+            _context.ConfigVariables.Add(new ConfigVariable
+            {
+                Name = "Color",
+                Value = "Red",
+                Description = "Color of something"
+            });
+
             _context.SaveChanges();
         }
     }

@@ -1,7 +1,10 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -12,9 +15,14 @@ namespace DAL.Repositories
 
         }
 
-        public ConfigVariable GetConfig()
+        public async Task<IEnumerable<ConfigVariable>> GetConfigs()
         {
-            var config = _context.ConfigVariables.Where(p => p.Id == 1).SingleOrDefault();
+            return await _entities.ToListAsync();
+        }
+
+        public ConfigVariable GetConfig(int id)
+        {
+            var config = _entities.Where(p => p.Id == id).SingleOrDefault();
 
             return config;
         }

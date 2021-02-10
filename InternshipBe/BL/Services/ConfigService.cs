@@ -3,6 +3,7 @@ using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
 using DAL.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -18,17 +19,17 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        ConfigVariableDTO IConfigService.GetConfig()
+        public async Task<IEnumerable<ConfigVariableDTO>> GetConfigs()
         {
-            var config = _сonfigRepository.GetConfig();
-            
-            return _mapper.Map<ConfigVariableDTO>(config);
+            var configs = await _сonfigRepository.GetConfigs();
+
+            return _mapper.Map<ConfigVariableDTO[]>(configs);
         }
 
-        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs)
+        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfig)
         {
-            var config = _сonfigRepository.GetConfig();
-            config.Value = newConfigs.Value;
+            var config = _сonfigRepository.GetConfig(newConfig.Id);
+            config.Value = newConfig.Value;
 
             await _сonfigRepository.SaveChangesAsync();
 
