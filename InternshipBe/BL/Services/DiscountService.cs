@@ -172,6 +172,8 @@ namespace BL.Services
                 discount.Tags.Clear();
                 discount.PointOfSales.Clear();
 
+                await _discountRepository.SaveChangesAsync();
+
                 discount.Name = discountViewModel.DiscountName;
                 discount.VendorId = vendorDiscount.Id;
                 discount.Vendor = vendorDiscount;
@@ -186,11 +188,11 @@ namespace BL.Services
 
                 await _discountRepository.SaveChangesAsync();
 
-                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
-                createDiscountViewModel.Tags = discountViewModel.Tags;
-                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
-
                 await transaction.CommitAsync();
+
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
 
                 return createDiscountViewModel;
             }
