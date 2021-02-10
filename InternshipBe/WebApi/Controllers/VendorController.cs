@@ -42,9 +42,16 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
-        public async Task<IActionResult> AddVendor([FromBody] VendorViewModel vendorViewModel)
+        public async Task<IActionResult> CreateVendor([FromBody] VendorViewModel vendorViewModel)
         {
-            return Ok(await _vendorService.CreateVendor(vendorViewModel));
+            return Ok(await _vendorService.CreateVendorAsync(vendorViewModel));
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> UpdateVendor([FromBody]VendorViewModel vendorViewModel)
+        {
+            return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
     }
 }

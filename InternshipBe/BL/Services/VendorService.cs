@@ -55,7 +55,7 @@ namespace BL.Services
             return _mapper.Map<DiscountDTO[]>(discountsModels);
         }
 
-        public async Task<VendorViewModel> CreateVendor(VendorViewModel vendorViewModel)
+        public async Task<VendorViewModel> CreateVendorAsync(VendorViewModel vendorViewModel)
         {
             var vendor = _mapper.Map<Vendor>(vendorViewModel);
 
@@ -64,6 +64,22 @@ namespace BL.Services
             var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor); 
 
             return vendorViewModelCreated;
+        }
+
+        public async Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel)
+        {
+            var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.Id);
+
+            vendor.Name = vendorViewModel.Name;
+            vendor.Phone = vendorViewModel.Phone;
+            vendor.SocialLinks = vendorViewModel.SocialLinks;
+            vendor.Email = vendorViewModel.Email;
+            vendor.Address = vendorViewModel.Address;
+            vendor.Description = vendorViewModel.Description;
+
+            await _vendorRepository.SaveChangesAsync();
+
+            return _mapper.Map<VendorViewModel>(vendor);
         }
     }
 }
