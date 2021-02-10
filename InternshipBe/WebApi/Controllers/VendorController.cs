@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace WebApi.Controllers
 {
@@ -37,6 +38,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetVendorDiscounts(int id, SortModel sortModel)
         {
             return Ok(await _vendorService.GetVendorDiscountsAsync(id, sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> AddVendor([FromBody] VendorViewModel vendorViewModel)
+        {
+            return Ok(await _vendorService.CreateVendor(vendorViewModel));
         }
     }
 }
