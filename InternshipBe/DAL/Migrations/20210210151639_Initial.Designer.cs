@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210209082144_Initial")]
+    [Migration("20210210151639_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,12 +98,12 @@ namespace DAL.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Vendorid")
+                    b.Property<int>("VendorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Vendorid");
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Discounts");
                 });
@@ -360,12 +360,6 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FacebookLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InstagramLink")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -374,13 +368,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TwitterLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VkLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WebSiteLink")
+                    b.Property<string>("SocialLinks")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -571,7 +559,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Vendor", "Vendor")
                         .WithMany("Discounts")
-                        .HasForeignKey("Vendorid")
+                        .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
