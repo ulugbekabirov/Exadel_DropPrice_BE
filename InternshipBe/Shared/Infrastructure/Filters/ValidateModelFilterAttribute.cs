@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -18,11 +18,12 @@ namespace Shared.Infrastructure.Filters
 
                 actionContext.Result = new ContentResult()
                 {
-                    Content = modelState.Values.SelectMany(v => v.Errors).ToString()
+                    Content = string.Join(Environment.NewLine, modelState.Values.SelectMany(v => v.Errors.Select(e=>e.ErrorMessage)))
                 };
+
+                return;
             }
 
-            return;
         }
     }
 }
