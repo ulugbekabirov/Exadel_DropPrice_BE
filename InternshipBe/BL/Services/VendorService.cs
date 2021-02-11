@@ -81,5 +81,10 @@ namespace BL.Services
 
             return _mapper.Map<VendorViewModel>(vendor);
         }
+
+        public Task<IEnumerable<VendorDTO>> SearchAsync(SearchModel searchModel, User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
