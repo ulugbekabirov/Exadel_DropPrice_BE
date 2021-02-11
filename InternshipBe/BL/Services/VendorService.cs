@@ -5,6 +5,7 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Shared.Extensions;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace BL.Services
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
                 .Take(sortModel.Take);
-                
+
             return _mapper.Map<DiscountDTO[]>(discountsModels);
         }
 
@@ -62,7 +63,7 @@ namespace BL.Services
 
             await _vendorRepository.CreateAsync(vendor);
 
-            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor); 
+            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor);
 
             return vendorViewModelCreated;
         }
@@ -85,16 +86,33 @@ namespace BL.Services
 
         public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
         {
-            if (string.IsNullOrWhiteSpace(searchModel.SearchQuery))
-            {
-                return await GetVendorsAsync();       
-            }
+            var searchVendors = await _vendorRepository.SearchVendors(searchModel.SearchQuery).ToListAsync();
 
-            var searchVendors = _vendorRepository.;
-            
             var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
 
-            return searchVendorDTOs.SortBy(searchModel.SortByRating).ThenSortBy(searchModel.SortByTicketCount).Skip(searchModel.Skip).Take(searchModel.Take);
+            var orderedVendorDTOs = ThenSortBy(SortBy(searchVendorDTOs, searchModel.SortBy[0]), searchModel.SortBy[1]);
+
+            return orderedVendorDTOs.Skip(searchModel.Skip).Take(searchModel.Take);
         }
+
+        public IOrderedEnumerable<VendorDTO> SortBy(IEnumerable<VendorDTO> vendors, string sortBy)
+        => sortBy switch
+        {
+            "RatingAsc" => vendors.OrderBy(v => v.VendorRating),
+            "RatingDesc" => vendors.OrderByDescending(v => v.VendorRating),
+            "TicketCountAsc" => vendors.OrderBy(v => v.TicketCount),
+            "TicketCountDesc" => vendors.OrderByDescending(v => v.TicketCount),
+            _ => throw new NotImplementedException(),
+        };
+
+        public IOrderedEnumerable<VendorDTO> ThenSortBy(IOrderedEnumerable<VendorDTO> vendors, string sortBy)
+        => sortBy switch
+        {
+            "RatingAsc" => vendors.ThenBy(v => v.VendorRating),
+            "RatingDesc" => vendors.ThenByDescending(v => v.VendorRating),
+            "TicketCountAsc" => vendors.ThenBy(v => v.TicketCount),
+            "TicketCountDesc" => vendors.ThenByDescending(v => v.TicketCount),
+            _ => throw new NotImplementedException(),
+        };
     }
 }
