@@ -19,6 +19,7 @@ namespace BL.Extensions
                 AssessmentValue = discount.Assessments?.SingleOrDefault(a => a.UserId == userId)?.AssessmentValue,
                 PointOfSaleDTO = discount.GetDiscountLocationDTO(location),
                 IsSaved = discount.IsSavedDiscount(userId),
+                IsOrdered = discount.Assessments.Any(a => a.UserId == userId),
                 Tags = discount.GetTags(),
             };
 
