@@ -14,5 +14,7 @@ namespace DAL.Interfaces
         Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user);
 
         Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location);
+
+        Task<IEnumerable<SavedDiscount>> GetPopularAsync(int skip, int take);
     }
 }

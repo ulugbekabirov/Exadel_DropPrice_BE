@@ -1,4 +1,5 @@
 ﻿using BL.Interfaces;
+using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,5 +27,13 @@ namespace WebApi.Controllers
         {
             return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
+
+        [HttpGet("saves")]
+        public async Task<IActionResult> GetUserSaved()//
+        {
+            return Ok(await _userService.GetUserDiscountAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
+            
+        }
+        
     }
 }
