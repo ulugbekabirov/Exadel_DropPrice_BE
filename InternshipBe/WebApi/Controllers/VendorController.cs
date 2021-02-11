@@ -43,7 +43,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
-        [ValidateModelFilter]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> CreateVendor([FromBody] VendorViewModel vendorViewModel)
         {
             return Ok(await _vendorService.CreateVendorAsync(vendorViewModel));
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Moderator")]
-        [ValidateModelFilter]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> UpdateVendor(int id, [FromBody]VendorViewModel vendorViewModel)
         {
             vendorViewModel.Id = id;
