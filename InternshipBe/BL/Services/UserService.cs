@@ -29,6 +29,13 @@ namespace BL.Services
             return _mapper.Map(await _userRepository.GetUserRolesAsync(user.Id), userDTO);
         }
 
+        public async Task<IEnumerable<SavedDTO>> GetUserDiscountAsync(User user)
+        {
+            var savedDiscount = await _userRepository.GetUserSavedAsync(user.Id); //discount(save)
+
+            return _mapper.Map<SavedDTO[]>(savedDiscount);
+        }
+        
         public async Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user, SpecifiedAmountModel specifiedAmountModel)
         {
             var tickets = await _ticketRepository.GetTicketsAsync(user.Id, specifiedAmountModel.Skip, specifiedAmountModel.Take);

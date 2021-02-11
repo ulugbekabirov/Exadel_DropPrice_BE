@@ -10,6 +10,8 @@ namespace BL.Interfaces
     {
         Task<UserDTO> GetUserInfoAsync(User user);
 
+        Task<IEnumerable<SavedDTO>> GetUserDiscountAsync(User user);
+
         Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user, SpecifiedAmountModel specifiedAmountModel);
     }
 }

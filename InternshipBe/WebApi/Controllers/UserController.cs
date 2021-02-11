@@ -27,6 +27,13 @@ namespace WebApi.Controllers
             return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
+        [HttpGet("saves")]
+        public async Task<IActionResult> GetUserSaved()//
+        {
+            return Ok(await _userService.GetUserDiscountAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
+            
+        }
+        
         [HttpGet("user/tickets")]
         public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
         {
