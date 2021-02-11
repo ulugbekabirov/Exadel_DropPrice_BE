@@ -26,9 +26,11 @@ namespace WebApi.Controllers
 
         [HttpPut("changeConfigs/{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ChangeConfigs([FromBody] ConfigModel newConfigs, int id)
+        public async Task<IActionResult> ChangeConfigs(int id, [FromBody] ConfigModel newConfigs)
         {
-            return Ok(await _configService.ChangeConfigAsync(newConfigs, id));
+            newConfigs.Id = id;
+
+            return Ok(await _configService.ChangeConfigAsync(newConfigs));
         }
     }
 }
