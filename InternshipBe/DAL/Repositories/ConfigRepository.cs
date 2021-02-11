@@ -15,7 +15,7 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IEnumerable<ConfigVariable>> GetConfigs()
+        public async Task<IEnumerable<ConfigVariable>> GetConfigsAsync()
         {
             return await _entities.ToListAsync();
         }

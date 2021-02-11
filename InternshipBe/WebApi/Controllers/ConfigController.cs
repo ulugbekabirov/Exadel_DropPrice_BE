@@ -18,9 +18,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("config")]
-        public IActionResult GetRadius()
+        public async Task<IActionResult> GetRadius()
         {
-            return Ok(_configService.GetConfigs());
+            return Ok(await _configService.GetConfigs());
         }
 
         [HttpPut("config")]
