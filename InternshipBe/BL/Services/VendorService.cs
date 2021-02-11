@@ -5,6 +5,7 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Shared.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +85,16 @@ namespace BL.Services
 
         public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
         {
-            throw new NotImplementedException();
+            var searchVendors = await _vendorRepository.GetAllAsync();
+
+            if (!string.IsNullOrWhiteSpace(searchModel.SearchQuery))
+            {
+                searchVendors = searchVendors.Where(v => v.Name.Contains(searchModel.SearchQuery));
+            }
+
+            var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
+
+            return searchVendorDTOs.SortBy(searchModel.SortByRating).ThenSortBy(searchModel.SortByTicketCount).Skip(searchModel.Skip).Take(searchModel.Take);
         }
     }
 }

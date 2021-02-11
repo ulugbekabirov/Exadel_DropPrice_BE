@@ -4,8 +4,8 @@
     {
         public string SearchQuery { get; set; }
 
-        public bool SortByRatingAsc { get; set; }
+        public bool SortByRating { get; set; }
 
-        public bool SortByTicketCountAsc { get; set; }
+        public bool SortByTicketCount { get; set; }
     }
 }
