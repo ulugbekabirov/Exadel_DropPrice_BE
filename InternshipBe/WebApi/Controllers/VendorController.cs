@@ -57,5 +57,12 @@ namespace WebApi.Controllers
             vendorViewModel.Id = id;
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
+
+        [HttpGet("search")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SearchDiscounts(SearchModel searchmodel)
+        {
+            return Ok(await _vendorService.SearchAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
     }
 }
