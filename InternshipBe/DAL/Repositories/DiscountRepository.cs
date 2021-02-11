@@ -28,10 +28,6 @@ namespace DAL.Repositories
         {
             return await _context.SavedDiscounts.SingleOrDefaultAsync(s => s.DiscountId == discountId && s.UserId == userId);
         }
-        public async Task<IEnumerable<SavedDiscount>> GetPopularAsync(int skip, int take)
-        {
-            return await GetSpecifiedAmount(skip, take).OrderByDescending(d => d.Discounts.Count).ToListAsync();
-        }
 
         public async Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user)
         {

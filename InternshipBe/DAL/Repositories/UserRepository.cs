@@ -20,14 +20,10 @@ namespace DAL.Repositories
         {
             return await _context.Roles.Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id)).Select(r => r.Name).ToListAsync();
         }
-        //public async Task<SavedDiscount> GetUserSaves(int discountId, int userId)
-        //{
-        //    return await _context.SavedDiscounts.Where(d => d.DiscountId == discountId && d.UserId == userId).ToListAsync();
-        //}
-        public async Task<IEnumerable<SavedDiscount>> GetUserSavedAsync(int userId)//
+
+        public async Task<IEnumerable<Discount>> GetSavedDiscountsAsync(int userId, int skip, int take)
         {
-            return await _context.SavedDiscounts.Where((u => u.UserId == userId)).ToListAsync();/*.Select(u => u.DiscountId).Contains(r.Id)).Select(r => r.Name).ToListAsync();*/
+            return await _context.SavedDiscounts.Where(s => s.UserId == userId && s.IsSaved == true).Skip(skip).Take(take).Select(d => d.Discount).ToListAsync();
         }
-        
     }
 }

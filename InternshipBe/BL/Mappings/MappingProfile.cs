@@ -64,14 +64,11 @@ namespace BL.Mapping
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.VendorName));
 
-            CreateMap<DiscountDTO, Discount>()
-                .ForMember(d => d.Id, source => source.MapFrom(s => s.DiscountId))
-                .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName));
-               
             CreateMap<Discount, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
-                .ForMember(d => d.Tags, source => source.MapFrom(s => s.GetTags()));
+                .ReverseMap()
+                .ForAllOtherMembers(d => d.Ignore());
 
             CreateMap<Discount, ArchivedDiscountDTO>();
 

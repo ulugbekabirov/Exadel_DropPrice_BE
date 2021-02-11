@@ -38,12 +38,6 @@ namespace BL.Services
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<SavedDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel specifiedAmountModel)
-        {
-            var discount = await _discountRepository.GetPopularAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
-
-            return _mapper.Map<SavedDTO[]>(discount);
-        }
 
         public async Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user)
         {
