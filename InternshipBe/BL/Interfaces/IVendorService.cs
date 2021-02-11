@@ -19,6 +19,6 @@ namespace BL.Interfaces
 
         Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel);
 
-        Task<IEnumerable<VendorDTO>> SearchVendorAsync(SearchModel searchModel, User user);
+        Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel);
     }
 }
