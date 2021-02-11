@@ -16,5 +16,9 @@ namespace DAL.Interfaces
         Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location);
 
         Task<Vendor> GetVendorByNameAsync(string vendorName);
+
+        Task<Assessment> GetUserAssessmentAsync(int discountId, int userId);
+
+        Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmnetValue);
     }
 }

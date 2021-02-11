@@ -14,6 +14,8 @@ namespace BL.Models
 
         public double? DiscountRating { get; set; }
 
+        public int? AssessmentValue{ get; set; }
+
         public List<string> Tags { get; set; }
     }
 }

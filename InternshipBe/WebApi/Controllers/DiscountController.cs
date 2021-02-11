@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Filters;
+using Shared.ViewModels;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
 
@@ -77,6 +78,12 @@ namespace WebApi.Controllers
         {
             discountViewModel.Id = id;
             return Ok(await _discountService.UpdateDiscountAsync(discountViewModel));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUserAssessmentForDiscount(int id, [FromBody] AssessmentViewModel assessmentViewModel)
+        {
+            return Ok(await _discountService.UpdateUserAssessmentForDiscountAsync(id, assessmentViewModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

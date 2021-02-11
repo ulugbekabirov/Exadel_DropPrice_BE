@@ -73,5 +73,28 @@ namespace DAL.Repositories
         {
             return await _context.Vendors.SingleAsync(v => v.Name == vendorName);
         }
+
+        public async Task<Assessment> GetUserAssessmentAsync(int discountId, int userId)
+        {
+            return await _context.Assessments.SingleOrDefaultAsync(a => a.DiscountId == discountId && a.UserId == userId);
+        }
+
+        public async Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmentValue)
+        {
+            var assessment = new Assessment()
+            {
+                DiscountId = discount.Id,
+                UserId = user.Id,
+                Discount = discount,
+                User = user,
+                AssessmentValue = assessmentValue,
+            };
+
+            await _context.Assessments.AddAsync(assessment);
+
+            await _context.SaveChangesAsync();
+
+            return assessment;
+        }
     }
 }

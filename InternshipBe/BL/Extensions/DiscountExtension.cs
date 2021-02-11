@@ -3,7 +3,6 @@ using BL.Models;
 using BL.Services;
 using DAL.Entities;
 using GeoCoordinatePortable;
-using Shared.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +16,7 @@ namespace BL.Extensions
             {
                 Discount = discount,
                 DiscountRating = discount.DiscountRating(),
+                AssessmentValue = discount.Assessments?.SingleOrDefault(a => a.UserId == userId)?.AssessmentValue,
                 PointOfSaleDTO = discount.GetDiscountLocationDTO(location),
                 IsSaved = discount.IsSavedDiscount(userId),
                 Tags = discount.GetTags(),

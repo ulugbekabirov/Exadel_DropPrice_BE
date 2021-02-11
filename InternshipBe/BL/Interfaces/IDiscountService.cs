@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Models;
 using DAL.Entities;
+using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
@@ -22,5 +23,7 @@ namespace BL.Interfaces
         Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel);
 
         Task<DiscountViewModel> UpdateDiscountAsync(DiscountViewModel discountViewModel);
+
+        Task<AssessmentViewModel> UpdateUserAssessmentForDiscountAsync(int id, AssessmentViewModel assessmentViewModel, User user);
     }
 }

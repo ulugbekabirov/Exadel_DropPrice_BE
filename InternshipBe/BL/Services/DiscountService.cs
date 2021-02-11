@@ -9,6 +9,7 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Shared.ViewModels;
 using WebApi.ViewModels;
 
 namespace BL.Services
@@ -201,6 +202,25 @@ namespace BL.Services
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        public async Task<AssessmentViewModel> UpdateUserAssessmentForDiscountAsync(int id, AssessmentViewModel assessmentViewModel, User user)
+        {
+            var assessment = await _discountRepository.GetUserAssessmentAsync(id, user.Id);
+
+            if (assessment is null)
+            {
+                var discount = await _discountRepository.GetByIdAsync(id);
+                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, assessmentViewModel.AssessmentValue);
+            }
+            else
+            {
+                assessment.AssessmentValue = assessmentViewModel.AssessmentValue;
+            }
+
+            await _discountRepository.SaveChangesAsync();
+
+            return _mapper.Map<AssessmentViewModel>(assessment);
         }
     }
 }
