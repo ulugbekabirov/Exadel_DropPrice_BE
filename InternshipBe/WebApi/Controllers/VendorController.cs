@@ -60,9 +60,9 @@ namespace WebApi.Controllers
 
         [HttpGet("search")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SearchDiscounts(SearchModel searchmodel)
+        public async Task<IActionResult> SearchVendors(AdminSearchModel searchmodel)
         {
-            return Ok(await _vendorService.SearchAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _vendorService.SearchVendorsAsync(searchmodel));
         }
     }
 }

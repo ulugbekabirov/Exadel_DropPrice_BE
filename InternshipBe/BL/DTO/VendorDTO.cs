@@ -15,5 +15,7 @@
         public string SocialLinks { get; set; }
 
         public double? VendorRating { get; set; }
+
+        public int TicketCount { get; set; } = 0;
     }
 }

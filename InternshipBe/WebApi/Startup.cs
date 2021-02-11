@@ -93,7 +93,7 @@ namespace WebApi
             services.AddScoped<ITagRepository, TagRepository>();
 
             services.AddScoped<IVendorService, VendorService>();
-            services.AddScoped<IRepository<Vendor>, Repository<Vendor>>();
+            services.AddScoped<IVendorRepository, VendorRepository>();
 
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IDiscountRepository, DiscountRepository>();

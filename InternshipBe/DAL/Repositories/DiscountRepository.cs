@@ -51,7 +51,7 @@ namespace DAL.Repositories
         {
             var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
 
-            if (!string.IsNullOrEmpty(searchQuery))
+            if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
             }

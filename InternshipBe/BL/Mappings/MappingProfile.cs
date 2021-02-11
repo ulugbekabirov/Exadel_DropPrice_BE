@@ -59,6 +59,7 @@ namespace BL.Mapping
               .AfterMap((source, dto) =>
               {
                   dto.VendorRating = source.GetVendorRating();
+                  dto.TicketCount = source.GetTicketCount();
               });
             CreateMap<VendorDTO, Vendor>()
                 .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))

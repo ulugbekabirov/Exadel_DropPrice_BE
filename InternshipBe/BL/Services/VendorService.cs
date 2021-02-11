@@ -5,6 +5,8 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Shared.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,10 @@ namespace BL.Services
 {
     public class VendorService : IVendorService
     {
-        private readonly IRepository<Vendor> _vendorRepository;
+        private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public VendorService(IRepository<Vendor> vendorRepository, IMapper mapper)
+        public VendorService(IVendorRepository vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _mapper = mapper;
@@ -51,7 +53,7 @@ namespace BL.Services
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
                 .Take(sortModel.Take);
-                
+
             return _mapper.Map<DiscountDTO[]>(discountsModels);
         }
 
@@ -61,7 +63,7 @@ namespace BL.Services
 
             await _vendorRepository.CreateAsync(vendor);
 
-            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor); 
+            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor);
 
             return vendorViewModelCreated;
         }
@@ -82,9 +84,15 @@ namespace BL.Services
             return _mapper.Map<VendorViewModel>(vendor);
         }
 
-        public Task<IEnumerable<VendorDTO>> SearchAsync(SearchModel searchModel, User user)
+        public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
         {
-            throw new NotImplementedException();
+            var searchVendors = await _vendorRepository.SearchVendors(searchModel.SearchQuery).ToListAsync();
+
+            var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
+
+            var orderedVendorDTOs = searchVendorDTOs.SortBy(searchModel.SortBy[0]).ThenSortBy(searchModel.SortBy[1]);
+
+            return orderedVendorDTOs.Skip(searchModel.Skip).Take(searchModel.Take);
         }
     }
 }

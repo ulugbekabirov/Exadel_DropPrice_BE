@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> SearchDiscounts(SearchModel searchmodel)
         {
-            return Ok(await _discountService.SearchAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.SearchDiscountsAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpGet("{id}/createTicket")]
