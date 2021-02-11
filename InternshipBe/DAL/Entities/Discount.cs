@@ -17,7 +17,7 @@ namespace DAL.Entities
 
         public int Id { get; set; }
 
-        public int Vendorid { get; set; }
+        public int VendorId { get; set; }
 
         public virtual Vendor Vendor { get; set; }
 
@@ -41,7 +41,7 @@ namespace DAL.Entities
         [Required]
         public bool ActivityStatus { get; set; }
 
-        public string Promocode { get; set; }
+        public string PromoCode { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
 

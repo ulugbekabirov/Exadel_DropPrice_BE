@@ -1,6 +1,6 @@
-﻿namespace BL.DTO
+﻿namespace WebApi.ViewModels
 {
-    public class PointOfSaleDTO
+    public class PointOfSaleViewModel
     {
         public int Id { get; set; }
 

@@ -5,11 +5,11 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace BL.Services
 {
@@ -17,6 +17,7 @@ namespace BL.Services
     {
         private readonly IRepository<Vendor> _vendorRepository;
         private readonly IMapper _mapper;
+
         public VendorService(IRepository<Vendor> vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
@@ -52,6 +53,33 @@ namespace BL.Services
                 .Take(sortModel.Take);
                 
             return _mapper.Map<DiscountDTO[]>(discountsModels);
+        }
+
+        public async Task<VendorViewModel> CreateVendorAsync(VendorViewModel vendorViewModel)
+        {
+            var vendor = _mapper.Map<Vendor>(vendorViewModel);
+
+            await _vendorRepository.CreateAsync(vendor);
+
+            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor); 
+
+            return vendorViewModelCreated;
+        }
+
+        public async Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel)
+        {
+            var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.Id);
+
+            vendor.Name = vendorViewModel.Name;
+            vendor.Phone = vendorViewModel.Phone;
+            vendor.SocialLinks = vendorViewModel.SocialLinks;
+            vendor.Email = vendorViewModel.Email;
+            vendor.Address = vendorViewModel.Address;
+            vendor.Description = vendorViewModel.Description;
+
+            await _vendorRepository.SaveChangesAsync();
+
+            return _mapper.Map<VendorViewModel>(vendor);
         }
     }
 }

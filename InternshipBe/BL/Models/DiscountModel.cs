@@ -8,11 +8,15 @@ namespace BL.Models
     {
         public Discount Discount { get; set; }
 
-        public PointOfSaleDTO PointOfSaleDTO { get; set; }
+        public DiscountLocationDTO PointOfSaleDTO { get; set; }
 
         public bool IsSaved { get; set; }
 
         public double? DiscountRating { get; set; }
+
+        public int? AssessmentValue { get; set; }
+
+        public bool IsOrdered { get; set; }
 
         public List<string> Tags { get; set; }
     }

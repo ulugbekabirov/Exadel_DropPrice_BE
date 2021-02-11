@@ -3,7 +3,6 @@ using BL.Models;
 using BL.Services;
 using DAL.Entities;
 using GeoCoordinatePortable;
-using Shared.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,15 +16,17 @@ namespace BL.Extensions
             {
                 Discount = discount,
                 DiscountRating = discount.DiscountRating(),
-                PointOfSaleDTO = discount.GetPointOfSaleDTO(location),
+                AssessmentValue = discount.Assessments?.SingleOrDefault(a => a.UserId == userId)?.AssessmentValue,
+                PointOfSaleDTO = discount.GetDiscountLocationDTO(location),
                 IsSaved = discount.IsSavedDiscount(userId),
+                IsOrdered = discount.Assessments.Any(a => a.UserId == userId),
                 Tags = discount.GetTags(),
             };
 
             return discountModel;
         }
 
-        public static PointOfSaleDTO GetPointOfSaleDTO(this Discount discount, GeoCoordinate location)
+        public static DiscountLocationDTO GetDiscountLocationDTO(this Discount discount, GeoCoordinate location)
         {
             if (discount.PointOfSales.Count == 0)
             {
@@ -33,7 +34,7 @@ namespace BL.Extensions
             }
 
             var pointOfSaleDTO = discount.PointOfSales
-                .Select(p => new PointOfSaleDTO()
+                .Select(p => new DiscountLocationDTO()
                 {
                     Address = p.Address,
                     DistanceInMeters = (int)location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))

@@ -12,8 +12,8 @@
 
         public string Address { get; set; }
 
-        public string SocialNetworkLink { get; set; }
-        
+        public string SocialLinks { get; set; }
+
         public double? VendorRating { get; set; }
     }
 }

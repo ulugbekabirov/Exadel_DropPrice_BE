@@ -27,7 +27,7 @@ namespace DAL.Entities
         [Required]
         public string Phone { get; set; }
 
-        public string SocialNetworkLink { get; set; }
+        public string SocialLinks { get; set; }
 
         public virtual ICollection<Discount> Discounts { get; set; }
     }

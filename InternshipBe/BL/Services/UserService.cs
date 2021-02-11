@@ -12,12 +12,14 @@ namespace BL.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly ITicketRepository _ticketRepository;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository repository, IMapper mapper)
+        public UserService(IUserRepository repository, IMapper mapper, ITicketRepository ticketRepository)
         {
             _userRepository = repository;
             _mapper = mapper;
+            _ticketRepository = ticketRepository;
         }
 
         public async Task<UserDTO> GetUserInfoAsync(User user)
@@ -34,5 +36,11 @@ namespace BL.Services
             return _mapper.Map<SavedDTO[]>(savedDiscount);
         }
         
+        public async Task<IEnumerable<TicketDTO>> GetUserTicketsAsync(User user, SpecifiedAmountModel specifiedAmountModel)
+        {
+            var tickets = await _ticketRepository.GetTicketsAsync(user.Id, specifiedAmountModel.Skip, specifiedAmountModel.Take);
+
+            return _mapper.Map<TicketDTO[]>(tickets);        
+        }
     }
 }

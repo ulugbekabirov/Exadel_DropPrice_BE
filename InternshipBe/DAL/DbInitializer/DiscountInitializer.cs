@@ -124,14 +124,14 @@ namespace DAL.DbInitializer
         {
             var discount = new Discount()
             {
-                Vendorid = vendorId,
+                VendorId = vendorId,
                 Name = name,
                 Description = description,
                 DiscountAmount = discountAmount,
                 EndDate = endDate,
                 StartDate = startDate,
                 ActivityStatus = activityStatus,
-                Promocode = promoCode,
+                PromoCode = promoCode,
                 Vendor = vendor,
                 PointOfSales = pointOfSales,
                 Tags = tags,
@@ -139,11 +139,11 @@ namespace DAL.DbInitializer
 
             _context.Discounts.Add(discount);
 
-            AddDiscountToVendor(vendorId, discount);
+            //AddDiscountToVendor(vendorId, discount);
 
-            AddDiscountToPointOfSales(pointOfSales, discount);
+            //AddDiscountToPointOfSales(pointOfSales, discount);
 
-            AddDiscountToTags(tags, discount);
+            //AddDiscountToTags(tags, discount);
 
             _context.SaveChanges();
         }

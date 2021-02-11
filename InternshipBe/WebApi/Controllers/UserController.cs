@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     [Route("api/")]
-    [ApiController]
     [Authorize]
     public class UserController : ControllerBase
     {
@@ -35,5 +34,10 @@ namespace WebApi.Controllers
             
         }
         
+        [HttpGet("user/tickets")]
+        public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
+        {
+            return Ok(await _userService.GetUserTicketsAsync(await _userManager.FindByNameAsync(User.Identity.Name), specifiedAmountModel));
+        }
     }
 }
