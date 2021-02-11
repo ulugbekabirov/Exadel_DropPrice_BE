@@ -9,6 +9,6 @@ namespace BL.Interfaces
     {
         Task<IEnumerable<ConfigVariableDTO>> GetConfigs();
 
-        Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs, int id);
+        Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs);
     }
 }
