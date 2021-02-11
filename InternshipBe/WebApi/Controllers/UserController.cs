@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/")]
+    [Route("api/user")]
     [Authorize]
     public class UserController : ControllerBase
     {
@@ -21,13 +21,19 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("user")]
+        [HttpGet]
         public async Task<IActionResult> GetUserInfo()
         {
             return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
-        [HttpGet("user/tickets")]
+        [HttpGet("saved")]
+        public async Task<IActionResult> GetUserSavedDiscounts(LocationModel locationModel)
+        {
+            return Ok(await _userService.GetUserSavedDiscountsAsync(locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+        
+        [HttpGet("tickets")]
         public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
         {
             return Ok(await _userService.GetUserTicketsAsync(await _userManager.FindByNameAsync(User.Identity.Name), specifiedAmountModel));
