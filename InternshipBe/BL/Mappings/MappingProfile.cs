@@ -4,6 +4,7 @@ using BL.Extensions;
 using BL.Models;
 using DAL.Entities;
 using Shared.Extensions;
+using Shared.ViewModels;
 using System.Collections.Generic;
 using WebApi.ViewModels;
 
@@ -46,6 +47,8 @@ namespace BL.Mapping
                 .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
                 .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode));
+
+            CreateMap<AssessmentViewModel, Assessment>().ReverseMap();
 
             CreateMap<VendorViewModel, Vendor>();
             CreateMap<Vendor, VendorViewModel>();
