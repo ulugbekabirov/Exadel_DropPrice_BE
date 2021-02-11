@@ -14,6 +14,11 @@ namespace DAL.Repositories
 
         public IQueryable<Vendor> SearchVendors(string searchQuery)
         {
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                return _context.Vendors.AsQueryable();
+            }
+
             return _context.Vendors.Where(v => v.Name.Contains(searchQuery)).AsQueryable();
         }
     }
