@@ -1,20 +1,23 @@
 ﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Shared.Infrastructure.Filters
 {
     public class ValidateModelFilterAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
             var modelState = actionContext.ModelState;
 
             if (!modelState.IsValid)
             {
-                actionContext.Response = actionContext.Request
-                     .CreateErrorResponse(HttpStatusCode.BadRequest, modelState);
+                actionContext.HttpContext.Response.StatusCode = 400;
+                actionContext.Result = new ContentResult()
+                {
+                    Content = modelState.Values.ToString()
+                };
+                return;
             }
         }
     }
