@@ -31,7 +31,7 @@ namespace BL.Services
             return _mapper.Map(await _userRepository.GetUserRolesAsync(user.Id), userDTO);
         }
 
-        public async Task<IEnumerable<DiscountDTO>> GetUserDiscountsAsync(LocationModel locationModel, User user)
+        public async Task<IEnumerable<DiscountDTO>> GetUserSavedDiscountsAsync(LocationModel locationModel, User user)
         {
             var savedDiscounts = await _userRepository.GetSavedDiscountsAsync(user.Id, locationModel.Skip, locationModel.Take);
 

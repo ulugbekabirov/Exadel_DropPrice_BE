@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet("saved")]
         public async Task<IActionResult> GetUserSavedDiscounts(LocationModel locationModel)
         {
-            return Ok(await _userService.GetUserDiscountsAsync(locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _userService.GetUserSavedDiscountsAsync(locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
         
         [HttpGet("tickets")]
