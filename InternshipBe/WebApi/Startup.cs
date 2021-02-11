@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shared.Infrastructure.Filters;
 using System.Text;
 using System.Text.Json;
 
@@ -105,6 +106,8 @@ namespace WebApi
 
             services.AddScoped<IPointOfSaleService, PointOfSaleService>();
             services.AddScoped<IRepository<PointOfSale>, Repository<PointOfSale>>();
+
+            services.AddScoped<ValidateModelFilterAttribute>();
 
             services.AddAuthentication(options =>
             {
