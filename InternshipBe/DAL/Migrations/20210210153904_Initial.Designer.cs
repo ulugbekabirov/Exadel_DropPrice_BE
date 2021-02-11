@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210207124451_Initial")]
+    [Migration("20210210153904_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,12 +98,12 @@ namespace DAL.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Vendorid")
+                    b.Property<int>("VendorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Vendorid");
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Discounts");
                 });
@@ -368,7 +368,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SocialNetworkLink")
+                    b.Property<string>("SocialLinks")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -559,7 +559,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Vendor", "Vendor")
                         .WithMany("Discounts")
-                        .HasForeignKey("Vendorid")
+                        .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

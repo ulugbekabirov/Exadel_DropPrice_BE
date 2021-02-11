@@ -108,7 +108,7 @@ namespace DAL.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SocialNetworkLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SocialLinks = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,7 +180,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Vendorid = table.Column<int>(type: "int", nullable: false),
+                    VendorId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DiscountAmount = table.Column<int>(type: "int", nullable: false),
@@ -193,8 +193,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Discounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Discounts_Vendors_Vendorid",
-                        column: x => x.Vendorid,
+                        name: "FK_Discounts_Vendors_VendorId",
+                        column: x => x.VendorId,
                         principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -474,9 +474,9 @@ namespace DAL.Migrations
                 column: "PointOfSalesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounts_Vendorid",
+                name: "IX_Discounts_VendorId",
                 table: "Discounts",
-                column: "Vendorid");
+                column: "VendorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DiscountTag_TagsId",

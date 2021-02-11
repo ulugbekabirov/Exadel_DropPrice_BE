@@ -2,9 +2,12 @@
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
+using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
 
 namespace BL.Services
 {
@@ -12,8 +15,8 @@ namespace BL.Services
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
-        public TagService(ITagRepository repository,
-                           IMapper mapper)
+
+        public TagService(ITagRepository repository, IMapper mapper)
         {
             _tagRepository = repository;
             _mapper = mapper;
@@ -24,6 +27,32 @@ namespace BL.Services
             var tags = await _tagRepository.GetPopularAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
             return _mapper.Map<TagDTO[]>(tags);
+        }
+
+        public async Task<List<Tag>> GetTagsAndCreateIfNotExistAsync(string[] tagNames)
+        {
+            var result = new List<Tag>();
+
+            var allTags = await _tagRepository.GetAllAsync();
+
+            result.AddRange(allTags.Where(t => tagNames.Contains(t.Name)));
+
+            var notExistingTags = tagNames.Except(allTags.Select(t => t.Name));
+            
+            for (int i = 0; i < notExistingTags.Count(); i++)
+            {
+                var tag = new Tag()
+                {
+                    Name = notExistingTags.ElementAt(i),
+                };
+
+                result.Add(tag);
+                await _tagRepository.CreateAsync(tag);
+            }
+
+            await _tagRepository.SaveChangesAsync();
+
+            return result;
         }
     }
 }

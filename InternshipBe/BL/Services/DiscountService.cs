@@ -9,6 +9,8 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Shared.ViewModels;
+using WebApi.ViewModels;
 
 namespace BL.Services
 {
@@ -25,12 +27,15 @@ namespace BL.Services
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
+        private readonly ITagService _tagRepository;
+        private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
 
-        public DiscountService(IDiscountRepository repository,
-                                IMapper mapper)
+        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper)
         {
-            _discountRepository = repository;
+            _discountRepository = discountRepository;
+            _tagRepository = tagRepository;
+            _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
         }
 
@@ -45,7 +50,7 @@ namespace BL.Services
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
                 .Skip(sortModel.Skip)
-                .Take(sortModel.Take); 
+                .Take(sortModel.Take);
 
             return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
         }
@@ -111,6 +116,111 @@ namespace BL.Services
             await _discountRepository.SaveChangesAsync();
 
             return _mapper.Map<ArchivedDiscountDTO>(discount);
+        }
+
+        public async Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel)
+        {
+            using var transaction = await _discountRepository.BeginTrancation();
+
+            try
+            {
+                var discount = _mapper.Map<Discount>(discountViewModel);
+
+                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
+
+                var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
+
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+
+                discount.VendorId = vendorDiscount.Id;
+                discount.Vendor = vendorDiscount;
+                discount.Tags = tags;
+                discount.PointOfSales = pointOfSales;
+
+                await _discountRepository.CreateAsync(discount);
+
+                await _discountRepository.SaveChangesAsync();
+
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                createDiscountViewModel.Tags = discountViewModel.Tags;
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+
+                await transaction.CommitAsync();
+
+                return createDiscountViewModel;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+        public async Task<DiscountViewModel> UpdateDiscountAsync(DiscountViewModel discountViewModel)
+        {
+            using var transaction = await _discountRepository.BeginTrancation();
+
+            try
+            {
+                var discount = await _discountRepository.GetByIdAsync(discountViewModel.Id);
+
+                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
+
+                var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
+
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+
+                discount.Tags.Clear();
+                discount.PointOfSales.Clear();
+
+                await _discountRepository.SaveChangesAsync();
+
+                discount.Name = discountViewModel.DiscountName;
+                discount.VendorId = vendorDiscount.Id;
+                discount.Vendor = vendorDiscount;
+                discount.Description = discountViewModel.Description;
+                discount.PromoCode = discountViewModel.PromoCode;
+                discount.DiscountAmount = discountViewModel.DiscountAmount;
+                discount.ActivityStatus = discountViewModel.ActivityStatus;
+                discount.StartDate = discountViewModel.StartDate;
+                discount.EndDate = discountViewModel.EndDate;
+                discount.Tags = tags;
+                discount.PointOfSales = pointOfSales;
+
+                await _discountRepository.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
+                var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
+                createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+
+                return createDiscountViewModel;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+        public async Task<AssessmentViewModel> UpdateUserAssessmentForDiscountAsync(int id, AssessmentViewModel assessmentViewModel, User user)
+        {
+            var assessment = await _discountRepository.GetUserAssessmentAsync(id, user.Id);
+
+            if (assessment is null)
+            {
+                var discount = await _discountRepository.GetByIdAsync(id);
+                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, assessmentViewModel.AssessmentValue);
+            }
+            else
+            {
+                assessment.AssessmentValue = assessmentViewModel.AssessmentValue;
+            }
+
+            await _discountRepository.SaveChangesAsync();
+
+            return _mapper.Map<AssessmentViewModel>(assessment);
         }
     }
 }

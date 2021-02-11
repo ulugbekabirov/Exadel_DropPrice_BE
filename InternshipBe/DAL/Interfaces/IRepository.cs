@@ -1,4 +1,5 @@
 ﻿using GeoCoordinatePortable;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,5 +19,7 @@ namespace DAL.Interfaces
         Task SaveChangesAsync();
 
         GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0);
+
+        Task<IDbContextTransaction> BeginTrancation();
     }
 }

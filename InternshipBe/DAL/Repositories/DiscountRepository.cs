@@ -41,8 +41,7 @@ namespace DAL.Repositories
             };
 
             await _context.SavedDiscounts.AddAsync(newSavedDiscount);
-            user.SavedDiscounts.Add(newSavedDiscount);
-            discount.SavedDiscounts.Add(newSavedDiscount);
+
             await _context.SaveChangesAsync();
 
             return newSavedDiscount;
@@ -68,6 +67,34 @@ namespace DAL.Repositories
             var discounts = await searchResults.ToListAsync();
 
             return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
+        }
+
+        public async Task<Vendor> GetVendorByNameAsync(string vendorName)
+        {
+            return await _context.Vendors.SingleAsync(v => v.Name == vendorName);
+        }
+
+        public async Task<Assessment> GetUserAssessmentAsync(int discountId, int userId)
+        {
+            return await _context.Assessments.SingleOrDefaultAsync(a => a.DiscountId == discountId && a.UserId == userId);
+        }
+
+        public async Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmentValue)
+        {
+            var assessment = new Assessment()
+            {
+                DiscountId = discount.Id,
+                UserId = user.Id,
+                Discount = discount,
+                User = user,
+                AssessmentValue = assessmentValue,
+            };
+
+            await _context.Assessments.AddAsync(assessment);
+
+            await _context.SaveChangesAsync();
+
+            return assessment;
         }
     }
 }

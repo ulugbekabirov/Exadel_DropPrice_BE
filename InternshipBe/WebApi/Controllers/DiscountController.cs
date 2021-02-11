@@ -4,7 +4,10 @@ using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Infrastructure.Filters;
+using Shared.ViewModels;
 using System.Threading.Tasks;
+using WebApi.ViewModels;
 
 namespace WebApi.Controllers
 {
@@ -54,10 +57,33 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/archive")]
-        [Authorize(Roles = "Admin,Moderator")]
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> ArchiveDiscount(int id)
         {
             return Ok(await _discountService.ArchiveOrUnarchiveDiscount(id));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Moderator")]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
+        public async Task<IActionResult> CreateDiscount([FromBody] DiscountViewModel discountViewModel)
+        {
+            return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTagsAsync(discountViewModel));
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Moderator")]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
+        public async Task<IActionResult> UpdateDiscount(int id, [FromBody] DiscountViewModel discountViewModel)
+        {
+            discountViewModel.Id = id;
+            return Ok(await _discountService.UpdateDiscountAsync(discountViewModel));
+        }
+
+        [HttpPut("{id}/assess")]
+        public async Task<IActionResult> UpdateUserAssessmentForDiscount(int id, [FromBody] AssessmentViewModel assessmentViewModel)
+        {
+            return Ok(await _discountService.UpdateUserAssessmentForDiscountAsync(id, assessmentViewModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
     }
 }

@@ -33,6 +33,10 @@ namespace BL.DTO
 
         public bool IsSaved { get; set; }
 
+        public bool IsOrdered { get; set; }
+
+        public int? AssessmentValue { get; set; }
+
         public ICollection<string> Tags { get; set; } 
     }
 }
