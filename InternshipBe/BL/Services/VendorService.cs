@@ -90,29 +90,9 @@ namespace BL.Services
 
             var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
 
-            var orderedVendorDTOs = ThenSortBy(SortBy(searchVendorDTOs, searchModel.SortBy[0]), searchModel.SortBy[1]);
+            var orderedVendorDTOs = searchVendorDTOs.SortBy(searchModel.SortBy[0]).ThenSortBy(searchModel.SortBy[1]);
 
             return orderedVendorDTOs.Skip(searchModel.Skip).Take(searchModel.Take);
         }
-
-        public IOrderedEnumerable<VendorDTO> SortBy(IEnumerable<VendorDTO> vendors, string sortBy)
-        => sortBy switch
-        {
-            "RatingAsc" => vendors.OrderBy(v => v.VendorRating),
-            "RatingDesc" => vendors.OrderByDescending(v => v.VendorRating),
-            "TicketCountAsc" => vendors.OrderBy(v => v.TicketCount),
-            "TicketCountDesc" => vendors.OrderByDescending(v => v.TicketCount),
-            _ => throw new NotImplementedException(),
-        };
-
-        public IOrderedEnumerable<VendorDTO> ThenSortBy(IOrderedEnumerable<VendorDTO> vendors, string sortBy)
-        => sortBy switch
-        {
-            "RatingAsc" => vendors.ThenBy(v => v.VendorRating),
-            "RatingDesc" => vendors.ThenByDescending(v => v.VendorRating),
-            "TicketCountAsc" => vendors.ThenBy(v => v.TicketCount),
-            "TicketCountDesc" => vendors.ThenByDescending(v => v.TicketCount),
-            _ => throw new NotImplementedException(),
-        };
     }
 }
