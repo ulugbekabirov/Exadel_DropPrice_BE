@@ -16,10 +16,10 @@ namespace BL.Services
 {
     public class VendorService : IVendorService
     {
-        private readonly IRepository<Vendor> _vendorRepository;
+        private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public VendorService(IRepository<Vendor> vendorRepository, IMapper mapper)
+        public VendorService(IVendorRepository vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _mapper = mapper;
@@ -85,13 +85,13 @@ namespace BL.Services
 
         public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
         {
-            var searchVendors = await _vendorRepository.GetAllAsync();
-
-            if (!string.IsNullOrWhiteSpace(searchModel.SearchQuery))
+            if (string.IsNullOrWhiteSpace(searchModel.SearchQuery))
             {
-                searchVendors = searchVendors.Where(v => v.Name.Contains(searchModel.SearchQuery));
+                return await GetVendorsAsync();       
             }
 
+            var searchVendors = _vendorRepository.;
+            
             var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
 
             return searchVendorDTOs.SortBy(searchModel.SortByRating).ThenSortBy(searchModel.SortByTicketCount).Skip(searchModel.Skip).Take(searchModel.Take);
