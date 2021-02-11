@@ -57,7 +57,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountDTO>> SearchDiscountsAsync(SearchModel searchModel, User user)
         {
-            if (string.IsNullOrEmpty(searchModel.SearchQuery) && searchModel.Tags.Length == 0)
+            if (string.IsNullOrWhiteSpace(searchModel.SearchQuery) && searchModel.Tags.Length == 0)
             {
                 return await GetDiscountsAsync(searchModel, user);
             }
