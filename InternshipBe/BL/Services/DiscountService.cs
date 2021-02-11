@@ -55,7 +55,7 @@ namespace BL.Services
             return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
         }
 
-        public async Task<IEnumerable<DiscountDTO>> SearchAsync(SearchModel searchModel, User user)
+        public async Task<IEnumerable<DiscountDTO>> SearchDiscountsAsync(SearchModel searchModel, User user)
         {
             if (string.IsNullOrEmpty(searchModel.SearchQuery) && searchModel.Tags.Length == 0)
             {
