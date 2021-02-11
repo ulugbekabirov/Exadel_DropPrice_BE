@@ -17,17 +17,18 @@ namespace WebApi.Controllers
             _configService = service;
         }
 
-        [HttpGet("config")]
-        public async Task<IActionResult> GetRadius()
+        [HttpGet("configs")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetConfigs()
         {
             return Ok(await _configService.GetConfigs());
         }
 
-        [HttpPut("config")]
+        [HttpPut("changeConfigs/{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ChangeRadius([FromBody] ConfigModel newConfigs)
+        public async Task<IActionResult> ChangeConfigs([FromBody] ConfigModel newConfigs, int id)
         {
-            return Ok(await _configService.ChangeConfigAsync(newConfigs));
+            return Ok(await _configService.ChangeConfigAsync(newConfigs, id));
         }
     }
 }
