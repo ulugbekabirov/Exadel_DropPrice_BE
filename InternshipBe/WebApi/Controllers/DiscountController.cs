@@ -65,7 +65,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
-        [ValidateModelFilter]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> CreateDiscount([FromBody] DiscountViewModel discountViewModel)
         {
             return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTagsAsync(discountViewModel));
@@ -73,7 +73,7 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Moderator")]
-        [ValidateModelFilter]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> UpdateDiscount(int id, [FromBody] DiscountViewModel discountViewModel)
         {
             discountViewModel.Id = id;
