@@ -17,19 +17,5 @@ namespace Shared.Extensions
         {
             return vendor.Discounts.Sum(d => d.Tickets.Count);
         }
-
-        public static IOrderedEnumerable<VendorDTO> SortBy(this IEnumerable<VendorDTO> vendors, bool sortBy)
-        => sortBy switch
-        {
-            true => vendors.OrderBy(d => d.VendorRating),
-            false => vendors.OrderByDescending(v => v.VendorRating),
-        };
-
-        public static IOrderedEnumerable<VendorDTO> ThenSortBy(this IOrderedEnumerable<VendorDTO> vendors, bool sortBy)
-        => sortBy switch
-        {
-            true => vendors.ThenBy(d => d.TicketCount),
-            false => vendors.ThenByDescending(v => v.TicketCount),
-        };
     }
 }
