@@ -1,14 +1,15 @@
-﻿using DAL.Interfaces;
-using System;
+﻿using DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace DAL.Interfaces
 {
-    interface IConfigRepository : IRepository<ConfigVariebles>
+    public interface IConfigRepository : IRepository<ConfigVariable>
     {
-        Task<int> GetRadius();
+        Task<IEnumerable<ConfigVariable>> GetConfigsAsync();
+
+        Task<ConfigVariable> GetConfigAsync(int id);
     }
 }

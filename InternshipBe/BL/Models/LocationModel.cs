@@ -2,8 +2,8 @@
 {
     public class LocationModel : SpecifiedAmountModel
     {
-        public double Latitude { get; set; }
+        public double Latitude { get; set; } = 0;
 
-        public double Longitude { get; set; }
+        public double Longitude { get; set; } = 0;
     }
 }

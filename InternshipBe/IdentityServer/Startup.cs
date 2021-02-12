@@ -12,6 +12,7 @@ using System.Text;
 using DAL.Entities;
 using System.Text.Json;
 using Shared.ExceptionHandling;
+using Microsoft.OpenApi.Models;
 
 namespace IdentityServer
 {
@@ -32,8 +33,13 @@ namespace IdentityServer
 
             services.AddCors();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Identity Server" });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                                                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -65,6 +71,8 @@ namespace IdentityServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
 
             app.UseGlobalExceptionMiddleware();

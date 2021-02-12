@@ -1,5 +1,4 @@
-﻿using DAL.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BL.DTO
@@ -33,6 +32,10 @@ namespace BL.DTO
         public bool ActivityStatus { get; set; }
 
         public bool IsSaved { get; set; }
+
+        public bool IsOrdered { get; set; }
+
+        public int? AssessmentValue { get; set; }
 
         public ICollection<string> Tags { get; set; } 
     }

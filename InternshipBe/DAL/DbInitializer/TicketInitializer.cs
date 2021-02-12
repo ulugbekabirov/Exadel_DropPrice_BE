@@ -36,6 +36,8 @@ namespace DAL.DbInitializer
                 UserId = userId,
                 DiscountId = discountId,
                 OrderDate = DateTime.Now,
+                User = _context.Users.Find(userId),
+                Discount = _context.Discounts.Find(discountId), 
             };
 
             _context.Tickets.Add(ticket);

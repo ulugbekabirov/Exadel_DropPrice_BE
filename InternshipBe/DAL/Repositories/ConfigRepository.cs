@@ -2,26 +2,29 @@
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ConfigRepository : Repository<ConfigVariebles>, IConfigRepository
+    public class ConfigRepository : Repository<ConfigVariable>, IConfigRepository
     {
         public ConfigRepository(ApplicationDbContext context) : base(context)
         {
 
         }
 
-        public Task<Ticket> GetRadius()
+        public async Task<IEnumerable<ConfigVariable>> GetConfigsAsync()
         {
-            var radius = _context.
+            return await _entities.ToListAsync();
+        }
 
-            return radius;
+        public async Task<ConfigVariable> GetConfigAsync(int id)
+        {
+            var config = await _entities.Where(p => p.Id == id).SingleOrDefaultAsync();
+
+            return config;
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using DAL.DataContext;
 using DAL.Interfaces;
+using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,26 @@ namespace DAL.Repositories
         public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
         {
             return _entities.Skip(skip).Take(take);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IDbContextTransaction> BeginTrancation()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
+
+        public GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0)
+        {
+            if (latittude == 0 && longitude == 0)
+            {
+                return new GeoCoordinate(officeLatitude, officeLongitude);
+            }
+
+            return new GeoCoordinate(latittude, longitude);
         }
     }
 }

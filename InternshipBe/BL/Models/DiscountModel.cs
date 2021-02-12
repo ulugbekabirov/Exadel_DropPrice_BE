@@ -1,5 +1,6 @@
-﻿using DAL.Entities;
-using GeoCoordinatePortable;
+﻿using BL.DTO;
+using DAL.Entities;
+using System.Collections.Generic;
 
 namespace BL.Models
 {
@@ -7,8 +8,16 @@ namespace BL.Models
     {
         public Discount Discount { get; set; }
 
-        public int UserId { get; set; }
+        public DiscountLocationDTO PointOfSaleDTO { get; set; }
 
-        public GeoCoordinate Location { get; set; }
+        public bool IsSaved { get; set; }
+
+        public double? DiscountRating { get; set; }
+
+        public int? AssessmentValue { get; set; }
+
+        public bool IsOrdered { get; set; }
+
+        public List<string> Tags { get; set; }
     }
 }

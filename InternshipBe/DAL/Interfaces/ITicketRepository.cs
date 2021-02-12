@@ -1,14 +1,15 @@
 ﻿using DAL.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
     public interface ITicketRepository : IRepository<Ticket>
     {
-        Task<Ticket> GetTicketForUser(int discountId, User user);
+        Task<Ticket> GetTicketAsync(int discountId, int userId);
+
+        Task<IEnumerable<Ticket>> GetTicketsAsync(int userId, int skip, int take);
+
+        Task<Ticket> CreateTicketAsync(int discountId, User user);
     }
 }

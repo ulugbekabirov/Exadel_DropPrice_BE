@@ -15,7 +15,6 @@ namespace DAL.Entities
 
         public virtual Discount Discount { get; set; }
 
-        [Required]
-        public int AssessmentValue { get; set; }
+        public int? AssessmentValue { get; set; }
     }
 }
