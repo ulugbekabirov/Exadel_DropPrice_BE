@@ -7,7 +7,7 @@ namespace BL.Extensions
     {
         public static bool IsExpired(this Ticket ticket)
         {
-            return ticket.OrderDate.Date == DateTime.Now.Date;
+            return ticket.OrderDate.Date != DateTime.Now.Date;
         }
     }
 }
