@@ -224,7 +224,7 @@ namespace BL.Services
             return _mapper.Map<AssessmentViewModel>(assessment);
         }
 
-        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticAsync(AdminSearchModel adminSearchModel)
+        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
         {
             var discounts = await _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery).ToListAsync();
 

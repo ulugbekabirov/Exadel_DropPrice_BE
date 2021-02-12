@@ -46,9 +46,9 @@ namespace WebApi.Controllers
 
         [HttpGet("search/stats")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SearchDiscountsForStatistic(AdminSearchModel adminSearchModel)
+        public async Task<IActionResult> SearchDiscountsForStatistics(AdminSearchModel adminSearchModel)
         {
-            return Ok(await _discountService.SearchDiscountsForStatisticAsync(adminSearchModel));
+            return Ok(await _discountService.SearchDiscountsForStatisticsAsync(adminSearchModel));
         }
 
         [HttpGet("{id}/createTicket")]
