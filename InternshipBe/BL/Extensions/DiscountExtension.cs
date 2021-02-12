@@ -3,6 +3,7 @@ using BL.Models;
 using BL.Services;
 using DAL.Entities;
 using GeoCoordinatePortable;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -88,5 +89,30 @@ namespace BL.Extensions
 
             return discount.Assessments.Average(a => a.AssessmentValue);
         }
+
+        public static int? GetTicketCount(this Discount discount)
+        {
+            return discount.Tickets.Count;
+        }
+
+        public static IOrderedEnumerable<DiscountStatisticDTO> SortBy(this IEnumerable<DiscountStatisticDTO> discounts, string sortBy)
+        => sortBy switch
+        {
+            "RatingAsc" => discounts.OrderBy(v => v.DiscountRating),
+            "RatingDesc" => discounts.OrderByDescending(v => v.DiscountRating),
+            "TicketCountAsc" => discounts.OrderBy(v => v.TicketCount),
+            "TicketCountDesc" => discounts.OrderByDescending(v => v.TicketCount),
+            _ => throw new NotImplementedException(),
+        };
+
+        public static IOrderedEnumerable<DiscountStatisticDTO> ThenSortBy(this IOrderedEnumerable<DiscountStatisticDTO> discounts, string sortBy)
+        => sortBy switch
+        {
+            "RatingAsc" => discounts.ThenBy(v => v.DiscountRating),
+            "RatingDesc" => discounts.ThenByDescending(v => v.DiscountRating),
+            "TicketCountAsc" => discounts.ThenBy(v => v.TicketCount),
+            "TicketCountDesc" => discounts.ThenByDescending(v => v.TicketCount),
+            _ => throw new NotImplementedException(),
+        };
     }
 }

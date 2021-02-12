@@ -96,5 +96,15 @@ namespace DAL.Repositories
 
             return assessment;
         }
+
+        public async Task<IEnumerable<Discount>> SearchStatisticDiscountsAsync(string searchQuery)
+        {
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                return await _context.Discounts.ToListAsync();
+            }
+
+            return await _context.Discounts.Where(v => v.Name.Contains(searchQuery)).ToListAsync();
+        }
     }
 }

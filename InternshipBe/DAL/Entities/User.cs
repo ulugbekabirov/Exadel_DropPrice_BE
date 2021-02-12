@@ -20,14 +20,11 @@ namespace DAL.Entities
         public virtual Office Office { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string LastName { get; set; }
 
-        [MaxLength(30)]
         public string Patronymic { get; set; }
 
         [Required]

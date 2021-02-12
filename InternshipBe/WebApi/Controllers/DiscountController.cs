@@ -44,6 +44,13 @@ namespace WebApi.Controllers
             return Ok(await _discountService.SearchDiscountsAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
+        [HttpGet("stats/search")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SearchDiscountsForStatistics(AdminSearchModel adminSearchModel)
+        {
+            return Ok(await _discountService.SearchDiscountsForStatisticsAsync(adminSearchModel));
+        }
+
         [HttpGet("{id}/createTicket")]
         public async Task<IActionResult> CreateTicket(int id)
         {

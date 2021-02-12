@@ -1,7 +1,10 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -12,14 +15,14 @@ namespace DAL.Repositories
 
         }
 
-        public IQueryable<Vendor> SearchVendors(string searchQuery)
+        public async Task<IEnumerable<Vendor>> SearchVendors(string searchQuery)
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                return _context.Vendors.AsQueryable();
+                return await _context.Vendors.ToListAsync();
             }
 
-            return _context.Vendors.Where(v => v.Name.Contains(searchQuery)).AsQueryable();
+            return await _context.Vendors.Where(v => v.Name.Contains(searchQuery)).ToListAsync();
         }
     }
 }
