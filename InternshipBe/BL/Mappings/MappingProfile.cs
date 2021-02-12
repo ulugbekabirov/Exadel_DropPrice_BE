@@ -46,7 +46,11 @@ namespace BL.Mapping
                 .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
                 .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
-                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode));
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode))
+                .AfterMap((source, dto) =>
+                {
+                    dto.IsExpired = source.IsExpired();
+                });
 
             CreateMap<AssessmentViewModel, Assessment>().ReverseMap();
 
