@@ -230,9 +230,9 @@ namespace BL.Services
 
             var discountStatisticDTOs = _mapper.Map<DiscountStatisticDTO[]>(discounts);
 
-            var orderedVendorDTOs = discountStatisticDTOs.SortBy(adminSearchModel.SortBy[0]).ThenSortBy(adminSearchModel.SortBy[1]);
+            var ordereDiscountStatisticDTOs = discountStatisticDTOs.SortBy(adminSearchModel.SortBy[0]).ThenSortBy(adminSearchModel.SortBy[1]);
 
-            return orderedVendorDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
+            return ordereDiscountStatisticDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
         }
     }
 }
