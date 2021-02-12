@@ -222,5 +222,16 @@ namespace BL.Services
 
             return _mapper.Map<AssessmentViewModel>(assessment);
         }
+
+        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
+        {
+            var discounts = await _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
+
+            var discountStatisticDTOs = _mapper.Map<DiscountStatisticDTO[]>(discounts);
+
+            var ordereDiscountStatisticDTOs = discountStatisticDTOs.SortBy(adminSearchModel.SortBy[0]).ThenSortBy(adminSearchModel.SortBy[1]);
+
+            return ordereDiscountStatisticDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
+        }
     }
 }

@@ -38,6 +38,11 @@ namespace BL.Mapping
                 .ForMember(s => s.DiscountID, source => source.MapFrom(s => s.DiscountId))
                 .ForMember(s => s.IsSaved, source => source.MapFrom(s => s.IsSaved));
 
+            CreateMap<PointOfSale, PointOfSaleDTO>();
+            CreateMap<PointOfSaleViewModel, PointOfSale>().ReverseMap();
+
+            CreateMap<AssessmentViewModel, Assessment>().ReverseMap();
+
             CreateMap<Ticket, TicketDTO>()
                 .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
                 .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
@@ -46,9 +51,15 @@ namespace BL.Mapping
                 .ForMember(t => t.VendorEmail, source => source.MapFrom(s => s.Discount.Vendor.Email))
                 .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
-                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode));
+                .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode))
+                .AfterMap((source, dto) =>
+                {
+                    dto.IsExpired = source.IsExpired();
+                });
 
-            CreateMap<AssessmentViewModel, Assessment>().ReverseMap();
+            CreateMap<Discount, DiscountStatisticDTO>()
+                .ForMember(d => d.DiscountRating, source => source.MapFrom(s => s.DiscountRating()))
+                .ForMember(d => d.TicketCount, source => source.MapFrom(s => s.GetTicketCount()));
 
             CreateMap<VendorViewModel, Vendor>();
             CreateMap<Vendor, VendorViewModel>();
@@ -72,9 +83,6 @@ namespace BL.Mapping
                 .ForAllOtherMembers(d => d.Ignore());
 
             CreateMap<Discount, ArchivedDiscountDTO>();
-
-            CreateMap<PointOfSale, PointOfSaleDTO>();
-            CreateMap<PointOfSaleViewModel, PointOfSale>().ReverseMap();
 
             CreateMap<DiscountViewModel, Discount>()
                 .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName))

@@ -1,10 +1,11 @@
 ﻿using DAL.Entities;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
     public interface IVendorRepository : IRepository<Vendor>
     {
-        IQueryable<Vendor> SearchVendors(string searchQuery);
+        Task<IEnumerable<Vendor>> SearchVendors(string searchQuery);
     }
 }
