@@ -86,7 +86,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
         {
-            var searchVendors = await _vendorRepository.SearchVendors(searchModel.SearchQuery).ToListAsync();
+            var searchVendors = await _vendorRepository.SearchVendors(searchModel.SearchQuery);
 
             var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
 
