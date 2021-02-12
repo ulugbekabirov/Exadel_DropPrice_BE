@@ -17,7 +17,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Tag>> GetPopularAsync(int skip, int take)
         {
-            return await GetSpecifiedAmount(skip, take).OrderByDescending(d => d.Discounts.Count).ToListAsync();
+            return await _context.Tags.OrderByDescending(d => d.Discounts.Count).Skip(skip).Take(take).ToListAsync();
         }
     }
 }
