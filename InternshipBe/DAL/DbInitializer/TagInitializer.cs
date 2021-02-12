@@ -43,8 +43,10 @@ namespace DAL.DbInitializer
             AddTag("Лекарство");
             AddTag("Духи");
             AddTag("Светильник");
+            AddTag("Сантеника");
+            AddTag("Уют");
         }
-        
+
         public void AddTag(string name)
         {
             _context.Tags.Add(new Tag
