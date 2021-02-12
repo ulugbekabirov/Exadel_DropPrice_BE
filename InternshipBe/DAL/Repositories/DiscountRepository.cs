@@ -96,5 +96,15 @@ namespace DAL.Repositories
 
             return assessment;
         }
+
+        public IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery)
+        {
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                return _context.Discounts.AsQueryable();
+            }
+
+            return _context.Discounts.Where(v => v.Name.Contains(searchQuery)).AsQueryable();
+        }
     }
 }
