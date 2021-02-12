@@ -9,6 +9,7 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
@@ -221,6 +222,17 @@ namespace BL.Services
             await _discountRepository.SaveChangesAsync();
 
             return _mapper.Map<AssessmentViewModel>(assessment);
+        }
+
+        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticAsync(AdminSearchModel adminSearchModel)
+        {
+            var discounts = await _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery).ToListAsync();
+
+            var discountStatisticDTOs = _mapper.Map<DiscountStatisticDTO[]>(discounts);
+
+            var orderedVendorDTOs = discountStatisticDTOs.SortBy(adminSearchModel.SortBy[0]).ThenSortBy(adminSearchModel.SortBy[1]);
+
+            return orderedVendorDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
         }
     }
 }

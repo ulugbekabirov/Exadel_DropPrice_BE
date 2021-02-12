@@ -25,5 +25,7 @@ namespace BL.Interfaces
         Task<DiscountViewModel> UpdateDiscountAsync(DiscountViewModel discountViewModel);
 
         Task<AssessmentViewModel> UpdateUserAssessmentForDiscountAsync(int id, AssessmentViewModel assessmentViewModel, User user);
+
+        Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticAsync(AdminSearchModel adminSearchModel);
     }
 }

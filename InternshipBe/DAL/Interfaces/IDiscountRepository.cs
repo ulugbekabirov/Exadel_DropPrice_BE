@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using GeoCoordinatePortable;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
@@ -20,5 +21,7 @@ namespace DAL.Interfaces
         Task<Assessment> GetUserAssessmentAsync(int discountId, int userId);
 
         Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmnetValue);
+
+        IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery);
     }
 }
