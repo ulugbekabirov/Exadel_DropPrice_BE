@@ -38,6 +38,27 @@ namespace DAL.DbInitializer
             AddPointOfSales("AnnaClair Минск", "ул. В. Хоружей 1а, ТЦ «Силуэт» 1 этаж ряд 6 место 9, Minsk 220005, Belarus", 53.916285, 27.581274);
             AddPointOfSales("Cravt Минск", "ТЦ «Титан», Prospekt Dzerzhinskogo 104/2, Minsk 220089, Belarus", 53.860912, 27.476941);
             AddPointOfSales("Cravt Гомель", "Проспект Леніна 47, Гомель 246017", 52.429199, 30.998394);
+
+            AddPointOfSales("Магазин косметики в Минске на Боровой", "7А Baravaja, Минская область 223053 ", 53.9767861, 27.6558762);
+            AddPointOfSales("УП Дипмаркет", "ул. Коммунистическая 54, Минск ", 53.9304701, 27.56745574);
+            AddPointOfSales("Магазин профессиональной косметики Cosmopro.by", "Пр. Победителей, 65, ТЦ «Замок» 1 этаж, место 55, Минск", 53.9440347, 27.5259872);
+            AddPointOfSales("L'Oreal Poland Sp. zoo", "Grzybowska 62, 00-844 Warszawa, Польша", 52.2430251, 20.9971225);
+
+            AddPointOfSales("Belwest ТЦ Столица", "ТЦ Столица, проспект Независимости 3, Минск 220030", 53.9010416, 27.5439724);
+            AddPointOfSales("Belwest Минск", " проспект Независимости 58, Минск 220089 ", 53.9216424, 27.5919754);
+            AddPointOfSales("Belwest ТД Неман", "ТД Неман, Советская ул. 18, Гродно 230023", 53.6827264, 23.8299878);
+            AddPointOfSales("BELWEST Витебск", "просп. Генерала Людникова 10, Витебск 210026", 55.2041642, 30.2203299);
+            AddPointOfSales("Belwest ТК Корона", "ул. Максима Горького 91, Гродно 230015", 53.7109096, 23.8171491);
+
+            AddPointOfSales("Adidas Гродно", "ул. Дубко 17, Гродно 230005", 53.7773534, 23.7782460);
+            AddPointOfSales("Футбольный магазин soccershop.by", "г.Минск, ул. Немига, д. 3 нулевой этаж магазин №30 Минск BY, 220030", 53.9119530, 27.5509915);
+            AddPointOfSales("Adidas Минск", "ул. Петра Мстиславца 11, Минск ", 53.9372809, 27.6453697);
+            AddPointOfSales("Adidas Ташкент", "60 Амир Темур шоҳ кўчаси, Ташкент, Узбекистан", 41.3235649, 69.2833072);
+
+            AddPointOfSales("Гемма - строительный магазин", "просп. Космонавтов 2Г, Гродно 230025", 53.6790926, 23.8464561);
+            AddPointOfSales("Магазин Santehlux", "улица Тимирязева д.44, Минск 220035", 53.9747383, 27.5619366);
+            AddPointOfSales("VitrA Home salon firmowy Bartycka 24 paw.228", "Bartycka 24/26/pawilon 228, Warszawa, Польша", 52.2440627, 21.0515890);
+            AddPointOfSales("VitrA Узбекистан", "Barakat business centre, Afrosiab, 2, Tashkent, Узбекистан", 41.3032844, 69.2679597);
         }
 
         public void AddPointOfSales(string name, string address, double latitude, double longitude)
