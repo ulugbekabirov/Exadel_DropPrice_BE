@@ -22,6 +22,6 @@ namespace DAL.Interfaces
 
         Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmnetValue);
 
-        IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery);
+        IQueryable<Discount> SearchDiscountsStatisticsAsync(string searchQuery);
     }
 }

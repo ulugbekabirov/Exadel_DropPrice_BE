@@ -97,7 +97,7 @@ namespace DAL.Repositories
             return assessment;
         }
 
-        public IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery)
+        public IQueryable<Discount> SearchDiscountsStatisticsAsync(string searchQuery)
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
