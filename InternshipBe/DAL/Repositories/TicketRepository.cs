@@ -23,7 +23,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Ticket>> GetTicketsAsync(int userId, int skip, int take)
         {
-            return await GetSpecifiedAmount(skip, take).Where((d => d.UserId == userId)).ToListAsync();
+            return await _context.Tickets.Where(d => d.UserId == userId).OrderByDescending(t => t.OrderDate).Skip(skip).Take(take).ToListAsync();
         }
 
         public async Task<Ticket> CreateTicketAsync(int discountId, User user)

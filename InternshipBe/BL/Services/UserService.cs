@@ -48,7 +48,7 @@ namespace BL.Services
         {
             var tickets = await _ticketRepository.GetTicketsAsync(user.Id, specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
-            return _mapper.Map<TicketDTO[]>(tickets).OrderByDescending(t => t.OrderDate);
+            return _mapper.Map<TicketDTO[]>(tickets);
         }
     }
 }
