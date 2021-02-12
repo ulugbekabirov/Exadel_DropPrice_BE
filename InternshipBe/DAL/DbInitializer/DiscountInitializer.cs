@@ -117,6 +117,101 @@ namespace DAL.DbInitializer
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "AnnaClair Минск" || p.Name == "Cravt Минск" || p.Name == "Cravt Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Парфюмерия" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
+
+            //L'Oreal
+            AddDiscount(6, "L'Oreal Paris Dermo Expertise", @"Набор косметии для лица с успокаивающим, восстанавливающим и антивозрастным эффектом уода. пододит для снятия маияжа илифтинга.",
+                20, DateTime.Now, DateTime.Now.AddDays(140), true, "JEUNESSE",
+                _context.Vendors.Find(6),
+                _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
+                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
+
+            AddDiscount(6, "Крем после бритья L'Oreal Paris Men Expert", @"Даже мужская кожа нуждается в заботе и уходе, поэтому L'Oreal предоставляет крем после бритья с успокаивающим и увлажнающим эффектом уода.",
+                23, DateTime.Now, DateTime.Now.AddDays(140), true, "FORCE",
+                _context.Vendors.Find(6),
+                _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
+                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
+
+            AddDiscount(6, "Тинт для губ L'Oreal Paris Rouge Signature", @"L’Oréal Paris презентует первую ультрапигментированную суперстойкую помаду-тинт для губ Rouge Signature, которая дает глубокий цвет и бархатистый матовый финиш на целый день, обладая при этом невесомой текстурой. Ее нежная увлажняющая формула не дает эффекта липкой пленки и абсолютно не ощущается на губах: не сушит и не стягивает кожу. Удобный спонж-аппликатор в форме капли обеспечивает комфортное, аккуратное и суперточное нанесение по контуру.",
+                18, DateTime.Now, DateTime.Now.AddDays(140), true, "UNICITE",
+                _context.Vendors.Find(6),
+                _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
+                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
+
+            AddDiscount(6, "Тушь для ресниц L'Oreal Paris Telescopic", @"Роскошные, удлиненные до +60% и идеально разделенные ресницы? Это возможно благодаря туши для ресниц Telescopic - первой удлиняющей туши от L'Oreal Paris с гибкой пластиковой Щеточкой-Расческой, которая разделяет каждую ресничку, обеспечивая идеальный результат. Великолепная формула придает ресницам телескопическое удлинение!",
+                32, DateTime.Now, DateTime.Now.AddDays(140), true, "IDEE",
+                _context.Vendors.Find(6),
+                _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
+                _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
+
+            //Belwest
+            AddDiscount(7, "Сумка женская 9С4248К45 ЧЕРН", @"Черная женская сумка из искусственнойкожи. Идеально подойдёт к любому наряду",
+                25, DateTime.Now, DateTime.Now.AddDays(30), true, null,
+                _context.Vendors.Find(7),
+                _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList(),
+                _context.Tags.Where(t => t.Name == "Одежда" || t.Name == "Красота" || t.Name == "Роскошь").ToList());
+
+            AddDiscount(7, "Сумка женская 0С2548К45 БОРДО", @"Прекрасная женская сумка из натуральной кожи цвета борда. Идеально подчеркнёт ваш стиль и красоту.",
+                12, DateTime.Now, DateTime.Now.AddDays(30), true, null,
+                _context.Vendors.Find(7),
+                _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList(),
+                _context.Tags.Where(t => t.Name == "Одежда" || t.Name == "Красота" || t.Name == "Роскошь").ToList());
+
+            AddDiscount(7, "Сапоги женские 2132076", @"Женская зимняя обувь из натуральной кожи, текстиля и полиуретана.",
+                10, DateTime.Now, DateTime.Now.AddDays(30), true, null,
+                _context.Vendors.Find(7),
+                _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList(),
+                _context.Tags.Where(t => t.Name == "Одежда" || t.Name == "Красота" || t.Name == "Обувь" || t.Name == "Роскошь").ToList());
+
+            AddDiscount(7, "Ботинки женские 2132220", @"Демисезонные женские ботинки, хорошо подойдутк вашему осеннему наряду.",
+                32, DateTime.Now, DateTime.Now.AddDays(30), true, null,
+                _context.Vendors.Find(7),
+                _context.PointOfSales.Where(p => p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList(),
+                _context.Tags.Where(t => t.Name == "Одежда" || t.Name == "Красота" || t.Name == "Обувь").ToList());
+
+            //adidas
+            AddDiscount(8, "Adidas Кроссовки STRUTTER", @"Кроссовки выполнены из сочетания натуральной кожи и искусственной кожи. Легкая стелька Adibouncy из ЭВА. Детали: регулируемая застежка на шнуровку, внутренняя подкладка из текстиля, резиновая подошва. ",
+                25, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                _context.Vendors.Find(8),
+                _context.PointOfSales.Where(p => p.Name == " Adidas Гродно " || p.Name == "Футбольный магазин soccershop.by " || p.Name == " Adidas Минск").ToList(),
+                _context.Tags.Where(t => t.Name == "Бег" || t.Name == "Обувь" || t.Name == "Тренировка" || t.Name == "Спорт").ToList());
+
+            AddDiscount(8, "ШОРТЫ ДЛЯ ФИТНЕСА ADIDAS BY STELLA MCCARTNEY", @"Ты не приходишь в спортзал просто так. И какой бы ни была причина, поблагодари себя за заботу. А затем надень эти шорты от Стеллы Маккартни и задай себе жару. Они отлично подойдут для интенсивных тренировок. Впитывающая влагу ткань сохраняет приятное ощущение сухости с первой до последней минуты. ",
+                12, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                _context.Vendors.Find(8),
+                _context.PointOfSales.Where(p => p.Name == " Adidas Гродно " || p.Name == "Футбольный магазин soccershop.by " || p.Name == " Adidas Минск" || p.Name == "Adidas Ташкент").ToList(),
+                _context.Tags.Where(t => t.Name == "Бег" || t.Name == "Тренировка" || t.Name == "Спорт" || t.Name == "Оджда").ToList());
+
+            AddDiscount(8, "ФУТБОЛКА ДЛЯ ФИТНЕСА FREELIFT", @"Базовая футболка для фитнеса — основа любого спортивного гардероба. У этой модели очень лаконичный дизайн, так что ее легко сочетать с чем угодно. Ткань впитывает влагу и приятно ощущается на коже. Благодаря классическому крою она выглядит как обычная футболка на каждый день.",
+                10, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                _context.Vendors.Find(8),
+                _context.PointOfSales.Where(p => p.Name == " Adidas Гродно " || p.Name == " Adidas Минск" || p.Name == "Adidas Ташкент").ToList(),
+                _context.Tags.Where(t => t.Name == "Бег" || t.Name == "Тренировка" || t.Name == "Спорт" || t.Name == "Оджда").ToList());
+
+            AddDiscount(8, "Adidas Кроссовки RETRORUNNER", @"Кроссовки выполнены из текстиля с накладками из натуральной замши. Мягкая подкладка для исключительного комфорта. Плоские шнурки уменьшают давление над подъемом и обеспечивают стабильную и удобную посадку ",
+                20, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                _context.Vendors.Find(8),
+                _context.PointOfSales.Where(p => p.Name == " Adidas Гродно " || p.Name == "Футбольный магазин soccershop.by " || p.Name == " Adidas Минск" || p.Name == "Adidas Ташкент").ToList(),
+                _context.Tags.Where(t => t.Name == "Бег" || t.Name == "Обувь" || t.Name == "Тренировка" || t.Name == "Спорт").ToList());
+
+            //VitrA
+            AddDiscount(9, "Vitra Table Solvay", @"Прекрасный стол для вашей гостинной или зала. При заказе вы сможете подобрать пододящий размер.",
+                24, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                _context.Vendors.Find(9),
+                _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "Магазин Santehlux" || p.Name == "VitrA Home salon firmowy Bartycka 24 paw.228" || p.Name == "VitrA Узбекистан").ToList(),
+                _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Красота" || t.Name == "Для дома" || t.Name == "Уют").ToList());
+
+            AddDiscount(9, "Fauteuil de Salon Armchair", @"Fauteuil de Salon объединяет простые плоскости в единый архитектурный объект с удобной поверхностью сиденья и спинкой. Ощутите комфорт и уют, купите кресло Fauteuil de Salon",
+                32, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                _context.Vendors.Find(9),
+                _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "Магазин Santehlux" || p.Name == "VitrA Home salon firmowy Bartycka 24 paw.228" || p.Name == "VitrA Узбекистан").ToList(),
+                _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Красота" || t.Name == "Для дома" || t.Name == "Уют").ToList());
+
+            AddDiscount(9, "Душевой гарнитур Vitra Lite LC (A45700EXP)", @"Настенный душевой гарнитур хромового цвета. Униерсален и пододит под любую ванну.",
+                9, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                _context.Vendors.Find(9),
+                _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "VitrA Узбекистан").ToList(),
+                _context.Tags.Where(t => t.Name == "Сантехника" || t.Name == "Красота" || t.Name == "Для дома" || t.Name == "Уют").ToList());
+
         }
 
         public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus,
