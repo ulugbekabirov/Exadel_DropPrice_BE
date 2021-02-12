@@ -9,7 +9,6 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
