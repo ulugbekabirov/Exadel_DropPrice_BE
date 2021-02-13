@@ -9,7 +9,7 @@ namespace Shared.EmailService
 {
     public interface IEmailSender
     {
-        void SendEmail(Message message);
+        Task SendEmailAsync(Message message);
         Message GenerateMessageTemplate(User user, Ticket ticket);
     }
 }

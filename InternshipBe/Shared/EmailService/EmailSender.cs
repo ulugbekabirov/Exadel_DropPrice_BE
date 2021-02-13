@@ -24,11 +24,11 @@ namespace Shared.EmailService
             return new Message(new string[] { user.Email, ticket.Discount.Vendor.Email }, $"Discount for {ticket.Discount.Name}", content);
         }
 
-        public void SendEmail(Message message)
+        public async Task SendEmailAsync(Message message)
         {
             var emailMessage = CreateEmailMessage(message);
 
-            Send(emailMessage);
+            await SendAsync(emailMessage);
         }
 
         private MimeMessage CreateEmailMessage(Message message)
@@ -42,17 +42,17 @@ namespace Shared.EmailService
             return emailMessage;
         }
 
-        private void Send(MimeMessage message)
+        private async Task SendAsync(MimeMessage message)
         {
             using (var client = new SmtpClient())
             {
                 try
                 {
-                    client.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.Port, true);
+                    await client.ConnectAsync(_emailConfiguration.SmtpServer, _emailConfiguration.Port, true);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate(_emailConfiguration.Username, _emailConfiguration.Password);
+                    await client.AuthenticateAsync(_emailConfiguration.Username, _emailConfiguration.Password);
 
-                    client.Send(message);
+                    await client.SendAsync(message);
                 }
                 catch 
                 {
@@ -61,10 +61,9 @@ namespace Shared.EmailService
                 }
                 finally
                 {
-                    client.Disconnect(true);
+                    await client.DisconnectAsync(true);
                     client.Dispose();
                 }
-
             }
         }
     }
