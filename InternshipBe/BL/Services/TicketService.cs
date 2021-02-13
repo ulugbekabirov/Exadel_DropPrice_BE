@@ -30,7 +30,7 @@ namespace BL.Services
             {
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
                 var message = _emailSender.GenerateMessageTemplate(user, userTicket);
-                _emailSender.SendEmail(message);
+                await _emailSender.SendEmailAsync(message);
                 await _ticketRepository.SaveChangesAsync();
             }
 
