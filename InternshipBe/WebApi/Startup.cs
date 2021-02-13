@@ -37,6 +37,8 @@ namespace WebApi
             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
 
+            services.AddScoped<IEmailSender, EmailSender>();
+
             services.AddControllers()
                     .AddJsonOptions(options =>
                     { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
