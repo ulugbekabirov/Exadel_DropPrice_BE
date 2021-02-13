@@ -28,7 +28,7 @@ namespace BL.Services
 
         public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfig)
         {
-            var config = await _сonfigRepository.GetConfigAsync(newConfig.Id);
+            var config = await _сonfigRepository.GetByIdAsync(newConfig.Id);
             config.Value = newConfig.Value;
 
             await _сonfigRepository.SaveChangesAsync();
