@@ -30,13 +30,15 @@ namespace BL.Services
         private readonly ITagService _tagRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
+        private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper)
+        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
             _tagRepository = tagRepository;
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
+            _configRepository = configRepository;
         }
 
         public async Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user)
@@ -45,7 +47,9 @@ namespace BL.Services
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
 
-            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location);
+            var radius = await _configRepository.GetConfigByNameAsync("Radius");
+
+            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, Int16.Parse(radius.Value));
 
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
@@ -66,7 +70,9 @@ namespace BL.Services
 
             var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location);
+            var radius = await _configRepository.GetConfigByNameAsync("Radius");
+
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, Int16.Parse(radius.Value));
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)
