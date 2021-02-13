@@ -56,7 +56,6 @@ namespace Shared.EmailService
                 }
                 catch 
                 {
-
                     throw;
                 }
                 finally
