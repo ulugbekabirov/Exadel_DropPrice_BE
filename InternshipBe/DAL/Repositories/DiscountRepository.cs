@@ -17,11 +17,11 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location)
+        public async Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location, int radius)
         {
             var activeDiscounts = await _entities.Where(d => d.ActivityStatus == true).ToListAsync();
 
-            return activeDiscounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
+            return activeDiscounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < radius);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
@@ -47,7 +47,7 @@ namespace DAL.Repositories
             return newSavedDiscount;
         }
 
-        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags, GeoCoordinate location)
+        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags, GeoCoordinate location, int radius)
         {
             var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
 
@@ -66,7 +66,7 @@ namespace DAL.Repositories
 
             var discounts = await searchResults.ToListAsync();
 
-            return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < 500000);
+            return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < radius);
         }
 
         public async Task<Vendor> GetVendorByNameAsync(string vendorName)
