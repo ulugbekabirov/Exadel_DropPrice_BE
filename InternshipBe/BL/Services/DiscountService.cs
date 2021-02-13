@@ -49,7 +49,7 @@ namespace BL.Services
 
             var radius = await _configRepository.GetConfigByNameAsync("Radius");
 
-            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, Int16.Parse(radius.Value));
+            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, int.Parse(radius.Value));
 
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
@@ -72,7 +72,7 @@ namespace BL.Services
 
             var radius = await _configRepository.GetConfigByNameAsync("Radius");
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, Int16.Parse(radius.Value));
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, int.Parse(radius.Value));
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)
