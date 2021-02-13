@@ -51,7 +51,6 @@ namespace Shared.EmailService
                     await client.ConnectAsync(_emailConfiguration.SmtpServer, _emailConfiguration.Port, true);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
                     await client.AuthenticateAsync(_emailConfiguration.Username, _emailConfiguration.Password);
-
                     await client.SendAsync(message);
                 }
                 catch 
