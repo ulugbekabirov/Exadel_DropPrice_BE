@@ -6,6 +6,6 @@ namespace DAL.Interfaces
 {
     public interface ITagRepository : IRepository<Tag>
     {
-        Task<IEnumerable<Tag>> GetPopularAsync(int skip, int take);
+        Task<IEnumerable<Tag>> GetPopularTagsAsync(int skip, int take);
     }
 }
