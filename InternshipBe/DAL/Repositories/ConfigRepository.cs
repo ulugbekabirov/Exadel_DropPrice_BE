@@ -20,9 +20,9 @@ namespace DAL.Repositories
             return await _entities.ToListAsync();
         }
 
-        public async Task<ConfigVariable> GetConfigAsync(int id)
+        public async Task<ConfigVariable> GetConfigByNameAsync(string name)
         {
-            var config = await _entities.Where(p => p.Id == id).SingleOrDefaultAsync();
+            var config = await _entities.Where(p => p.Name == name).SingleOrDefaultAsync();
 
             return config;
         }

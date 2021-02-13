@@ -8,6 +8,6 @@ namespace DAL.Interfaces
     {
         Task<IEnumerable<ConfigVariable>> GetConfigsAsync();
 
-        Task<ConfigVariable> GetConfigAsync(int id);
+        Task<ConfigVariable> GetConfigByNameAsync(string name);
     }
 }
