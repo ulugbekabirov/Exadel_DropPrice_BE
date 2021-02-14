@@ -1,7 +1,5 @@
-﻿using DAL.Entities;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
 using MimeKit;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Shared.EmailService

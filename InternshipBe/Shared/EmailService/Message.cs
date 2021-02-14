@@ -1,6 +1,5 @@
 ﻿using MimeKit;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Shared.EmailService
 {

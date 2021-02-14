@@ -21,7 +21,7 @@ namespace BL.Services
             _mapper = mapper;
             _emailSender = emailSender;
             _messageBuilder = messageBuilder;            
-        }
+        }s
 
         public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
         {
@@ -30,7 +30,7 @@ namespace BL.Services
             if (userTicket is null)
             {
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
-                var message = _emailSender.GenerateMessageTemplate(user, userTicket);
+                var message = _messageBuilder.GenerateMessageTemplate(user, userTicket);
                 await _emailSender.SendEmailAsync(message);
                 await _ticketRepository.SaveChangesAsync();
             }
