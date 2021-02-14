@@ -16,7 +16,7 @@ namespace Shared.EmailService
 
         public Message GenerateMessageTemplate(User user, Ticket ticket)
         {
-            string content = $"This is test message for {user.Email}, {ticket.Discount.Vendor.Name} have given you the ticket as a discount certificate for {ticket.Discount.Name} at {ticket.OrderDate}";
+            var content = $"This is test message for {user.Email}, {ticket.Discount.Vendor.Name} have given you the ticket as a discount certificate for {ticket.Discount.Name} at {ticket.OrderDate}";
             return new Message(new string[] { user.Email, ticket.Discount.Vendor.Email }, $"Discount for {ticket.Discount.Name}", content);
         }
 
