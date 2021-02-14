@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shared.EmailService;
 using Shared.Infrastructure.Filters;
+using System;
 using System.Text;
 using System.Text.Json;
 
@@ -77,8 +78,7 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                          new string[] {}
-                    }
+                            Array.Empty<string>()                     }
                 });
             });
 
