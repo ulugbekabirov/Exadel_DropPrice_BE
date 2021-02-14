@@ -15,16 +15,6 @@ using WebApi.ViewModels;
 
 namespace BL.Services
 {
-    //public enum Sorts
-    //{
-    //    DiscountRatingAsc,
-    //    DiscountRatingDesc,
-    //    DistanceAsc,
-    //    DistanceDesc,
-    //    AlphabetAsc,
-    //    AlphabetDesc,
-    //}
-
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
