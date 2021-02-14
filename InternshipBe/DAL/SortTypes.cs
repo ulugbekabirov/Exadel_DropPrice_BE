@@ -1,12 +1,14 @@
-﻿namespace Shared.Infrastructure
+﻿namespace DAL
 {
     public enum SortTypes
     {
-        DiscountRatingAsc,
-        DiscountRatingDesc,
+        RatingAsc,
+        RatingDesc,
         DistanceAsc,
         DistanceDesc,
         AlphabetAsc,
         AlphabetDesc,
+        TicketCountAsc,
+        TicketCountDesc,
     }
 }

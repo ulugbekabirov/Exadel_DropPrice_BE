@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Models;
 using DAL.Entities;
+using NetTopologySuite.Geometries;
 using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,5 +28,7 @@ namespace BL.Interfaces
         Task<AssessmentViewModel> UpdateUserAssessmentForDiscountAsync(int id, AssessmentViewModel assessmentViewModel, User user);
 
         Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel);
+
+        Task AddValuesToDiscountDTOToOtherFields(int id, int userId, DiscountDTO discountDTOs, Point location);
     }
 }

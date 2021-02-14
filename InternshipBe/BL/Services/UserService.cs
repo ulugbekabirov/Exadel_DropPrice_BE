@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BL.DTO;
-using BL.Extensions;
 using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
@@ -15,13 +14,15 @@ namespace BL.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ITicketRepository _ticketRepository;
+        private readonly IDiscountService _discountService;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository repository, IMapper mapper, ITicketRepository ticketRepository)
+        public UserService(IUserRepository repository, IMapper mapper, ITicketRepository ticketRepository, IDiscountService discountService)
         {
             _userRepository = repository;
             _mapper = mapper;
             _ticketRepository = ticketRepository;
+            _discountService = discountService;
         }
 
         public async Task<UserDTO> GetUserInfoAsync(User user)
@@ -37,9 +38,12 @@ namespace BL.Services
 
             var location = _userRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
 
-            var discountModels = savedDiscounts.Select(d => d.CreateDiscountModel(location, user.Id));
+            var savedDiscountDTOs = _mapper.Map<DiscountDTO[]>(savedDiscounts);
 
-            var savedDiscountDTOs = _mapper.Map<DiscountDTO[]>(discountModels);
+            for (int i = 0; i < savedDiscountDTOs.Length; i++)
+            {
+                await _discountService.AddValuesToDiscountDTOToOtherFields(savedDiscountDTOs[i].DiscountId, user.Id, savedDiscountDTOs[i], location);
+            }
 
             return savedDiscountDTOs; 
         }

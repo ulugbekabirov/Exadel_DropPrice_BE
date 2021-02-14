@@ -1,8 +1,9 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,11 +18,82 @@ namespace DAL.Repositories
 
         }
 
-        public async Task<IEnumerable<Discount>> GetClosestActiveDiscountsAsync(GeoCoordinate location, int radius)
+        public IQueryable<Discount> GetClosestActiveDiscountsAsync(Point location, int radius)
         {
-            var activeDiscounts = await _entities.Where(d => d.ActivityStatus == true).ToListAsync();
+            return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+        }
 
-            return activeDiscounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < radius);
+        public IQueryable<Discount> SearchDiscounts(string searchQuery, string[] tags, Point location, int radius)
+        {
+            var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
+            }
+
+            if (tags.Length != 0)
+            {
+                foreach (var tag in tags)
+                {
+                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Name).Contains(tag));
+                }
+            };
+
+            return searchResults.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+        }
+
+        public IQueryable<Discount> GetSortedDiscountsAsync(IQueryable<Discount> discounts, SortTypes sortBy, Point location)
+        {
+            var sortedDiscounts = sortBy switch
+            {
+                SortTypes.RatingAsc => discounts.OrderBy(d => d.Assessments.Average(a => a.AssessmentValue)),
+                SortTypes.RatingDesc => discounts.OrderByDescending(d => d.Assessments.Average(a => a.AssessmentValue)),
+                SortTypes.DistanceAsc => discounts.OrderBy(d => d.PointOfSales.Min(p => p.Location.Distance(location))),
+                SortTypes.DistanceDesc => discounts.OrderByDescending(d => d.PointOfSales.Min(p => p.Location.Distance(location))),
+                SortTypes.AlphabetAsc => discounts.OrderBy(d => d.Name),
+                SortTypes.AlphabetDesc => discounts.OrderByDescending(d => d.Name),
+                _ => discounts.OrderBy(d => d.PointOfSales.Min(p => p.Location.Distance(location))),
+            };
+
+            if (sortBy == SortTypes.DistanceAsc || sortBy == SortTypes.DistanceDesc)
+            {
+                return sortedDiscounts;
+            }
+
+            return sortedDiscounts.ThenBy(d => d.PointOfSales.Min(p => p.Location.Distance(location)));
+        }
+
+        public async Task<double?> GetDiscountRatingAsync(int id)
+        {
+            return await _context.Assessments.Where(d => d.DiscountId == id).AverageAsync(d => d.AssessmentValue);
+        }
+
+        public async Task<ICollection<string>> GetDiscountTagsAsync(int id)
+        {
+            return await _context.Tags.Where(t => t.Discounts.Select(d => d.Id).Contains(id)).Select(t => t.Name).ToListAsync();
+        }
+
+        public async Task<bool> IsSavedDiscountAsync(int id, int userId)
+        {
+            return await _context.SavedDiscounts.AnyAsync(s => s.DiscountId == id && s.UserId == userId);
+        }
+
+        public async Task<bool> IsOrderedDiscountAsync(int id, int userId)
+        {
+            return await _context.Tickets.AnyAsync(t => t.DiscountId == id && t.UserId == userId);
+        }
+
+        public async Task<(string, int)> GetInformationOfPointOfSaleAsync(int id, Point location)
+        {
+            var pointOfSale = await _context.Discounts.Where(d => d.Id == id)
+                .Select(d => d.PointOfSales
+                    .Select(p => new { p.Address, Location = p.Location.Distance(location) })
+                    .OrderBy(p => p.Location)
+                    .FirstOrDefault())
+                .FirstAsync();
+
+            return (pointOfSale.Address, (int)pointOfSale.Location);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
@@ -45,28 +117,6 @@ namespace DAL.Repositories
             await _context.SaveChangesAsync();
 
             return newSavedDiscount;
-        }
-
-        public async Task<IEnumerable<Discount>> SearchDiscounts(string searchQuery, string[] tags, GeoCoordinate location, int radius)
-        {
-            var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
-
-            if (!string.IsNullOrWhiteSpace(searchQuery))
-            {
-                searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
-            }
-
-            if (tags.Length != 0)
-            {
-                foreach (var tag in tags)
-                {
-                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Name).Contains(tag));
-                }
-            }
-
-            var discounts = await searchResults.ToListAsync();
-
-            return discounts.Where(d => d.PointOfSales.Min(p => location.GetDistanceTo(new GeoCoordinate(p.Latitude, p.Longitude))) < radius);
         }
 
         public async Task<Vendor> GetVendorByNameAsync(string vendorName)
@@ -97,14 +147,39 @@ namespace DAL.Repositories
             return assessment;
         }
 
-        public async Task<IEnumerable<Discount>> SearchStatisticDiscountsAsync(string searchQuery)
+        public IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery)
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                return await _context.Discounts.ToListAsync();
+                return  _context.Discounts;
             }
 
-            return await _context.Discounts.Where(v => v.Name.Contains(searchQuery)).ToListAsync();
+            return _context.Discounts.Where(v => v.Name.Contains(searchQuery));
+        }
+
+        public IOrderedQueryable<Discount> SortBy(IQueryable<Discount> discounts, SortTypes sortBy)
+        => sortBy switch
+        {
+            SortTypes.RatingAsc => discounts.OrderBy(d => d.Assessments.Average(a => a.AssessmentValue)),
+            SortTypes.RatingDesc => discounts.OrderByDescending(d => d.Assessments.Average(a => a.AssessmentValue)),
+            SortTypes.TicketCountAsc => discounts.OrderBy(d => d.Tickets.Count),
+            SortTypes.TicketCountDesc => discounts.OrderByDescending(d => d.Tickets.Count),
+            _ => discounts.OrderByDescending(d => d.Assessments.Average(a => a.AssessmentValue)),
+        };
+
+        public IOrderedQueryable<Discount> ThenSortBy(IOrderedQueryable<Discount> discounts, SortTypes sortBy)
+        => sortBy switch
+        {
+            SortTypes.RatingAsc => discounts.ThenBy(d => d.Assessments.Average(a => a.AssessmentValue)),
+            SortTypes.RatingDesc => discounts.ThenByDescending(d => d.Assessments.Average(a => a.AssessmentValue)),
+            SortTypes.TicketCountAsc => discounts.ThenBy(d => d.Tickets.Count),
+            SortTypes.TicketCountDesc => discounts.ThenByDescending(d => d.Tickets.Count),
+            _ => discounts.ThenByDescending(d => d.Tickets.Count),
+        };
+
+        public async Task<int> GetDiscountTicketCountAsync(int id)
+        {
+            return await _context.Tickets.CountAsync(t => t.DiscountId == id);
         }
     }
 }

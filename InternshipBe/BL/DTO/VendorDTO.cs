@@ -16,6 +16,6 @@
 
         public double? VendorRating { get; set; }
 
-        public int TicketCount { get; set; } = 0;
+        public int TicketCount { get; set; }
     }
 }
