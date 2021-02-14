@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Infrastructure
 {
-    public enum Sorts
+    public enum SortTypes
     {
         DiscountRatingAsc,
         DiscountRatingDesc,

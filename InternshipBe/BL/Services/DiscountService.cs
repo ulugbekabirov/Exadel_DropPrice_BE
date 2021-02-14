@@ -36,7 +36,7 @@ namespace BL.Services
         {
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
-            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
 
             var radius = await _configRepository.GetConfigByNameAsync("Radius");
 
@@ -59,7 +59,7 @@ namespace BL.Services
 
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
 
-            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), searchModel.SortBy);
 
             var radius = await _configRepository.GetConfigByNameAsync("Radius");
 
