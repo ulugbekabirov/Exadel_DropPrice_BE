@@ -9,20 +9,21 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Shared.Infrastructure;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
 namespace BL.Services
 {
-    public enum Sorts
-    {
-        DiscountRatingAsc,
-        DiscountRatingDesc,
-        DistanceAsc,
-        DistanceDesc,
-        AlphabetAsc,
-        AlphabetDesc,
-    }
+    //public enum Sorts
+    //{
+    //    DiscountRatingAsc,
+    //    DiscountRatingDesc,
+    //    DistanceAsc,
+    //    DistanceDesc,
+    //    AlphabetAsc,
+    //    AlphabetDesc,
+    //}
 
     public class DiscountService : IDiscountService
     {

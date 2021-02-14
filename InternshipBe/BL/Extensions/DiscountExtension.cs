@@ -1,8 +1,8 @@
 ﻿using BL.DTO;
 using BL.Models;
-using BL.Services;
 using DAL.Entities;
 using GeoCoordinatePortable;
+using Shared.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
