@@ -5,8 +5,8 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Shared.Extensions;
+using Shared.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace BL.Services
 
             var location = _vendorRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
-            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
 
             var discountsModels = vendor.Discounts
                 .Select(d => d.CreateDiscountModel(location, user.Id))
