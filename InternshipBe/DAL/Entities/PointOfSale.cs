@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NetTopologySuite.Geometries;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
@@ -19,10 +20,7 @@ namespace DAL.Entities
         public string Address { get; set; }
 
         [Required]
-        public double Latitude { get; set; }
-
-        [Required]
-        public double Longitude { get; set; }
+        public Point Location { get; set; }
 
         public virtual ICollection<Discount> Discounts { get; set; }
     }
