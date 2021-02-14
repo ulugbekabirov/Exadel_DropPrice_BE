@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
-using BL.Models;
 using DAL.Interfaces;
+using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
