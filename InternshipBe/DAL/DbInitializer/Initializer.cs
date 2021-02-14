@@ -23,7 +23,18 @@ namespace DAL.DbInitializer
 
         public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
-            
+
+            if (!_context.ConfigVariables.Where(p => p.Name == "SendingEmailToggler").Any())
+            {
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "SendingEmailToggler",
+                    Value = "false",
+                    Description = "Toggler to indicate whether to send emails or not"
+                });
+                _context.SaveChanges();
+            }
+
             if (userManager.Users.Any())
             {
                 return;
@@ -34,16 +45,6 @@ namespace DAL.DbInitializer
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Admin));
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Moderator));
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.User));
-            }
-
-            if (_context.ConfigVariables.Find("SendingEmailToggler") !=null)
-            {
-                _context.ConfigVariables.Add(new ConfigVariable
-                {
-                    Name = "SendingEmailToggler",
-                    Value = "false",
-                    Description = "Toggler to indicate whether to send emails or not"
-                });
             }
 
             var towns = new TownInitializer(_context);
