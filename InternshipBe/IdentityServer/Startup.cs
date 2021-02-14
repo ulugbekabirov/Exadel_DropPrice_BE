@@ -38,8 +38,8 @@ namespace IdentityServer
                 c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Identity Server" });
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                                                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                t => t.UseNetTopologySuite()));
 
             services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()

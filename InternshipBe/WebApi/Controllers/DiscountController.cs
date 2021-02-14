@@ -44,13 +44,6 @@ namespace WebApi.Controllers
             return Ok(await _discountService.SearchDiscountsAsync(searchmodel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
-        [HttpGet("stats/search")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SearchDiscountsForStatistics(AdminSearchModel adminSearchModel)
-        {
-            return Ok(await _discountService.SearchDiscountsForStatisticsAsync(adminSearchModel));
-        }
-
         [HttpGet("{id}/createTicket")]
         public async Task<IActionResult> CreateTicket(int id)
         {
@@ -61,6 +54,12 @@ namespace WebApi.Controllers
         public async Task<IActionResult> SaveDiscount(int id)
         {
             return Ok(await _discountService.SaveOrUnsaveDisocuntAsync(id, await _userManager.FindByNameAsync(User.Identity.Name)));
+        }
+
+        [HttpPut("{id}/assess")]
+        public async Task<IActionResult> UpdateUserAssessmentForDiscount(int id, [FromBody] AssessmentViewModel assessmentViewModel)
+        {
+            return Ok(await _discountService.UpdateUserAssessmentForDiscountAsync(id, assessmentViewModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
         [HttpPut("{id}/archive")]
@@ -87,10 +86,11 @@ namespace WebApi.Controllers
             return Ok(await _discountService.UpdateDiscountAsync(discountViewModel));
         }
 
-        [HttpPut("{id}/assess")]
-        public async Task<IActionResult> UpdateUserAssessmentForDiscount(int id, [FromBody] AssessmentViewModel assessmentViewModel)
+        [HttpGet("stats/search")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SearchDiscountsForStatistics(AdminSearchModel adminSearchModel)
         {
-            return Ok(await _discountService.UpdateUserAssessmentForDiscountAsync(id, assessmentViewModel, await _userManager.FindByNameAsync(User.Identity.Name)));
+            return Ok(await _discountService.SearchDiscountsForStatisticsAsync(adminSearchModel));
         }
     }
 }
