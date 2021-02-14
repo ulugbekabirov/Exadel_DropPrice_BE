@@ -21,7 +21,7 @@ namespace BL.Services
             _mapper = mapper;
             _emailSender = emailSender;
             _messageBuilder = messageBuilder;            
-        }s
+        }
 
         public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
         {
