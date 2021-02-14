@@ -42,7 +42,7 @@ namespace BL.Services
 
             for (int i = 0; i < savedDiscountDTOs.Length; i++)
             {
-                await _discountService.AddValuesToDiscountDTOToOtherFields(savedDiscountDTOs[i].DiscountId, user.Id, savedDiscountDTOs[i], location);
+                await _discountService.AddCompositePropertiesToDiscountDTOAsync(user.Id, savedDiscountDTOs[i], location);
             }
 
             return savedDiscountDTOs; 

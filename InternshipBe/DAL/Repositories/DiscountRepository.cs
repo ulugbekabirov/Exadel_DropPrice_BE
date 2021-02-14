@@ -18,7 +18,7 @@ namespace DAL.Repositories
 
         }
 
-        public IQueryable<Discount> GetClosestActiveDiscountsAsync(Point location, int radius)
+        public IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius)
         {
             return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
         }
@@ -43,7 +43,7 @@ namespace DAL.Repositories
             return searchResults.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
         }
 
-        public IQueryable<Discount> GetSortedDiscountsAsync(IQueryable<Discount> discounts, SortTypes sortBy, Point location)
+        public IQueryable<Discount> SortDiscounts(IQueryable<Discount> discounts, SortTypes sortBy, Point location)
         {
             var sortedDiscounts = sortBy switch
             {

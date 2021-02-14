@@ -27,10 +27,10 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task AddInforamtionToVendorToOtherFields(int id, VendorDTO vendorDTO)
+        public async Task AddRatingAndTicketCountToVendorAsync(VendorDTO vendorDTO)
         {
-            vendorDTO.TicketCount = await _vendorRepository.GetVendorTicketCountAsync(id);
-            vendorDTO.VendorRating = await _vendorRepository.GetVendorRatingAsync(id);
+            vendorDTO.TicketCount = await _vendorRepository.GetVendorTicketCountAsync(vendorDTO.VendorId);
+            vendorDTO.VendorRating = await _vendorRepository.GetVendorRatingAsync(vendorDTO.VendorId);
         }
 
         public async Task<VendorDTO> GetVendorByIdAsync(int id)
@@ -39,7 +39,7 @@ namespace BL.Services
 
             var vendorDTO = _mapper.Map<VendorDTO>(vendor);
 
-            await AddInforamtionToVendorToOtherFields(id, vendorDTO);
+            await AddRatingAndTicketCountToVendorAsync(vendorDTO);
 
             return vendorDTO;
         }
@@ -52,7 +52,7 @@ namespace BL.Services
 
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
-                await AddInforamtionToVendorToOtherFields(vendorDTOs[i].VendorId, vendorDTOs[i]);
+                await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
             }
 
             return vendorDTOs;
@@ -66,7 +66,7 @@ namespace BL.Services
 
             var discounts = _vendorRepository.GetVendorDiscounts(id);
 
-            var sortedDiscounts = _discountRepository.GetSortedDiscountsAsync(discounts, sortBy, location);
+            var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
 
             var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, sortModel.Skip, sortModel.Take);
 
@@ -74,7 +74,7 @@ namespace BL.Services
 
             for (int i = 0; i < discountDTOs.Length; i++)
             {
-                await _discountSevice.AddValuesToDiscountDTOToOtherFields(id, user.Id, discountDTOs[i], location);
+                await _discountSevice.AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
             }
 
             return discountDTOs;
@@ -124,8 +124,7 @@ namespace BL.Services
 
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
-                vendorDTOs[i].VendorRating = await _vendorRepository.GetVendorRatingAsync(vendorDTOs[i].VendorId);
-                vendorDTOs[i].TicketCount = await _vendorRepository.GetVendorTicketCountAsync(vendorDTOs[i].VendorId);
+                await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
             }
 
             return vendorDTOs;

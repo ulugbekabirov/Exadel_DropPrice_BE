@@ -40,9 +40,9 @@ namespace BL.Services
 
             var radius = await _configRepository.GetRadiusAsync();
 
-            var closestDiscounts = _discountRepository.GetClosestActiveDiscountsAsync(location, radius);
+            var closestDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
 
-            var sortedDiscounts = _discountRepository.GetSortedDiscountsAsync(closestDiscounts, sortBy, location);
+            var sortedDiscounts = _discountRepository.SortDiscounts(closestDiscounts, sortBy, location);
 
             var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, sortModel.Skip, sortModel.Take);
 
@@ -50,8 +50,7 @@ namespace BL.Services
 
             for (int i = 0; i < discountDTOs.Length; i++)
             {
-                var discountId = specifiedAmountDiscounts.ElementAt(i).Id;
-                await AddValuesToDiscountDTOToOtherFields(discountId, user.Id, discountDTOs[i], location);
+                await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
             }
 
             return discountDTOs;
@@ -65,7 +64,7 @@ namespace BL.Services
 
             var discountDTO = _mapper.Map<DiscountDTO>(discount);
 
-            await AddValuesToDiscountDTOToOtherFields(discount.Id, user.Id, discountDTO, location);
+            await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTO, location);
 
             return discountDTO;
         }
@@ -85,7 +84,7 @@ namespace BL.Services
 
             var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 
-            var sortedDiscounts = _discountRepository.GetSortedDiscountsAsync(discounts, sortBy, location);
+            var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
 
             var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, searchModel.Skip, searchModel.Take);
 
@@ -93,26 +92,25 @@ namespace BL.Services
 
             for (int i = 0; i < discountDTOs.Length; i++)
             {
-                var discountId = specifiedAmountDiscounts.ElementAt(i).Id;
-                await AddValuesToDiscountDTOToOtherFields(discountId, user.Id, discountDTOs[i], location);
+                await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
             }
 
             return discountDTOs;
         }
 
-        public async Task AddValuesToDiscountDTOToOtherFields(int id, int userId, DiscountDTO discountDTOs, Point location)
+        public async Task AddCompositePropertiesToDiscountDTOAsync(int userId, DiscountDTO discountDTO, Point location)
         {
-            var assessment = await _discountRepository.GetUserAssessmentAsync(id, userId);
+            var assessment = await _discountRepository.GetUserAssessmentAsync(discountDTO.DiscountId, userId);
 
-            var (Address, Distance) = await _discountRepository.GetInformationOfPointOfSaleAsync(id, location);
+            var (Address, Distance) = await _discountRepository.GetInformationOfPointOfSaleAsync(discountDTO.DiscountId, location);
 
-            discountDTOs.DiscountRating = await _discountRepository.GetDiscountRatingAsync(id);
-            discountDTOs.Tags = await _discountRepository.GetDiscountTagsAsync(id);
-            discountDTOs.IsSaved = await _discountRepository.IsSavedDiscountAsync(id, userId);
-            discountDTOs.IsOrdered = await _discountRepository.IsOrderedDiscountAsync(id, userId);
-            discountDTOs.AssessmentValue = assessment?.AssessmentValue;
-            discountDTOs.Address = Address;
-            discountDTOs.DistanceInMeters = Distance;
+            discountDTO.DiscountRating = await _discountRepository.GetDiscountRatingAsync(discountDTO.DiscountId);
+            discountDTO.Tags = await _discountRepository.GetDiscountTagsAsync(discountDTO.DiscountId);
+            discountDTO.IsSaved = await _discountRepository.IsSavedDiscountAsync(discountDTO.DiscountId, userId);
+            discountDTO.IsOrdered = await _discountRepository.IsOrderedDiscountAsync(discountDTO.DiscountId, userId);
+            discountDTO.AssessmentValue = assessment?.AssessmentValue;
+            discountDTO.Address = Address;
+            discountDTO.DistanceInMeters = Distance;
         }
 
         public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user)

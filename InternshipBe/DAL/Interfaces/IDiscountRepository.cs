@@ -15,7 +15,7 @@ namespace DAL.Interfaces
 
         Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user);
 
-        IQueryable<Discount> GetClosestActiveDiscountsAsync(Point location, int radius);
+        IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius);
 
         Task<Vendor> GetVendorByNameAsync(string vendorName);
 
@@ -25,7 +25,7 @@ namespace DAL.Interfaces
 
         IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery);
 
-        IQueryable<Discount> GetSortedDiscountsAsync(IQueryable<Discount> discounts, SortTypes sortBy, Point location);
+        IQueryable<Discount> SortDiscounts(IQueryable<Discount> discounts, SortTypes sortBy, Point location);
 
         Task<IEnumerable<Discount>> GetSpecifiedAmountAsync(IQueryable<Discount> discounts, int skip, int take);
 
