@@ -13,13 +13,14 @@ namespace BL.Services
         private readonly ITicketRepository _ticketRepository;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
+        private readonly IMessageBuilder _messageBuilder;
 
-        public TicketService(ITicketRepository repository, IMapper mapper, IEmailSender emailSender)
+        public TicketService(ITicketRepository repository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder)
         {
             _ticketRepository = repository;
             _mapper = mapper;
             _emailSender = emailSender;
-            
+            _messageBuilder = messageBuilder;            
         }
 
         public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
