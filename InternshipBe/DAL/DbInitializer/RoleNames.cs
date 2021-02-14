@@ -2,7 +2,7 @@
 
 namespace DAL.DbInitializer
 {
-    class RolesName
+    class RoleNames
     {
         public const string Admin = "Admin";
         public const string Moderator = "Moderator";
