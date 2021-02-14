@@ -1,7 +1,7 @@
 ﻿using BL.Interfaces;
-using BL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.ViewModels;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
@@ -26,11 +26,11 @@ namespace WebApi.Controllers
 
         [HttpPut("changeConfigs/{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ChangeConfigs(int id, [FromBody] ConfigModel newConfigs)
+        public async Task<IActionResult> ChangeConfigs(int id, [FromBody] ConfigViewModel configModel)
         {
-            newConfigs.Id = id;
+            configModel.Id = id;
 
-            return Ok(await _configService.ChangeConfigAsync(newConfigs));
+            return Ok(await _configService.ChangeConfigAsync(configModel));
         }
     }
 }

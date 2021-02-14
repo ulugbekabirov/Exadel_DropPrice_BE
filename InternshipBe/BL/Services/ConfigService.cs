@@ -26,7 +26,7 @@ namespace BL.Services
             return _mapper.Map<ConfigVariableDTO[]>(configs);
         }
 
-        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfig)
+        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigViewModel newConfig)
         {
             var config = await _сonfigRepository.GetByIdAsync(newConfig.Id);
             config.Value = newConfig.Value;
