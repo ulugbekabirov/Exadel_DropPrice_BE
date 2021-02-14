@@ -18,11 +18,12 @@ namespace DAL.DbInitializer
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
             _context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            await PopulateUsersAndRoles(userManager, rolesManager);
+            await SeedDatabase(userManager, rolesManager);
         }
 
-        public static async Task PopulateUsersAndRoles(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
+        public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
+            
             if (userManager.Users.Any())
             {
                 return;
@@ -33,6 +34,16 @@ namespace DAL.DbInitializer
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Admin));
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Moderator));
                 await roleManager.CreateAsync(new IdentityRole<int>(RolesName.User));
+            }
+
+            if (_context.ConfigVariables.Find("SendingEmailToggler") !=null)
+            {
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "SendingEmailToggler",
+                    Value = "false",
+                    Description = "Toggler to indicate whether to send emails or not"
+                });
             }
 
             var towns = new TownInitializer(_context);
