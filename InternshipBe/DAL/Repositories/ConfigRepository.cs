@@ -33,5 +33,12 @@ namespace DAL.Repositories
 
             return int.Parse(radius.Value);
         }
+
+        public async Task<bool> IsSendingEmailsEnabled()
+        {
+            var sendingEmailToggler = await GetByIdAsync(2);
+
+            return bool.Parse(sendingEmailToggler.Value);
+        }
     }
 }

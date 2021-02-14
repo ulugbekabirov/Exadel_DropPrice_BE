@@ -11,5 +11,7 @@ namespace DAL.Interfaces
         Task<ConfigVariable> GetConfigByNameAsync(string name);
 
         Task<int> GetRadiusAsync();
+
+        Task<bool> IsSendingEmailsEnabled();
     }
 }
