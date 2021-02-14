@@ -32,14 +32,14 @@ namespace BL.Services
             if (userTicket is null)
             {
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
-                await SendEmailToUserAndVendor(user, userTicket);
+                await SendEmailIfAllowed(user, userTicket);
                 await _ticketRepository.SaveChangesAsync();
             }
 
             return _mapper.Map<Ticket, TicketDTO>(userTicket);
         }
 
-        public async Task SendEmailToUserAndVendor(User user, Ticket ticket)
+        public async Task SendEmailIfAllowed(User user, Ticket ticket)
         {
             if (await _configRepository.IsSendingEmailsEnabled())
             {
