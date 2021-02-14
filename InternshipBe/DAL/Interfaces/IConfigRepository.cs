@@ -9,5 +9,7 @@ namespace DAL.Interfaces
         Task<IEnumerable<ConfigVariable>> GetConfigsAsync();
 
         Task<ConfigVariable> GetConfigByNameAsync(string name);
+
+        Task<int> GetRadiusAsync();
     }
 }

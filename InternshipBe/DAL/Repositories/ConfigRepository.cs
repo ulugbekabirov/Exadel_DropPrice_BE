@@ -26,5 +26,12 @@ namespace DAL.Repositories
 
             return config;
         }
+
+        public async Task<int> GetRadiusAsync()
+        {
+            var radius = await GetByIdAsync(1);
+
+            return int.Parse(radius.Value);
+        }
     }
 }
