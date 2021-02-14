@@ -34,7 +34,7 @@ namespace BL.Services
                 await _ticketRepository.SaveChangesAsync();
             }
 
-            return _mapper.Map<Ticket, TicketDTO>(userTicket);
+            return _mapper.Map<TicketDTO>(userTicket);
         }
     }
 }
