@@ -38,9 +38,9 @@ namespace BL.Services
 
             var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
 
-            var radius = await _configRepository.GetConfigByNameAsync("Radius");
+            var radius = await _configRepository.GetRadiusAsync();
 
-            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, int.Parse(radius.Value));
+            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, radius);
 
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
@@ -61,9 +61,9 @@ namespace BL.Services
 
             var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), searchModel.SortBy);
 
-            var radius = await _configRepository.GetConfigByNameAsync("Radius");
+            var radius = await _configRepository.GetRadiusAsync();
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, int.Parse(radius.Value));
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)
