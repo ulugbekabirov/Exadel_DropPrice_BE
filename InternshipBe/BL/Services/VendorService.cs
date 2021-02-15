@@ -2,10 +2,8 @@
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
-using DAL;
 using DAL.Entities;
 using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
@@ -62,7 +60,7 @@ namespace BL.Services
         {
             var location = _vendorRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
-            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
+            var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
             var discounts = _vendorRepository.GetVendorDiscounts(id);
 
@@ -86,9 +84,7 @@ namespace BL.Services
 
             await _vendorRepository.CreateAsync(vendor);
 
-            var vendorViewModelCreated = _mapper.Map<VendorViewModel>(vendor);
-
-            return vendorViewModelCreated;
+            return _mapper.Map<VendorViewModel>(vendor);
         }
 
         public async Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel)
@@ -111,11 +107,10 @@ namespace BL.Services
         {
             var searchVendors = _vendorRepository.SearchVendors(adminSearchModel.SearchQuery);
 
-            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[0]);
-            var thenSortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[1]);
+            var sortBy = _discountRepository.GetSortType(adminSearchModel.SortBy[0]);
+            var thenSortBy = _discountRepository.GetSortType(adminSearchModel.SortBy[1]);
 
             var orderedVendorDTOs = _vendorRepository.SortBy(searchVendors, sortBy);
-
             orderedVendorDTOs = _vendorRepository.ThenSortBy(orderedVendorDTOs, thenSortBy);
 
             var specifiedAmountDiscounts = await _vendorRepository.GetSpecifiedAmountAsync(orderedVendorDTOs, adminSearchModel.Skip, adminSearchModel.Take);

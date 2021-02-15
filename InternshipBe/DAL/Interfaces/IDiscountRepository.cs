@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using NetTopologySuite.Geometries;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +27,6 @@ namespace DAL.Interfaces
         IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery);
 
         IQueryable<Discount> SortDiscounts(IQueryable<Discount> discounts, SortTypes sortBy, Point location);
-
-        Task<IEnumerable<Discount>> GetSpecifiedAmountAsync(IQueryable<Discount> discounts, int skip, int take);
 
         Task<double?> GetDiscountRatingAsync(int id);
 

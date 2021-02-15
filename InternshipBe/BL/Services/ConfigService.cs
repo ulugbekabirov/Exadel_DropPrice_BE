@@ -19,7 +19,7 @@ namespace BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ConfigVariableDTO>> GetConfigs()
+        public async Task<IEnumerable<ConfigVariableDTO>> GetConfigsAsync()
         {
             var configs = await _сonfigRepository.GetConfigsAsync();
 

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
-using DAL;
 using DAL.Entities;
 using DAL.Interfaces;
 using NetTopologySuite.Geometries;
@@ -36,13 +34,13 @@ namespace BL.Services
         {
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
-            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
+            var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
             var radius = await _configRepository.GetRadiusAsync();
 
-            var closestDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
+            var closestActiveDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
 
-            var sortedDiscounts = _discountRepository.SortDiscounts(closestDiscounts, sortBy, location);
+            var sortedDiscounts = _discountRepository.SortDiscounts(closestActiveDiscounts, sortBy, location);
 
             var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, sortModel.Skip, sortModel.Take);
 
@@ -78,7 +76,7 @@ namespace BL.Services
 
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
 
-            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), searchModel.SortBy);
+            var sortBy = _discountRepository.GetSortType(searchModel.SortBy);
 
             var radius = await _configRepository.GetRadiusAsync();
 
@@ -131,7 +129,7 @@ namespace BL.Services
             return _mapper.Map<SavedDTO>(savedDiscount);
         }
 
-        public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id)
+        public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscountAsync(int id)
         {
             var discount = await _discountRepository.GetByIdAsync(id);
 
@@ -258,11 +256,10 @@ namespace BL.Services
         {
             var discounts = _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
 
-            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[0]);
-            var thenSortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[1]);
+            var sortBy = _discountRepository.GetSortType(adminSearchModel.SortBy[0]);
+            var thenSortBy = _discountRepository.GetSortType(adminSearchModel.SortBy[1]);
 
             var sortedDiscounts = _discountRepository.SortBy(discounts, sortBy);
-
             sortedDiscounts = _discountRepository.ThenSortBy(sortedDiscounts, thenSortBy);
 
             var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, adminSearchModel.Skip, adminSearchModel.Take);
@@ -272,7 +269,6 @@ namespace BL.Services
             for (int i = 0; i < specifiedAmountDiscounts.Count(); i++)
             {
                 var discountId = specifiedAmountDiscounts.ElementAt(i).Id;
-
                 statisticDiscountDTOs[i].DiscountRating = await _discountRepository.GetDiscountRatingAsync(discountId);
                 statisticDiscountDTOs[i].TicketCount = await _discountRepository.GetDiscountTicketCountAsync(discountId);
             }
@@ -284,9 +280,7 @@ namespace BL.Services
         {
             var pointOfSales = await _discountRepository.GetPointOfSalesAsync(id);
 
-            var pointOfSalesDTO = _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
-
-            return pointOfSalesDTO;
+            return _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
         }
     }
 }
