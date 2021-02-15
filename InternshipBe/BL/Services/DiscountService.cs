@@ -233,5 +233,12 @@ namespace BL.Services
 
             return ordereDiscountStatisticDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
         }
+
+        public async Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id)
+        {
+            var pointOfSales = await _discountRepository.GetPointOfSalesAsync(id);
+
+            return pointOfSales;
+        }
     }
 }
