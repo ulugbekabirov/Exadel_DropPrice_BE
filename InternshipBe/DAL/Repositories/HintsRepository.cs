@@ -12,7 +12,6 @@ namespace DAL.Repositories
     {
         public HintsRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public async Task<IEnumerable<string>> SearchHintsAsync(string subString, int take)

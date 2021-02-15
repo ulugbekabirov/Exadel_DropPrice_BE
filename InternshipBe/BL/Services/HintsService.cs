@@ -10,12 +10,10 @@ namespace BL.Services
     public class HintsService : IHintsService
     {
         private readonly IHintsRepository _searchRepository;
-        private readonly IMapper _mapper;
 
-        public HintsService(IHintsRepository repository, IMapper mapper)
+        public HintsService(IHintsRepository repository)
         {
             _searchRepository = repository;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<string>> HintsAsync(string subString, SpecifiedAmountModel specifiedAmountModel)
