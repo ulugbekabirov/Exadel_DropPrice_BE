@@ -230,5 +230,14 @@ namespace BL.Services
 
             return ordereDiscountStatisticDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
         }
+
+        public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id)
+        {
+            var pointOfSales = await _discountRepository.GetPointOfSalesAsync(id);
+
+            var pointOfSalesDTO = _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
+
+            return pointOfSalesDTO;
+        }
     }
 }

@@ -106,5 +106,12 @@ namespace DAL.Repositories
 
             return await _context.Discounts.Where(v => v.Name.Contains(searchQuery)).ToListAsync();
         }
+
+        public async Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id)
+        {
+            var discount = await GetByIdAsync(id);
+
+            return discount.PointOfSales.ToList();
+        }
     }
 }
