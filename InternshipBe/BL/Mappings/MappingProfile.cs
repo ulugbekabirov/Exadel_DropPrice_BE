@@ -35,12 +35,13 @@ namespace BL.Mapping
 
             CreateMap<PointOfSale, PointOfSaleDTO>()
                 .ForMember(d => d.Latitude, source => source.MapFrom(s => s.Location.Y))
-                .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X));
+                .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X))
+                .ReverseMap();
 
-            CreateMap<PointOfSaleViewModel, PointOfSale>();
             CreateMap<PointOfSale, PointOfSaleViewModel>()
                 .ForMember(d => d.Latitude, source => source.MapFrom(s => s.Location.Y))
-                .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X));
+                .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X))
+                .ReverseMap();
 
             CreateMap<AssessmentViewModel, Assessment>()
                 .ReverseMap();
