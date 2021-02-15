@@ -7,7 +7,7 @@ namespace BL.Interfaces
 {
     public interface IConfigService
     {
-        Task<IEnumerable<ConfigVariableDTO>> GetConfigs();
+        Task<IEnumerable<ConfigVariableDTO>> GetConfigsAsync();
 
         Task<ConfigVariableDTO> ChangeConfigAsync(ConfigViewModel newConfigs);
     }
