@@ -13,7 +13,6 @@ namespace DAL.Repositories
     {
         public TicketRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public async Task<Ticket> GetTicketAsync(int discountId, int userId)

@@ -11,7 +11,6 @@ namespace DAL.Repositories
     {
         public VendorRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public IQueryable<Vendor> SearchVendors(string searchQuery)

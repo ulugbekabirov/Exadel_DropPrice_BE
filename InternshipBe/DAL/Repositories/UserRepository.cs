@@ -13,7 +13,6 @@ namespace DAL.Repositories
     {
         public UserRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public async Task<IEnumerable<string>> GetUserRolesAsync(int userId)

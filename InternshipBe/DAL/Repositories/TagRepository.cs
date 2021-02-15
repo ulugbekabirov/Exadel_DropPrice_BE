@@ -12,7 +12,6 @@ namespace DAL.Repositories
     {
         public TagRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public async Task<IEnumerable<Tag>> GetPopularTagsAsync(int skip, int take)

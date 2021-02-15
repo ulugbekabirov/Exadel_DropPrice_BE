@@ -12,7 +12,6 @@ namespace DAL.Repositories
     {
         public ConfigRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public async Task<IEnumerable<ConfigVariable>> GetConfigsAsync()
