@@ -15,7 +15,6 @@ namespace DAL.Repositories
 
         public DiscountRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius)

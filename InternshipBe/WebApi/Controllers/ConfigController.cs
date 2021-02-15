@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetConfigs()
         {
-            return Ok(await _configService.GetConfigs());
+            return Ok(await _configService.GetConfigsAsync());
         }
 
         [HttpPut("changeConfigs/{id}")]

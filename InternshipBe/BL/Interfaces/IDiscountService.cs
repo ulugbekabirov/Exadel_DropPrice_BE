@@ -19,7 +19,7 @@ namespace BL.Interfaces
 
         Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user);
 
-        Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscount(int id);
+        Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscountAsync(int id);
 
         Task<DiscountViewModel> CreateDiscountWithPointOfSalesAndTagsAsync(DiscountViewModel discountViewModel);
 

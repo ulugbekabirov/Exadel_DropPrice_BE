@@ -11,7 +11,6 @@ namespace DAL.Repositories
     {
         public VendorRepository(ApplicationDbContext context) : base(context)
         {
-
         }
 
         public IQueryable<Vendor> SearchVendors(string searchQuery)
@@ -32,21 +31,21 @@ namespace DAL.Repositories
         public IOrderedQueryable<Vendor> SortBy(IQueryable<Vendor> vendors, SortTypes sortBy)
         => sortBy switch
         {
-            SortTypes.RatingAsc => vendors.OrderBy(v => v.Discounts.Average(d => d.Assessments.Average(a => a.AssessmentValue))),
+            SortTypes.RatingAsc => vendors.OrderBy(v => _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(a.DiscountId)).Average(a => a.AssessmentValue)),
             SortTypes.RatingDesc => vendors.OrderByDescending(v => _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(a.DiscountId)).Average(a => a.AssessmentValue)),
-            SortTypes.TicketCountAsc => vendors.OrderBy(v => v.Discounts.Sum(d => d.Tickets.Count)),
-            SortTypes.TicketCountDesc => vendors.OrderByDescending(v => v.Discounts.Sum(d => d.Tickets.Count)),
-            _ => vendors.OrderByDescending(v => v.Discounts.Average(d => d.Assessments.Average(a => a.AssessmentValue))),
+            SortTypes.TicketCountAsc => vendors.OrderBy(v => _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(t.DiscountId)).Count()),
+            SortTypes.TicketCountDesc => vendors.OrderByDescending(v => _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(t.DiscountId)).Count()),
+            _ => vendors.OrderByDescending(v => _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(a.DiscountId)).Average(a => a.AssessmentValue)),
         };
 
         public IOrderedQueryable<Vendor> ThenSortBy(IOrderedQueryable<Vendor> vendors, SortTypes sortBy)
         => sortBy switch
         {
-            SortTypes.RatingAsc => vendors.ThenBy(v => v.Discounts.Average(d => d.Assessments.Average(a => a.AssessmentValue))),
-            SortTypes.RatingDesc => vendors.ThenByDescending(v => v.Discounts.Average(d => d.Assessments.Average(a => a.AssessmentValue))),
-            SortTypes.TicketCountAsc => vendors.ThenBy(v => v.Discounts.Sum(d => d.Tickets.Count)),
+            SortTypes.RatingAsc => vendors.ThenBy(v => _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(a.DiscountId)).Average(a => a.AssessmentValue)),
+            SortTypes.RatingDesc => vendors.ThenByDescending(v => _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(a.DiscountId)).Average(a => a.AssessmentValue)),
+            SortTypes.TicketCountAsc => vendors.ThenBy(v => _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(t.DiscountId)).Count()),
             SortTypes.TicketCountDesc => vendors.ThenByDescending(v => _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(t.DiscountId)).Count()),
-            _ => vendors.ThenByDescending(v => v.Discounts.Sum(d => d.Tickets.Count)),
+            _ => vendors.ThenByDescending(v => _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == v.Id).Select(d => d.Id).Contains(t.DiscountId)).Count()),
         };
 
         public async Task<double?> GetVendorRatingAsync(int id)

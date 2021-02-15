@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,11 +38,6 @@ namespace DAL.Repositories
             return await _entities.FindAsync(id);
         }
 
-        public IQueryable<TEntity> GetSpecifiedAmount(int skip, int take)
-        {
-            return _entities.Skip(skip).Take(take);
-        }
-
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
@@ -67,6 +63,11 @@ namespace DAL.Repositories
         public async Task<IEnumerable<TEntity>> GetSpecifiedAmountAsync(IQueryable<TEntity> entities, int skip, int take)
         {
             return await entities.Skip(skip).Take(take).ToListAsync();
+        }
+
+        public SortTypes GetSortType(string sortBy)
+        {
+            return (SortTypes)Enum.Parse(typeof(SortTypes), sortBy);
         }
     }
 }
