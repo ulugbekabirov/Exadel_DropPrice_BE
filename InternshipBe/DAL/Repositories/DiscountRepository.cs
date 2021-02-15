@@ -110,7 +110,6 @@ namespace DAL.Repositories
         public async Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id)
         {
             var discount = await GetByIdAsync(id);
-            var b = await _context.Discounts.Where(d => d.Id == id).SingleAsync();
 
             return discount.PointOfSales.ToList();
         }
