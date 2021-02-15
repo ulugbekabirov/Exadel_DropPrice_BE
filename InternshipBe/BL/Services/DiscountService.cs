@@ -279,5 +279,14 @@ namespace BL.Services
 
             return statisticDiscountDTOs;
         }
+
+        public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id)
+        {
+            var pointOfSales = await _discountRepository.GetPointOfSalesAsync(id);
+
+            var pointOfSalesDTO = _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
+
+            return pointOfSalesDTO;
+        }
     }
 }

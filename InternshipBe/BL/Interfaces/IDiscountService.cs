@@ -29,6 +29,8 @@ namespace BL.Interfaces
 
         Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel);
 
+        Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id);
+
         Task AddCompositePropertiesToDiscountDTOAsync(int userId, DiscountDTO discountDTOs, Point location);
     }
 }

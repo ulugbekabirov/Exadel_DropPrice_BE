@@ -23,6 +23,10 @@ namespace DAL.Interfaces
 
         Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmnetValue);
 
+        Task<IEnumerable<Discount>> SearchStatisticDiscountsAsync(string searchQuery);
+
+        Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id);
+
         IQueryable<Discount> SearchStatisticDiscountsAsync(string searchQuery);
 
         IQueryable<Discount> SortDiscounts(IQueryable<Discount> discounts, SortTypes sortBy, Point location);

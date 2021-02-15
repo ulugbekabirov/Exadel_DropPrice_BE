@@ -92,5 +92,13 @@ namespace WebApi.Controllers
         {
             return Ok(await _discountService.SearchDiscountsForStatisticsAsync(adminSearchModel));
         }
+
+        [HttpGet("{id}/pointOfSales")]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> PointOfSalesAsync(int id)
+        {
+            return Ok(await _discountService.GetPointOfSalesAsync(id));
+        }
+
     }
 }
