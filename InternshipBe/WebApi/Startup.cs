@@ -115,6 +115,9 @@ namespace WebApi
             services.AddScoped<IPointOfSaleService, PointOfSaleService>();
             services.AddScoped<IRepository<PointOfSale>, Repository<PointOfSale>>();
 
+            services.AddScoped<IHintsService, HintsService>();
+            services.AddScoped<IHintsRepository, HintsRepository>();
+
             services.AddScoped<ValidateModelFilterAttribute>();
 
             services.AddAuthentication(options =>
