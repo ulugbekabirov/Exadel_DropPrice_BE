@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Models;
 using DAL.Entities;
+using NetTopologySuite.Geometries;
 using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,5 +30,7 @@ namespace BL.Interfaces
         Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel);
 
         Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id);
+
+        Task AddCompositePropertiesToDiscountDTOAsync(int userId, DiscountDTO discountDTOs, Point location);
     }
 }

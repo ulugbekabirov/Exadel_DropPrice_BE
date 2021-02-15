@@ -85,7 +85,8 @@ namespace WebApi
             services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
 
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+               options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+               t => t.UseNetTopologySuite()));
 
             services.AddIdentity<User, IdentityRole<int>>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()

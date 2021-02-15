@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using BL.DTO;
-using BL.Extensions;
 using BL.Interfaces;
 using BL.Models;
+using DAL;
 using DAL.Entities;
 using DAL.Interfaces;
-using Shared.Extensions;
-using Shared.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
 
@@ -18,43 +15,69 @@ namespace BL.Services
     public class VendorService : IVendorService
     {
         private readonly IVendorRepository _vendorRepository;
+        private readonly IDiscountRepository _discountRepository;
+        private readonly IDiscountService _discountSevice;
         private readonly IMapper _mapper;
 
-        public VendorService(IVendorRepository vendorRepository, IMapper mapper)
+        public VendorService(IVendorRepository vendorRepository, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
+            _discountRepository = discountRepository;
+            _discountSevice = discountSevice;
             _mapper = mapper;
+        }
+
+        public async Task AddRatingAndTicketCountToVendorAsync(VendorDTO vendorDTO)
+        {
+            vendorDTO.TicketCount = await _vendorRepository.GetVendorTicketCountAsync(vendorDTO.VendorId);
+            vendorDTO.VendorRating = await _vendorRepository.GetVendorRatingAsync(vendorDTO.VendorId);
         }
 
         public async Task<VendorDTO> GetVendorByIdAsync(int id)
         {
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
-            return _mapper.Map<VendorDTO>(vendor);
+            var vendorDTO = _mapper.Map<VendorDTO>(vendor);
+
+            await AddRatingAndTicketCountToVendorAsync(vendorDTO);
+
+            return vendorDTO;
         }
 
         public async Task<IEnumerable<VendorDTO>> GetVendorsAsync()
         {
             var vendors = await _vendorRepository.GetAllAsync();
 
-            return _mapper.Map<VendorDTO[]>(vendors);
+            var vendorDTOs = _mapper.Map<VendorDTO[]>(vendors);
+
+            for (int i = 0; i < vendorDTOs.Length; i++)
+            {
+                await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
+            }
+
+            return vendorDTOs;
         }
 
         public async Task<IEnumerable<DiscountDTO>> GetVendorDiscountsAsync(int id, SortModel sortModel, User user)
         {
-            var vendor = await _vendorRepository.GetByIdAsync(id);
-
             var location = _vendorRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
             var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
 
-            var discountsModels = vendor.Discounts
-                .Select(d => d.CreateDiscountModel(location, user.Id))
-                .SortDiscountsBy(sortBy)
-                .Skip(sortModel.Skip)
-                .Take(sortModel.Take);
+            var discounts = _vendorRepository.GetVendorDiscounts(id);
 
-            return _mapper.Map<DiscountDTO[]>(discountsModels);
+            var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
+
+            var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, sortModel.Skip, sortModel.Take);
+
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(specifiedAmountDiscounts);
+
+            for (int i = 0; i < discountDTOs.Length; i++)
+            {
+                await _discountSevice.AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
+            }
+
+            return discountDTOs;
         }
 
         public async Task<VendorViewModel> CreateVendorAsync(VendorViewModel vendorViewModel)
@@ -84,15 +107,27 @@ namespace BL.Services
             return _mapper.Map<VendorViewModel>(vendor);
         }
 
-        public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel searchModel)
+        public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel adminSearchModel)
         {
-            var searchVendors = await _vendorRepository.SearchVendors(searchModel.SearchQuery);
+            var searchVendors = _vendorRepository.SearchVendors(adminSearchModel.SearchQuery);
 
-            var searchVendorDTOs = _mapper.Map<VendorDTO[]>(searchVendors);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[0]);
+            var thenSortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[1]);
 
-            var orderedVendorDTOs = searchVendorDTOs.SortBy(searchModel.SortBy[0]).ThenSortBy(searchModel.SortBy[1]);
+            var orderedVendorDTOs = _vendorRepository.SortBy(searchVendors, sortBy);
 
-            return orderedVendorDTOs.Skip(searchModel.Skip).Take(searchModel.Take);
+            orderedVendorDTOs = _vendorRepository.ThenSortBy(orderedVendorDTOs, thenSortBy);
+
+            var specifiedAmountDiscounts = await _vendorRepository.GetSpecifiedAmountAsync(orderedVendorDTOs, adminSearchModel.Skip, adminSearchModel.Take);
+
+            var vendorDTOs = _mapper.Map<VendorDTO[]>(specifiedAmountDiscounts);
+
+            for (int i = 0; i < vendorDTOs.Length; i++)
+            {
+                await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
+            }
+
+            return vendorDTOs;
         }
     }
 }

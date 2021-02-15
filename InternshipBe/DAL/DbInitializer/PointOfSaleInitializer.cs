@@ -1,5 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
+using NetTopologySuite;
+using NetTopologySuite.Geometries;
 
 namespace DAL.DbInitializer
 {
@@ -63,12 +65,15 @@ namespace DAL.DbInitializer
 
         public void AddPointOfSales(string name, string address, double latitude, double longitude)
         {
+            var location = NtsGeometryServices.Instance
+                .CreateGeometryFactory(srid: 4326)
+                .CreatePoint(new Coordinate(longitude, latitude));
+
             _context.PointOfSales.Add(new PointOfSale()
             {
                 Name = name,
                 Address = address,
-                Latitude = latitude,
-                Longitude = longitude,
+                Location = location,
             });
 
             _context.SaveChanges();

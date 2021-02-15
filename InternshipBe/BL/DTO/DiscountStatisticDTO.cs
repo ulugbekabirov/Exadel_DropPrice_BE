@@ -2,8 +2,12 @@
 {
     public class DiscountStatisticDTO
     {
-        public int? DiscountRating { get; set; }
+        public int DiscountId { get; set; }
 
-        public int? TicketCount { get; set; }
+        public string DiscountName { get; set; }
+
+        public double? DiscountRating { get; set; }
+
+        public int TicketCount { get; set; }
     }
 }

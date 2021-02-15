@@ -17,7 +17,7 @@ namespace BL.DTO
 
         public string Address { get; set; }
 
-        public int? DistanceInMeters { get; set; }
+        public int DistanceInMeters { get; set; }
 
         public double? DiscountRating { get; set; }
 

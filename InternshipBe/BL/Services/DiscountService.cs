@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BL.DTO;
-using BL.Extensions;
 using BL.Interfaces;
 using BL.Models;
+using DAL;
 using DAL.Entities;
 using DAL.Interfaces;
-using Shared.Infrastructure;
+using NetTopologySuite.Geometries;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
@@ -40,14 +40,33 @@ namespace BL.Services
 
             var radius = await _configRepository.GetRadiusAsync();
 
-            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, radius);
+            var closestDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
 
-            var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
-                .SortDiscountsBy(sortBy)
-                .Skip(sortModel.Skip)
-                .Take(sortModel.Take);
+            var sortedDiscounts = _discountRepository.SortDiscounts(closestDiscounts, sortBy, location);
 
-            return _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
+            var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, sortModel.Skip, sortModel.Take);
+
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(specifiedAmountDiscounts);
+
+            for (int i = 0; i < discountDTOs.Length; i++)
+            {
+                await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
+            }
+
+            return discountDTOs;
+        }
+
+        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, LocationModel locationModel, User user)
+        {
+            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
+
+            var discount = await _discountRepository.GetByIdAsync(id);
+
+            var discountDTO = _mapper.Map<DiscountDTO>(discount);
+
+            await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTO, location);
+
+            return discountDTO;
         }
 
         public async Task<IEnumerable<DiscountDTO>> SearchDiscountsAsync(SearchModel searchModel, User user)
@@ -63,27 +82,35 @@ namespace BL.Services
 
             var radius = await _configRepository.GetRadiusAsync();
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
+            var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 
-            var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
-                                                       .SortDiscountsBy(sortBy)
-                                                       .Skip(searchModel.Skip)
-                                                       .Take(searchModel.Take);
+            var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
 
-            var discountDTOs = _mapper.Map<DiscountDTO[]>(sortedDiscountModels);
+            var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, searchModel.Skip, searchModel.Take);
+
+            var discountDTOs = _mapper.Map<DiscountDTO[]>(specifiedAmountDiscounts);
+
+            for (int i = 0; i < discountDTOs.Length; i++)
+            {
+                await AddCompositePropertiesToDiscountDTOAsync(user.Id, discountDTOs[i], location);
+            }
 
             return discountDTOs;
         }
 
-        public async Task<DiscountDTO> GetDiscountByIdAsync(int id, LocationModel locationModel, User user)
+        public async Task AddCompositePropertiesToDiscountDTOAsync(int userId, DiscountDTO discountDTO, Point location)
         {
-            var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
+            var assessment = await _discountRepository.GetUserAssessmentAsync(discountDTO.DiscountId, userId);
 
-            var discount = await _discountRepository.GetByIdAsync(id);
+            var (Address, Distance) = await _discountRepository.GetInformationOfPointOfSaleAsync(discountDTO.DiscountId, location);
 
-            var discountModel = discount.CreateDiscountModel(location, user.Id);
-
-            return _mapper.Map<DiscountDTO>(discountModel);
+            discountDTO.DiscountRating = await _discountRepository.GetDiscountRatingAsync(discountDTO.DiscountId);
+            discountDTO.Tags = await _discountRepository.GetDiscountTagsAsync(discountDTO.DiscountId);
+            discountDTO.IsSaved = await _discountRepository.IsSavedDiscountAsync(discountDTO.DiscountId, userId);
+            discountDTO.IsOrdered = await _discountRepository.IsOrderedDiscountAsync(discountDTO.DiscountId, userId);
+            discountDTO.AssessmentValue = assessment?.AssessmentValue;
+            discountDTO.Address = Address;
+            discountDTO.DistanceInMeters = Distance;
         }
 
         public async Task<SavedDTO> SaveOrUnsaveDisocuntAsync(int id, User user)
@@ -127,7 +154,14 @@ namespace BL.Services
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
-                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+                var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
+
+                for (int i = 0; i < points.Length; i++)
+                {
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Latitude);
+                }
+                
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
 
                 discount.VendorId = vendorDiscount.Id;
                 discount.Vendor = vendorDiscount;
@@ -146,7 +180,7 @@ namespace BL.Services
 
                 return createDiscountViewModel;
             }
-            catch (Exception)
+            catch
             {
                 await transaction.RollbackAsync();
                 throw;
@@ -194,7 +228,7 @@ namespace BL.Services
 
                 return createDiscountViewModel;
             }
-            catch (Exception)
+            catch
             {
                 await transaction.RollbackAsync();
                 throw;
@@ -222,13 +256,28 @@ namespace BL.Services
 
         public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
         {
-            var discounts = await _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
+            var discounts = _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
 
-            var discountStatisticDTOs = _mapper.Map<DiscountStatisticDTO[]>(discounts);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[0]);
+            var thenSortBy = (SortTypes)Enum.Parse(typeof(SortTypes), adminSearchModel.SortBy[1]);
 
-            var ordereDiscountStatisticDTOs = discountStatisticDTOs.SortBy(adminSearchModel.SortBy[0]).ThenSortBy(adminSearchModel.SortBy[1]);
+            var sortedDiscounts = _discountRepository.SortBy(discounts, sortBy);
 
-            return ordereDiscountStatisticDTOs.Skip(adminSearchModel.Skip).Take(adminSearchModel.Take);
+            sortedDiscounts = _discountRepository.ThenSortBy(sortedDiscounts, thenSortBy);
+
+            var specifiedAmountDiscounts = await _discountRepository.GetSpecifiedAmountAsync(sortedDiscounts, adminSearchModel.Skip, adminSearchModel.Take);
+
+            var statisticDiscountDTOs = _mapper.Map<DiscountStatisticDTO[]>(specifiedAmountDiscounts);
+
+            for (int i = 0; i < specifiedAmountDiscounts.Count(); i++)
+            {
+                var discountId = specifiedAmountDiscounts.ElementAt(i).Id;
+
+                statisticDiscountDTOs[i].DiscountRating = await _discountRepository.GetDiscountRatingAsync(discountId);
+                statisticDiscountDTOs[i].TicketCount = await _discountRepository.GetDiscountTicketCountAsync(discountId);
+            }
+
+            return statisticDiscountDTOs;
         }
 
         public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id)

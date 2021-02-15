@@ -1,8 +1,9 @@
 ﻿using DAL.DataContext;
 using DAL.Interfaces;
-using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using NetTopologySuite;
+using NetTopologySuite.Geometries;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -51,14 +52,21 @@ namespace DAL.Repositories
             return await _context.Database.BeginTransactionAsync();
         }
 
-        public GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0)
+        public Point GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0)
         {
+            var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
+
             if (latittude == 0 && longitude == 0)
             {
-                return new GeoCoordinate(officeLatitude, officeLongitude);
+                return geometryFactory.CreatePoint(new Coordinate(officeLongitude, officeLatitude));
             }
 
-            return new GeoCoordinate(latittude, longitude);
+            return geometryFactory.CreatePoint(new Coordinate(longitude, latittude));
+        }
+
+        public async Task<IEnumerable<TEntity>> GetSpecifiedAmountAsync(IQueryable<TEntity> entities, int skip, int take)
+        {
+            return await entities.Skip(skip).Take(take).ToListAsync();
         }
     }
 }

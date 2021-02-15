@@ -1,5 +1,7 @@
-﻿using GeoCoordinatePortable;
+﻿using DAL.Entities;
+using DAL.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
+using NetTopologySuite.Geometries;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace DAL.Interfaces
 
         Task SaveChangesAsync();
 
-        GeoCoordinate GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0);
+        Point GetLocation(double officeLatitude, double officeLongitude, double latittude = 0, double longitude = 0);
 
         Task<IDbContextTransaction> BeginTrancation();
     }
