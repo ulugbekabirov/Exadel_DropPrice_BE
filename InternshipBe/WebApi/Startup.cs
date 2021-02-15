@@ -16,7 +16,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shared.EmailService;
 using Shared.Infrastructure.Filters;
+using System;
 using System.Text;
 using System.Text.Json;
 
@@ -33,6 +35,13 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+
+            services.AddScoped<IEmailSender, EmailSender>();
+
+            services.AddScoped<IMessageBuilder, MessageBuilder>();
+
             services.AddControllers()
                     .AddJsonOptions(options =>
                     { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
@@ -69,8 +78,7 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                          new string[] {}
-                    }
+                            Array.Empty<string>()                     }
                 });
             });
 

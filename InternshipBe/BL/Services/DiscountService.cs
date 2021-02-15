@@ -9,43 +9,38 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Shared.Infrastructure;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
 namespace BL.Services
 {
-    public enum Sorts
-    {
-        DiscountRatingAsc,
-        DiscountRatingDesc,
-        DistanceAsc,
-        DistanceDesc,
-        AlphabetAsc,
-        AlphabetDesc,
-    }
-
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
         private readonly ITagService _tagRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
+        private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper)
+        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
             _tagRepository = tagRepository;
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
+            _configRepository = configRepository;
         }
 
         public async Task<IEnumerable<DiscountDTO>> GetDiscountsAsync(SortModel sortModel, User user)
         {
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, sortModel.Latitude, sortModel.Longitude);
 
-            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), sortModel.SortBy);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), sortModel.SortBy);
 
-            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location);
+            var radius = await _configRepository.GetRadiusAsync();
+
+            var closestDiscounts = await _discountRepository.GetClosestActiveDiscountsAsync(location, radius);
 
             var sortedDiscountModels = closestDiscounts.Select(d => d.CreateDiscountModel(location, user.Id))
                 .SortDiscountsBy(sortBy)
@@ -64,9 +59,11 @@ namespace BL.Services
 
             var location = _discountRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, searchModel.Latitude, searchModel.Longitude);
 
-            var sortBy = (Sorts)Enum.Parse(typeof(Sorts), searchModel.SortBy);
+            var sortBy = (SortTypes)Enum.Parse(typeof(SortTypes), searchModel.SortBy);
 
-            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location);
+            var radius = await _configRepository.GetRadiusAsync();
+
+            var discounts = await _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 
             var sortedDiscountModels = discounts.Select(d => d.CreateDiscountModel(location, user.Id))
                                                        .SortDiscountsBy(sortBy)

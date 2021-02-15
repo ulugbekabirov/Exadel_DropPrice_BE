@@ -18,11 +18,23 @@ namespace DAL.DbInitializer
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
             _context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            await PopulateUsersAndRoles(userManager, rolesManager);
+            await SeedDatabase(userManager, rolesManager);
         }
 
-        public static async Task PopulateUsersAndRoles(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
+        public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
+
+            if (!_context.ConfigVariables.Where(p => p.Name == "SendingEmailToggler").Any())
+            {
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "SendingEmailToggler",
+                    Value = "false",
+                    Description = "Toggler to indicate whether to send emails or not"
+                });
+                _context.SaveChanges();
+            }
+
             if (userManager.Users.Any())
             {
                 return;
@@ -30,9 +42,9 @@ namespace DAL.DbInitializer
 
             if (!roleManager.Roles.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Admin));
-                await roleManager.CreateAsync(new IdentityRole<int>(RolesName.Moderator));
-                await roleManager.CreateAsync(new IdentityRole<int>(RolesName.User));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleNames.Admin));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleNames.Moderator));
+                await roleManager.CreateAsync(new IdentityRole<int>(RoleNames.User));
             }
 
             var towns = new TownInitializer(_context);
@@ -55,12 +67,6 @@ namespace DAL.DbInitializer
 
             var discounts = new DiscountInitializer(_context);
             discounts.InitializeDiscounts();
-
-            //var savedDicounts = new SavedDiscountInitializer(_context);
-            //savedDicounts.InitializeSavedDiscounts();
-
-            //var tickets = new TicketInitializer(_context);
-            //tickets.InitializerTickets();
 
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();

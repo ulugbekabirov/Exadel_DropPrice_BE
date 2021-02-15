@@ -1,5 +1,5 @@
 ﻿using BL.DTO;
-using BL.Models;
+using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +9,6 @@ namespace BL.Interfaces
     {
         Task<IEnumerable<ConfigVariableDTO>> GetConfigs();
 
-        Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfigs);
+        Task<ConfigVariableDTO> ChangeConfigAsync(ConfigViewModel newConfigs);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
-using BL.Models;
 using DAL.Interfaces;
+using Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,9 +26,9 @@ namespace BL.Services
             return _mapper.Map<ConfigVariableDTO[]>(configs);
         }
 
-        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigModel newConfig)
+        public async Task<ConfigVariableDTO> ChangeConfigAsync(ConfigViewModel newConfig)
         {
-            var config = await _сonfigRepository.GetConfigAsync(newConfig.Id);
+            var config = await _сonfigRepository.GetByIdAsync(newConfig.Id);
             config.Value = newConfig.Value;
 
             await _сonfigRepository.SaveChangesAsync();

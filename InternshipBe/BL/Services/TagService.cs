@@ -24,7 +24,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<TagDTO>> GetSpecifiedAmountAsync(SpecifiedAmountModel specifiedAmountModel)
         {
-            var tags = await _tagRepository.GetPopularAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
+            var tags = await _tagRepository.GetPopularTagsAsync(specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
             return _mapper.Map<TagDTO[]>(tags);
         }
