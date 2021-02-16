@@ -23,6 +23,18 @@ namespace DAL.DbInitializer
 
         public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
+            if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
+            {
+
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "Radius",
+                    Value = "40000",
+                    Description = "Radius in meters",
+                    DateType = "string",
+                });
+            }
+
             if (!_context.ConfigVariables.Where(p => p.Name == "SendingEmailToggler").Any())
             {
                 _context.ConfigVariables.Add(new ConfigVariable
@@ -70,14 +82,6 @@ namespace DAL.DbInitializer
 
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
-
-            _context.ConfigVariables.Add(new ConfigVariable
-            {
-                Name = "Radius",
-                Value = "40000",
-                Description = "Radius in meters",
-                DateType = "string",
-            });
 
             _context.SaveChanges();
         }
