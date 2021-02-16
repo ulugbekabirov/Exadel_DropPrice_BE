@@ -18,5 +18,10 @@ namespace DAL.Repositories
         {
             return await _context.Tags.OrderByDescending(d => d.Discounts.Count).Skip(skip).Take(take).ToListAsync();
         }
+
+        public async Task<IEnumerable<Tag>> GetExistingTagsAsync(IEnumerable<string> tagNames)
+        {
+            return await _context.Tags.Where(t => tagNames.Contains(t.Name)).ToListAsync();
+        }
     }
 }

@@ -33,11 +33,13 @@ namespace BL.Services
         {
             var result = new List<Tag>();
 
-            var allTags = await _tagRepository.GetAllAsync();
+            tagNames = tagNames.Distinct().ToArray();
 
-            result.AddRange(allTags.Where(t => tagNames.Contains(t.Name)));
+            var existingTags = await _tagRepository.GetExistingTagsAsync(tagNames);
 
-            var notExistingTags = tagNames.Except(allTags.Select(t => t.Name));
+            result.AddRange(existingTags);
+
+            var notExistingTags = tagNames.Except(existingTags.Select(t => t.Name));
             
             for (int i = 0; i < notExistingTags.Count(); i++)
             {
