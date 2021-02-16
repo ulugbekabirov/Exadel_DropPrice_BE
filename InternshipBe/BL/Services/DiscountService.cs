@@ -252,7 +252,7 @@ namespace BL.Services
             return _mapper.Map<AssessmentViewModel>(assessment);
         }
 
-        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
+        public async Task<TotalDiscountDTO> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
         {
             var discounts = _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
 
@@ -273,7 +273,13 @@ namespace BL.Services
                 statisticDiscountDTOs[i].TicketCount = await _discountRepository.GetDiscountTicketCountAsync(discountId);
             }
 
-            return statisticDiscountDTOs;
+            TotalDiscountDTO totalDiscountDTO = new TotalDiscountDTO()
+            {
+                DiscountDTOs = statisticDiscountDTOs,
+                TotalNumberOfDiscounts = await _discountRepository.GetTotalNumberOfDiscountsAsync(discounts),
+            };
+
+            return totalDiscountDTO;
         }
 
         public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id)
