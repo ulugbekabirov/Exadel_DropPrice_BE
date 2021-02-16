@@ -33,6 +33,7 @@ namespace DAL.DbInitializer
                     Description = "Radius in meters",
                     DateType = "string",
                 });
+                _context.SaveChanges();
             }
 
             if (!_context.ConfigVariables.Where(p => p.Name == "SendingEmailToggler").Any())
