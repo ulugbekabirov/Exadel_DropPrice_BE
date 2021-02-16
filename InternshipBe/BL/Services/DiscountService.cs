@@ -197,7 +197,14 @@ namespace BL.Services
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
-                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+                var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
+
+                for (int i = 0; i < points.Length; i++)
+                {
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Latitude);
+                }
+
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
 
                 discount.Tags.Clear();
                 discount.PointOfSales.Clear();

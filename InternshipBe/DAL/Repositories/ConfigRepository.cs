@@ -28,14 +28,14 @@ namespace DAL.Repositories
 
         public async Task<int> GetRadiusAsync()
         {
-            var radius = await GetByIdAsync(1);
+            var radius = await GetByIdAsync(2);
 
             return int.Parse(radius.Value);
         }
 
         public async Task<bool> IsSendingEmailsEnabled()
         {
-            var sendingEmailToggler = await GetByIdAsync(2);
+            var sendingEmailToggler = await GetByIdAsync(1);
 
             return bool.Parse(sendingEmailToggler.Value);
         }
