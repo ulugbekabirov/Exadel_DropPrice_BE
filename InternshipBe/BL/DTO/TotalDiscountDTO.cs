@@ -2,8 +2,8 @@
 {
     public class TotalDiscountDTO
     {
-        public DiscountStatisticDTO[] DiscountDTOs { get; set; }
-
         public int TotalNumberOfDiscounts { get; set; }
+
+        public DiscountStatisticDTO[] DiscountDTOs { get; set; }
     }
 }
