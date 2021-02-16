@@ -25,7 +25,6 @@ namespace DAL.DbInitializer
         {
             if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
             {
-
                 _context.ConfigVariables.Add(new ConfigVariable
                 {
                     Name = "Radius",
