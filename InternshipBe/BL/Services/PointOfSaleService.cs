@@ -2,19 +2,19 @@
 using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
-using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using DAL.Repositories;
 
 namespace BL.Services
 {
     public class PointOfSaleService : IPointOfSaleService
     {
-        private readonly IRepository<PointOfSale> _pointOfSaleRepository;
+        private readonly IPointOfSaleRepository _pointOfSaleRepository;
         private readonly IMapper _mapper;
 
-        public PointOfSaleService(IRepository<PointOfSale> pointOfSaleRepository, IMapper mapper)
+        public PointOfSaleService(IPointOfSaleRepository pointOfSaleRepository, IMapper mapper)
         {
             _pointOfSaleRepository = pointOfSaleRepository;
             _mapper = mapper;
@@ -24,11 +24,11 @@ namespace BL.Services
         {
             var result = new List<PointOfSale>();
 
-            var allPointOfSales = await _pointOfSaleRepository.GetAllAsync();
+            var existingPointOfSales = await _pointOfSaleRepository.GetExistingPointOfSalesAsync(pointOfSales.Select(p => p.Name));
 
-            result.AddRange(allPointOfSales.Where(p => pointOfSales.Select(p => p.Name).Contains(p.Name)));
+            result.AddRange(existingPointOfSales);
 
-            var notExistingPointOfSales = pointOfSales.Where(p => !allPointOfSales.Select(a => a.Name).Contains(p.Name));
+            var notExistingPointOfSales = pointOfSales.Where(p => !existingPointOfSales.Select(a => a.Name).Contains(p.Name));
 
             for (int i = 0; i < notExistingPointOfSales.Count(); i++)
             {
