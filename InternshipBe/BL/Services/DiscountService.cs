@@ -156,7 +156,7 @@ namespace BL.Services
 
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Latitude);
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Longitude, discountViewModel.PointOfSales[i].Latitude);
                 }
                 
                 var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
@@ -201,7 +201,7 @@ namespace BL.Services
 
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Latitude);
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Longitude, discountViewModel.PointOfSales[i].Latitude);
                 }
 
                 var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
