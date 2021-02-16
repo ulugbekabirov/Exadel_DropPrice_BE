@@ -43,5 +43,7 @@ namespace DAL.Interfaces
         IOrderedQueryable<Discount> ThenSortBy(IOrderedQueryable<Discount> discounts, SortTypes sortBy);
 
         Task<int> GetDiscountTicketCountAsync(int id);
+
+        Task<int> GetTotalNumberOfDiscountsAsync(IQueryable<Discount> discounts);
     }
 }
