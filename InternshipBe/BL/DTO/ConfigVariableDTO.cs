@@ -10,6 +10,6 @@
 
         public string ConfigName { get; set; }
 
-        public string DateType { get; set; }
+        public string DataType { get; set; }
     }
 }

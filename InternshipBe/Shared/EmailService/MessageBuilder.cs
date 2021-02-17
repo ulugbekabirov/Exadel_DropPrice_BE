@@ -17,8 +17,8 @@ namespace Shared.EmailService
                 To = new List<MailboxAddress>() { new MailboxAddress(user.Email), new MailboxAddress(ticket.Discount.Vendor.Email) },
                 Subject = subject,
                 Content = content,
-
             };
+
             return message;
         }
     }

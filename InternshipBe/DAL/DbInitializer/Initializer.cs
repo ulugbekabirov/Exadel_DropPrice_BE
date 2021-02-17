@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace DAL.DbInitializer
                     Name = "Radius",
                     Value = "40000",
                     Description = "Radius in meters",
-                    DateType = "string",
+                    DateType = DataTypes.Number,
                 });
                 _context.SaveChanges();
             }
@@ -42,7 +43,7 @@ namespace DAL.DbInitializer
                     Name = "SendingEmailToggler",
                     Value = "false",
                     Description = "Toggler to indicate whether to send emails or not",
-                    DateType = "bool",
+                    DateType = DataTypes.Boolean,
                 });
                 _context.SaveChanges();
             }
