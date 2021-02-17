@@ -2,10 +2,10 @@
 {
     public static class DataTypes
     {
-        public static string Number { get; set; } = "number";
+        public static string Number = "number";
 
-        public static string Boolean { get; set; } = "bool";
+        public static string Boolean = "bool";
 
-        public static string String { get; set; } = "string";
+        public static string String = "string";
     }
 }
