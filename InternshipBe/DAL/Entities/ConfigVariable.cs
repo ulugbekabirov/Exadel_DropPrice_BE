@@ -10,6 +10,6 @@
 
         public string Name { get; set; }
 
-        public string DateType { get; set; }
+        public string DataType { get; set; }
     }
 }
