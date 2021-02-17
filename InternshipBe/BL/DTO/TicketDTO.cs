@@ -6,6 +6,8 @@ namespace BL.DTO
     {
         public int DiscountId { get; set; }
 
+        public int VendorId { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
