@@ -4,6 +4,8 @@ namespace BL.DTO
 {
     public class TicketDTO
     {
+        public int DiscountId { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -25,5 +27,7 @@ namespace BL.DTO
         public DateTime OrderDate { get; set; }
 
         public bool IsExpired { get; set; }
+
+        public bool DiscountActivity { get; set; }
     }
 }

@@ -46,6 +46,7 @@ namespace BL.Mapping
                 .ReverseMap();
 
             CreateMap<Ticket, TicketDTO>()
+                .ForMember(t => t.DiscountId, source => source.MapFrom(s => s.DiscountId))
                 .ForMember(t => t.FirstName, source => source.MapFrom(s => s.User.FirstName))
                 .ForMember(t => t.LastName, source => source.MapFrom(s => s.User.LastName))
                 .ForMember(t => t.Patronymic, source => source.MapFrom(s => s.User.Patronymic))
@@ -54,6 +55,7 @@ namespace BL.Mapping
                 .ForMember(t => t.VendorPhone, source => source.MapFrom(s => s.Discount.Vendor.Phone))
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
                 .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode))
+                .ForMember(t => t.DiscountActivity, source => source.MapFrom(s => s.Discount.ActivityStatus))
                 .AfterMap((source, dto) =>
                 {
                     dto.IsExpired = source.OrderDate.Date != DateTime.Now.Date;
