@@ -29,6 +29,8 @@ namespace DAL.Entities
 
         public string SocialLinks { get; set; }
 
+        public int? ImageId { get; set; }
+
         public virtual ICollection<Discount> Discounts { get; set; }
     }
 }
