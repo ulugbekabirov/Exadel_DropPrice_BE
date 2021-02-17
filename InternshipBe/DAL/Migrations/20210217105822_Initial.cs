@@ -32,7 +32,7 @@ namespace DAL.Migrations
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DataType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

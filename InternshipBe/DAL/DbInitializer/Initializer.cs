@@ -31,7 +31,7 @@ namespace DAL.DbInitializer
                     Name = "Radius",
                     Value = "40000",
                     Description = "Radius in meters",
-                    DateType = DataTypes.Number,
+                    DataType = DataTypes.Number,
                 });
                 _context.SaveChanges();
             }
@@ -43,7 +43,7 @@ namespace DAL.DbInitializer
                     Name = "SendingEmailToggler",
                     Value = "false",
                     Description = "Toggler to indicate whether to send emails or not",
-                    DateType = DataTypes.Boolean,
+                    DataType = DataTypes.Boolean,
                 });
                 _context.SaveChanges();
             }

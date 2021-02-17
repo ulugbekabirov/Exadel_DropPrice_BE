@@ -52,7 +52,7 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("DateType")
+                    b.Property<string>("DataType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
