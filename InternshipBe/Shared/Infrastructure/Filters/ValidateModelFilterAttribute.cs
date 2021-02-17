@@ -9,7 +9,6 @@ namespace Shared.Infrastructure.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
-
             var modelState = actionContext.ModelState;
 
             if (!modelState.IsValid)
