@@ -8,6 +8,7 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using NetTopologySuite.Geometries;
+using Shared.Infrastructure;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
@@ -36,8 +37,8 @@ namespace BL.Services
 
             var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
-            var radius = await _configRepository.GetRadiusAsync();
-
+            var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
+                
             var closestActiveDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
 
             var sortedDiscounts = _discountRepository.SortDiscounts(closestActiveDiscounts, sortBy, location);
@@ -78,7 +79,7 @@ namespace BL.Services
 
             var sortBy = _discountRepository.GetSortType(searchModel.SortBy);
 
-            var radius = await _configRepository.GetRadiusAsync();
+            var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
 
             var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 

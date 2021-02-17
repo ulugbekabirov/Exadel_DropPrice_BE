@@ -4,6 +4,7 @@ using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
 using Shared.EmailService;
+using Shared.Infrastructure;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -41,7 +42,7 @@ namespace BL.Services
 
         public async Task SendEmailIfAllowed(User user, Ticket ticket)
         {
-            if (await _configRepository.IsSendingEmailsEnabled())
+            if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))
             {
                 var message = _messageBuilder.GenerateMessageTemplate(user, ticket);
                 await _emailSender.SendEmailAsync(message);

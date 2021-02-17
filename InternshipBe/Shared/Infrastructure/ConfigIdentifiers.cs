@@ -3,5 +3,6 @@
     public enum ConfigIdentifiers
     {
         Radius = 1,
+        SendingEmailToggler,
     }
 }
