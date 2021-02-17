@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,17 @@ namespace DAL.DbInitializer
 
         public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
+            if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
+            {
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "Radius",
+                    Value = "40000",
+                    Description = "Radius in meters",
+                    DataType = DataTypes.Number,
+                });
+                _context.SaveChanges();
+            }
 
             if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
             {
@@ -42,7 +54,8 @@ namespace DAL.DbInitializer
                 {
                     Name = "SendingEmailToggler",
                     Value = "false",
-                    Description = "Toggler to indicate whether to send emails or not"
+                    Description = "Toggler to indicate whether to send emails or not",
+                    DataType = DataTypes.Boolean,
                 });
                 _context.SaveChanges();
             }

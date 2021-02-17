@@ -9,5 +9,7 @@
         public string ConfigDescription { get; set; }
 
         public string ConfigName { get; set; }
+
+        public string DataType { get; set; }
     }
 }

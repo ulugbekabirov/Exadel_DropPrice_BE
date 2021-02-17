@@ -187,5 +187,10 @@ namespace DAL.Repositories
 
             return discount.PointOfSales.ToList();
         }
+
+        public async Task<int> GetTotalNumberOfDiscountsAsync(IQueryable<Discount> discounts)
+        {
+            return await discounts.CountAsync();
+        }
     }
 }

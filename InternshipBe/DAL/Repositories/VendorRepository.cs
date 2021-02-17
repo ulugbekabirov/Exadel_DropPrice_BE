@@ -59,5 +59,10 @@ namespace DAL.Repositories
             return await _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == id).Select(d => d.Id).Contains(t.DiscountId))
                 .CountAsync();
         }
+
+        public async Task<int> GetTotalNumberOfVendorsAsync(IQueryable<Vendor> vendors)
+        {
+            return await vendors.CountAsync();
+        }
     }
 }

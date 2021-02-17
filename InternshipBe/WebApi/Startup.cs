@@ -78,7 +78,8 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                            Array.Empty<string>()                     }
+                            Array.Empty<string>()                     
+                    }
                 });
             });
 
@@ -114,7 +115,7 @@ namespace WebApi
             services.AddScoped<IConfigRepository, ConfigRepository>();
 
             services.AddScoped<IPointOfSaleService, PointOfSaleService>();
-            services.AddScoped<IRepository<PointOfSale>, Repository<PointOfSale>>();
+            services.AddScoped<IPointOfSaleRepository, PointOfSaleRepository>();
 
             services.AddScoped<IHintsService, HintsService>();
             services.AddScoped<IHintsRepository, HintsRepository>();

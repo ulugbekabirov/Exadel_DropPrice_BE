@@ -8,6 +8,8 @@ namespace DAL.Interfaces
 {
     public interface IVendorRepository : IRepository<Vendor>
     {
+        Task<int> GetTotalNumberOfVendorsAsync(IQueryable<Vendor> vendors);
+
         IQueryable<Discount> GetVendorDiscounts(int id);
 
         Task<double?> GetVendorRatingAsync(int id);

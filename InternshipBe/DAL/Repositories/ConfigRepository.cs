@@ -3,7 +3,6 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -19,23 +18,16 @@ namespace DAL.Repositories
             return await _entities.ToListAsync();
         }
 
-        public async Task<ConfigVariable> GetConfigByNameAsync(string name)
+        public async Task<int> GetRadiusAsync(int id)
         {
-            var config = await _entities.Where(p => p.Name == name).SingleOrDefaultAsync();
-
-            return config;
-        }
-
-        public async Task<int> GetRadiusAsync()
-        {
-            var radius = await GetByIdAsync(1);
+            var radius = await GetByIdAsync(id);
 
             return int.Parse(radius.Value);
         }
 
-        public async Task<bool> IsSendingEmailsEnabled()
+        public async Task<bool> IsSendingEmailsEnabled(int id)
         {
-            var sendingEmailToggler = await GetByIdAsync(2);
+            var sendingEmailToggler = await GetByIdAsync(id);
 
             return bool.Parse(sendingEmailToggler.Value);
         }

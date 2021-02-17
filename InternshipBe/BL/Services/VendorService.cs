@@ -103,7 +103,7 @@ namespace BL.Services
             return _mapper.Map<VendorViewModel>(vendor);
         }
 
-        public async Task<IEnumerable<VendorDTO>> SearchVendorsAsync(AdminSearchModel adminSearchModel)
+        public async Task<TotalVendorDTO> SearchVendorsAsync(AdminSearchModel adminSearchModel)
         {
             var searchVendors = _vendorRepository.SearchVendors(adminSearchModel.SearchQuery);
 
@@ -122,7 +122,13 @@ namespace BL.Services
                 await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
             }
 
-            return vendorDTOs;
+            TotalVendorDTO totalVendorDTO = new TotalVendorDTO()
+            {
+                VendorDTOs = vendorDTOs,
+                TotalNumberOfVendors = await _vendorRepository.GetTotalNumberOfVendorsAsync(searchVendors),
+            };
+
+            return totalVendorDTO;
         }
     }
 }

@@ -8,6 +8,7 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using NetTopologySuite.Geometries;
+using Shared.Infrastructure;
 using Shared.ViewModels;
 using WebApi.ViewModels;
 
@@ -36,8 +37,8 @@ namespace BL.Services
 
             var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
-            var radius = await _configRepository.GetRadiusAsync();
-
+            var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
+                
             var closestActiveDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
 
             var sortedDiscounts = _discountRepository.SortDiscounts(closestActiveDiscounts, sortBy, location);
@@ -78,7 +79,7 @@ namespace BL.Services
 
             var sortBy = _discountRepository.GetSortType(searchModel.SortBy);
 
-            var radius = await _configRepository.GetRadiusAsync();
+            var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
 
             var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
 
@@ -156,7 +157,7 @@ namespace BL.Services
 
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Latitude);
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Longitude);
                 }
                 
                 var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
@@ -197,7 +198,14 @@ namespace BL.Services
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
-                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(_mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales));
+                var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
+
+                for (int i = 0; i < points.Length; i++)
+                {
+                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Longitude);
+                }
+
+                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
 
                 discount.Tags.Clear();
                 discount.PointOfSales.Clear();
@@ -252,7 +260,7 @@ namespace BL.Services
             return _mapper.Map<AssessmentViewModel>(assessment);
         }
 
-        public async Task<IEnumerable<DiscountStatisticDTO>> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
+        public async Task<TotalDiscountDTO> SearchDiscountsForStatisticsAsync(AdminSearchModel adminSearchModel)
         {
             var discounts = _discountRepository.SearchStatisticDiscountsAsync(adminSearchModel.SearchQuery);
 
@@ -273,7 +281,13 @@ namespace BL.Services
                 statisticDiscountDTOs[i].TicketCount = await _discountRepository.GetDiscountTicketCountAsync(discountId);
             }
 
-            return statisticDiscountDTOs;
+            TotalDiscountDTO totalDiscountDTO = new TotalDiscountDTO()
+            {
+                DiscountDTOs = statisticDiscountDTOs,
+                TotalNumberOfDiscounts = await _discountRepository.GetTotalNumberOfDiscountsAsync(discounts),
+            };
+
+            return totalDiscountDTO;
         }
 
         public async Task<IEnumerable<PointOfSaleDTO>> GetPointOfSalesAsync(int id)

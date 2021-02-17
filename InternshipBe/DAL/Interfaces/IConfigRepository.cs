@@ -8,10 +8,8 @@ namespace DAL.Interfaces
     {
         Task<IEnumerable<ConfigVariable>> GetConfigsAsync();
 
-        Task<ConfigVariable> GetConfigByNameAsync(string name);
+        Task<int> GetRadiusAsync(int id);
 
-        Task<int> GetRadiusAsync();
-
-        Task<bool> IsSendingEmailsEnabled();
+        Task<bool> IsSendingEmailsEnabled(int id);
     }
 }
