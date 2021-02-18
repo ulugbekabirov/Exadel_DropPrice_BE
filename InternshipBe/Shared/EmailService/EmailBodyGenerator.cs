@@ -25,7 +25,8 @@ namespace Shared.EmailService
             DictionaryForUser.Add("FirstName", user.FirstName);
             DictionaryForUser.Add("LastName", user.LastName);
             DictionaryForUser.Add("Date", ticket.OrderDate.ToString());
-            DictionaryForUser.Add("Discount", ticket.Discount.Name);
+            DictionaryForUser.Add("DiscountName", ticket.Discount.Name);
+            DictionaryForUser.Add("DiscountValue", ticket.Discount.DiscountAmount.ToString());
             DictionaryForUser.Add("Vendor", ticket.Discount.Vendor.Name);
             if (ticket.Discount.PromoCode != null)
             {
