@@ -1,11 +1,6 @@
 ﻿using BL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 
@@ -25,7 +20,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetImage(int id)
         {
-            return Ok(await _imageService.GetImageByIdAsync(id));
+            return Ok(await _imageService.RetrieveImageByIdAsync(id));
         }
     }
 }

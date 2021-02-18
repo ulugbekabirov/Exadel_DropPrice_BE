@@ -1,11 +1,7 @@
-﻿using BL.DTO;
-using BL.Interfaces;
-using DAL.Entities;
+﻿using BL.Interfaces;
 using DAL.Interfaces;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -19,7 +15,7 @@ namespace BL.Services
             _imageRepository = imageRepository;
         }
 
-        public async Task<string> GetImageByIdAsync(int imageId)
+        public async Task<string> RetrieveImageByIdAsync(int imageId)
         {
             var image = await _imageRepository.GetByIdAsync(imageId);
             var imageBase64Data = Convert.ToBase64String(image.ImageData);

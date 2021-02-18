@@ -1,12 +1,9 @@
-﻿using DAL.Entities;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
     public interface IImageService
     {
-        Task<string> GetImageByIdAsync(int imageId);
+        Task<string> RetrieveImageByIdAsync(int imageId);
     }
 }
