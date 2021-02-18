@@ -45,11 +45,22 @@ namespace BL.Services
             return ticketDTO;
         }
 
+        /*        public async Task SendEmailIfAllowed(User user, Ticket ticket)
+                {
+                    if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))
+                    {
+                        var message = _messageBuilder.GenerateMessageTemplate(user, ticket);
+                        await _emailSender.SendEmailAsync(message);
+                    }
+                }*/
+
         public async Task SendEmailIfAllowed(User user, Ticket ticket)
         {
             if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))
             {
-                var message = _messageBuilder.GenerateMessageTemplate(user, ticket);
+                //var message = _messageBuilder.GenerateMessageTemplate(user, ticket);
+
+                var message = await _messageBuilder.GenerateMessageTemplateAsync(user, ticket);
                 await _emailSender.SendEmailAsync(message);
             }
         }

@@ -3,6 +3,7 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -30,6 +31,18 @@ namespace DAL.Repositories
             var sendingEmailToggler = await GetByIdAsync(id);
 
             return bool.Parse(sendingEmailToggler.Value);
+        }
+
+        public async Task<List<string>> EmailLocalization(string currentCulture = "eng")
+        {
+            if (currentCulture == "eng")
+            {
+                return await _entities.Where(c => c.Name.Contains("ENG")).Select(c => c.Value).ToListAsync();
+            }
+            else
+            {
+                return await _entities.Where(c => c.Name.Contains("RUS")).Select(c => c.Value).ToListAsync();
+            }
         }
     }
 }

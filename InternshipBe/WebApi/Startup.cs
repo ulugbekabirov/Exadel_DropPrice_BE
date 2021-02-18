@@ -42,6 +42,10 @@ namespace WebApi
 
             services.AddScoped<IMessageBuilder, MessageBuilder>();
 
+            services.AddScoped<IEmailBodyGenerator, EmailBodyGenerator>();
+
+            services.AddScoped<IReplacerService, ReplacerService>();
+
             services.AddControllers()
                     .AddJsonOptions(options =>
                     { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });

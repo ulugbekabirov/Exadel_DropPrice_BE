@@ -11,5 +11,7 @@ namespace DAL.Interfaces
         Task<int> GetRadiusAsync(int id);
 
         Task<bool> IsSendingEmailsEnabled(int id);
+
+        Task<List<string>> EmailLocalization(string currentCulture);
     }
 }
