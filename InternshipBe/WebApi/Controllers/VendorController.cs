@@ -2,6 +2,7 @@
 using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Filters;
@@ -16,11 +17,13 @@ namespace WebApi.Controllers
     {
         private readonly IVendorService _vendorService;
         private readonly UserManager<User> _userManager;
+        private readonly IImageService _imageService;
 
-        public VendorController(IVendorService vendorService, UserManager<User> userManager)
+        public VendorController(IVendorService vendorService, UserManager<User> userManager, IImageService imageService)
         {
             _vendorService = vendorService;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -63,6 +66,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> SearchVendors(AdminSearchModel searchmodel)
         {
             return Ok(await _vendorService.SearchVendorsAsync(searchmodel));
+        }
+
+        [HttpPost("{id}/images")]
+        [Authorize(Roles ="Admin,Moderator")]
+        public async Task<IActionResult> AddImage(IFormFile file, int id)
+        {
+            return Ok(file);
         }
     }
 }
