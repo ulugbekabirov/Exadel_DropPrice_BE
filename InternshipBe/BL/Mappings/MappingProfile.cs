@@ -104,6 +104,9 @@ namespace BL.Mapping
                 .ForMember(v => v.Description, source => source.MapFrom(s => s.ConfigDescription))
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.ConfigName))
                 .ReverseMap();
+
+            CreateMap<Image, ImageDTO>()
+                .ReverseMap();
         }
     }
 }
