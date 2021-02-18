@@ -31,5 +31,7 @@ namespace BL.DTO
         public bool IsExpired { get; set; }
 
         public bool DiscountActivity { get; set; }
+
+        public bool IsSavedDiscount { get; set; }
     }
 }
