@@ -21,7 +21,7 @@ namespace BL.Interfaces
         Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel);
 
         Task<TotalVendorDTO> SearchVendorsAsync(AdminSearchModel searchModel);
-        Task<VendorDTO> AddImageToVendorAsync(IFormFile file, int vendorId);
 
+        Task<VendorDTO> AddImageToVendorAsync(IFormFile file, int vendorId);
     }
 }
