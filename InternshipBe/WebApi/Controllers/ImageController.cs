@@ -20,7 +20,8 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetImage(int id)
         {
-            return Ok(await _imageService.RetrieveImageByIdAsync(id));
+            var image = await _imageService.RetrieveImageByIdAsync(id);
+            return File(image.ImageData, image.ContentType);
         }
     }
 }
