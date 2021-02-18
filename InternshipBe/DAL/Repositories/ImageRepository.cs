@@ -1,10 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -17,5 +13,18 @@ namespace DAL.Repositories
 
         }
 
+        public async Task<Image> CreateAndReturnImageAsync(byte[] imageData, string filename)
+        {
+            var image = new Image()
+            {
+                Name = filename,
+                ImageData = imageData
+            };
+
+            var savedImage = await _context.Images.AddAsync(image);
+            await _context.SaveChangesAsync();
+
+            return savedImage.Entity;
+        }
     }
 }
