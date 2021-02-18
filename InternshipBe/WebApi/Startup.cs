@@ -120,6 +120,9 @@ namespace WebApi
             services.AddScoped<IHintsService, HintsService>();
             services.AddScoped<IHintsRepository, HintsRepository>();
 
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+
             services.AddScoped<ValidateModelFilterAttribute>();
 
             services.AddAuthentication(options =>
