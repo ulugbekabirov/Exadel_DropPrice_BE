@@ -17,13 +17,11 @@ namespace WebApi.Controllers
     {
         private readonly IVendorService _vendorService;
         private readonly UserManager<User> _userManager;
-        private readonly IImageService _imageService;
 
-        public VendorController(IVendorService vendorService, UserManager<User> userManager, IImageService imageService)
+        public VendorController(IVendorService vendorService, UserManager<User> userManager)
         {
             _vendorService = vendorService;
             _userManager = userManager;
-            _imageService = imageService;
         }
 
         [HttpGet]
@@ -68,11 +66,11 @@ namespace WebApi.Controllers
             return Ok(await _vendorService.SearchVendorsAsync(searchmodel));
         }
 
-        [HttpPost("{id}/images")]
+        [HttpPost("{id}/image")]
         [Authorize(Roles ="Admin,Moderator")]
-        public async Task<IActionResult> AddImage(IFormFile file, int id)
+        public async Task<IActionResult> AddImage(int id, IFormFile file)
         {
-            return Ok(file);
+            return Ok(await _vendorService.AddImageToVendorAsync(file, id));
         }
     }
 }
