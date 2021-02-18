@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 
-namespace XUnitTests.Middleware
+namespace UnitTests.Middleware
 {
     public class ExceptionMiddlewareTests
     {
