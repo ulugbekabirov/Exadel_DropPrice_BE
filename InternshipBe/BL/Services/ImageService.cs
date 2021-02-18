@@ -23,7 +23,8 @@ namespace BL.Services
         {
             var image = await _imageRepository.GetByIdAsync(imageId);
             var imageBase64Data = Convert.ToBase64String(image.ImageData);
-            var imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            var extension = Path.GetExtension(image.Name).Replace(".", "");
+            var imageDataURL = string.Format("data:image/{0};base64,{1}", extension, imageBase64Data);
             return imageDataURL;
         }
     }
