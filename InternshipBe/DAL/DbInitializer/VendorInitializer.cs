@@ -34,7 +34,7 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", @"Vitra International AG, a Swiss corporation Klünenfeldstrasse 22 4127 Birsfelden Switzerland", "+41 61 377 00 00", "{\"Instagram\": \"https://www.instagram.com/vitra \", \"Facebook\": \"https://www.facebook.com/vitra \", \"Twitter\" : \"https://twitter.com/vitra \", \"Vk\": \"https://vk.com/vitrarussia \", \"WebSite\" : \"https://www.vitra.com/en-un/home \"} ");
         }
 
-        public void AddVendor(string name, string description, string email, string address, string phone, string socialLinks, int imageId=0)
+        public void AddVendor(string name, string description, string email, string address, string phone, string socialLinks)
         {
             _context.Vendors.Add(new Vendor()
             {
@@ -44,7 +44,6 @@ namespace DAL.DbInitializer
                 Address = address,
                 Phone = phone,
                 SocialLinks = socialLinks,
-                ImageId = imageId
             });
 
             _context.SaveChanges();
