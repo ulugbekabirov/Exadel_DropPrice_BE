@@ -21,9 +21,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<IActionResult> GetImage(int id)
+        public async Task<IActionResult> GetImage(int id)
         {
-            return Ok();
+            return  BadRequest();
         }
     }
 }
