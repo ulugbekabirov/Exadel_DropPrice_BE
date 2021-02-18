@@ -75,7 +75,7 @@ namespace DAL.Repositories
 
         public async Task<bool> IsSavedDiscountAsync(int id, int userId)
         {
-            return await _context.SavedDiscounts.AnyAsync(s => s.DiscountId == id && s.UserId == userId);
+            return await _context.SavedDiscounts.AnyAsync(s => s.DiscountId == id && s.UserId == userId && s.IsSaved == true);
         }
 
         public async Task<bool> IsOrderedDiscountAsync(int id, int userId)
