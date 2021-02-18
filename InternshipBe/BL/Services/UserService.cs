@@ -12,13 +12,15 @@ namespace BL.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IDiscountRepository _discountRepository;
         private readonly ITicketRepository _ticketRepository;
         private readonly IDiscountService _discountService;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository repository, IMapper mapper, ITicketRepository ticketRepository, IDiscountService discountService)
+        public UserService(IUserRepository repository, IDiscountRepository discountRepository, IMapper mapper, ITicketRepository ticketRepository, IDiscountService discountService)
         {
             _userRepository = repository;
+            _discountRepository = discountRepository;
             _mapper = mapper;
             _ticketRepository = ticketRepository;
             _discountService = discountService;
@@ -51,7 +53,14 @@ namespace BL.Services
         {
             var tickets = await _ticketRepository.GetTicketsAsync(user.Id, specifiedAmountModel.Skip, specifiedAmountModel.Take);
 
-            return _mapper.Map<TicketDTO[]>(tickets);
+            var ticketDTOs = _mapper.Map<TicketDTO[]>(tickets);
+
+            for (int i = 0; i < ticketDTOs.Length; i++)
+            {
+                ticketDTOs[i].IsSavedDiscount = await _discountRepository.IsSavedDiscountAsync(ticketDTOs[i].DiscountId, user.Id);
+            }
+
+            return ticketDTOs;
         }
     }
 }

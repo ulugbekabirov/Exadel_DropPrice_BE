@@ -12,14 +12,16 @@ namespace BL.Services
     public class TicketService : ITicketService
     {
         private readonly ITicketRepository _ticketRepository;
+        private readonly IDiscountRepository _discountRepository;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IMessageBuilder _messageBuilder;
         private readonly IConfigRepository _configRepository;
 
-        public TicketService(ITicketRepository repository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
+        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
         {
             _ticketRepository = repository;
+            _discountRepository = discountRepository;
             _mapper = mapper;
             _emailSender = emailSender;
             _messageBuilder = messageBuilder;
@@ -37,7 +39,10 @@ namespace BL.Services
                 await SendEmailIfAllowed(user, userTicket);
             }
 
-            return _mapper.Map<TicketDTO>(userTicket);
+            var ticketDTO = _mapper.Map<TicketDTO>(userTicket);
+            ticketDTO.IsSavedDiscount = await _discountRepository.IsSavedDiscountAsync(ticketDTO.DiscountId, user.Id);
+
+            return ticketDTO;
         }
 
         public async Task SendEmailIfAllowed(User user, Ticket ticket)
