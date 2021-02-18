@@ -148,9 +148,9 @@ namespace BL.Services
 
             if (allowedExtensions.Contains(extension))
             {
-                var ms = new MemoryStream();
-                file.CopyTo(ms);
-                var imageData = ms.ToArray();
+                var memoryStream = new MemoryStream();
+                file.CopyTo(memoryStream);
+                var imageData = memoryStream.ToArray();
                 var image = await _imageRepository.CreateAndReturnImageAsync(imageData, filename);
                 vendor.ImageId = image.Id;
                 await _vendorRepository.SaveChangesAsync();
