@@ -33,6 +33,6 @@ namespace BL.Interfaces
 
         Task AddCompositePropertiesToDiscountDTOAsync(int userId, DiscountDTO discountDTOs, Point location);
 
-        Task<IEnumerable<string>> GetSearchHintsAsync(string subString, SpecifiedAmountModel specifiedAmountModel);
+        Task<IEnumerable<string>> GetSearchHintsAsync(string subSearchQuery, SpecifiedAmountModel specifiedAmountModel);
     }
 }

@@ -101,9 +101,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("search/hints")]
-        public async Task<IActionResult> GetHints(string subString, SpecifiedAmountModel specifiedAmountModel)
+        public async Task<IActionResult> GetSearchHints(string subSearchQuery, SpecifiedAmountModel specifiedAmountModel)
         {
-            return Ok(await _discountService.GetSearchHintsAsync(subString, specifiedAmountModel));
+            return Ok(await _discountService.GetSearchHintsAsync(subSearchQuery, specifiedAmountModel));
         }
     }
 }
