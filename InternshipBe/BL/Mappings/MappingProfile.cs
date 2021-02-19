@@ -84,6 +84,7 @@ namespace BL.Mapping
             CreateMap<Discount, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
+                .ForMember(d=>d.ImageId, source=>source.MapFrom(s=>s.Vendor.ImageId))
                 .ReverseMap()
                 .ForAllOtherMembers(d => d.Ignore());
             CreateMap<Discount, DiscountDTO>()
