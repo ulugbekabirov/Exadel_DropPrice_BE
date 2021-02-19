@@ -20,6 +20,6 @@
 
         public int TicketCount { get; set; }
 
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; }
     }
 }
