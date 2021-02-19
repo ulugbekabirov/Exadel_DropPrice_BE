@@ -25,7 +25,7 @@ namespace BL.Services
             var imageDTO = _mapper.Map<ImageDTO>(image);
             
             var extension = Path.GetExtension(image.Name).Replace(".", "");
-            imageDTO.ContentType = string.Format("image/{0}", extension);
+            imageDTO.ContentType = $"image/{extension}";
             
             return imageDTO;
         }
