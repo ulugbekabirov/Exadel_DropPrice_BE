@@ -96,6 +96,9 @@ namespace DAL.DbInitializer
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
 
+            var emailTemplates = new EmailsInitializer(_context);
+            emailTemplates.InitializeEmails();
+
             _context.SaveChanges();
         }
     }
