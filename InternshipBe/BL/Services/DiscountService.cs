@@ -296,5 +296,12 @@ namespace BL.Services
 
             return _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
         }
+
+        public async Task<IEnumerable<string>> GetSearchHintsAsync(string subString, SpecifiedAmountModel specifiedAmountModel)
+        {
+            var hints = await _discountRepository.SearchHintsAsync(subString, specifiedAmountModel.Take);
+
+            return hints;
+        }
     }
 }

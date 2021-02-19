@@ -100,5 +100,10 @@ namespace WebApi.Controllers
             return Ok(await _discountService.GetPointOfSalesAsync(id));
         }
 
+        [HttpGet("search/hints")]
+        public async Task<IActionResult> GetHints(string subString, SpecifiedAmountModel specifiedAmountModel)
+        {
+            return Ok(await _discountService.GetSearchHintsAsync(subString, specifiedAmountModel));
+        }
     }
 }

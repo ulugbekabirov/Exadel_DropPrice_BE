@@ -192,5 +192,10 @@ namespace DAL.Repositories
         {
             return await discounts.CountAsync();
         }
+
+        public async Task<IEnumerable<string>> SearchHintsAsync(string subString, int take)
+        {
+            return await _entities.Where(s => s.Name.Contains(subString)).Take(take).Select(d => d.Name).ToListAsync();
+        }
     }
 }
