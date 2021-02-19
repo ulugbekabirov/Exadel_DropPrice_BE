@@ -91,7 +91,7 @@ namespace BL.Services
         {
             var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.Id);
 
-            vendor.Name = vendorViewModel.Name;
+            vendor.Name = vendorViewModel.VendorName;
             vendor.Phone = vendorViewModel.Phone;
             vendor.SocialLinks = vendorViewModel.SocialLinks;
             vendor.Email = vendorViewModel.Email;
