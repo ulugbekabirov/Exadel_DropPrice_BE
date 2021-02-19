@@ -1,4 +1,5 @@
 ﻿using MimeKit;
+using System;
 using System.Collections.Generic;
 
 namespace Shared.EmailService
@@ -9,6 +10,6 @@ namespace Shared.EmailService
 
         public string Subject { get; set; }
 
-        public string Content { get; set; }
+        public List<string> Content { get; set; }
     }
 }

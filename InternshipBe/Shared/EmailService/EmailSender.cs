@@ -15,18 +15,31 @@ namespace Shared.EmailService
 
         public async Task SendEmailAsync(Message message)
         {
-            var emailMessage = CreateEmailMessage(message);
+            var emailMessageForUser = CreateEmailMessageForUser(message);
+            var emailMessageForVendor = CreateEmailMessageForVendor(message);
 
-            await SendAsync(emailMessage);
+            await SendAsync(emailMessageForUser);
+            await SendAsync(emailMessageForVendor);
         }
 
-        private MimeMessage CreateEmailMessage(Message message)
+        private MimeMessage CreateEmailMessageForUser(Message message)
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
-            emailMessage.To.AddRange(message.To);
+            emailMessage.To.Add(message.To[0]);
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content };
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content[0] };
+
+            return emailMessage;
+        }
+
+        private MimeMessage CreateEmailMessageForVendor(Message message)
+        {
+            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
+            emailMessage.To.Add(message.To[1]);
+            emailMessage.Subject = message.Subject;
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content[1] };
 
             return emailMessage;
         }
