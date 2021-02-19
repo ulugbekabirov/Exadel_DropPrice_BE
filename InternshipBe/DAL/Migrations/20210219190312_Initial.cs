@@ -54,6 +54,20 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LocalizedName",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Russian = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    English = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LocalizedName", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Offices",
                 columns: table => new
                 {
@@ -98,21 +112,6 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Towns",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Latitude = table.Column<double>(type: "float", nullable: false),
-                    Longitude = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Towns", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Vendors",
                 columns: table => new
                 {
@@ -150,6 +149,27 @@ namespace DAL.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Towns",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameId = table.Column<int>(type: "int", nullable: true),
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Towns", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Towns_LocalizedName_NameId",
+                        column: x => x.NameId,
+                        principalTable: "LocalizedName",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -518,6 +538,11 @@ namespace DAL.Migrations
                 name: "IX_Tickets_UserId",
                 table: "Tickets",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Towns_NameId",
+                table: "Towns",
+                column: "NameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -575,6 +600,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Discounts");
+
+            migrationBuilder.DropTable(
+                name: "LocalizedName");
 
             migrationBuilder.DropTable(
                 name: "Offices");
