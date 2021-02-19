@@ -2,6 +2,7 @@
 using BL.Models;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Filters;
@@ -63,6 +64,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> SearchVendors(AdminSearchModel searchmodel)
         {
             return Ok(await _vendorService.SearchVendorsAsync(searchmodel));
+        }
+
+        [HttpPost("{id}/image")]
+        [Authorize(Roles ="Admin,Moderator")]
+        public async Task<IActionResult> AddImage(int id, IFormFile file)
+        {
+            return Ok(await _vendorService.AddImageToVendorAsync(file, id));
         }
     }
 }

@@ -43,7 +43,7 @@ namespace DAL.DbInitializer
                 Email = email,
                 Address = address,
                 Phone = phone,
-                SocialLinks = socialLinks
+                SocialLinks = socialLinks,
             });
 
             _context.SaveChanges();

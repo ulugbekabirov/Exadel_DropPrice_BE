@@ -4,9 +4,13 @@ using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace BL.Services
 {
@@ -16,13 +20,16 @@ namespace BL.Services
         private readonly IDiscountRepository _discountRepository;
         private readonly IDiscountService _discountSevice;
         private readonly IMapper _mapper;
+        private readonly IImageRepository _imageRepository;
+        public static readonly string[] AllowedExtensions = { ".jpeg", ".png", ".jpg" };
 
-        public VendorService(IVendorRepository vendorRepository, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper)
+        public VendorService(IVendorRepository vendorRepository, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
         {
             _vendorRepository = vendorRepository;
             _discountRepository = discountRepository;
             _discountSevice = discountSevice;
             _mapper = mapper;
+            _imageRepository = imageRepository;
         }
 
         public async Task AddRatingAndTicketCountToVendorAsync(VendorDTO vendorDTO)
@@ -130,5 +137,28 @@ namespace BL.Services
 
             return totalVendorDTO;
         }
+
+        public async Task<VendorDTO> AddImageToVendorAsync(IFormFile file, int vendorId)
+        {
+            var vendor = await _vendorRepository.GetByIdAsync(vendorId);
+
+            var filename = file.FileName;
+
+            var extension = Path.GetExtension(filename);
+
+            if (!AllowedExtensions.Contains(extension))
+            {
+                throw new ValidationException($"Not a valid extension. The only extensions allowed are {string.Join(",", AllowedExtensions)}");
+            }
+            var memoryStream = new MemoryStream();
+            file.CopyTo(memoryStream);
+            var imageData = memoryStream.ToArray();
+            var image = await _imageRepository.CreateAndReturnImageAsync(imageData, filename);
+            vendor.ImageId = image.Id;
+            await _vendorRepository.SaveChangesAsync();
+
+            return _mapper.Map<VendorDTO>(vendor);
+        }
+
     }
 }

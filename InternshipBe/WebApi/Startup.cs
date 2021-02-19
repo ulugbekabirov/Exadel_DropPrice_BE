@@ -117,8 +117,8 @@ namespace WebApi
             services.AddScoped<IPointOfSaleService, PointOfSaleService>();
             services.AddScoped<IPointOfSaleRepository, PointOfSaleRepository>();
 
-            services.AddScoped<IHintsService, HintsService>();
-            services.AddScoped<IHintsRepository, HintsRepository>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IImageRepository, ImageRepository>();
 
             services.AddScoped<ValidateModelFilterAttribute>();
 
