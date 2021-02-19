@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace BL.Services
 {
@@ -20,6 +21,7 @@ namespace BL.Services
         private readonly IDiscountService _discountSevice;
         private readonly IMapper _mapper;
         private readonly IImageRepository _imageRepository;
+        public static readonly string[] AllowedExtensions = { ".jpeg", ".png", ".jpg" };
 
         public VendorService(IVendorRepository vendorRepository, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
         {
@@ -144,17 +146,16 @@ namespace BL.Services
 
             var extension = Path.GetExtension(filename);
 
-            var allowedExtensions = new string[] { ".jpeg", ".png", ".jpg" };
-
-            if (allowedExtensions.Contains(extension))
+            if (!AllowedExtensions.Contains(extension))
             {
-                var memoryStream = new MemoryStream();
-                file.CopyTo(memoryStream);
-                var imageData = memoryStream.ToArray();
-                var image = await _imageRepository.CreateAndReturnImageAsync(imageData, filename);
-                vendor.ImageId = image.Id;
-                await _vendorRepository.SaveChangesAsync();
+                throw new ValidationException($"Not a valid extension. The only extensions allowed are {string.Join(",", AllowedExtensions)}");
             }
+            var memoryStream = new MemoryStream();
+            file.CopyTo(memoryStream);
+            var imageData = memoryStream.ToArray();
+            var image = await _imageRepository.CreateAndReturnImageAsync(imageData, filename);
+            vendor.ImageId = image.Id;
+            await _vendorRepository.SaveChangesAsync();
 
             return _mapper.Map<VendorDTO>(vendor);
         }
