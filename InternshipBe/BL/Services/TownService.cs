@@ -4,6 +4,8 @@ using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BL.Services
@@ -21,6 +23,10 @@ namespace BL.Services
 
         public async Task<IEnumerable<TownDTO>> GetTownsAsync()
         {
+            //CultureInfo newCulture = CultureInfo.CreateSpecificCulture("ru-RU");
+            //Thread.CurrentThread.CurrentUICulture = newCulture;
+            //Thread.CurrentThread.CurrentCulture = newCulture;
+
             return _mapper.Map<TownDTO[]>(await _townRepository.GetAllAsync());
         }
     }
