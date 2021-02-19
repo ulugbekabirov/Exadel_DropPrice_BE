@@ -195,7 +195,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take)
         {
-            return await _entities.Where(d => d.Name.Contains(subSearchQuery)&&d.ActivityStatus==true).Take(take).Select(d => d.Name).ToListAsync();
+            return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).ToListAsync();
         }
     }
 }
