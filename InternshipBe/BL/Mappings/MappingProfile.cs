@@ -13,7 +13,7 @@ namespace BL.Mapping
         public MappingProfile()
         {
             CreateMap<Town, TownDTO>()
-                .ForMember(t => t.TownName, source => source.MapFrom(s => s.Name))
+                .ForMember(t => t.TownName, source => source.MapFrom(s => s.Name.Current))
                 .ReverseMap();
 
             CreateMap<User, UserDTO>()
