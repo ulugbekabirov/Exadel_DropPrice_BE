@@ -32,6 +32,13 @@ namespace BL.Services
             _imageRepository = imageRepository;
         }
 
+        public async Task<IEnumerable<PointOfSaleDTO>> GetVendorPointOfSalesAsync(int id)
+        {
+            var pointOfSales = await _vendorRepository.GetVendorPointOfSalesAsync(id);
+
+            return _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
+        }
+
         public async Task AddRatingAndTicketCountToVendorAsync(VendorDTO vendorDTO)
         {
             vendorDTO.TicketCount = await _vendorRepository.GetVendorTicketCountAsync(vendorDTO.VendorId);
