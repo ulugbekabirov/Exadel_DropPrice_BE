@@ -20,11 +20,12 @@ namespace Shared.Localization
 
         public async Task InvokeAsync(HttpContext context)
         {
-            var lang = context.Request.Headers["Accept-Language"].ToString();
-            if (!string.IsNullOrWhiteSpace(lang))
+            var acceptedLanguages = context.Request.Headers["Accept-Language"].ToString();
+            var language = acceptedLanguages.Split(',').FirstOrDefault();
+            if (!string.IsNullOrWhiteSpace(language))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             }
             else
             {
