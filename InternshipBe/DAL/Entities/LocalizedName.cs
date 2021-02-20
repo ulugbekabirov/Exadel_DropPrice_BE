@@ -15,15 +15,12 @@ namespace DAL.Entities
         [NotMapped]
         public string Current
         {
-            get
-            {
-                return (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToUpper()) switch
+            get => (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToUpper()) switch
                 {
                     "RU" => Russian,
                     "EN" => English,
                     _ => English,
                 };
-            }
         }
     }
 }
