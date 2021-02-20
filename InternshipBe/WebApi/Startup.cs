@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shared.EmailService;
 using Shared.Infrastructure.Filters;
+using Shared.Localization;
 using System;
 using System.Text;
 using System.Text.Json;
@@ -150,6 +151,8 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
             }
+
+            app.UseCulture();
 
             app.UseRouting();
 
