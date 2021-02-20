@@ -33,7 +33,7 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<List<string>> EmailLocalization(string currentCulture = "eng")
+        public async Task<List<string>> EmailLocalization(string currentCulture)
         {
             if (currentCulture == "eng")
             {
