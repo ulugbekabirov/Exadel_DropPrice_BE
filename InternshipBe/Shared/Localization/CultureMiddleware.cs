@@ -17,7 +17,7 @@ namespace Shared.Localization
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             var lang = context.Request.Headers["Accept-Language"].ToString();
             if (!string.IsNullOrWhiteSpace(lang))
