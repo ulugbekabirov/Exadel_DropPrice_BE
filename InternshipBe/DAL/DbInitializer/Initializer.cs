@@ -48,14 +48,14 @@ namespace DAL.DbInitializer
             var users = new UserInitializer(_context, userManager);
             await users.InitializeUsers();
 
+            var pointOfSales = new PointOfSaleInitializer(_context);
+            pointOfSales.InitializePointOfSales();
+
             var vendors = new VendorInitializer(_context);
             vendors.InitializeVendors();
 
             var tags = new TagInitializer(_context);
             tags.InitializeTags();
-
-            var pointOfSales = new PointOfSaleInitializer(_context);
-            pointOfSales.InitializePointOfSales();
 
             var discounts = new DiscountInitializer(_context);
             discounts.InitializeDiscounts();
