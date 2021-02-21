@@ -1,20 +1,4 @@
-﻿using DAL.DataContext;
-using DAL.Entities;
-
-namespace DAL.DbInitializer
-{
-    class EmailsInitializer
-    {
-        private readonly ApplicationDbContext _context;
-
-        public EmailsInitializer(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        public void InitializeEmails()
-        {
-            AddEmailTemplate("ENGMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+﻿<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:arvo, courier, georgia, serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
@@ -316,25 +300,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>FirstName:</b>&nbsp;##FirstName##</p>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'><br></p>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr style='border-collapse:collapse'>
-                                        <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'>
-                                            <table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
-                                                <tr style='border-collapse:collapse'>
-                                                    <td align='center' valign='top' style='padding:0;Margin:0;width:560px'>
-                                                        <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
-                                                            <tr style='border-collapse:collapse'>
-                                                                <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>LastName:</b>&nbsp;##LastName##</p>
+                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Имя:</b>&nbsp;##FirstName##</p>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'>&nbsp;</p>
                                                                 </td>
                                                             </tr>
@@ -352,7 +318,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Patronymic:</b>&nbsp;##Patronymic##</p>
+                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Фамилия:</b>&nbsp;##LastName##</p>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'>&nbsp;</p>
                                                                 </td>
                                                             </tr>
@@ -370,7 +336,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Vendor:</b>&nbsp;##VendorName##<br></p>
+                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Отчество:</b>&nbsp;##Patronymic##<br></p>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'><br></p>
                                                                 </td>
                                                             </tr>
@@ -388,7 +354,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Product/Service:</b>&nbsp;##DiscountName##</p>
+                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Товар/услуга:</b>&nbsp;##DiscountName##</p>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'>&nbsp;</p>
                                                                 </td>
                                                             </tr>
@@ -406,7 +372,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Email:</b>&nbsp;##VendorEmail##</p>
+                                                                    <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Электронная почта:</b>&nbsp;##VendorEmail##</p>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'><br></p>
                                                                 </td>
                                                             </tr>
@@ -417,10 +383,10 @@ namespace DAL.DbInitializer
                                         </td>
                                     </tr>
                                     <tr style='border-collapse:collapse'>
-                                        <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0'><p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Phone:</b>&nbsp;##VendorPhone##</p></td></tr></table></td></tr></table></td>
+                                        <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0'><p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'><b>Контактный телефон:</b>&nbsp;##VendorPhone##</p></td></tr></table></td></tr></table></td>
                                     </tr>
                                     <tr style='border-collapse:collapse'>
-                                        <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0'><h2 style='Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#666666;margin-bottom:15px'><b>Discount:</b>&nbsp;##DiscountValue##</h2></td></tr></table></td></tr></table></td>
+                                        <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0'><h2 style='Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, ' helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#666666;margin-bottom:15px'><b>Скидка:</b>&nbsp;##DiscountValue##</h2></td></tr></table></td></tr></table></td>
                                     </tr>
                                     <tr style='border-collapse:collapse'>
                                         <td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'>
@@ -430,7 +396,7 @@ namespace DAL.DbInitializer
                                                         <table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'>
                                                             <tr style='border-collapse:collapse'>
                                                                 <td align='left' style='padding:0;Margin:0'>
-                                                                    <h2 style='Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#666666;margin-bottom:15px'><b>##Promocode##</b></h2>
+                                                                    <h2 style='Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, ' helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#666666;margin-bottom:15px'><b>##Promocode##</b></h2>
                                                                     <p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333;display:none'><br></p>
                                                                 </td>
                                                             </tr>
@@ -440,7 +406,7 @@ namespace DAL.DbInitializer
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' style='padding:0;Margin:0'><p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'>Confirmation: ##Date##</p></td></tr></table></td></tr></table></td></tr>
+                                    <tr style='border-collapse:collapse'><td align='left' style='padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px'><table cellpadding='0' cellspacing='0' width='100%' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' valign='top' style='padding:0;Margin:0;width:560px'><table cellpadding='0' cellspacing='0' width='100%' role='presentation' style='mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px'><tr style='border-collapse:collapse'><td align='center' style='padding:0;Margin:0'><p style='Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:arvo, courier, georgia, serif;line-height:24px;margin-bottom:12px;color:#333333'>Дата подтверждения: ##Date##</p></td></tr></table></td></tr></table></td></tr>
                                 </table>
                             </td>
                         </tr>
@@ -451,218 +417,3 @@ namespace DAL.DbInitializer
     </div>
 </body>
 </html>
-", "Email template for user in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("ENGMessageForVendor", @"<div>
-    <table width='100%' cellspacing='0' cellpadding='0'>
-        <tbody>
-            <tr>
-                <td valign='top'>
-                    <table cellpadding='0' cellspacing='0' align='center'>
-                        <tbody>
-                            <tr>
-                                <td align='center'>
-                                    <table bgcolor='#ffffff' align='center' cellpadding='0' cellspacing='0' width='600'>
-                                        <tbody>
-                                            <tr>
-                                                <td align='left'>
-                                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td width='560' valign='top' align='center' esd-custom-block-id='14028'>
-                                                                    <table style='border-right: 8px solid #e69138; border-collapse: separate; background-color: #373a44; height: 101px; width: 100%;' width='100%' cellspacing='0' cellpadding='0' bgcolor='#373a44'>
-                                                                        <tbody>
-                                                                            <tr style='height: 101px;'>
-                                                                                <td align='left' bgcolor='#3d85c6' style='height: 101px;'>
-                                                                                    <h2 style='color: #ffffff; line-height: 150%; font-size: 32px;'>Flexadel</h2>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width='560' align='center' valign='top'>
-                                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td align='center'>
-                                                                    <p style='font-size: 40px; font-family: arvo, courier, georgia, serif; line-height: 150%;'><strong>Hello ##Vendor##, you received this email as notification that a ##FirstName## LastName## has taken advantage of your discount offer ##DiscountName##. Best regards, Exadal company.</strong></p>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width='560' align='center' valign='top'>
-                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                        <tbody>
-                                            <tr>
-                                                <td align='left'>
-                                                    <p style='font-size: 20px;'>Предложением воспользовался&nbsp;##FirstName## ##LastNaDiscount used by&nbsp;##FirstName## ##LastName## on ##Date##&nbsp;me## ##Date##</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>", "Email template for vendor in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RUSMessageForUser", @"<div>
-    <table width='100%' cellspacing='0' cellpadding='0'>
-        <tbody>
-            <tr>
-                <td valign='top'>
-                    <table cellpadding='0' cellspacing='0' align='center'>
-                        <tbody>
-                            <tr>
-                                <td align='center'>
-                                    <table bgcolor='#ffffff' align='center' cellpadding='0' cellspacing='0' width='600'>
-                                        <tbody>
-                                            <tr>
-                                                <td align='left'>
-                                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td width='560' valign='top' align='center' esd-custom-block-id='14028'>
-                                                                    <table style='border-right: 8px solid #e69138; border-collapse: separate; background-color: #373a44; height: 101px; width: 100%;' width='100%' cellspacing='0' cellpadding='0' bgcolor='#373a44'>
-                                                                        <tbody>
-                                                                            <tr style='height: 101px;'>
-                                                                                <td align='left' bgcolor='#3d85c6' style='height: 101px;'>
-                                                                                    <h2 style='color: #ffffff; line-height: 150%; font-size: 32px;'>Flexadel</h2>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width='560' align='center' valign='top'>
-                                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td align='center'>
-                                                                    <p style='font-size: 40px; font-family: arvo, courier, georgia, serif; line-height: 150%;'><strong>Hello ##Vendor##, you received this email as notification that a ##FirstName## LastName## has taken advantage of your discount offer ##DiscountName##. Best regards, Exadal company.</strong></p>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width='560' align='center' valign='top'>
-                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                        <tbody>
-                                            <tr>
-                                                <td align='left'>
-                                                    <p style='font-size: 20px;'>Предложением воспользовался&nbsp;##FirstName## ##LastNaDiscount used by&nbsp;##FirstName## ##LastName## on ##Date##&nbsp;me## ##Date##</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>", "Email template for user in russian. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RUSMessageForVendor", @"<div>
-    <table width='100%' cellspacing='0' cellpadding='0'>
-        <tbody>
-            <tr>
-                <td align='center'>
-                    <table bgcolor='#ffffff' align='center' cellpadding='0' cellspacing='0' width='600'>
-                        <tbody>
-                            <tr>
-                                <td align='left'>
-                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                        <tbody>
-                                            <tr>
-                                                <td width='560' valign='top' align='center' esd-custom-block-id='14028'>
-                                                    <table style='border-right: 8px solid #e69138; border-collapse: separate; background-color: #373a44;' width='100%' cellspacing='0' cellpadding='0' bgcolor='#373a44'>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td align='left' bgcolor='#3d85c6'>
-                                                                    <h2 style='color: #ffffff; line-height: 150%; font-size: 32px;'>Flexadel</h2>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width='560' align='center' valign='top'>
-                                    <table cellpadding='0' cellspacing='0' width='100%'>
-                                        <tbody>
-                                            <tr>
-                                                <td align='center'>
-                                                    <p style='font-size: 40px; font-family: arvo, courier, georgia, serif; line-height: 150%;'><strong>Здравствуйте##Vendor##, вы получили это письмо в качестве уведомления, что ##FirstName## LastName## собирается воспользоваться вашим предложением&nbsp;##DiscountName##. С уважением, компания Exadel.</strong></p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td align='left'>
-                    <table cellpadding='0' cellspacing='0' width='100%'>
-                        <tbody>
-                            <tr>
-                                <td align='left'>
-                                    <p style='font-size: 20px;'>Предложением воспользовался&nbsp;##FirstName## ##LastName## ##Date##</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>", "Email template for vendor in russian. Words like ##Word## are replaced with values from the database.");
-        }
-
-        public void AddEmailTemplate(string name, string value, string discription)
-        {
-            _context.ConfigVariables.Add(new ConfigVariable()
-            {
-                Name = name,
-                Value = value,
-                Description = discription,
-            });
-
-            _context.SaveChanges();
-        }
-    }
-}
