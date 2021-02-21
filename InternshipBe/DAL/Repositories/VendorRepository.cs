@@ -16,7 +16,9 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<PointOfSale>> GetVendorPointOfSalesAsync(int id)
         {
-            return await _context.PointOfSales.Where(p => p.Discounts.Any(d => d.VendorId == id)).ToListAsync();
+            var vendor = await _context.Vendors.FirstAsync(v => v.Id == id);
+
+            return vendor.PointOfSales;
         }
 
         public IQueryable<Vendor> SearchVendors(string searchQuery)

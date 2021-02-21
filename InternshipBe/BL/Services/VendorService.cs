@@ -17,15 +17,17 @@ namespace BL.Services
     public class VendorService : IVendorService
     {
         private readonly IVendorRepository _vendorRepository;
+        private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IDiscountRepository _discountRepository;
         private readonly IDiscountService _discountSevice;
         private readonly IMapper _mapper;
         private readonly IImageRepository _imageRepository;
         public static readonly string[] AllowedExtensions = { ".jpeg", ".png", ".jpg" };
 
-        public VendorService(IVendorRepository vendorRepository, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
+        public VendorService(IVendorRepository vendorRepository, IPointOfSaleService pointOfSaleService, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
         {
             _vendorRepository = vendorRepository;
+            _pointOfSaleService = pointOfSaleService;
             _discountRepository = discountRepository;
             _discountSevice = discountSevice;
             _mapper = mapper;
@@ -50,6 +52,7 @@ namespace BL.Services
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
             var vendorDTO = _mapper.Map<VendorDTO>(vendor);
+            vendorDTO.PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendor.PointOfSales);
 
             await AddRatingAndTicketCountToVendorAsync(vendorDTO);
 
@@ -65,6 +68,7 @@ namespace BL.Services
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
                 await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
+                vendorDTOs[i].PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendors.ElementAt(i).PointOfSales);
             }
 
             return vendorDTOs;
@@ -96,14 +100,39 @@ namespace BL.Services
         {
             var vendor = _mapper.Map<Vendor>(vendorViewModel);
 
+            var pointOfSales = _mapper.Map<PointOfSale[]>(vendorViewModel.PointOfSales);
+
+            for (int i = 0; i < vendorViewModel.PointOfSales.Length; i++)
+            {
+                pointOfSales[i].Location = _discountRepository.GetLocation(default, default, vendorViewModel.PointOfSales[i].Latitude, vendorViewModel.PointOfSales[i].Longitude);
+            }
+
+            var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
+
+            vendor.PointOfSales = resultPointOfSales;
+
             await _vendorRepository.CreateAsync(vendor);
 
-            return _mapper.Map<VendorViewModel>(vendor);
+            var createVendorViewModel = _mapper.Map<VendorViewModel>(vendor);
+            createVendorViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(resultPointOfSales);
+
+            return createVendorViewModel;
         }
 
         public async Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel)
         {
             var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.Id);
+
+            var pointOfSales = _mapper.Map<PointOfSale[]>(vendorViewModel.PointOfSales);
+
+            for (int i = 0; i < vendorViewModel.PointOfSales.Length; i++)
+            {
+                pointOfSales[i].Location = _discountRepository.GetLocation(default, default, vendorViewModel.PointOfSales[i].Latitude, vendorViewModel.PointOfSales[i].Longitude);
+            }
+
+            var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
+
+            vendor.PointOfSales?.Clear();
 
             vendor.Name = vendorViewModel.VendorName;
             vendor.Phone = vendorViewModel.Phone;
@@ -111,10 +140,14 @@ namespace BL.Services
             vendor.Email = vendorViewModel.Email;
             vendor.Address = vendorViewModel.Address;
             vendor.Description = vendorViewModel.Description;
+            vendor.PointOfSales = resultPointOfSales;
 
             await _vendorRepository.SaveChangesAsync();
 
-            return _mapper.Map<VendorViewModel>(vendor);
+            var createVendorViewModel = _mapper.Map<VendorViewModel>(vendor);
+            createVendorViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(resultPointOfSales);
+
+            return createVendorViewModel;
         }
 
         public async Task<TotalVendorDTO> SearchVendorsAsync(AdminSearchModel adminSearchModel)
@@ -127,13 +160,14 @@ namespace BL.Services
             var orderedVendorDTOs = _vendorRepository.SortBy(searchVendors, sortBy);
             orderedVendorDTOs = _vendorRepository.ThenSortBy(orderedVendorDTOs, thenSortBy);
 
-            var specifiedAmountDiscounts = await _vendorRepository.GetSpecifiedAmountAsync(orderedVendorDTOs, adminSearchModel.Skip, adminSearchModel.Take);
+            var specifiedAmountOfVendors = await _vendorRepository.GetSpecifiedAmountAsync(orderedVendorDTOs, adminSearchModel.Skip, adminSearchModel.Take);
 
-            var vendorDTOs = _mapper.Map<VendorDTO[]>(specifiedAmountDiscounts);
+            var vendorDTOs = _mapper.Map<VendorDTO[]>(specifiedAmountOfVendors);
 
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
                 await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
+                vendorDTOs[i].PointOfSales = _mapper.Map<PointOfSaleDTO[]>(specifiedAmountOfVendors.ElementAt(i).PointOfSales);
             }
 
             TotalVendorDTO totalVendorDTO = new TotalVendorDTO()
@@ -164,7 +198,10 @@ namespace BL.Services
             vendor.ImageId = image.Id;
             await _vendorRepository.SaveChangesAsync();
 
-            return _mapper.Map<VendorDTO>(vendor);
+            var vendorDTO = _mapper.Map<VendorDTO>(vendor);
+            vendorDTO.PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendor.PointOfSales);
+
+            return vendorDTO;
         }
 
     }
