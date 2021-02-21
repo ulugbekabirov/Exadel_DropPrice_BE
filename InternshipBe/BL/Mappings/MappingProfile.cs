@@ -65,6 +65,7 @@ namespace BL.Mapping
 
             CreateMap<VendorViewModel, Vendor>()
                .ForMember(d => d.Name, source => source.MapFrom(d => d.VendorName))
+               .ForMember(d => d.PointOfSales, source => source.Ignore())
                .ReverseMap();
 
             CreateMap<Vendor, VendorDTO>()
