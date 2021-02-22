@@ -194,8 +194,6 @@ namespace BL.Services
             {
                 var discount = await _discountRepository.GetByIdAsync(discountViewModel.Id);
 
-                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
-
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
                 var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
@@ -213,8 +211,6 @@ namespace BL.Services
                 await _discountRepository.SaveChangesAsync();
 
                 discount.Name = discountViewModel.DiscountName;
-                discount.VendorId = vendorDiscount.Id;
-                discount.Vendor = vendorDiscount;
                 discount.Description = discountViewModel.Description;
                 discount.PromoCode = discountViewModel.PromoCode;
                 discount.DiscountAmount = discountViewModel.DiscountAmount;

@@ -127,6 +127,24 @@ namespace DAL.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("DAL.Entities.LocalizedName", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("English")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Russian")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocalizedName");
+                });
+
             modelBuilder.Entity("DAL.Entities.Office", b =>
                 {
                     b.Property<int>("Id")
@@ -256,11 +274,12 @@ namespace DAL.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("NameId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NameId");
 
                     b.ToTable("Towns");
                 });
@@ -619,6 +638,15 @@ namespace DAL.Migrations
                     b.Navigation("Discount");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Town", b =>
+                {
+                    b.HasOne("DAL.Entities.LocalizedName", "Name")
+                        .WithMany()
+                        .HasForeignKey("NameId");
+
+                    b.Navigation("Name");
                 });
 
             modelBuilder.Entity("DAL.Entities.User", b =>
