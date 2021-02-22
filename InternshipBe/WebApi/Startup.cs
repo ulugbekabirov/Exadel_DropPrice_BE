@@ -18,7 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shared.EmailService;
 using Shared.Infrastructure.Filters;
-using Shared.Localization;
+using Shared.Middleware.Localization;
 using System;
 using System.Text;
 using System.Text.Json;

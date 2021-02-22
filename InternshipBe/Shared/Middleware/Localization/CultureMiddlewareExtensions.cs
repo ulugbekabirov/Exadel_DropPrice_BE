@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Shared.Localization
+namespace Shared.Middleware.Localization
 {
     public static class CultureMiddlewareExtensions
     {
