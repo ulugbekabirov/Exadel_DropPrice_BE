@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Shared.Localization
+namespace Shared.Middleware.Localization
 {
     public class CultureMiddleware
     {
@@ -17,20 +17,31 @@ namespace Shared.Localization
 
         public async Task InvokeAsync(HttpContext context)
         {
+
             var acceptedLanguages = context.Request.Headers["Accept-Language"].ToString();
-            var language = acceptedLanguages.Split(',').FirstOrDefault();
-            if (!string.IsNullOrWhiteSpace(language))
+            var language = GetFirstTwoLettersOfAcceptLanguageHeader(acceptedLanguages);
+
+            if (Cultures.SupportedCultures.Contains(language))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+                SetCultureToThread(language);
             }
             else
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
+                SetCultureToThread(Cultures.DefaultCulture);
             }
 
             await _next.Invoke(context);
+        }
+
+        private void SetCultureToThread(string language)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+        }
+
+        private string GetFirstTwoLettersOfAcceptLanguageHeader(string acceptedLanguages)
+        {
+            return acceptedLanguages.Split(new char[] { '-', ',' }).FirstOrDefault();
         }
     }
 }
