@@ -4,7 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Shared.EmailService
+namespace BL.EmailService
 {
     public class ReplacerService : IReplacerService
     {

@@ -3,7 +3,7 @@ using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using Shared.EmailService;
+using BL.EmailService;
 using Shared.Infrastructure;
 using System.Threading.Tasks;
 
@@ -48,13 +48,11 @@ namespace BL.Services
         {
             if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))
             {
-                //var message = await _messageBuilder.GenerateMessageTemplateAsync(user, ticket);
+                var usermessage = await _messageBuilder.GenerateMessageForUserAsync(user, ticket);
+                await _emailSender.SendAsync(usermessage);
 
-                var usermessage = await _messageBuilder.GenerateMessageTemplateForUserAsync(user, ticket);
-                await _emailSender.ConvertEmailAsync(usermessage);
-
-                var vendormessage = await _messageBuilder.GenerateMessageTemplateForVendorAsync(user, ticket);
-                await _emailSender.ConvertEmailAsync(vendormessage);
+                var vendormessage = await _messageBuilder.GenerateMessageForVendorAsync(user, ticket);
+                await _emailSender.SendAsync(vendormessage);
             }
         }
     }

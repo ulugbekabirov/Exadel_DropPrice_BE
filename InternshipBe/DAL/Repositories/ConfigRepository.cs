@@ -38,6 +38,7 @@ namespace DAL.Repositories
         {
             if (currentCulture == "en")
             {
+                var a = ConfigModel.UserTemplate = "1";
                 return await _entities.Where(c => c.Name.Contains("En")).ToListAsync();
             }
             else

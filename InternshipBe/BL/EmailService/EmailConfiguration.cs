@@ -1,4 +1,4 @@
-﻿namespace Shared.EmailService
+﻿namespace BL.EmailService
 {
     public class EmailConfiguration
     {

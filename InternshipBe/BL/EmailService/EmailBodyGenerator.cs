@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.EmailService
+namespace BL.EmailService
 {
     public class EmailBodyGenerator : IEmailBodyGenerator
     {
         private readonly IConfigRepository _сonfigRepository;
         private readonly IReplacerService _replacer;
         private readonly IMapper _mapper;
+
         public EmailBodyGenerator(IConfigRepository repository, IReplacerService replacer, IMapper mapper)
         {
             _сonfigRepository = repository;
@@ -39,14 +40,25 @@ namespace Shared.EmailService
             return dictionaryForUser;
         }
 
-        public async Task<string> GenerateMessageBodyAsync(User user, Ticket ticket, int Id)
+        public async Task<string> GenerateMessageBodyForUserAsync(User user, Ticket ticket)
         {
             var dictionary = InizializeDictionary(user, ticket);
 
             var emailTemplate = await _сonfigRepository.EmailLocalization("en");
-            var emailTemplateModel = _mapper.Map<ConfigModel[]>(emailTemplate).Where(c =>c.Id==Id).SingleOrDefault().Value;
+            var emailTemplateModel = _mapper.Map<ConfigModel>(emailTemplate).UserTemplate;
+
+            return _replacer.Replacer(emailTemplateModel, dictionary);
+        }
+
+        public async Task<string> GenerateMessageBodyForVendorAsync(User user, Ticket ticket)
+        {
+            var dictionary = InizializeDictionary(user, ticket);
+
+            var emailTemplate = await _сonfigRepository.EmailLocalization("en");
+            var emailTemplateModel = _mapper.Map<ConfigModel>(emailTemplate).VendorTemplate;
 
             return _replacer.Replacer(emailTemplateModel, dictionary);
         }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.DTO;
+using BL.EmailService;
 using DAL.Entities;
 using Shared.ViewModels;
 using System;

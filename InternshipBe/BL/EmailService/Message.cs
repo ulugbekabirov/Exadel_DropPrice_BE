@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Shared.EmailService
+namespace BL.EmailService
 {
     public class Message
     {
