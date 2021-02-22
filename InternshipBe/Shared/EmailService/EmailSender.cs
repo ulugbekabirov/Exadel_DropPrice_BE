@@ -13,33 +13,20 @@ namespace Shared.EmailService
             _emailConfiguration = emailConfiguration;
         }
 
-        public async Task SendEmailAsync(Message message)
+        public async Task ConvertEmailAsync(Message messageTemplate)
         {
-            var emailMessageForUser = CreateEmailMessageForUser(message);
-            var emailMessageForVendor = CreateEmailMessageForVendor(message);
+            var message = CreateEmailMessageTemplate(messageTemplate);
 
-            await SendAsync(emailMessageForUser);
-            await SendAsync(emailMessageForVendor);
+            await SendAsync(message);
         }
 
-        private MimeMessage CreateEmailMessageForUser(Message message)
+        private MimeMessage CreateEmailMessageTemplate(Message message)
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
-            emailMessage.To.Add(message.To[0]);
+            emailMessage.To.Add(message.To);
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content[0] };
-
-            return emailMessage;
-        }
-
-        private MimeMessage CreateEmailMessageForVendor(Message message)
-        {
-            var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
-            emailMessage.To.Add(message.To[1]);
-            emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content[1] };
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content };
 
             return emailMessage;
         }

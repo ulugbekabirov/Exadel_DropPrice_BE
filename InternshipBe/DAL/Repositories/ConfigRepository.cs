@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shared.Infrastructure;
 
 namespace DAL.Repositories
 {
@@ -33,15 +34,15 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<List<string>> EmailLocalization(string currentCulture)
+        public async Task<IEnumerable<ConfigVariable>> EmailLocalization(string currentCulture)
         {
-            if (currentCulture == "eng")
+            if (currentCulture == "en")
             {
-                return await _entities.Where(c => c.Name.Contains("ENG")).Select(c => c.Value).ToListAsync();
+                return await _entities.Where(c => c.Name.Contains("En")).ToListAsync();
             }
             else
             {
-                return await _entities.Where(c => c.Name.Contains("RUS")).Select(c => c.Value).ToListAsync();
+                return await _entities.Where(c => c.Name.Contains("Ru")).ToListAsync();
             }
         }
     }

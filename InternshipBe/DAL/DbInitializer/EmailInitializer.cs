@@ -1,5 +1,6 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
+using Shared.Infrastructure;
 
 namespace DAL.DbInitializer
 {
@@ -14,7 +15,7 @@ namespace DAL.DbInitializer
 
         public void InitializeEmails()
         {
-            AddEmailTemplate("ENGMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            AddEmailTemplate("EnMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:arvo, courier, georgia, serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
@@ -452,7 +453,7 @@ namespace DAL.DbInitializer
 </body>
 </html>
 ", "Email template for user in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("ENGMessageForVendor", @"<div>
+            AddEmailTemplate("EnMessageForVendor", @"<div>
     <table width='100%' cellspacing='0' cellpadding='0'>
         <tbody>
             <tr>
@@ -521,7 +522,7 @@ namespace DAL.DbInitializer
         </tbody>
     </table>
 </div>", "Email template for vendor in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RUSMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            AddEmailTemplate("RuMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:arvo, courier, georgia, serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
@@ -959,7 +960,7 @@ namespace DAL.DbInitializer
 </body>
 </html>
 ", "Email template for user in russian. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RUSMessageForVendor", @"<div>
+            AddEmailTemplate("RuMessageForVendor", @"<div>
     <table width='100%' cellspacing='0' cellpadding='0'>
         <tbody>
             <tr>
@@ -1029,6 +1030,7 @@ namespace DAL.DbInitializer
                 Name = name,
                 Value = value,
                 Description = discription,
+                DataType = DataTypes.Html,
             });
 
             _context.SaveChanges();

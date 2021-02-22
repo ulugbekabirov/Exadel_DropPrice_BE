@@ -14,20 +14,35 @@ namespace Shared.EmailService
             _emailBodyGenerator = generator;
         }
 
-        public async Task<Message> GenerateMessageTemplateAsync(User user, Ticket ticket)
+        public async Task<Message> GenerateMessageTemplateForUserAsync(User user, Ticket ticket)
         {
-            var contentForUser = await _emailBodyGenerator.GenerateUserBody(user, ticket);
-            var contentForVendor = await _emailBodyGenerator.GenerateVendorBody(user, ticket);
+            var contentForUser = await _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, 1);
+
             var subject = $"Discount for {ticket.Discount.Name}";
 
             var message = new Message()
             {
-                To = new List<MailboxAddress>() { new MailboxAddress(user.Email), new MailboxAddress(ticket.Discount.Vendor.Email) },
+                To = new MailboxAddress(user.Email),
                 Subject = subject,
-                Content = new List<string> { contentForUser, contentForVendor }
-
+                Content = contentForUser
             };
             return message;
         }
+
+        public async Task<Message> GenerateMessageTemplateForVendorAsync(User user, Ticket ticket)
+        {
+            var contentForVendor = await _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, 2);
+
+            var subject = $"Discount for {ticket.Discount.Name}";
+
+            var message = new Message()
+            {
+                To = new MailboxAddress(ticket.Discount.Vendor.Email),
+                Subject = subject,
+                Content = contentForVendor
+            };
+            return message;
+        }
+
     }
 }

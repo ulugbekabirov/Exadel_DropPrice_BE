@@ -14,14 +14,14 @@ namespace Shared.EmailService
         {
         }
 
-        public static string Format(string format, Dictionary<string, string> args)
+        private string Format(string format, Dictionary<string, string> args)
         {
             return Regex.Replace(format, REGEX_TOKEN_FINDER, match => FormatMatchEvaluator(match, args));
         }
 
         private static string FormatMatchEvaluator(Match m, Dictionary<string, string> lookup)
         {
-            string key = m.Groups[1].Value;
+            var key = m.Groups[1].Value;
             if (!lookup.ContainsKey(key))
             {
                 return m.Value;

@@ -11,8 +11,6 @@ namespace Shared.EmailService
     {
         Dictionary<string, string> InizializeDictionary(User user, Ticket ticket);
 
-        Task<string> GenerateVendorBody(User user, Ticket ticket);
-
-        Task<string> GenerateUserBody(User user, Ticket ticket);
+        Task<string> GenerateMessageBodyAsync(User user, Ticket ticket, int Id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using AutoMapper;
+using DAL.Entities;
 using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,54 +13,40 @@ namespace Shared.EmailService
     {
         private readonly IConfigRepository _сonfigRepository;
         private readonly IReplacerService _replacer;
-        public EmailBodyGenerator(IConfigRepository repository, IReplacerService replacer)
+        private readonly IMapper _mapper;
+        public EmailBodyGenerator(IConfigRepository repository, IReplacerService replacer, IMapper mapper)
         {
             _сonfigRepository = repository;
             _replacer = replacer;
+            _mapper = mapper;
         }
 
         public Dictionary<string, string> InizializeDictionary(User user, Ticket ticket)
         {
-            var DictionaryForUser = new Dictionary<string, string>();
+            var dictionaryForUser = new Dictionary<string, string>();
 
-            DictionaryForUser.Add("FirstName", user.FirstName);
-            DictionaryForUser.Add("LastName", user.LastName);
-            DictionaryForUser.Add("Patronymic", user.Patronymic);
-            DictionaryForUser.Add("Date", ticket.OrderDate.ToString());
-            DictionaryForUser.Add("DiscountName", ticket.Discount.Name);
-            DictionaryForUser.Add("DiscountValue", ticket.Discount.DiscountAmount.ToString());
-            DictionaryForUser.Add("Vendor", ticket.Discount.Vendor.Name);
-            DictionaryForUser.Add("VendorPhone", ticket.Discount.Vendor.Phone);
-            DictionaryForUser.Add("VendorEmail", ticket.Discount.Vendor.Email);
-            if (ticket.Discount.PromoCode != null)
-            {
-                DictionaryForUser.Add("Promocode", ticket.Discount.PromoCode);
-            }
-            else
-            {
-                DictionaryForUser.Add("Promocode", null);
-            }
+            dictionaryForUser.Add("FirstName", user.FirstName);
+            dictionaryForUser.Add("LastName", user.LastName);
+            dictionaryForUser.Add("Patronymic", user.Patronymic);
+            dictionaryForUser.Add("Date", ticket.OrderDate.ToString());
+            dictionaryForUser.Add("DiscountName", ticket.Discount.Name);
+            dictionaryForUser.Add("DiscountValue", ticket.Discount.DiscountAmount.ToString());
+            dictionaryForUser.Add("Vendor", ticket.Discount.Vendor.Name);
+            dictionaryForUser.Add("VendorPhone", ticket.Discount.Vendor.Phone);
+            dictionaryForUser.Add("VendorEmail", ticket.Discount.Vendor.Email);
+            dictionaryForUser.Add("Promocode", ticket.Discount.PromoCode);
 
-            return DictionaryForUser;
+            return dictionaryForUser;
         }
 
-        public async Task<string> GenerateVendorBody(User user, Ticket ticket)
+        public async Task<string> GenerateMessageBodyAsync(User user, Ticket ticket, int Id)
         {
-            Dictionary<string, string> dictionary = InizializeDictionary(user, ticket);
+            var dictionary = InizializeDictionary(user, ticket);
 
-            var emailbody = await _сonfigRepository.EmailLocalization("eng");
+            var emailTemplate = await _сonfigRepository.EmailLocalization("en");
+            var emailTemplateModel = _mapper.Map<ConfigModel[]>(emailTemplate).Where(c =>c.Id==Id).SingleOrDefault().Value;
 
-            return _replacer.Replacer(emailbody[1], dictionary);
+            return _replacer.Replacer(emailTemplateModel, dictionary);
         }
-
-        public async Task<string> GenerateUserBody(User user, Ticket ticket)
-        {
-            Dictionary<string, string> dictionary = InizializeDictionary(user, ticket);
-
-            var emailbody = await _сonfigRepository.EmailLocalization("eng");
-
-            return _replacer.Replacer(emailbody[0], dictionary);
-        }
-
     }
 }

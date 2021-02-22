@@ -7,5 +7,7 @@
         public static string Boolean = "bool";
 
         public static string String = "string";
+
+        public static string Html = "html";
     }
 }

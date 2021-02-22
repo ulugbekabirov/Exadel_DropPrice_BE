@@ -6,10 +6,10 @@ namespace Shared.EmailService
 {
     public class Message
     {
-        public List<MailboxAddress> To { get; set; }
+        public MailboxAddress To { get; set; }
 
         public string Subject { get; set; }
 
-        public List<string> Content { get; set; }
+        public string Content { get; set; }
     }
 }

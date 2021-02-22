@@ -4,6 +4,6 @@ namespace Shared.EmailService
 {
     public interface IEmailSender
     {
-        Task SendEmailAsync(Message message);
+        Task ConvertEmailAsync(Message message);
     }
 }

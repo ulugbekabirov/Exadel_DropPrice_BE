@@ -5,6 +5,9 @@ namespace Shared.EmailService
 {
     public interface IMessageBuilder
     {
-        Task<Message> GenerateMessageTemplateAsync(User user, Ticket ticket);
+        Task<Message> GenerateMessageTemplateForUserAsync(User user, Ticket ticket);
+
+        Task<Message> GenerateMessageTemplateForVendorAsync(User user, Ticket ticket);
+
     }
 }
