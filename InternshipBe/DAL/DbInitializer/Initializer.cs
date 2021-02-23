@@ -63,6 +63,9 @@ namespace DAL.DbInitializer
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
 
+            var tickets = new TicketInitializer(_context);
+            tickets.InitializeTickets();
+
             _context.SaveChanges();
         }
     }

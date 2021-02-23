@@ -15,6 +15,28 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus, string promoCode, Vendor vendor, List<PointOfSale> pointOfSales, List<Tag> tags)
+        {
+            var discount = new Discount()
+            {
+                VendorId = vendorId,
+                Name = name,
+                Description = description,
+                DiscountAmount = discountAmount,
+                EndDate = endDate,
+                StartDate = startDate,
+                ActivityStatus = activityStatus,
+                PromoCode = promoCode,
+                Vendor = vendor,
+                PointOfSales = pointOfSales,
+                Tags = tags,
+            };
+
+            _context.Discounts.Add(discount);
+
+            _context.SaveChanges();
+        }
+
         public void InitializeDiscounts()
         {
             //Evos 
@@ -22,7 +44,7 @@ namespace DAL.DbInitializer
                 12, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(40), true, null,
                 _context.Vendors.Find(1),
                 _context.PointOfSales.Where(p => p.Name == "Evos Lavash Center М.Юсуфа" || p.Name == "Evos Lavash Center А.Дониша" || p.Name == "Evos Lavash Center Мукими").ToList(),
-                _context.Tags.Where(t => t.Name == "Вкусно" || t.Name == "Еда навынос" || t.Name == "Доставка" || t.Name == "Дешево" || t.Name== "Фастфуд").ToList());
+                _context.Tags.Where(t => t.Name == "Вкусно" || t.Name == "Еда навынос" || t.Name == "Доставка" || t.Name == "Дешево" || t.Name == "Фастфуд").ToList());
 
             AddDiscount(1, "Evos WINGS/9PC", @"Хрустящие куриные крылышки (Halal) в фирменной панировке",
                12, DateTime.Now, DateTime.Now.AddDays(40), true, null,
@@ -212,29 +234,6 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "VitrA Узбекистан").ToList(),
                 _context.Tags.Where(t => t.Name == "Сантехника" || t.Name == "Красота" || t.Name == "Для дома" || t.Name == "Уют").ToList());
 
-        }
-
-        public void AddDiscount(int vendorId, string name, string description, int discountAmount, DateTime startDate, DateTime endDate, bool activityStatus,
-            string promoCode, Vendor vendor, List<PointOfSale> pointOfSales, List<Tag> tags)
-        {
-            var discount = new Discount()
-            {
-                VendorId = vendorId,
-                Name = name,
-                Description = description,
-                DiscountAmount = discountAmount,
-                EndDate = endDate,
-                StartDate = startDate,
-                ActivityStatus = activityStatus,
-                PromoCode = promoCode,
-                Vendor = vendor,
-                PointOfSales = pointOfSales,
-                Tags = tags,
-            };
-
-            _context.Discounts.Add(discount);
-
-            _context.SaveChanges();
         }
     }
 }

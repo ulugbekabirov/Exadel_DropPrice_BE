@@ -14,6 +14,22 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddPointOfSales(string name, string address, double latitude, double longitude)
+        {
+            var location = NtsGeometryServices.Instance
+                .CreateGeometryFactory(srid: 4326)
+                .CreatePoint(new Coordinate(longitude, latitude));
+
+            _context.PointOfSales.Add(new PointOfSale()
+            {
+                Name = name,
+                Address = address,
+                Location = location,
+            });
+
+            _context.SaveChanges();
+        }
+
         public void InitializePointOfSales()
         {
             AddPointOfSales("Evos Lavash Center М.Юсуфа", "Мирзо-Улугбекский район ул.МУХАММАДА ЮСУФА, 1А", 41.324068, 69.326089);
@@ -61,22 +77,6 @@ namespace DAL.DbInitializer
             AddPointOfSales("Магазин Santehlux", "улица Тимирязева д.44, Минск 220035", 53.9747383, 27.5619366);
             AddPointOfSales("VitrA Home salon firmowy Bartycka 24 paw.228", "Bartycka 24/26/pawilon 228, Warszawa", 52.2440627, 21.0515890);
             AddPointOfSales("VitrA Узбекистан", "Barakat business centre, Afrosiab, 2, Tashkent", 41.3032844, 69.2679597);
-        }
-
-        public void AddPointOfSales(string name, string address, double latitude, double longitude)
-        {
-            var location = NtsGeometryServices.Instance
-                .CreateGeometryFactory(srid: 4326)
-                .CreatePoint(new Coordinate(longitude, latitude));
-
-            _context.PointOfSales.Add(new PointOfSale()
-            {
-                Name = name,
-                Address = address,
-                Location = location,
-            });
-
-            _context.SaveChanges();
         }
     }
 }

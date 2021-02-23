@@ -13,6 +13,22 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddAssesment(int userId, int discountId, int value)
+        {
+            var assessment = new Assessment()
+            {
+                UserId = userId,
+                DiscountId = discountId,
+                AssessmentValue = value,
+            };
+
+            _context.Assessments.Add(assessment);
+            _context.Users.Find(userId).Assessments.Add(assessment);
+            _context.Discounts.Find(discountId).Assessments.Add(assessment);
+
+            _context.SaveChanges();
+        }
+
         public void InitializerAssesments()
         {
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "admnexadel@gmail.com").Id, 1, 5);
@@ -77,22 +93,6 @@ namespace DAL.DbInitializer
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 9, 3);
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 10, 3);
             AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 6, 5);
-        }
-
-        public void AddAssesment(int userId, int discountId, int value)
-        {
-            var assessment = new Assessment()
-            {
-                UserId = userId,
-                DiscountId = discountId,
-                AssessmentValue = value,
-            };
-
-            _context.Assessments.Add(assessment);
-            _context.Users.Find(userId).Assessments.Add(assessment);
-            _context.Discounts.Find(discountId).Assessments.Add(assessment);
-
-            _context.SaveChanges();
         }
     }
 }
