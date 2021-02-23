@@ -13,6 +13,25 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddTicket(int userId, int discountId, DateTime orderDate)
+        {
+            var user = _context.Users.Find(userId);
+            var discount = _context.Discounts.Find(discountId);
+
+            var ticket = new Ticket()
+            {
+                DiscountId = discountId,
+                User = user,
+                Discount = discount,
+                UserId = userId,
+                OrderDate = orderDate
+            };
+
+            _context.Tickets.Add(ticket);
+
+            _context.SaveChanges();
+        }
+
         public void InitializeTickets()
         {
             //admin
@@ -46,25 +65,6 @@ namespace DAL.DbInitializer
             AddTicket(6, 13, DateTime.Now.AddDays(-2));
             AddTicket(6, 1, DateTime.Now.AddDays(-1));
             AddTicket(6, 6, DateTime.Now.AddDays(-1));  
-        }
-
-        public void AddTicket(int userId, int discountId, DateTime orderDate)
-        {
-            var user = _context.Users.Find(userId);
-            var discount = _context.Discounts.Find(discountId);
-
-            var ticket = new Ticket()
-            {
-                DiscountId = discountId,
-                User = user,
-                Discount = discount,
-                UserId = userId,
-                OrderDate = orderDate
-            };
-
-            _context.Tickets.Add(ticket);
-
-            _context.SaveChanges();
         }
     }
 }
