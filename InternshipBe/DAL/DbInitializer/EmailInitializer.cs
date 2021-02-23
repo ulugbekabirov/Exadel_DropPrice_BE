@@ -1,6 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using Shared.Infrastructure;
+using System.Linq;
 
 namespace DAL.DbInitializer
 {
@@ -15,15 +16,18 @@ namespace DAL.DbInitializer
 
         public void AddEmailTemplate(string name, string value, string discription)
         {
-            _context.ConfigVariables.Add(new ConfigVariable()
+            if (!_context.ConfigVariables.Any(p => p.Name == name))
             {
-                Name = name,
-                Value = value,
-                Description = discription,
-                DataType = DataTypes.String,
-            });
+                _context.ConfigVariables.Add(new ConfigVariable()
+                {
+                    Name = name,
+                    Value = value,
+                    Description = discription,
+                    DataType = DataTypes.String,
+                });
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
         }
 
         public void InitializeEmails()
