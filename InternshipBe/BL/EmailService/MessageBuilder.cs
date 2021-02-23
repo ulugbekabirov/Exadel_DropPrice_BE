@@ -66,7 +66,7 @@ namespace BL.EmailService
         {
             var contentForUser = _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, messgaeTemplate);
 
-            var subject = $"Discount for {ticket.Discount.Name}";
+            var subject = $"{ticket.Discount.Vendor.Name} - { ticket.Discount.Name }";
 
             var message = new MessageModel()
             {
