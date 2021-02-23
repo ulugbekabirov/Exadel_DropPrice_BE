@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BL.EmailService
@@ -44,7 +45,7 @@ namespace BL.EmailService
         {
             var dictionary = InizializeDictionary(user, ticket);
 
-            var emailTemplate = await _сonfigRepository.EmailLocalization("en");
+            var emailTemplate = await _сonfigRepository.EmailLocalization();
             var emailTemplateModel = _mapper.Map<ConfigModel>(emailTemplate).UserTemplate;
 
             return _replacer.Replacer(emailTemplateModel, dictionary);
@@ -54,7 +55,7 @@ namespace BL.EmailService
         {
             var dictionary = InizializeDictionary(user, ticket);
 
-            var emailTemplate = await _сonfigRepository.EmailLocalization("en");
+            var emailTemplate = await _сonfigRepository.EmailLocalization();
             var emailTemplateModel = _mapper.Map<ConfigModel>(emailTemplate).VendorTemplate;
 
             return _replacer.Replacer(emailTemplateModel, dictionary);

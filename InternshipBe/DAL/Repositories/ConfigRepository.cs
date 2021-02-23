@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shared.Infrastructure;
+using System.Threading;
 
 namespace DAL.Repositories
 {
@@ -34,16 +35,16 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<IEnumerable<ConfigVariable>> EmailLocalization(string currentCulture)
+        public async Task<IEnumerable<ConfigVariable>> EmailLocalization()
         {
-            if (currentCulture == "en")
+            var currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            if (currentCulture!=null)
             {
-                var a = ConfigModel.UserTemplate = "1";
-                return await _entities.Where(c => c.Name.Contains("En")).ToListAsync();
+                return await _entities.Where(c => c.Name.Contains(currentCulture+ "MessageFor")).ToListAsync();
             }
             else
             {
-                return await _entities.Where(c => c.Name.Contains("Ru")).ToListAsync();
+                return await _entities.Where(c => c.Name.Contains("RuMessageFor")).ToListAsync();
             }
         }
     }

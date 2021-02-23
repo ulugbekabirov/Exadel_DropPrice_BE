@@ -12,6 +12,6 @@ namespace DAL.Interfaces
 
         Task<bool> IsSendingEmailsEnabled(int id);
 
-        Task<IEnumerable<ConfigVariable>> EmailLocalization(string currentCulture);
+        Task<IEnumerable<ConfigVariable>> EmailLocalization();
     }
 }
