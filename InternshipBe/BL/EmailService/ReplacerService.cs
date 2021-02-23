@@ -24,12 +24,12 @@ namespace BL.EmailService
             {
                 return m.Value;
             }
+
             return lookup[key];
         }
 
         public string Replacer(string inputString, Dictionary<string, string> dictionary)
         {
-
             var outputString = Format(inputString, dictionary);
 
             return outputString;
