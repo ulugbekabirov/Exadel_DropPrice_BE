@@ -118,11 +118,6 @@ namespace DAL.Repositories
             return newSavedDiscount;
         }
 
-        public async Task<Vendor> GetVendorByNameAsync(string vendorName)
-        {
-            return await _context.Vendors.SingleAsync(v => v.Name == vendorName);
-        }
-
         public async Task<Assessment> GetUserAssessmentAsync(int discountId, int userId)
         {
             return await _context.Assessments.SingleOrDefaultAsync(a => a.DiscountId == discountId && a.UserId == userId);

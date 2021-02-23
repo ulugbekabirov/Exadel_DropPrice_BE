@@ -16,8 +16,6 @@ namespace DAL.Interfaces
 
         IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius);
 
-        Task<Vendor> GetVendorByNameAsync(string vendorName);
-
         Task<Assessment> GetUserAssessmentAsync(int id, int userId);
 
         Task<Assessment> CreateAssessmentAsync(Discount discount, User user, int assessmnetValue);
