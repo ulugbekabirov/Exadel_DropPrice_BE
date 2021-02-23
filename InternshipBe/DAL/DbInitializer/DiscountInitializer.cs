@@ -53,13 +53,13 @@ namespace DAL.DbInitializer
             AddDiscount(3, "Баскет дуэт со скидкой 50% по купону 5050", "С 6 ферваля компанейский Баскет Дуэт – минус 50 %! В одном баскете собрали для вас: сочные кусочки курицы, острые крылышки, нежные стрипсы и картофель фри.Есть смысл прийти с другом.",
                 50, DateTime.Now, DateTime.Now.AddDays(200), true, "5050",
                 _context.Vendors.Find(3),
-                _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент" || p.Name == "KFC Warszawa" || p.Name == "KFC Walnut Creek").ToList(),
+                _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             AddDiscount(3, "Сандерс баскет", "Даже в плохую и холодную погоду KFC знает, как поднять тебе настроение! Целую неделю. Баскет всего за 7.70 руб.по купону 7070. Акция действует во всех ресторанах KFC Беларуси. Оформить заказ можно навынос, через окно Драйва или экспресс - окно. Ждем вас!",
                 50, DateTime.Now, DateTime.Now.AddDays(190), true, "7070",
                 _context.Vendors.Find(3),
-                _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент" || p.Name == "KFC Warszawa" || p.Name == "KFC Walnut Creek").ToList(),
+                _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             AddDiscount(3, "Шефбургер", "Шефбургера Де Люкс со скидкой 50%! И острый, и оригинальный – ждут тебя! А мы ждем вас в наших ресторанах!",
@@ -72,7 +72,7 @@ namespace DAL.DbInitializer
             AddDiscount(4, "ГАРДЕРОБ, БЕЛЫЙ 175X58X201 СМ", "Бесплатно 10 лет гарантии. Подробнее об условиях гарантии – в гарантийной брошюре.Эту комбинацию ПАКС/КОМПЛИМЕНТ можно адаптировать в соответствии с вашими потребностями, воспользовавшись программой для проектирования гардеробов ПАКС.",
                 15, DateTime.Now, DateTime.Now.AddDays(260), true, null,
                 _context.Vendors.Find(4),
-                _context.PointOfSales.Where(p => p.Name == "IKEA USA" || p.Name == "IKEA Warszawa" || p.Name == "IKEA Минск" || p.Name == "IKEA Ташкент" || p.Name == "IKEA Гомель").ToList(),
+                _context.PointOfSales.Where(p => p.Name == "IKEA USA" || p.Name == "IKEA Минск" || p.Name == "IKEA Ташкент" || p.Name == "IKEA Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Дешево" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
 
             AddDiscount(4, "КРЕСЛО, ШИФТЕБУ ТЕМНО-СИНИЙ", "Двусторонние подушки спинки обеспечивают мягкую опору для спины.Подушку спинки можно расположить так, как вам удобно.Бесплатно 10 лет гарантии. Подробнее об условиях гарантии – в гарантийной брошюре.Бесплатно 10 лет гарантии.",
