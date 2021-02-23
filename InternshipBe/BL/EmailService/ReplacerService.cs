@@ -1,8 +1,5 @@
-﻿using DAL.Entities;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace BL.EmailService
 {

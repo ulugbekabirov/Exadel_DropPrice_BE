@@ -1,6 +1,5 @@
 ﻿using DAL.Entities;
 using MimeKit;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BL.EmailService
@@ -18,7 +17,7 @@ namespace BL.EmailService
 
         public async Task<MimeMessage> GenerateMessageForUserAsync(User user, Ticket ticket)
         {
-            var messageTemplate = await GenerateMessageTemplateForUserAsync(user, ticket, user.Email, 1);
+            var messageTemplate = await GenerateMessageTemplateForUserAsync(user, ticket, user.Email);
 
             var message = CreateEmailMessage(messageTemplate);
 
@@ -27,7 +26,7 @@ namespace BL.EmailService
 
         public async Task<MimeMessage> GenerateMessageForVendorAsync(User user, Ticket ticket)
         {
-            var messageTemplate = await GenerateMessageTemplateForUserAsync(user, ticket, ticket.Discount.Vendor.Email, 2);
+            var messageTemplate = await GenerateMessageTemplateForVendorAsync(user, ticket, ticket.Discount.Vendor.Email);
 
             var message = CreateEmailMessage(messageTemplate);
 
@@ -45,9 +44,24 @@ namespace BL.EmailService
             return emailMessage;
         }
 
-        private async Task<Message> GenerateMessageTemplateForUserAsync(User user, Ticket ticket, string address, int id)
+        private async Task<Message> GenerateMessageTemplateForUserAsync(User user, Ticket ticket, string address)
         {
-            var contentForVendor = await _emailBodyGenerator.GenerateMessageBodyForUserAsync(user, ticket);
+            var contentForUser = await _emailBodyGenerator.GenerateMessageBodyForUserAsync(user, ticket);
+
+            var subject = $"Discount for {ticket.Discount.Name}";
+
+            var message = new Message()
+            {
+                To = new MailboxAddress(address),
+                Subject = subject,
+                Content = contentForUser
+            };
+            return message;
+        }
+
+        private async Task<Message> GenerateMessageTemplateForVendorAsync(User user, Ticket ticket, string address)
+        {
+            var contentForVendor = await _emailBodyGenerator.GenerateMessageBodyForVendorAsync(user, ticket);
 
             var subject = $"Discount for {ticket.Discount.Name}";
 

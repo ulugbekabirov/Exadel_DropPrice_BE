@@ -44,6 +44,7 @@ namespace BL.Services
 
             return ticketDTO;
         }
+
         public async Task SendEmailIfAllowed(User user, Ticket ticket)
         {
             if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))

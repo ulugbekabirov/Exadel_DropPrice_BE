@@ -40,7 +40,7 @@ namespace DAL.Repositories
             var currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
             if (currentCulture!=null)
             {
-                return await _entities.Where(c => c.Name.Contains(currentCulture+ "MessageFor")).ToListAsync();
+                return await _entities.Where(c => c.Name.Contains(currentCulture + "MessageFor")).ToListAsync();
             }
             else
             {
