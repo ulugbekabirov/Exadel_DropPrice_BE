@@ -252,6 +252,108 @@ namespace DAL.DbInitializer
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "Комплект встраиваемой техники Bosch HBF134ES0R + PBH6C2B90R", @"Отличный набор из духоого шкафа со всесторонним нагревом и меанизированной варочной панели.",
+                25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "ДРЕЛЬ-ШУРУПОВЁРТ BOSCH GSR 12V-35 SOLO", @"Аккумуляторная дрель-шуруповёрт Bosch GSR 12V-35 Solo – практичный инструмент, который рассчитан на эффективное выполнение работ в самых разнообразных условиях. Он служит для закручивания и выкручивания крепежных изделий, а также для создания отверстий в материалах разной плотности.",
+                30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "ЭЛЕКТРИЧЕСКИЙ ЛОБЗИК BOSCH GST 150 CE 0.601.512.009", @"Электрический лобзик Bosch GST 150 CE 0.601.512.009 – это сетевой инструмент класса Professional, предназначенный для резки таких материалов, как древесина и различные металлы.",
+                40, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "КРАСКОПУЛЬТ BOSCH PFS 2000", @"Отличный, простой и практичный краскопульт от Bosch. Качество и надежность гарантированы.",
+                15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "Холодильник Bosch Serie 8 VitaFresh Plus KGN39LB32R", @"Увеличенный объём холодильника при тех же габаритах. Можно реже посещать магазины или заказывать доставку товаров, зная, что всему найдётся место в холодильнике, и все запасы дольше сохранятся свежими. В специальной зоне хранения с технологией VitaFresh Plus овощи и фрукты хранятся до 2 раз дольше.",
+                20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "Холодильник Bosch Serie 4 Side by Side KAI93VL30R", @"Никакой разморозки. Равномерная циркуляция воздуха в холодильнике. Достаточно места для всех ваших свежих продуктов.",
+                10, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+
+            AddDiscount(10, "Блендер BOSCH MS6CA4150", @"Качественное измельчение и превосходные результаты смешивания.",
+                25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Дешево").ToList());
+
+            AddDiscount(10, "Блендер Bosch MMBM4G6K", @"Очень компактный и в то же время мощный прибор, занимает минимум места на кухонном столе, его легко спрятать в шкафчик.",
+                15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Дешево").ToList());
+           
+            AddDiscount(10, "Тостер Bosch TAT3P424", @"Сделайте Ваш завтрак особенным. Идеальный тост ждет вас.",
+                20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "Тостер BOSCH TAT3A011", @"Хороший завтрак невозможен без хороших тостов. И этот тоестер с легкостю и вам предоставит!",
+                18, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+          
+            AddDiscount(10, "Мясорубка BOSCH MFW2520W", @"Компактный размер — большие возможности.",
+                15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
+          
+            AddDiscount(10, "Стиральная машина узкая Bosch Serie | 4 PerfectCare WHA122XMBL", @"Барабан SoftCare drum с бесшовной поверхностью сберегут вашу одежду, а режим автоматического замачивания Pre-Soaking сэкономит ваше время и силы.",
+                14, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+            
+            AddDiscount(10, "Миксер погружной BOSCH MFQ3010", @"Мощный мотор и множество сменны насадок из нержавеющей стали. что ещё нужно для орошего миксера?",
+                10, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+          
+            AddDiscount(10, "Холодильник Bosch KIV87VS20R", @"Холодильно-морозильная комбинация с зоной свежести, которая позволяет сохранить мясо и рыбу свежими до 2 раз дольше.",
+                25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+         
+            AddDiscount(10, "Холодильник Serie 6 VitaFresh Plus KGN39AD31R", @"Экономит пространство и заботиться о вашем комфорте благодаря системе идеального расположения PerfectFit.",
+                18, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+          
+            AddDiscount(10, "Перфоратор Bosch GBH 2-26 DRE Professional (0611253708)", @"Хороший, универсальный перфоратор, подойдет для любых задач. Все под рукой, мощно, надежно и аккуратно.",
+                15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
+          
+            AddDiscount(10, "Перфоратор Bosch GBH 2-23 REA Professional (0611250500)", @"Можете забыть о неободимости таскать с собой пылесос, ведь этот перфоратор практическ н оставляет мусора!",
+                20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
 
             //Electrolux
             AddDiscount(11, "Варочная панель Electrolux EHF96140FK", @"Быть может она и попроще, чем другие модели электролюкса. Но от этого не менее удобная и функциональная. Управление хоть и механическое, но очень точное и комфортное в использовании. Моется плита замечательно, есть функция мгновенного нагрева.",
