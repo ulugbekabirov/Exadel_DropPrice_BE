@@ -234,34 +234,7 @@ namespace DAL.DbInitializer
 
             _context.Discounts.Add(discount);
 
-            //AddDiscountToVendor(vendorId, discount);
-
-            //AddDiscountToPointOfSales(pointOfSales, discount);
-
-            //AddDiscountToTags(tags, discount);
-
             _context.SaveChanges();
-        }
-
-        public void AddDiscountToVendor(int vendorId, Discount discount)
-        {
-            _context.Vendors.Find(vendorId).Discounts.Add(discount);
-        }
-
-        public void AddDiscountToPointOfSales(List<PointOfSale> pointOfSales, Discount discount)
-        {
-            for (int i = 0; i < pointOfSales.Count; i++)
-            {
-                _context.PointOfSales.Find(pointOfSales[i].Id).Discounts.Add(discount);
-            }
-        }
-
-        public void AddDiscountToTags(List<Tag> tags, Discount discount)
-        {
-            for (int i = 0; i < tags.Count; i++)
-            {
-                _context.Tags.Find(tags[i].Id).Discounts.Add(discount);
-            }
         }
     }
 }
