@@ -19,7 +19,7 @@ namespace DAL.DbInitializer
         {
             //Evos 
             AddDiscount(1, "Evos Lavash XALAPENIE", @"Тесто – лаваш, нежное куриное филе (Halal) в фирменной панировке, листья салата, перец Халапеньо, свежие помидоры, маринованные огурцы, соусы Майонез и Кетчуп",
-                12, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                12, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(40), true, null,
                 _context.Vendors.Find(1),
                 _context.PointOfSales.Where(p => p.Name == "Evos Lavash Center М.Юсуфа" || p.Name == "Evos Lavash Center А.Дониша" || p.Name == "Evos Lavash Center Мукими").ToList(),
                 _context.Tags.Where(t => t.Name == "Вкусно" || t.Name == "Еда навынос" || t.Name == "Доставка" || t.Name == "Дешево" || t.Name== "Фастфуд").ToList());
@@ -32,7 +32,7 @@ namespace DAL.DbInitializer
 
             //Pizza
             AddDiscount(2, "Акция Супер шестерка", "6 больших пицц 31 см: 4 сыра+ Ромео+ Деревенская +Пикантная +Гавайская +Народная",
-                20, DateTime.Now, DateTime.Now.AddDays(170), true, "1111",
+                20, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(170), true, "1111",
                 _context.Vendors.Find(2),
                 _context.PointOfSales.Where(p => p.Name == "Пицца темпо Мстиславца").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно").ToList());
@@ -44,58 +44,58 @@ namespace DAL.DbInitializer
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Уютное место" || t.Name == "Пицца").ToList());
 
             AddDiscount(2, "Акция ХИТ - трик тонкое тесто", "3 большие пиццы 31см :Супер Пепперони + Везувий +Чикен Барбекю+ Coca-Cola 1литр",
-                30, DateTime.Now, DateTime.Now.AddDays(150), true, "7773",
+                30, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(150), true, "7773",
                 _context.Vendors.Find(2),
                 _context.PointOfSales.Where(p => p.Name == "Пицца темпо Громова" || p.Name == "Пицца темпо Бобруйская" || p.Name == "Пицца темпо Мстиславца").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Пицца" || t.Name == "Выгодно" || t.Name == "Уютное место").ToList());
 
             //KFC
             AddDiscount(3, "Баскет дуэт со скидкой 50% по купону 5050", "С 6 ферваля компанейский Баскет Дуэт – минус 50 %! В одном баскете собрали для вас: сочные кусочки курицы, острые крылышки, нежные стрипсы и картофель фри.Есть смысл прийти с другом.",
-                50, DateTime.Now, DateTime.Now.AddDays(200), true, "5050",
+                50, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(200), true, "5050",
                 _context.Vendors.Find(3),
                 _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             AddDiscount(3, "Сандерс баскет", "Даже в плохую и холодную погоду KFC знает, как поднять тебе настроение! Целую неделю. Баскет всего за 7.70 руб.по купону 7070. Акция действует во всех ресторанах KFC Беларуси. Оформить заказ можно навынос, через окно Драйва или экспресс - окно. Ждем вас!",
-                50, DateTime.Now, DateTime.Now.AddDays(190), true, "7070",
+                50, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(190), true, "7070",
                 _context.Vendors.Find(3),
                 _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель" || p.Name == "KFC Ташкент").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             AddDiscount(3, "Шефбургер", "Шефбургера Де Люкс со скидкой 50%! И острый, и оригинальный – ждут тебя! А мы ждем вас в наших ресторанах!",
-                50, DateTime.Now, DateTime.Now.AddDays(30), true, "1717",
+                50, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(30), true, "1717",
                 _context.Vendors.Find(3),
                 _context.PointOfSales.Where(p => p.Name == "KFC Минск" || p.Name == "KFC Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Доставка" || t.Name == "Напитки" || t.Name == "Выгодно" || t.Name == "Курица" || t.Name == "Фастфуд" || t.Name == "KFC" || t.Name == "Быстро").ToList());
 
             //IKEA
             AddDiscount(4, "ГАРДЕРОБ, БЕЛЫЙ 175X58X201 СМ", "Бесплатно 10 лет гарантии. Подробнее об условиях гарантии – в гарантийной брошюре.Эту комбинацию ПАКС/КОМПЛИМЕНТ можно адаптировать в соответствии с вашими потребностями, воспользовавшись программой для проектирования гардеробов ПАКС.",
-                15, DateTime.Now, DateTime.Now.AddDays(260), true, null,
+                15, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(260), true, null,
                 _context.Vendors.Find(4),
                 _context.PointOfSales.Where(p => p.Name == "IKEA USA" || p.Name == "IKEA Минск" || p.Name == "IKEA Ташкент" || p.Name == "IKEA Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Дешево" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
 
             AddDiscount(4, "КРЕСЛО, ШИФТЕБУ ТЕМНО-СИНИЙ", "Двусторонние подушки спинки обеспечивают мягкую опору для спины.Подушку спинки можно расположить так, как вам удобно.Бесплатно 10 лет гарантии. Подробнее об условиях гарантии – в гарантийной брошюре.Бесплатно 10 лет гарантии.",
-                5, DateTime.Now, DateTime.Now.AddDays(356), true, null,
+                5, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(356), true, null,
                 _context.Vendors.Find(4),
                 _context.PointOfSales.Where(p => p.Name == "IKEA Минск" || p.Name == "IKEA Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мебель" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
 
             AddDiscount(4, "СВЕТИЛЬНИК НА СОЛНЕЧНОЙ БАТАРЕЕ", "Легко использовать, так как провода и розетки не нужны.Батарея трансформирует солнечный свет в электроэнергию: никаких затрат на электричество и забота об экологии.",
-                29, DateTime.Now, DateTime.Now.AddDays(40), true, null,
+                29, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(40), true, null,
                 _context.Vendors.Find(4),
                 _context.PointOfSales.Where(p => p.Name == "IKEA Минск").ToList(),
                 _context.Tags.Where(t => t.Name == "Светильник" || t.Name == "Для дома" || t.Name == "Доставка").ToList());
 
             //Chanel
             AddDiscount(5, "Chanel N°5 for Women Парфюмерная вода для женщин", $"Тип аромата: Альдегидные, Цветочные{Environment.NewLine}Начальная нота: Альдегиды, Бергамот, Иланг - иланг, Нероли, Персик, Лимон{Environment.NewLine}Нота сердца: Жасмин, Ирис, Ландыш, Роза, Корень ириса",
-                39, DateTime.Now, DateTime.Now.AddDays(95), true, "FRAICHE",
+                39, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(95), true, "FRAICHE",
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Cravt Минск" || p.Name == "AnnaClair Минск").ToList(),
                 _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Парфюмерия" || t.Name == "Духи").ToList());
 
             AddDiscount(5, "Босоножки", $"Кожа ягненка; Золотистый; Арт.G36876 X55079 0K203{Environment.NewLine}высота каблука 50 mm",
-                5, DateTime.Now, DateTime.Now.AddDays(80), true, "TENDRE",
+                5, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(80), true, "TENDRE",
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "Cravt Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Мода" || t.Name == "Обувь" || t.Name == "Красота").ToList());
@@ -107,7 +107,7 @@ namespace DAL.DbInitializer
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Красота" || t.Name == "Макияж").ToList());
 
             AddDiscount(5, "CHANCE EAU VIVE Туалетная вода спрей", @"Цветочный пикантный аромат в круглом флаконе. Настоящая волна энергии и ярких впечатлений. Не упустите свой незабываемый шанс. Цветочный пикантный аромат, пронизанный бодрящими нотами грейпфрута и красного апельсина.Верхние ноты дарят взрывную свежесть.В сердце аромата - нежный, женственный жасмин.Аккорды кедра и ириса раскрывают истинную элегантность композиции, оставляя за собой мягкий шлейф.",
-                15, DateTime.Now, DateTime.Now.AddDays(60), true, "LION",
+                15, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(60), true, "LION",
                 _context.Vendors.Find(5),
                 _context.PointOfSales.Where(p => p.Name == "Chanel Boutique Ташкент" || p.Name == "AnnaClair Минск" || p.Name == "Cravt Минск" || p.Name == "Cravt Гомель").ToList(),
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Парфюмерия" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
@@ -120,7 +120,7 @@ namespace DAL.DbInitializer
 
             //L'Oreal
             AddDiscount(6, "L'Oreal Paris Dermo Expertise", @"Набор косметии для лица с успокаивающим, восстанавливающим и антивозрастным эффектом уода. пододит для снятия маияжа илифтинга.",
-                20, DateTime.Now, DateTime.Now.AddDays(140), true, "JEUNESSE",
+                20, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(140), true, "JEUNESSE",
                 _context.Vendors.Find(6),
                 _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
@@ -145,7 +145,7 @@ namespace DAL.DbInitializer
 
             //Belwest
             AddDiscount(7, "Сумка женская 9С4248К45 ЧЕРН", @"Черная женская сумка из искусственнойкожи. Идеально подойдёт к любому наряду",
-                25, DateTime.Now, DateTime.Now.AddDays(30), true, null,
+                25, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(30), true, null,
                 _context.Vendors.Find(7),
                 _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList(),
                 _context.Tags.Where(t => t.Name == "Одежда" || t.Name == "Красота" || t.Name == "Роскошь").ToList());
@@ -170,7 +170,7 @@ namespace DAL.DbInitializer
 
             //adidas
             AddDiscount(8, "Adidas Кроссовки STRUTTER", @"Кроссовки выполнены из сочетания натуральной кожи и искусственной кожи. Легкая стелька Adibouncy из ЭВА. Детали: регулируемая застежка на шнуровку, внутренняя подкладка из текстиля, резиновая подошва. ",
-                25, DateTime.Now, DateTime.Now.AddDays(80), true, null,
+                25, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(80), true, null,
                 _context.Vendors.Find(8),
                 _context.PointOfSales.Where(p => p.Name == " Adidas Гродно " || p.Name == "Футбольный магазин soccershop.by " || p.Name == " Adidas Минск").ToList(),
                 _context.Tags.Where(t => t.Name == "Бег" || t.Name == "Обувь" || t.Name == "Тренировка" || t.Name == "Спорт").ToList());
