@@ -8,7 +8,7 @@ namespace DAL.Interfaces
 {
     public interface IDiscountRepository : IRepository<Discount>
     {
-        IQueryable<Discount> SearchDiscounts(string searchQuery, string[] tags, Point location, int radius);
+        IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius);
 
         Task<SavedDiscount> GetSavedDiscountAsync(int id, int userId);
 

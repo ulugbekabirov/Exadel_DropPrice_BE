@@ -22,7 +22,7 @@ namespace DAL.Repositories
             return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
         }
 
-        public IQueryable<Discount> SearchDiscounts(string searchQuery, string[] tags, Point location, int radius)
+        public IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius)
         {
             var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
 
@@ -31,11 +31,11 @@ namespace DAL.Repositories
                 searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
             }
 
-            if (tags.Length != 0)
+            if (tagIDs.Length != 0)
             {
-                foreach (var tag in tags)
+                foreach (var tagID in tagIDs)
                 {
-                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Name).Contains(tag));
+                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Id).Contains(tagID));
                 }
             };
 
