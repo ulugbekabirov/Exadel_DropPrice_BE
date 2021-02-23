@@ -254,6 +254,35 @@ namespace DAL.DbInitializer
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
 
             //Electrolux
+            AddDiscount(11, "Варочная панель Electrolux EHF96140FK", @"Быть может она и попроще, чем другие модели электролюкса. Но от этого не менее удобная и функциональная. Управление хоть и механическое, но очень точное и комфортное в использовании. Моется плита замечательно, есть функция мгновенного нагрева.",
+                24, DateTime.Now, DateTime.Now.AddDays(32), true, "2592",
+                _context.Vendors.Find(11),
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+
+            AddDiscount(11, "Духовой шкаф Electrolux EZB52410AW", @"Наша конвекционная печь 300 нагревается быстрее, чем обычная печь. Вентилятор распределяет тепло по всей полости, а значит, ваша еда готовится быстро и равномерно. Теперь вы можете испечь совершенно однородное печенье без необходимости переворачивать его на полпути.",
+                20, DateTime.Now, DateTime.Now.AddDays(32), true, "9302",
+                _context.Vendors.Find(11),
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            AddDiscount(11, "Пылесос Electrolux EC41-H2SW", @"Отличный пылесос для вашего дома. Не создаёт лишнегошума и не оставляет грязи. Идеальный выбор для чистого дома.",
+                15, DateTime.Now, DateTime.Now.AddDays(32), true, "1068279",
+                _context.Vendors.Find(11),
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
+
+            AddDiscount(11, "Тепловентилятор Electrolux EFH/C-5120", @"Удобен в использовании, компактен и эффективен. Зачем ждать отоплени - согрейте себя сами!",
+                25, DateTime.Now, DateTime.Now.AddDays(32), true, "0135696",
+                _context.Vendors.Find(11),
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            AddDiscount(11, "Вентилятор Electrolux EFF-1004i", @"Отличный вентилятор за свои деньги. Тихий и удобный, с отличным дизайном. Станет спасением в жаркую погоду и орошо впишется в дизайн дома.",
+                30, DateTime.Now, DateTime.Now.AddDays(32), true, "1279349",
+                _context.Vendors.Find(11),
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
 
         }
     }
