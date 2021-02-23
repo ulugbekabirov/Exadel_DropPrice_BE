@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BL.DTO;
 using DAL.Entities;
+using NetTopologySuite;
+using NetTopologySuite.Geometries;
 using Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -41,7 +43,11 @@ namespace BL.Mapping
             CreateMap<PointOfSale, PointOfSaleViewModel>()
                 .ForMember(d => d.Latitude, source => source.MapFrom(s => s.Location.Y))
                 .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X));
-            CreateMap<PointOfSaleViewModel, PointOfSale>();
+            CreateMap<PointOfSaleViewModel, PointOfSale>()
+                .AfterMap((source, pointOFSale) =>
+                {
+                    pointOFSale.Location = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326).CreatePoint(new Coordinate(source.Longitude, source.Latitude));
+                });
 
             CreateMap<AssessmentViewModel, Assessment>()
                 .ReverseMap();

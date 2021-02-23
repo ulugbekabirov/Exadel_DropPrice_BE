@@ -100,11 +100,6 @@ namespace BL.Services
 
             var pointOfSales = _mapper.Map<PointOfSale[]>(vendorViewModel.PointOfSales);
 
-            for (int i = 0; i < vendorViewModel.PointOfSales.Length; i++)
-            {
-                pointOfSales[i].Location = _discountRepository.GetLocation(default, default, vendorViewModel.PointOfSales[i].Latitude, vendorViewModel.PointOfSales[i].Longitude);
-            }
-
             var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
             vendor.PointOfSales = resultPointOfSales;
 
@@ -121,11 +116,6 @@ namespace BL.Services
             var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.Id);
 
             var pointOfSales = _mapper.Map<PointOfSale[]>(vendorViewModel.PointOfSales);
-
-            for (int i = 0; i < vendorViewModel.PointOfSales.Length; i++)
-            {
-                pointOfSales[i].Location = _discountRepository.GetLocation(default, default, vendorViewModel.PointOfSales[i].Latitude, vendorViewModel.PointOfSales[i].Longitude);
-            }
 
             var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
             vendor.PointOfSales?.Clear();
