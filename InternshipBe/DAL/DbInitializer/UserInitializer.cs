@@ -1,6 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 
 namespace DAL.DbInitializer
@@ -34,6 +35,14 @@ namespace DAL.DbInitializer
             await AddUser(4, "userTashkent@test.com", "офис", "Ташкент", "Ташкент", "+78-140-09-09", true, _context.Offices.Find(4), RoleNames.User);
            
             await AddUser(5, "userUsa@test.com", "офис", "Walnut Creek", "Walnut Creek", "+1 (916) 555 0166", true, _context.Offices.Find(5), RoleNames.User);
+
+            Random random = new Random();
+
+            for (int i = 0; i < 1200; i++)
+            {
+                var officeId = random.Next(1, 5);
+                await AddUser(officeId, $"user{i}@test.com", $"firstName{i}", $"lastName{i}", $"patronymic{i}", $"+375447777777", true, _context.Offices.Find(officeId), RoleNames.User);
+            }
         }
 
         public async Task AddUser(int officeId, string email, string firstName, string LastName, string patronymic, string phone, bool activityStatus, Office office, string role)
