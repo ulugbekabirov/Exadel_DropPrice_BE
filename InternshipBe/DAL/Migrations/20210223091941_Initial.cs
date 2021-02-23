@@ -237,6 +237,30 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PointOfSaleVendor",
+                columns: table => new
+                {
+                    PointOfSalesId = table.Column<int>(type: "int", nullable: false),
+                    VendorsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PointOfSaleVendor", x => new { x.PointOfSalesId, x.VendorsId });
+                    table.ForeignKey(
+                        name: "FK_PointOfSaleVendor_PointOfSales_PointOfSalesId",
+                        column: x => x.PointOfSalesId,
+                        principalTable: "PointOfSales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PointOfSaleVendor_Vendors_VendorsId",
+                        column: x => x.VendorsId,
+                        principalTable: "Vendors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -520,6 +544,11 @@ namespace DAL.Migrations
                 column: "TagsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PointOfSaleVendor_VendorsId",
+                table: "PointOfSaleVendor",
+                column: "VendorsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SavedDiscounts_DiscountId",
                 table: "SavedDiscounts",
                 column: "DiscountId");
@@ -578,6 +607,9 @@ namespace DAL.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
+                name: "PointOfSaleVendor");
+
+            migrationBuilder.DropTable(
                 name: "SavedDiscounts");
 
             migrationBuilder.DropTable(
@@ -590,10 +622,10 @@ namespace DAL.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "PointOfSales");
+                name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "PointOfSales");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

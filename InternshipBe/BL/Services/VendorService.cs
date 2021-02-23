@@ -52,7 +52,6 @@ namespace BL.Services
             var vendor = await _vendorRepository.GetByIdAsync(id);
 
             var vendorDTO = _mapper.Map<VendorDTO>(vendor);
-            vendorDTO.PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendor.PointOfSales);
 
             await AddRatingAndTicketCountToVendorAsync(vendorDTO);
 
@@ -68,7 +67,6 @@ namespace BL.Services
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
                 await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
-                vendorDTOs[i].PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendors.ElementAt(i).PointOfSales);
             }
 
             return vendorDTOs;
@@ -108,7 +106,6 @@ namespace BL.Services
             }
 
             var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
-
             vendor.PointOfSales = resultPointOfSales;
 
             await _vendorRepository.CreateAsync(vendor);
@@ -131,7 +128,6 @@ namespace BL.Services
             }
 
             var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
-
             vendor.PointOfSales?.Clear();
 
             vendor.Name = vendorViewModel.VendorName;
@@ -167,7 +163,6 @@ namespace BL.Services
             for (int i = 0; i < vendorDTOs.Length; i++)
             {
                 await AddRatingAndTicketCountToVendorAsync(vendorDTOs[i]);
-                vendorDTOs[i].PointOfSales = _mapper.Map<PointOfSaleDTO[]>(specifiedAmountOfVendors.ElementAt(i).PointOfSales);
             }
 
             TotalVendorDTO totalVendorDTO = new TotalVendorDTO()
@@ -199,7 +194,6 @@ namespace BL.Services
             await _vendorRepository.SaveChangesAsync();
 
             var vendorDTO = _mapper.Map<VendorDTO>(vendor);
-            vendorDTO.PointOfSales = _mapper.Map<PointOfSaleDTO[]>(vendor.PointOfSales);
 
             return vendorDTO;
         }
