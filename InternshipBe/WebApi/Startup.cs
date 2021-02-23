@@ -21,6 +21,7 @@ using Shared.Infrastructure.Filters;
 using System;
 using System.Text;
 using System.Text.Json;
+using BL.Models;
 
 namespace WebApi
 {
