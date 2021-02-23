@@ -17,14 +17,16 @@ namespace BL.Services
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
+        private readonly IVendorRepository _vendorRepository;
         private readonly ITagService _tagRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
         private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
+        public DiscountService(IDiscountRepository discountRepository, IVendorRepository vendorRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
+            _vendorRepository = vendorRepository;
             _tagRepository = tagRepository;
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
@@ -149,7 +151,7 @@ namespace BL.Services
             {
                 var discount = _mapper.Map<Discount>(discountViewModel);
 
-                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
+                var vendorDiscount = await _vendorRepository.GetByIdAsync(discountViewModel.VendorId);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
