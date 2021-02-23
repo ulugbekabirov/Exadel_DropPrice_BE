@@ -25,8 +25,8 @@ namespace BL.EmailService
 
         public async Task<MimeMessage> GenerateMessageForUserAsync(User user, Ticket ticket)
         {
-            var template = await GetTemplate();
-            var messageTemplate = GenerateMessageTemplateAsync(user, ticket, user.Email, template.UserTemplate);
+            var template = await GetTemplateAsync();
+            var messageTemplate = GenerateMessageTemplate(user, ticket, user.Email, template.UserTemplate);
 
             var message = CreateEmailMessage(messageTemplate);
 
@@ -35,15 +35,15 @@ namespace BL.EmailService
 
         public async Task<MimeMessage> GenerateMessageForVendorAsync(User user, Ticket ticket)
         {
-            var template = await GetTemplate();
-            var messageTemplate = GenerateMessageTemplateAsync(user, ticket, ticket.Discount.Vendor.Email, template.VendorTemplate);
+            var template = await GetTemplateAsync();
+            var messageTemplate = GenerateMessageTemplate(user, ticket, ticket.Discount.Vendor.Email, template.VendorTemplate);
 
             var message = CreateEmailMessage(messageTemplate);
 
             return message;
         }
 
-        private async Task<EmailTemplateModel> GetTemplate()
+        private async Task<EmailTemplateModel> GetTemplateAsync()
         {
             var emailTemplate = await _сonfigRepository.SetEmailLocalization();
             var emailTemplateModel = _mapper.Map<EmailTemplateModel>(emailTemplate);
@@ -62,7 +62,7 @@ namespace BL.EmailService
             return emailMessage;
         }
 
-        private MessageModel GenerateMessageTemplateAsync(User user, Ticket ticket, string address, string messgaeTemplate )
+        private MessageModel GenerateMessageTemplate(User user, Ticket ticket, string address, string messgaeTemplate )
         {
             var contentForUser = _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, messgaeTemplate);
 
