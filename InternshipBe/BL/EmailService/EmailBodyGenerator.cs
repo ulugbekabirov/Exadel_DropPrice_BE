@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BL.Interfaces;
+using DAL.Entities;
 using System.Collections.Generic;
 
 namespace BL.EmailService

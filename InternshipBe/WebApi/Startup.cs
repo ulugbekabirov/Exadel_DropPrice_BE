@@ -35,7 +35,7 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationModel>();
             services.AddSingleton(emailConfig);
 
             services.AddScoped<IEmailSender, EmailSender>();

@@ -1,8 +1,8 @@
 ﻿using MimeKit;
 
-namespace BL.EmailService
+namespace BL.Models
 {
-    public class Message
+    public class MessageModel
     {
         public MailboxAddress To { get; set; }
 

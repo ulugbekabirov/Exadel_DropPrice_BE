@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BL.Interfaces;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace BL.EmailService

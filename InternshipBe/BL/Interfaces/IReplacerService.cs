@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BL.EmailService
+namespace BL.Interfaces
 {
     public interface IReplacerService
     {

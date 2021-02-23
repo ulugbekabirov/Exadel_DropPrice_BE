@@ -1,4 +1,6 @@
-﻿using MailKit.Net.Smtp;
+﻿using BL.Interfaces;
+using BL.Models;
+using MailKit.Net.Smtp;
 using MimeKit;
 using System.Threading.Tasks;
 
@@ -6,9 +8,9 @@ namespace BL.EmailService
 {
     public class EmailSender : IEmailSender
     {
-        private readonly EmailConfiguration _emailConfiguration;
+        private readonly EmailConfigurationModel _emailConfiguration;
 
-        public EmailSender(EmailConfiguration emailConfiguration)
+        public EmailSender(EmailConfigurationModel emailConfiguration)
         {
             _emailConfiguration = emailConfiguration;
         }

@@ -2,7 +2,7 @@
 using MimeKit;
 using System.Threading.Tasks;
 
-namespace BL.EmailService
+namespace BL.Interfaces
 {
     public interface IMessageBuilder
     {

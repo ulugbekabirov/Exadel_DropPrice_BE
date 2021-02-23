@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BL.Interfaces;
 using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -10,11 +11,11 @@ namespace BL.EmailService
     public class MessageBuilder : IMessageBuilder
     {
         private readonly IEmailBodyGenerator _emailBodyGenerator;
-        private readonly EmailConfiguration _emailConfiguration;
+        private readonly EmailConfigurationModel _emailConfiguration;
         private readonly IConfigRepository _сonfigRepository;
         private readonly IMapper _mapper;
 
-        public MessageBuilder(IEmailBodyGenerator generator, EmailConfiguration emailConfiguration, IConfigRepository сonfigRepository, IMapper mapper)
+        public MessageBuilder(IEmailBodyGenerator generator, EmailConfigurationModel emailConfiguration, IConfigRepository сonfigRepository, IMapper mapper)
         {
             _emailBodyGenerator = generator;
             _emailConfiguration = emailConfiguration;
@@ -50,7 +51,7 @@ namespace BL.EmailService
             return emailTemplateModel;
         }
 
-        private MimeMessage CreateEmailMessage(Message message)
+        private MimeMessage CreateEmailMessage(MessageModel message)
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
@@ -61,13 +62,13 @@ namespace BL.EmailService
             return emailMessage;
         }
 
-        private Message GenerateMessageTemplateAsync(User user, Ticket ticket, string address, string messgaeTemplate )
+        private MessageModel GenerateMessageTemplateAsync(User user, Ticket ticket, string address, string messgaeTemplate )
         {
             var contentForUser = _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, messgaeTemplate);
 
             var subject = $"Discount for {ticket.Discount.Name}";
 
-            var message = new Message()
+            var message = new MessageModel()
             {
                 To = new MailboxAddress(address),
                 Subject = subject,

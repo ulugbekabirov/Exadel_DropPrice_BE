@@ -1,6 +1,6 @@
 ﻿using DAL.Entities;
 
-namespace BL.EmailService
+namespace BL.Interfaces
 {
     public interface IEmailBodyGenerator
     {
