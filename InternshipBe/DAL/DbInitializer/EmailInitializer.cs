@@ -13,6 +13,19 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddEmailTemplate(string name, string value, string discription)
+        {
+            _context.ConfigVariables.Add(new ConfigVariable()
+            {
+                Name = name,
+                Value = value,
+                Description = discription,
+                DataType = DataTypes.String,
+            });
+
+            _context.SaveChanges();
+        }
+
         public void InitializeEmails()
         {
             AddEmailTemplate("EnMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
@@ -1021,19 +1034,6 @@ namespace DAL.DbInitializer
         </tbody>
     </table>
 </div>", "Email template for vendor in russian. Words like ##Word## are replaced with values from the database.");
-        }
-
-        public void AddEmailTemplate(string name, string value, string discription)
-        {
-            _context.ConfigVariables.Add(new ConfigVariable()
-            {
-                Name = name,
-                Value = value,
-                Description = discription,
-                DataType = DataTypes.Html,
-            });
-
-            _context.SaveChanges();
         }
     }
 }
