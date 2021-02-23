@@ -3,13 +3,14 @@ name: .NET
 on:
   push:
     branches: [ dev ]
-  pull_request:
-    branches: [ dev ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: InternshipBe
 
     steps:
     - uses: actions/checkout@v2
