@@ -22,18 +22,19 @@ namespace BL.EmailService
 
         private Dictionary<string, string> InizializeDictionary(User user, Ticket ticket)
         {
-            var dictionaryForUser = new Dictionary<string, string>();
-
-            dictionaryForUser.Add("FirstName", user.FirstName);
-            dictionaryForUser.Add("LastName", user.LastName);
-            dictionaryForUser.Add("Patronymic", user.Patronymic);
-            dictionaryForUser.Add("Date", ticket.OrderDate.ToString());
-            dictionaryForUser.Add("DiscountName", ticket.Discount.Name);
-            dictionaryForUser.Add("DiscountValue", ticket.Discount.DiscountAmount.ToString());
-            dictionaryForUser.Add("Vendor", ticket.Discount.Vendor.Name);
-            dictionaryForUser.Add("VendorPhone", ticket.Discount.Vendor.Phone);
-            dictionaryForUser.Add("VendorEmail", ticket.Discount.Vendor.Email);
-            dictionaryForUser.Add("Promocode", ticket.Discount.PromoCode);
+            var dictionaryForUser = new Dictionary<string, string>
+            {
+                { "FirstName", user.FirstName },
+                { "LastName", user.LastName },
+                { "Patronymic", user.Patronymic },
+                { "Date", ticket.OrderDate.ToString() },
+                { "DiscountName", ticket.Discount.Name },
+                { "DiscountValue", ticket.Discount.DiscountAmount.ToString() },
+                { "Vendor", ticket.Discount.Vendor.Name },
+                { "VendorPhone", ticket.Discount.Vendor.Phone },
+                { "VendorEmail", ticket.Discount.Vendor.Email },
+                { "Promocode", ticket.Discount.PromoCode }
+            };
 
             return dictionaryForUser;
         }
