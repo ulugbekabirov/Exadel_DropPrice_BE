@@ -45,7 +45,7 @@ namespace BL.EmailService
 
         private async Task<EmailTemplateModel> GetTemplate()
         {
-            var emailTemplate = await _сonfigRepository.EmailLocalization();
+            var emailTemplate = await _сonfigRepository.SetEmailLocalization();
             var emailTemplateModel = _mapper.Map<EmailTemplateModel>(emailTemplate);
 
             return emailTemplateModel;

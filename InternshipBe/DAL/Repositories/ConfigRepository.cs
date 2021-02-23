@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Shared.Infrastructure;
 using System.Threading;
 
 namespace DAL.Repositories
@@ -35,7 +34,7 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<MessageTemplates> EmailLocalization()
+        public async Task<MessageTemplates> SetEmailLocalization()
         {
             var currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
 
