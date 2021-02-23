@@ -69,9 +69,12 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "Магазин Santehlux" || p.Name == "VitrA Home salon firmowy Bartycka 24 paw.228" || p.Name == "VitrA Узбекистан").ToList());
 
             AddVendor("Bosch", @"Bosch - сделано для жизни. Мы хотим, чтобы наша продукция вызывала энтузиазм, улучшала качество жизни и помогала сохранить природные ресурсы.",
-                "vendorexadel@gmail.com", @"Auf der Breit 4, 76227 Karlsruhe, Германия", "+49 711 40040990", "{\"instagram\": \"https://www.instagram.com/boschglobal\", \"facebook\": \"https://www.facebook.com/BoschGlobal\", \"webSite\" : \"http://www.bosch.com/\"} ");
+                "vendorexadel@gmail.com", @"Auf der Breit 4, 76227 Karlsruhe, Германия", "+49 711 40040990", "{\"instagram\": \"https://www.instagram.com/boschglobal\", \"facebook\": \"https://www.facebook.com/BoschGlobal\", \"webSite\" : \"http://www.bosch.com/\"} ",
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList());
+
             AddVendor("Electrolux", @"Опираясь на наши шведские ценности и прочную связь с природой, мы создаем продукты с очевидной целью. Мы делаем все, что можем, чтобы заботиться о здоровье нашей планеты ради будущих поколений.",
-                "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/?hl=ru\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ");
+                "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/?hl=ru\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ",
+                _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList());
 
 
         }
