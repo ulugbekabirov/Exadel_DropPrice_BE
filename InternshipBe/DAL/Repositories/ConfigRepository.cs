@@ -35,17 +35,38 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<IEnumerable<ConfigVariable>> EmailLocalization()
+        public async Task<MessageTemplates> EmailLocalization()
         {
             var currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
-            if (currentCulture!=null)
+
+            if (currentCulture == "en")
             {
-                return await _entities.Where(c => c.Name.Contains(currentCulture + "MessageFor")).ToListAsync();
+                var MessageTemplate = new MessageTemplates
+                {
+                    UserTemplate = await _entities.Where(c => c.Id == 3).Select(c => c.Value).SingleAsync(),
+                    VendorTemplate = await _entities.Where(c => c.Id == 4).Select(c => c.Value).SingleAsync()
+                };
+                return MessageTemplate;
+            }
+            else if (currentCulture == "ru")
+            {
+                var MessageTemplate = new MessageTemplates
+                {
+                    UserTemplate = await _entities.Where(c => c.Id == 5).Select(c => c.Value).SingleAsync(),
+                    VendorTemplate = await _entities.Where(c => c.Id == 6).Select(c => c.Value).SingleAsync()
+                };
+                return MessageTemplate;
             }
             else
             {
-                return await _entities.Where(c => c.Name.Contains("RuMessageFor")).ToListAsync();
+                var MessageTemplate = new MessageTemplates
+                {
+                    UserTemplate = await _entities.Where(c => c.Id == 5).Select(c => c.Value).SingleAsync(),
+                    VendorTemplate = await _entities.Where(c => c.Id == 6).Select(c => c.Value).SingleAsync()
+                };
+                return MessageTemplate;
             }
+
         }
     }
 }

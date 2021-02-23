@@ -1,4 +1,7 @@
-﻿using DAL.Entities;
+﻿using AutoMapper;
+using BL.Models;
+using DAL.Entities;
+using DAL.Interfaces;
 using MimeKit;
 using System.Threading.Tasks;
 
@@ -8,16 +11,21 @@ namespace BL.EmailService
     {
         private readonly IEmailBodyGenerator _emailBodyGenerator;
         private readonly EmailConfiguration _emailConfiguration;
+        private readonly IConfigRepository _сonfigRepository;
+        private readonly IMapper _mapper;
 
-        public MessageBuilder(IEmailBodyGenerator generator, EmailConfiguration emailConfiguration)
+        public MessageBuilder(IEmailBodyGenerator generator, EmailConfiguration emailConfiguration, IConfigRepository сonfigRepository, IMapper mapper)
         {
             _emailBodyGenerator = generator;
             _emailConfiguration = emailConfiguration;
+            _сonfigRepository = сonfigRepository;
+            _mapper = mapper;
         }
 
         public async Task<MimeMessage> GenerateMessageForUserAsync(User user, Ticket ticket)
         {
-            var messageTemplate = await GenerateMessageTemplateForUserAsync(user, ticket, user.Email);
+            var template = await GetTemplate();
+            var messageTemplate = GenerateMessageTemplateAsync(user, ticket, user.Email, template.UserTemplate);
 
             var message = CreateEmailMessage(messageTemplate);
 
@@ -26,11 +34,20 @@ namespace BL.EmailService
 
         public async Task<MimeMessage> GenerateMessageForVendorAsync(User user, Ticket ticket)
         {
-            var messageTemplate = await GenerateMessageTemplateForVendorAsync(user, ticket, ticket.Discount.Vendor.Email);
+            var template = await GetTemplate();
+            var messageTemplate = GenerateMessageTemplateAsync(user, ticket, ticket.Discount.Vendor.Email, template.VendorTemplate);
 
             var message = CreateEmailMessage(messageTemplate);
 
             return message;
+        }
+
+        private async Task<EmailTemplateModel> GetTemplate()
+        {
+            var emailTemplate = await _сonfigRepository.EmailLocalization();
+            var emailTemplateModel = _mapper.Map<EmailTemplateModel>(emailTemplate);
+
+            return emailTemplateModel;
         }
 
         private MimeMessage CreateEmailMessage(Message message)
@@ -44,9 +61,9 @@ namespace BL.EmailService
             return emailMessage;
         }
 
-        private async Task<Message> GenerateMessageTemplateForUserAsync(User user, Ticket ticket, string address)
+        private Message GenerateMessageTemplateAsync(User user, Ticket ticket, string address, string messgaeTemplate )
         {
-            var contentForUser = await _emailBodyGenerator.GenerateMessageBodyForUserAsync(user, ticket);
+            var contentForUser = _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, messgaeTemplate);
 
             var subject = $"Discount for {ticket.Discount.Name}";
 
@@ -55,21 +72,6 @@ namespace BL.EmailService
                 To = new MailboxAddress(address),
                 Subject = subject,
                 Content = contentForUser
-            };
-            return message;
-        }
-
-        private async Task<Message> GenerateMessageTemplateForVendorAsync(User user, Ticket ticket, string address)
-        {
-            var contentForVendor = await _emailBodyGenerator.GenerateMessageBodyForVendorAsync(user, ticket);
-
-            var subject = $"Discount for {ticket.Discount.Name}";
-
-            var message = new Message()
-            {
-                To = new MailboxAddress(address),
-                Subject = subject,
-                Content = contentForVendor
             };
             return message;
         }

@@ -9,6 +9,5 @@ namespace BL.EmailService
         Task<MimeMessage> GenerateMessageForUserAsync(User user, Ticket ticket);
 
         Task<MimeMessage> GenerateMessageForVendorAsync(User user, Ticket ticket);
-
     }
 }

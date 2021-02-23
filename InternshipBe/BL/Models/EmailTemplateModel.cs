@@ -1,6 +1,6 @@
-﻿namespace BL.EmailService
+﻿namespace BL.Models
 {
-    public class ConfigModel
+    public class EmailTemplateModel
     {
         public string UserTemplate { get; set; }
 

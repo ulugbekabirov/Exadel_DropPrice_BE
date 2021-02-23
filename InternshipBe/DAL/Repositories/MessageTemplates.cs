@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ConfigModel
+    public class MessageTemplates
     {
         public string UserTemplate { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +13,6 @@ namespace DAL.Interfaces
 
         Task<bool> IsSendingEmailsEnabled(int id);
 
-        Task<IEnumerable<ConfigVariable>> EmailLocalization();
+        Task<MessageTemplates> EmailLocalization();
     }
 }

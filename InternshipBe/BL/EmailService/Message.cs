@@ -1,6 +1,4 @@
 ﻿using MimeKit;
-using System;
-using System.Collections.Generic;
 
 namespace BL.EmailService
 {
