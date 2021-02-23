@@ -33,13 +33,13 @@ namespace Shared.Middleware.Localization
             await _next.Invoke(context);
         }
 
-        private void SetCultureToThread(string language)
+        private static void SetCultureToThread(string language)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
         }
 
-        private string GetFirstTwoLettersOfAcceptLanguageHeader(string acceptedLanguages)
+        private static string GetFirstTwoLettersOfAcceptLanguageHeader(string acceptedLanguages)
         {
             return acceptedLanguages.Split(new char[] { '-', ',' }).FirstOrDefault();
         }
