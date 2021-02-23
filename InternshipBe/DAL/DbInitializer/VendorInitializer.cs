@@ -70,10 +70,9 @@ namespace DAL.DbInitializer
 
             AddVendor("Bosch", @"Bosch - сделано для жизни. Мы хотим, чтобы наша продукция вызывала энтузиазм, улучшала качество жизни и помогала сохранить природные ресурсы.",
                 "vendorexadel@gmail.com", @"Auf der Breit 4, 76227 Karlsruhe, Германия", "+49 711 40040990", "{\"instagram\": \"https://www.instagram.com/boschglobal\", \"facebook\": \"https://www.facebook.com/BoschGlobal\", \"webSite\" : \"http://www.bosch.com/\"} ");
+            
             AddVendor("Electrolux", @"Опираясь на наши шведские ценности и прочную связь с природой, мы создаем продукты с очевидной целью. Мы делаем все, что можем, чтобы заботиться о здоровье нашей планеты ради будущих поколений.",
                 "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/?hl=ru\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ");
-
-
         }
     }
 }
