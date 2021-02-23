@@ -55,6 +55,7 @@ namespace DAL.DbInitializer
             AddTag("Светильник");
             AddTag("Сантеника");
             AddTag("Уют");
+            AddTag("электротехника");
         }
     }
 }

@@ -67,6 +67,13 @@ namespace DAL.DbInitializer
             AddVendor("Vitra", @" Компания Vitra специализируется на производстве сантехники, керамической плитки и керамогранита. У ней вы сможете приобрести все необходимые товары для вашего дома",
                 "vendorexadel@gmail.com", @"Vitra International AG, a Swiss corporation Klünenfeldstrasse 22 4127 Birsfelden Switzerland", "+41 61 377 00 00", "{\"instagram\": \"https://www.instagram.com/vitra \", \"facebook\": \"https://www.facebook.com/vitra \", \"webSite\" : \"https://www.vitra.com/en-un/home \"} ",
                 _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "Магазин Santehlux" || p.Name == "VitrA Home salon firmowy Bartycka 24 paw.228" || p.Name == "VitrA Узбекистан").ToList());
+
+            AddVendor("Bosch", @"Bosch - сделано для жизни. Мы хотим, чтобы наша продукция вызывала энтузиазм, улучшала качество жизни и помогала сохранить природные ресурсы.",
+                "vendorexadel@gmail.com", @"Auf der Breit 4, 76227 Karlsruhe, Германия", "+49 711 40040990", "{\"instagram\": \"https://www.instagram.com/boschglobal\", \"facebook\": \"https://www.facebook.com/BoschGlobal\", \"webSite\" : \"http://www.bosch.com/\"} ");
+            AddVendor("Electrolux", @"Опираясь на наши шведские ценности и прочную связь с природой, мы создаем продукты с очевидной целью. Мы делаем все, что можем, чтобы заботиться о здоровье нашей планеты ради будущих поколений.",
+                "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/?hl=ru\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ");
+
+
         }
     }
 }

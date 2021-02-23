@@ -77,6 +77,15 @@ namespace DAL.DbInitializer
             AddPointOfSales("Магазин Santehlux", "улица Тимирязева д.44, Минск 220035", 53.9747383, 27.5619366);
             AddPointOfSales("VitrA Home salon firmowy Bartycka 24 paw.228", "Bartycka 24/26/pawilon 228, Warszawa", 52.2440627, 21.0515890);
             AddPointOfSales("VitrA Узбекистан", "Barakat business centre, Afrosiab, 2, Tashkent", 41.3032844, 69.2679597);
+
+            AddPointOfSales("Сервисный центр ИП \"Роберт Бош\"", "020, улица Тимирязева 65а, Минск", 53.9490416, 27.5188690);
+            AddPointOfSales("MAJSTER BOSCH", "Konstantego Ciołkowskiego 24, 15-264 Białystok, Польша", 53.1467102, 23.2363017);
+            AddPointOfSales("Bosch Hrodna", "ул. Пушкина 31а, Гродно 230012", 53.7035534, 23.8387627);
+            AddPointOfSales("Magazin Bosh - Elektrotekhnika Dlya Doma", "Ул. Руставелли (Усмана Носыра) 32а, Тошкент, Узбекистан", 41.2953083, 69.2561120);
+
+            AddPointOfSales("Electrolux ташкент", "Amir Temur Avenue, Tashkent, Узбекистан", 41.3312303, 69.2846146);
+            AddPointOfSales("Электросила Минск", "ул. Красная 22, Минск 220005", 53.9197060, 27.5856844);
+            AddPointOfSales("Электросила Гродно", "ТЦ Корона, просп.Космонавтов 81, Гродно 230019", 53.7059679, 23.8408464);
         }
     }
 }

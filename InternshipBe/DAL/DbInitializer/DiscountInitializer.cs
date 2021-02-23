@@ -234,6 +234,27 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "Гемма - строительный магазин" || p.Name == "VitrA Узбекистан").ToList(),
                 _context.Tags.Where(t => t.Name == "Сантехника" || t.Name == "Красота" || t.Name == "Для дома" || t.Name == "Уют").ToList());
 
+            //Bosch
+            AddDiscount(10, "Газонокосилка DLM462Z (DLM 462 Z) MAKITA", @"Аккумуляторная газонокосилка Makita DLM462Z – это самоходная модель, весом 38 кг питается от двух аккумуляторов с суммарным напряжением 36 В.",
+                24, DateTime.Now, DateTime.Now.AddDays(32), true, "MAKITA",
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Уют").ToList());
+
+            AddDiscount(10, "Пылесос UniversalVac 18 BOSCH (06033B9103)", @"Аккумуляторный ручной пылесос Bosch UniversalVac 18 - мобильное, легкое и мощное устройство с постоянной силой всасывания. Удобен при уборке автомобилей, очистке ковровых покрытий и полов.",
+                33, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Уют").ToList());
+
+            AddDiscount(10, "Дрель-шуруповерт DHP485SYE (DHP 485 SYE) MAKITA", @"Ударная дрель-шуруповерт Makita DHP485SYE – компактное отличающееся эффективностью устройство. Используется оно для создания отверстий и для работ с элементами крепежа. Благодаря тому, что функционирование предлагаемой техники не зависит от сети, ее можно применять в самых разных местах.",
+                10, DateTime.Now, DateTime.Now.AddDays(32), true, "MAKITA",
+                _context.Vendors.Find(10),
+                _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
+                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
+
+            //Electrolux
+
         }
     }
 }
