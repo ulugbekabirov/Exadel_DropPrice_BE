@@ -4,9 +4,10 @@ namespace WebApi.ViewModels
 {
     public class VendorViewModel
     {
-        public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter the vendor's Name.")]
+        [Required(ErrorMessage = "Please enter the vendor's VendorId.")]
+        public int VendorId { get; set; }
+
         public string VendorName { get; set; }
         
         [Required(ErrorMessage = "Please enter the vendor's Description.")]

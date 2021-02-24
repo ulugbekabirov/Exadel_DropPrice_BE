@@ -70,6 +70,7 @@ namespace BL.Mapping
                 });
 
             CreateMap<VendorViewModel, Vendor>()
+               .ForMember(v => v.Id, source => source.MapFrom(s => s.VendorId))
                .ForMember(v => v.Name, source => source.MapFrom(v => v.VendorName))
                .ForMember(v => v.PointOfSales, source => source.Ignore())
                .ReverseMap();
@@ -79,11 +80,13 @@ namespace BL.Mapping
               .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name));
 
             CreateMap<DiscountViewModel, Discount>()
+                .ForMember(d => d.Id, source => source.MapFrom(s => s.DiscountId))
                 .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName))
                 .ForMember(d => d.PointOfSales, source => source.Ignore())
                 .ForMember(d => d.Vendor, source => source.Ignore())
                 .ForMember(d => d.Tags, source => source.Ignore());
             CreateMap<Discount, DiscountViewModel>()
+                .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
                 .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Vendor.Id))
                 .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Vendor.Name))

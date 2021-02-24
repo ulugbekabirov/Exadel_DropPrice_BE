@@ -55,7 +55,7 @@ namespace WebApi.Controllers
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> UpdateVendor(int id, [FromBody]VendorViewModel vendorViewModel)
         {
-            vendorViewModel.Id = id;
+            vendorViewModel.VendorId = id;
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
 

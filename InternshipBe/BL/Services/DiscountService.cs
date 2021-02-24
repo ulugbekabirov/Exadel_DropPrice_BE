@@ -189,7 +189,7 @@ namespace BL.Services
 
             try
             {
-                var discount = await _discountRepository.GetByIdAsync(discountViewModel.Id);
+                var discount = await _discountRepository.GetByIdAsync(discountViewModel.DiscountId);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 

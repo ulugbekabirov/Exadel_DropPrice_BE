@@ -5,7 +5,7 @@ namespace WebApi.ViewModels
 {
     public class DiscountViewModel
     {
-        public int Id { get; set; }
+        public int DiscountId { get; set; }
 
         [Required(ErrorMessage = "Please enter the discount's VendorId.")]
         public int VendorId { get; set; }

@@ -82,7 +82,7 @@ namespace WebApi.Controllers
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> UpdateDiscount(int id, [FromBody] DiscountViewModel discountViewModel)
         {
-            discountViewModel.Id = id;
+            discountViewModel.DiscountId = id;
             return Ok(await _discountService.UpdateDiscountAsync(discountViewModel));
         }
 
