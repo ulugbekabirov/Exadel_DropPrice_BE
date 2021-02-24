@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
