@@ -85,6 +85,8 @@ namespace BL.Mapping
                 .ForMember(d => d.Tags, source => source.Ignore());
             CreateMap<Discount, DiscountViewModel>()
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
+                .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Vendor.Id))
+                .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Vendor.Name))
                 .ForMember(d => d.PointOfSales, source => source.Ignore())
                 .ForMember(d => d.Tags, source => source.Ignore());
 
