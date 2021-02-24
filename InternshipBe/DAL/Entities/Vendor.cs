@@ -8,6 +8,7 @@ namespace DAL.Entities
         public Vendor()
         {
             Discounts = new List<Discount>();
+            PointOfSales = new List<PointOfSale>();
         }
 
         public int Id { get; set; }
@@ -29,6 +30,10 @@ namespace DAL.Entities
 
         public string SocialLinks { get; set; }
 
+        public int? ImageId { get; set; }
+
         public virtual ICollection<Discount> Discounts { get; set; }
+
+        public virtual ICollection<PointOfSale> PointOfSales { get; set; }
     }
 }

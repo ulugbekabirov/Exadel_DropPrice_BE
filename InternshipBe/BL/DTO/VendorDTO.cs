@@ -19,5 +19,7 @@
         public double? VendorRating { get; set; }
 
         public int TicketCount { get; set; }
+
+        public int? ImageId { get; set; }
     }
 }

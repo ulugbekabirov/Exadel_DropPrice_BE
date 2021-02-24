@@ -2,7 +2,6 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Infrastructure;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +23,9 @@ namespace DAL.DbInitializer
 
         public static async Task SeedDatabase(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
+            var configInitializer = new ConfigVariablesInitializer(_context);
+            configInitializer.InitializeConfigVariables();
+
             if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
             {
                 _context.ConfigVariables.Add(new ConfigVariable
@@ -72,20 +74,23 @@ namespace DAL.DbInitializer
             var users = new UserInitializer(_context, userManager);
             await users.InitializeUsers();
 
+            var pointOfSales = new PointOfSaleInitializer(_context);
+            pointOfSales.InitializePointOfSales();
+
             var vendors = new VendorInitializer(_context);
             vendors.InitializeVendors();
 
             var tags = new TagInitializer(_context);
             tags.InitializeTags();
 
-            var pointOfSales = new PointOfSaleInitializer(_context);
-            pointOfSales.InitializePointOfSales();
-
             var discounts = new DiscountInitializer(_context);
             discounts.InitializeDiscounts();
 
             var assessments = new AssessmentInitializer(_context);
             assessments.InitializerAssesments();
+
+            var tickets = new TicketInitializer(_context);
+            tickets.InitializeTickets();
 
             _context.SaveChanges();
         }

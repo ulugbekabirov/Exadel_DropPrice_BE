@@ -12,6 +12,16 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
+        public void AddTag(string name)
+        {
+            _context.Tags.Add(new Tag
+            {
+                Name = name,
+            });
+
+            _context.SaveChanges();
+        }
+
         public void InitializeTags()
         {
             AddTag("Кондитерские изделия");
@@ -45,16 +55,8 @@ namespace DAL.DbInitializer
             AddTag("Светильник");
             AddTag("Сантеника");
             AddTag("Уют");
-        }
-
-        public void AddTag(string name)
-        {
-            _context.Tags.Add(new Tag
-            {
-                Name = name,
-            });
-
-            _context.SaveChanges();
+            AddTag("Электротехника");
+            AddTag("Комфорт");
         }
     }
 }

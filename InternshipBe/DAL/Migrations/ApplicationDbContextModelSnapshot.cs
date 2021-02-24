@@ -109,6 +109,42 @@ namespace DAL.Migrations
                     b.ToTable("Discounts");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("DAL.Entities.LocalizedName", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("English")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Russian")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocalizedName");
+                });
+
             modelBuilder.Entity("DAL.Entities.Office", b =>
                 {
                     b.Property<int>("Id")
@@ -238,11 +274,12 @@ namespace DAL.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("NameId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NameId");
 
                     b.ToTable("Towns");
                 });
@@ -355,6 +392,9 @@ namespace DAL.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -532,6 +572,21 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PointOfSaleVendor", b =>
+                {
+                    b.Property<int>("PointOfSalesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendorsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PointOfSalesId", "VendorsId");
+
+                    b.HasIndex("VendorsId");
+
+                    b.ToTable("PointOfSaleVendor");
+                });
+
             modelBuilder.Entity("DAL.Entities.Assessment", b =>
                 {
                     b.HasOne("DAL.Entities.Discount", "Discount")
@@ -598,6 +653,15 @@ namespace DAL.Migrations
                     b.Navigation("Discount");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Town", b =>
+                {
+                    b.HasOne("DAL.Entities.LocalizedName", "Name")
+                        .WithMany()
+                        .HasForeignKey("NameId");
+
+                    b.Navigation("Name");
                 });
 
             modelBuilder.Entity("DAL.Entities.User", b =>
@@ -688,6 +752,21 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PointOfSaleVendor", b =>
+                {
+                    b.HasOne("DAL.Entities.PointOfSale", null)
+                        .WithMany()
+                        .HasForeignKey("PointOfSalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entities.Vendor", null)
+                        .WithMany()
+                        .HasForeignKey("VendorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

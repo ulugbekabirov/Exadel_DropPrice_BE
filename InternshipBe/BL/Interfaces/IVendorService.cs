@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Models;
 using DAL.Entities;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
@@ -20,5 +21,9 @@ namespace BL.Interfaces
         Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel);
 
         Task<TotalVendorDTO> SearchVendorsAsync(AdminSearchModel searchModel);
+
+        Task<VendorDTO> AddImageToVendorAsync(IFormFile file, int vendorId);
+
+        Task<IEnumerable<PointOfSaleDTO>> GetVendorPointOfSalesAsync(int id);
     }
 }

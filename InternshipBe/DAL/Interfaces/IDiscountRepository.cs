@@ -8,15 +8,13 @@ namespace DAL.Interfaces
 {
     public interface IDiscountRepository : IRepository<Discount>
     {
-        IQueryable<Discount> SearchDiscounts(string searchQuery, string[] tags, Point location, int radius);
+        IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius);
 
         Task<SavedDiscount> GetSavedDiscountAsync(int id, int userId);
 
         Task<SavedDiscount> CreateSavedDiscountAsync(Discount discount, User user);
 
         IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius);
-
-        Task<Vendor> GetVendorByNameAsync(string vendorName);
 
         Task<Assessment> GetUserAssessmentAsync(int id, int userId);
 
@@ -45,5 +43,7 @@ namespace DAL.Interfaces
         Task<int> GetDiscountTicketCountAsync(int id);
 
         Task<int> GetTotalNumberOfDiscountsAsync(IQueryable<Discount> discounts);
+
+        Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take);
     }
 }

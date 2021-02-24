@@ -3,6 +3,8 @@ using BL.DTO;
 using BL.EmailService;
 using BL.Models;
 using DAL.Entities;
+using NetTopologySuite;
+using NetTopologySuite.Geometries;
 using DAL.Repositories;
 using Shared.ViewModels;
 using System;
@@ -16,7 +18,7 @@ namespace BL.Mapping
         public MappingProfile()
         {
             CreateMap<Town, TownDTO>()
-                .ForMember(t => t.TownName, source => source.MapFrom(s => s.Name))
+                .ForMember(t => t.TownName, source => source.MapFrom(s => s.Name.Current))
                 .ReverseMap();
 
             CreateMap<User, UserDTO>()
@@ -44,7 +46,11 @@ namespace BL.Mapping
             CreateMap<PointOfSale, PointOfSaleViewModel>()
                 .ForMember(d => d.Latitude, source => source.MapFrom(s => s.Location.Y))
                 .ForMember(d => d.Longitude, source => source.MapFrom(s => s.Location.X));
-            CreateMap<PointOfSaleViewModel, PointOfSale>();
+            CreateMap<PointOfSaleViewModel, PointOfSale>()
+                .AfterMap((source, pointOFSale) =>
+                {
+                    pointOFSale.Location = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326).CreatePoint(new Coordinate(source.Longitude, source.Latitude));
+                });
 
             CreateMap<AssessmentViewModel, Assessment>()
                 .ReverseMap();
@@ -67,13 +73,13 @@ namespace BL.Mapping
                 });
 
             CreateMap<VendorViewModel, Vendor>()
+               .ForMember(v => v.Name, source => source.MapFrom(v => v.VendorName))
+               .ForMember(v => v.PointOfSales, source => source.Ignore())
                .ReverseMap();
 
             CreateMap<Vendor, VendorDTO>()
               .ForMember(v => v.VendorId, source => source.MapFrom(s => s.Id))
-              .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name))
-              .ReverseMap();
-
+              .ForMember(v => v.VendorName, source => source.MapFrom(s => s.Name));
 
             CreateMap<DiscountViewModel, Discount>()
                 .ForMember(d => d.Name, source => source.MapFrom(s => s.DiscountName))
@@ -82,12 +88,15 @@ namespace BL.Mapping
                 .ForMember(d => d.Tags, source => source.Ignore());
             CreateMap<Discount, DiscountViewModel>()
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
+                .ForMember(d => d.VendorId, source => source.MapFrom(s => s.Vendor.Id))
+                .ForMember(d => d.VendorName, source => source.MapFrom(s => s.Vendor.Name))
                 .ForMember(d => d.PointOfSales, source => source.Ignore())
                 .ForMember(d => d.Tags, source => source.Ignore());
 
             CreateMap<Discount, DiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id))
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
+                .ForMember(d=>d.ImageId, source=>source.MapFrom(s=>s.Vendor.ImageId))
                 .ReverseMap()
                 .ForAllOtherMembers(d => d.Ignore());
             CreateMap<Discount, DiscountDTO>()
@@ -109,7 +118,6 @@ namespace BL.Mapping
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.ConfigName))
                 .ReverseMap();
 
-            CreateMap<EmailTemplateModel, MessageTemplates>().ReverseMap();
-        }
+            CreateMap<EmailTemplateModel, MessageTemplates>().ReverseMap();        }
     }
 }

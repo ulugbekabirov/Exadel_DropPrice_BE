@@ -37,6 +37,8 @@ namespace BL.DTO
 
         public int? AssessmentValue { get; set; }
 
+        public int? ImageId { get; set; }
+
         public ICollection<string> Tags { get; set; } 
     }
 }
