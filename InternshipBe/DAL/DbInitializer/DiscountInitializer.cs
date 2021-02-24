@@ -141,13 +141,13 @@ namespace DAL.DbInitializer
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Парфюмерия" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
 
             //L'Oreal
-            AddDiscount(6, "L'Oreal Paris Dermo Expertise", @"Набор косметии для лица с успокаивающим, восстанавливающим и антивозрастным эффектом уода. пододит для снятия маияжа илифтинга.",
+            AddDiscount(6, "L'Oreal Paris Dermo Expertise", @"Набор косметии для лица с успокаивающим, восстанавливающим и антивозрастным эффектом ухода. Подходит для снятия маияжа и лифтинга.",
                 20, DateTime.Now.AddDays(-5), DateTime.Now.AddDays(140), true, "JEUNESSE",
                 _context.Vendors.Find(6),
                 _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
                 _context.Tags.Where(t => t.Name == "Мода" || t.Name == "Уход за кожей" || t.Name == "Роскошь" || t.Name == "Красота").ToList());
 
-            AddDiscount(6, "Крем после бритья L'Oreal Paris Men Expert", @"Даже мужская кожа нуждается в заботе и уходе, поэтому L'Oreal предоставляет крем после бритья с успокаивающим и увлажнающим эффектом уода.",
+            AddDiscount(6, "Крем после бритья L'Oreal Paris Men Expert", @"Даже мужская кожа нуждается в заботе и уходе, поэтому L'Oreal предоставляет крем после бритья с успокаивающим и увлажнающим эффектом ухода.",
                 23, DateTime.Now, DateTime.Now.AddDays(140), true, "FORCE",
                 _context.Vendors.Find(6),
                 _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "L'Oreal Poland Sp. zoo").ToList(),
