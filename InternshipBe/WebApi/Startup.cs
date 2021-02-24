@@ -2,6 +2,7 @@ using AutoMapper;
 using BL.Interfaces;
 using BL.Mapping;
 using BL.Services;
+using BL.EmailService;
 using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -16,12 +17,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Shared.EmailService;
 using Shared.Infrastructure.Filters;
 using Shared.Middleware.Localization;
 using System;
 using System.Text;
 using System.Text.Json;
+using BL.Models;
 
 namespace WebApi
 {
@@ -36,12 +37,16 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationModel>();
             services.AddSingleton(emailConfig);
 
             services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddScoped<IMessageBuilder, MessageBuilder>();
+
+            services.AddScoped<IEmailBodyGenerator, EmailBodyGenerator>();
+
+            services.AddScoped<IReplacerService, ReplacerService>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>

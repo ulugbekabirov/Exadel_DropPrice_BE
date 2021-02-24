@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using BL.DTO;
+using BL.EmailService;
+using BL.Models;
 using DAL.Entities;
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
+using DAL.Repositories;
 using Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -118,8 +121,6 @@ namespace BL.Mapping
                 .ForMember(v => v.Name, source => source.MapFrom(s => s.ConfigName))
                 .ReverseMap();
 
-            CreateMap<Image, ImageDTO>()
-                .ReverseMap();
-        }
+            CreateMap<EmailTemplateModel, MessageTemplates>().ReverseMap();        }
     }
 }

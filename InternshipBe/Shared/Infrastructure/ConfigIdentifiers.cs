@@ -4,5 +4,9 @@
     {
         Radius = 1,
         SendingEmailToggler,
+        EnMessageForUser,
+        EnMessageForVendor,
+        RuMessageForUser,
+        RuMessageForVendor
     }
 }
