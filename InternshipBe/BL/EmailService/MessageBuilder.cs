@@ -26,21 +26,15 @@ namespace BL.EmailService
         public async Task<MimeMessage> GenerateMessageForUserAsync(User user, Ticket ticket)
         {
             var template = await GetTemplateAsync();
-            var messageTemplate = GenerateMessageTemplate(user, ticket, user.Email, template.UserTemplate);
 
-            var message = CreateEmailMessage(messageTemplate);
-
-            return message;
+            return CreateEmailMessage(user, ticket, user.Email, template.UserTemplate);
         }
 
         public async Task<MimeMessage> GenerateMessageForVendorAsync(User user, Ticket ticket)
         {
             var template = await GetTemplateAsync();
-            var messageTemplate = GenerateMessageTemplate(user, ticket, ticket.Discount.Vendor.Email, template.VendorTemplate);
 
-            var message = CreateEmailMessage(messageTemplate);
-
-            return message;
+            return CreateEmailMessage(user, ticket, ticket.Discount.Vendor.Email, template.VendorTemplate);
         }
 
         private async Task<EmailTemplateModel> GetTemplateAsync()
@@ -51,8 +45,10 @@ namespace BL.EmailService
             return emailTemplateModel;
         }
 
-        private MimeMessage CreateEmailMessage(MessageModel message)
+        private MimeMessage CreateEmailMessage(User user, Ticket ticket, string address, string messgaeTemplate)
         {
+            var message = GenerateMessageTemplate(user, ticket, address, messgaeTemplate);
+
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));
             emailMessage.To.Add(message.To);
