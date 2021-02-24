@@ -72,5 +72,12 @@ namespace WebApi.Controllers
         {
             return Ok(await _vendorService.AddImageToVendorAsync(file, id));
         }
+
+        [HttpGet("{id}/pointOfSales")]
+        [Authorize(Roles = "Admin,Moderator")]
+        public async Task<IActionResult> GetVendorPointOfSales(int id)
+        {
+            return Ok(await _vendorService.GetVendorPointOfSalesAsync(id));
+        }
     }
 }

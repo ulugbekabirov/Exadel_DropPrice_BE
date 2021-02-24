@@ -17,14 +17,16 @@ namespace BL.Services
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
+        private readonly IVendorRepository _vendorRepository;
         private readonly ITagService _tagRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
         private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
+        public DiscountService(IDiscountRepository discountRepository, IVendorRepository vendorRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
+            _vendorRepository = vendorRepository;
             _tagRepository = tagRepository;
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
@@ -149,23 +151,18 @@ namespace BL.Services
             {
                 var discount = _mapper.Map<Discount>(discountViewModel);
 
-                var vendorDiscount = await _discountRepository.GetVendorByNameAsync(discountViewModel.VendorName);
+                var vendorDiscount = await _vendorRepository.GetByIdAsync(discountViewModel.VendorId);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
-                var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
-
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Longitude);
-                }
+                var pointOfSales = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
                 
-                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
+                var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
 
                 discount.VendorId = vendorDiscount.Id;
                 discount.Vendor = vendorDiscount;
                 discount.Tags = tags;
-                discount.PointOfSales = pointOfSales;
+                discount.PointOfSales = resultPointOfSales;
 
                 await _discountRepository.CreateAsync(discount);
 
@@ -173,7 +170,7 @@ namespace BL.Services
 
                 var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
                 createDiscountViewModel.Tags = discountViewModel.Tags;
-                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(resultPointOfSales);
 
                 await transaction.CommitAsync();
 
@@ -196,14 +193,9 @@ namespace BL.Services
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
-                var points = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
+                var pointOfSales = _mapper.Map<PointOfSale[]>(discountViewModel.PointOfSales);
 
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i].Location = _discountRepository.GetLocation(default, default, discountViewModel.PointOfSales[i].Latitude, discountViewModel.PointOfSales[i].Longitude);
-                }
-
-                var pointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(points);
+                var resultPointOfSales = await _pointOfSaleService.GetPointOfSalesAndCreateIfNotExistAsync(pointOfSales);
 
                 discount.Tags.Clear();
                 discount.PointOfSales.Clear();
@@ -218,7 +210,7 @@ namespace BL.Services
                 discount.StartDate = discountViewModel.StartDate;
                 discount.EndDate = discountViewModel.EndDate;
                 discount.Tags = tags;
-                discount.PointOfSales = pointOfSales;
+                discount.PointOfSales = resultPointOfSales;
 
                 await _discountRepository.SaveChangesAsync();
 
@@ -226,7 +218,7 @@ namespace BL.Services
 
                 var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
                 createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
-                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(pointOfSales);
+                createDiscountViewModel.PointOfSales = _mapper.Map<PointOfSaleViewModel[]>(resultPointOfSales);
 
                 return createDiscountViewModel;
             }
