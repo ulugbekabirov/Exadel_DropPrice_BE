@@ -13,7 +13,7 @@ namespace BL.EmailService
             _replacer = replacer;
         }
 
-        public string GenerateMessageBodyAsync(User user, Ticket ticket, string emailTemplate)
+        public string GenerateMessageBody(User user, Ticket ticket, string emailTemplate)
         {
             var dictionary = InizializeDictionary(user, ticket);
 

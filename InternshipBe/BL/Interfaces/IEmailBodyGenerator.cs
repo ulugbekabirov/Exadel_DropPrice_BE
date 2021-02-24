@@ -4,6 +4,6 @@ namespace BL.Interfaces
 {
     public interface IEmailBodyGenerator
     {
-        string GenerateMessageBodyAsync(User user, Ticket ticket, string emailTemplate);
+        string GenerateMessageBody(User user, Ticket ticket, string emailTemplate);
     }
 }

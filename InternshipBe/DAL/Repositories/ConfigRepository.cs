@@ -34,7 +34,7 @@ namespace DAL.Repositories
             return bool.Parse(sendingEmailToggler.Value);
         }
 
-        public async Task<MessageTemplates> SetEmailLocalization()
+        public async Task<MessageTemplates> SetEmailLocalizationAsync()
         {
             var currentCulture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
 

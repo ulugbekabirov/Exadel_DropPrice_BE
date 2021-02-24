@@ -45,7 +45,7 @@ namespace BL.EmailService
 
         private async Task<EmailTemplateModel> GetTemplateAsync()
         {
-            var emailTemplate = await _сonfigRepository.SetEmailLocalization();
+            var emailTemplate = await _сonfigRepository.SetEmailLocalizationAsync();
             var emailTemplateModel = _mapper.Map<EmailTemplateModel>(emailTemplate);
 
             return emailTemplateModel;
@@ -64,7 +64,7 @@ namespace BL.EmailService
 
         private MessageModel GenerateMessageTemplate(User user, Ticket ticket, string address, string messgaeTemplate )
         {
-            var contentForUser = _emailBodyGenerator.GenerateMessageBodyAsync(user, ticket, messgaeTemplate);
+            var contentForUser = _emailBodyGenerator.GenerateMessageBody(user, ticket, messgaeTemplate);
 
             var subject = $"{ticket.Discount.Vendor.Name} - { ticket.Discount.Name }";
 
