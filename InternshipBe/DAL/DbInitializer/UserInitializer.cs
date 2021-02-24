@@ -71,7 +71,7 @@ namespace DAL.DbInitializer
 
             Random random = new Random();
 
-            for (int i = 0; i < 1200; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var officeId = random.Next(1, 5);
                 await AddUser(officeId, $"user{i}@test.com", $"firstName{i}", $"lastName{i}", $"patronymic{i}", $"+375447777777", true, _context.Offices.Find(officeId), RoleNames.User);
