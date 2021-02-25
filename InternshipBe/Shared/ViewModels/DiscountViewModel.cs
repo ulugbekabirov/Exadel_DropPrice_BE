@@ -10,7 +10,6 @@ namespace WebApi.ViewModels
         [Required(ErrorMessage = "Please enter the discount's VendorId.")]
         public int VendorId { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's VendorName.")]
         public string VendorName { get; set; }
 
         [Required(ErrorMessage = "Please enter the discount's Name.")]
