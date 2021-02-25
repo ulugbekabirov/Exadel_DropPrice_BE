@@ -45,5 +45,9 @@ namespace DAL.Interfaces
         Task<int> GetTotalNumberOfDiscountsAsync(IQueryable<Discount> discounts);
 
         Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take);
+
+        Task UnArchiveDiscountAsync(int id);
+
+        Task ArchiveDiscountAsync(int id);
     }
 }

@@ -18,15 +18,17 @@ namespace BL.Services
     {
         private readonly IDiscountRepository _discountRepository;
         private readonly IVendorRepository _vendorRepository;
+        private readonly IHangfireService _hangfireService;
         private readonly ITagService _tagRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
         private readonly IMapper _mapper;
         private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, IVendorRepository vendorRepository, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
+        public DiscountService(IDiscountRepository discountRepository, IVendorRepository vendorRepository, IHangfireService hangfireService, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
             _vendorRepository = vendorRepository;
+            _hangfireService = hangfireService;
             _tagRepository = tagRepository;
             _pointOfSaleService = pointOfSaleService;
             _mapper = mapper;
@@ -140,6 +142,11 @@ namespace BL.Services
 
             await _discountRepository.SaveChangesAsync();
 
+            if (!discount.ActivityStatus)
+            {
+                await _hangfireService.EndDiscountEditJobAsync(discount.Id);
+            }
+
             return _mapper.Map<ArchivedDiscountDTO>(discount);
         }
 
@@ -215,6 +222,8 @@ namespace BL.Services
                 await _discountRepository.SaveChangesAsync();
 
                 await transaction.CommitAsync();
+
+                await _hangfireService.EndDiscountEditJobAsync(discount.Id);
 
                 var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
                 createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
