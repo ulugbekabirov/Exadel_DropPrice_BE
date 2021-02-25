@@ -27,30 +27,6 @@ namespace DAL.DbInitializer
             var configInitializer = new ConfigVariablesInitializer(_context);
             configInitializer.InitializeConfigVariables();
 
-            if (!_context.ConfigVariables.Where(p => p.Name == "Radius").Any())
-            {
-                _context.ConfigVariables.Add(new ConfigVariable
-                {
-                    Name = "Radius",
-                    Value = "40000",
-                    Description = "Radius in meters",
-                    DataType = DataTypes.Number,
-                });
-                _context.SaveChanges();
-            }
-
-            if (!_context.ConfigVariables.Where(p => p.Name == "SendingEmailToggler").Any())
-            {
-                _context.ConfigVariables.Add(new ConfigVariable
-                {
-                    Name = "SendingEmailToggler",
-                    Value = "false",
-                    Description = "Toggler to indicate whether to send emails or not",
-                    DataType = DataTypes.Boolean,
-                });
-                _context.SaveChanges();
-            }
-
             var emailTemplates = new EmailsInitializer(_context);
             emailTemplates.InitializeEmails();
 
