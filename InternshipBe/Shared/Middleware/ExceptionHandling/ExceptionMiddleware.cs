@@ -20,7 +20,6 @@ namespace Shared.ExceptionHandling
 
         public async Task InvokeAsync(HttpContext context)
         {
-
             try
             {
                 await _request(context);
