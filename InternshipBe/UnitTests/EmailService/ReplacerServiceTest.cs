@@ -13,7 +13,7 @@ namespace UnitTests.EmailService
             var replacer = new ReplacerService()
             {
             };
-            var expecetOutputString = "Albert Einstein Germanovich you received a 33% discount to Nosovhki coupon on 22.01 from a supplier. supplier contact details - Phone:+123321 Email: venor@gmail.com";
+            var expectedOutputString = "Albert Einstein Germanovich you received a 33% discount to Nosochki coupon on 22.01 from a supplier. supplier contact details - Phone:+123321 Email: venor@gmail.com";
             var inputString = "##FirstName## ##LastName## ##Patronymic## you received a ##DiscountValue##% discount to ##DiscountName## coupon on ##Date## from a supplier. supplier contact details - Phone:##VendorPhone## Email: ##VendorEmail##";
             var dictionary = new Dictionary<string, string>
                 {
@@ -21,7 +21,7 @@ namespace UnitTests.EmailService
                     { "LastName", "Einstein" },
                     { "Patronymic", "Germanovich" },
                     { "Date", "22.01" },
-                    { "DiscountName", "Nosovhki" },
+                    { "DiscountName", "Nosochki" },
                     { "DiscountValue", "33" },
                     { "Vendor", "Belwest" },
                     { "VendorPhone", "+123321" },
@@ -33,7 +33,7 @@ namespace UnitTests.EmailService
             var outpuSting = replacer.Replacer(inputString, dictionary);
 
             //assert
-            Assert.Equal(expecetOutputString, outpuSting);
+            Assert.Equal(expectedOutputString, outpuSting);
         }
     }
 }
