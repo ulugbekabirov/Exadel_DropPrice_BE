@@ -40,6 +40,17 @@ namespace DAL.DbInitializer
                 _context.SaveChanges();
             }
 
+            if (!_context.ConfigVariables.Where(p => p.Name == "DiscountEditTimeInMinutes").Any())
+            {
+                _context.ConfigVariables.Add(new ConfigVariable
+                {
+                    Name = "DiscountEditTimeInMinutes",
+                    Value = "1",
+                    Description = "Value in minutes, which shows how long the discount can be edited",
+                    DataType = DataTypes.Number,
+                });
+                _context.SaveChanges();
+            }
         }
     }
 }

@@ -4,9 +4,10 @@
     {
         Radius = 1,
         SendingEmailToggler,
+        DiscountEditTimeInMinutes,
         EnMessageForUser,
         EnMessageForVendor,
         RuMessageForUser,
-        RuMessageForVendor
+        RuMessageForVendor,
     }
 }
