@@ -34,7 +34,7 @@ namespace BL.Services
 
                 BackgroundJob.Schedule(() => _discountRepository.UnArchiveDiscountAsync(discountId), TimeSpan.FromMinutes(discountEditTime));
 
-                return $"Создана сессия по редактированию скидки";
+                return "Создана сессия по редактированию скидки";
             }
 
             var leftTime = (job.Value.EnqueueAt - DateTime.UtcNow).TotalMinutes;
@@ -43,7 +43,7 @@ namespace BL.Services
 
             BackgroundJob.Schedule(() => _discountRepository.UnArchiveDiscountAsync(discountId), TimeSpan.FromMinutes(discountEditTime + leftTime));
 
-            return $"Открыта сессия по редактированию скидки. Добавлено {discountEditTime} минут к редактированию. Оставалось {leftTime}";
+            return $"Открыта сессия по редактированию скидки. Добавлено {discountEditTime} минут к редактированию. Оставалось {leftTime} минут";
         }
 
         public async Task<string> EndDiscountEditJobAsync(int discountId)

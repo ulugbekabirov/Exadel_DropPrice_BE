@@ -137,7 +137,6 @@ namespace BL.Services
         public async Task<ArchivedDiscountDTO> ArchiveOrUnarchiveDiscountAsync(int id)
         {
             var discount = await _discountRepository.GetByIdAsync(id);
-
             discount.ActivityStatus = !discount.ActivityStatus;
 
             await _discountRepository.SaveChangesAsync();
