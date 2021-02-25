@@ -411,167 +411,243 @@ namespace DAL.DbInitializer
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             //Stanley 
-
             AddDiscount(12, "Отбойный молоток SDS-MAX Stanley STHM5KS-RU", @"Молоток отбойный STANLEY STHM5KS (STHM5KS) с патроном SDS-Max – надежный инструмент для долбежных работ различной сложности и работы с разными материалами. Оснащен мощным двигателем, благодаря которому достигается высокая производительность инструмента.",
                25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                _context.Vendors.Find(12),
-               _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+               _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
                _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(12, "Промышленный фен Stanley STXH2000", @"Фен строительный (термовоздуходувка) STANLEY STXH2000 (STXH2000) используется для склеивания материалов, а также для пайки и формовки пластмасс.",
               35, DateTime.Now, DateTime.Now.AddDays(50), true, null,
               _context.Vendors.Find(12),
-              _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+              _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
               _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(12, "Строительный степлер Stanley 6-TR35", @"Степлер строительный STANLEY FatMax 6-TR400 (FMHT6-70411) обладает возможностью регулировки силы удара, благодаря чему вы сможете работать с самыми разнообразными материалами.",
              15, DateTime.Now, DateTime.Now.AddDays(50), true, null,
              _context.Vendors.Find(12),
-             _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
              _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(12, "Стамеска плоская 25 мм STANLEY Dynagrip (0-16-880)", @"Стамеска плоская 25 мм STANLEY Dynagrip (0-16-880) имеет кованое лезвие из высокоуглеродистой стали – дополнительная гарантия прочности и продолжительного срока службы. Угол заточки режущей кромки доведен до оптимального – позволяет сразу же использовать стамеску в работе без дополнительной заточки лезвия.",
              30, DateTime.Now, DateTime.Now.AddDays(50), true, null,
              _context.Vendors.Find(12),
-             _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
              _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(12, "Молоток-гвоздодер STANLEY Blue Strike 0,45 кг (1-51-488)", @"Молоток-гвоздодер STANLEY Blue Strike 0,45 кг (1-51-488) - столярный ударный инструмент, который сочетает в себе плоскую рабочую часть с одной стороны, а с другой - загнутый гвоздодер.",
             25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(12),
-            _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(12, "Бокорезы STANLEY FatMax 150 мм (0-89-858)", @"Бокорезы STANLEY FatMax 150 мм (0-89-858) применяются для резания проволоки и удаления изоляции с проводов.",
             15, DateTime.Now, DateTime.Now.AddDays(50), true, null,
             _context.Vendors.Find(12),
-            _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(12, "Мини-кусачки Stanley FMHT0-80519", @"Торцевые мини-кусачки Stanley FATMAX FMHT0-80519 предназначены для резки проводов, проволоки, мелких элементов и тонких прутков.",
             20, DateTime.Now, DateTime.Now.AddDays(50), true, null,
             _context.Vendors.Find(12),
-            _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(12, "Ящик для инструментов Stanley 1-97-514", @"STANLEY 1-97-514 - профессиональный ящик для хранения и транспортировки инструмента с максимальной нагрузкой до 18 кг. Оснащен съемным органайзером с отсеками, которые позволяют удобно разместить крепеж и оснастку.",
             25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(12),
-            _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(12, "Пила сабельная STANLEY SPT900 (SPT900)", @"Пила сабельная STANLEY SPT900 (SPT900) предназначена для работы с древесиной, пластиком, металлом, пено-/газбетоном, гипсолитом, кирпичом при проведении демонтажных и монтажных работ, а также для работы в саду.",
             30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(12),
-            _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(12, "Плоскогубцы комбинированные STANLEY FatMax Compound Action (FMHT0-70813)", @"Плоскогубцы комбинированные STANLEY FatMax Compound Action (FMHT0-70813) благодаря своей конструкции, обеспечивает передачу большего усилия на губки/режущие кромки для лучшего зажима/резания.",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(12),
-           _context.PointOfSales.Where(p => p.Name == "Stanley Минск" || p.Name == "Stanley Walnut Creek" || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Stanley Минск"  || p.Name == "Stanley Гродно" || p.Name == "Stanley Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             //Head & Shoulders
-
             AddDiscount(13, "Шампунь для волос Head & Shoulders Мгновенная помощь против перхоти (400мл)", @"Шампунь против перхоти с усиленной формулой Head & Shoulders Men Ultra Мгновенная помощь при зуде кожи головы с экстрактом мяты и женьшеня для мгновенного облегчения и ощущения свежести.",
             20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(13),
-            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Walnut Creek" || p.Name == "Head & Shoulders Гродно" || p.Name == "Head & Shoulders Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск"  || p.Name == "Head & Shoulders Гродно" || p.Name == "Head & Shoulders Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(13, "Гель для душа + шампунь HEAD & SHOULDERS Для чувствительной кожи, 360 мл", @"Гель для душа и шампунь против перхоти для волос, лица и тела Head & Shoulders.",
             15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(13),
-            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Walnut Creek" || p.Name == "Head & Shoulders Гродно" || p.Name == "Head & Shoulders Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск"  || p.Name == "Head & Shoulders Гродно" || p.Name == "Head & Shoulders Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             //Gillette
-
             AddDiscount(14, "Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы", @"Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы.",
             25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
-            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Walnut Creek" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск"  || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(14, "Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл)", @"Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл).",
             30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
-            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Walnut Creek" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск"  || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(14, "Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл)", @"Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
-           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Walnut Creek" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск"  || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(14, "Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл)", @"Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
-           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Walnut Creek" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск"  || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             //Samsung
             AddDiscount(15, "Информационная панель Samsung UD46E-B / LH46UDEBLBB/RU", @"Высочайшее качество изображения благодаря улучшенной технологии заводской калибровки параметров дисплея.",
            50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Внешний жесткий диск Samsung T5 2TB MU-PA2T0B/WW", @"Портативный SSD накопитель Samsung серии T5 поднимает скорость передачи данных на новый уровень и открывает новую страницу в использовании внешней памяти.",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Смартфон Samsung Galaxy S21 128GB / SM-G991BZADSER (серый фантом)", @"Уникальный дизайн камеры, 8К видео, Лучшая производительность в Galaxy, Dynamic AMOLED 2X, Адаптивный экран 120Гц.",
           35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный)", @"Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный).",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица).",
           25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль).",
            25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото)", @"Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото).",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный)", @"Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный).",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Микроволновая печь Samsung MG23F301TQW/BW", @"Микроволновая печь Samsung MG23F301TQW/BW.",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Микроволновая печь Samsung ME88SUG/BW", @"Микроволновая печь Samsung ME88SUG/BW.",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Walnut Creek" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            //Canon
+            AddDiscount(16, "EOS R5", @"The EOS R5 builds off of the powerful legacy of Canon’s full frame cameras offering next generation refinements in image quality, performance and reliability.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "EOS R6", @"The EOS R6 full-frame mirrorless camera is designed to meet the demands of both photographers and video content creators who want a strong and versatile camera to keep up with their active lives.",
+         20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "RF70-200mm F4 L IS USM", @"The RF70-200mm F4 L IS USM is a telephoto zoom lens delivering impressive image quality along with superb mobility as our shortest and lightest 70-200mm f/4 lens to date.",
+         30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "RF70-200mm F4 L IS USM", @"The RF70-200mm F4 L IS USM is a telephoto zoom lens delivering impressive image quality along with superb mobility as our shortest and lightest 70-200mm f/4 lens to date.",
+         35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "imageRUNNER ADVANCE DX C3725i", @"Canon's comprehensive portfolio of imageRUNNER ADVANCE multifunction printers and integrated solutions can help simplify the end user experience and management of technology, better control sensitive information and print-related costs, and help ensure that technology investments proactively evolve with changing needs.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "PIXMA TS6420 Black", @"Introducing the PIXMA TS6420, a compact and sleek All-in-One printer built for your busy lifestyle. It's easy to setup and simple to use - featuring a 1.44 OLED window which delivers clear, easy to read status messages as well as Front & Rear Paper feeding so you can print on a variety of paper types.",
+         20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "imagePROGRAF PRO-2100", @"The 24-inch imagePROGRAF PRO-2100 printer is designed to exceed expectations for image quality and color consistency in a large format printer.",
+         50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "VIXIA HF G60", @"The VIXIA HF G60 is a high-quality camcorder that can deliver serious results, providing an outstanding combination of 4K UHD image quality, features and functionality in a compact, portable design.",
+         50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "Color imageCLASS X MF1127C", @"Designed for small workgroups within an office or home environments used as part of an organization's extended print fleet, the Canon Color imageCLASS X MF1127C offers feature-rich capabilities with high-quality imaging and minimal maintenance.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "PowerShot ZOOM Compact Telephoto Monocular", @"The sleek, PowerShot ZOOM is a compact telephoto monocular that lets you quickly, easily and clearly see the sights wherever you may roam.",
+         35, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "15 x 50 IS All Weather", @"The 15 x 50 IS All Weather binoculars with one-touch Image Stabilizer technology instantly compensates for binocular shake.",
+         20, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "IX-R7000 Dye-sublimation", @"Engineered with speed and high-quality output in mind, the Canon IX-R7000 Dual-Sided ID Card Printer produces ID Cards to Visitor Badges, & Security Passes with speed, security and ease.",
+         50, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "PR1100-R", @"The PR1100-R Wireless Presenter allows you to make your point, with a standard red laser1 to point clearly on projector screens, with a push of a button.",
+         30, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
         }
 
