@@ -193,20 +193,11 @@ namespace DAL.Repositories
             return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).ToListAsync();
         }
 
-        public async Task UnArchiveDiscountAsync(int id)
+        public async Task ArchiveOrUnArchiveDiscountAsync(int id, bool activityStatus)
         {
             var discount = await GetByIdAsync(id);
 
-            discount.ActivityStatus = true;
-
-            await SaveChangesAsync();
-        }
-
-        public async Task ArchiveDiscountAsync(int id)
-        {
-            var discount = await GetByIdAsync(id);
-
-            discount.ActivityStatus = false;
+            discount.ActivityStatus = activityStatus;
 
             await SaveChangesAsync();
         }
