@@ -1,7 +1,11 @@
-﻿namespace Shared.ViewModels
+﻿using Shared.Properties;
+using System.ComponentModel.DataAnnotations;
+
+namespace Shared.ViewModels
 {
     public class AssessmentViewModel
     {
-        public int AssessmentValue { get; set; }
+        [Required(ErrorMessageResourceName = "DiscountAssessmentValue", ErrorMessageResourceType = typeof(ValidationResource))]
+        public int? AssessmentValue { get; set; }
     }
 }
