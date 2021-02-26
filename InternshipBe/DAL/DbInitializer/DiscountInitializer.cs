@@ -642,7 +642,6 @@ namespace DAL.DbInitializer
          _context.Vendors.Find(16),
          _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
-
         }
     }
 }
