@@ -143,7 +143,7 @@ namespace BL.Services
 
             if (!discount.ActivityStatus)
             {
-                await _hangfireService.EndDiscountEditJobAsync(discount.Id);
+                _hangfireService.DeleteDiscountEditJob(discount.Id);
             }
 
             return _mapper.Map<ArchivedDiscountDTO>(discount);
@@ -222,7 +222,7 @@ namespace BL.Services
 
                 await transaction.CommitAsync();
 
-                await _hangfireService.EndDiscountEditJobAsync(discount.Id);
+                _hangfireService.DeleteDiscountEditJob(discount.Id);
 
                 var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
                 createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
