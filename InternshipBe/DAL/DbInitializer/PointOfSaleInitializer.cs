@@ -93,7 +93,9 @@ namespace DAL.DbInitializer
             AddPointOfSales("Head & Shoulders Гомель", "г.Гомель, улица Кирова 23", 52.426476, 30.990455);
             AddPointOfSales("Head & Shoulders Витебск", "г.Витебск, улица Петруся Бровки", 55.162177, 30.237293);
 
-
+            AddPointOfSales("Gillette Минск", "г.Минск, пр-т Дзержинского, 106", 53.858273, 27.475387);
+            AddPointOfSales("Gillette Гомель", "г.Гомель, улица Кирова 23", 52.426476, 30.990455);
+            AddPointOfSales("Gillette Витебск", "г.Витебск, улица Петруся Бровки", 55.162177, 30.237293);
         }
     }
 }

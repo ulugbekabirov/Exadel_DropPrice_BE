@@ -482,25 +482,25 @@ namespace DAL.DbInitializer
             AddDiscount(14, "Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы", @"Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы.",
             25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
-            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(14, "Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл)", @"Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл).",
             30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
-            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
             _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(14, "Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл)", @"Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
-           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             AddDiscount(14, "Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл)", @"Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
-           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гродно" || p.Name == "Gillette Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
 
             //Samsung
