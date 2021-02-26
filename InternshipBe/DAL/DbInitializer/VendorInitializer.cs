@@ -91,6 +91,10 @@ namespace DAL.DbInitializer
             AddVendor("Samsung", @"Samsung Group — южнокорейская группа компаний, один из крупнейших чеболей, основанный в 1938 году. На мировом рынке известен как производитель высокотехнологичных компонентов, включая полноцикловое производство интегральных микросхем, телекоммуникационного оборудования, бытовой техники, аудио- и видеоустройств. Главный офис компании расположен в Сеуле.",
                 "vendorexadel@gmail.com", "40-й этаж Samsung Electronics, 11, Сеул, Южная Корея", "+7 495 258 - 58 - 88", "{\"instagram\": \"https://www.instagram.com/samsungmobileusa/\", \"facebook\": \"https://www.facebook.com/SamsungUS\", \"webSite\" : \"https://www.samsung.com/\"} ",
                  _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гомель" || p.Name == "Samsung Витебск").ToList());
+
+            AddVendor("Canon", @"Canon Inc. is a Japanese multinational corporation headquartered in Ōta, Tokyo, Japan, specializing in optical, imaging, and industrial products, such as lenses, cameras, medical equipment, scanners, printers, and semiconductor manufacturing equipment",
+                "vendorexadel@gmail.com", "Ota City, Tokyo, Japan", "1-800-652-2666", "{\"instagram\": \"https://www.instagram.com/canonusa/\", \"facebook\": \"https://www.facebook.com/CanonUSA\", \"webSite\" : \"https://www.usa.canon.com/\"} ",
+                 _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList());
         }
     }
 }
