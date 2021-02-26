@@ -650,6 +650,5 @@ namespace DAL.DbInitializer
          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
         }
-
     }
 }
