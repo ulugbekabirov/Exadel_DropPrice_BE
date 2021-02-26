@@ -84,7 +84,7 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", "Ленинградское шоссе, 16А корп. 2, Москва, Россия, 125171", "+7 495 258-58-88", "{\"instagram\": \"https://www.instagram.com/headandshoulderseu\", \"facebook\": \"https://www.facebook.com/headandshoulders/\", \"webSite\" : \"https://www.headandshoulders.ru/ru-ru\"} ",
                  _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList());
 
-            AddVendor("Gillette", @"Gillette — бренд компании Procter & Gamble, производитель аксессуаров для бритья и ухода за телом. Созданный в 1901 году американским изобретателем Кингом Кэмпом Жиллеттом, фирма производит бритвенные системы, станки и лезвия к ним, аксессуары для бритья."
+            AddVendor("Gillette", @"Gillette — бренд компании Procter & Gamble, производитель аксессуаров для бритья и ухода за телом. Созданный в 1901 году американским изобретателем Кингом Кэмпом Жиллеттом, фирма производит бритвенные системы, станки и лезвия к ним, аксессуары для бритья.",
                 "vendorexadel@gmail.com", "Ленинградское шоссе, 16А корп. 2, Москва, Россия, 125171", "+7 495 258 - 58 - 88", "{\"instagram\": \"https://www.instagram.com/gillette/\", \"facebook\": \"https://www.facebook.com/gillette\", \"webSite\" : \"https://gillette.com/\"} ",
                  _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гомель" || p.Name == "Gillette Витебск").ToList());
 
