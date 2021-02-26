@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActivityStatus" xml:space="preserve">
-    <value>Пожалуйста, введите статус активности скидки</value>
+    <value>Пожалуйста, введите статус активности скидки.</value>
   </data>
   <data name="DiscountAmount" xml:space="preserve">
-    <value>Пожалуйста, введите размер скидки</value>
+    <value>Пожалуйста, введите размер скидки.</value>
   </data>
   <data name="DiscountAssessmentValue" xml:space="preserve">
-    <value>Пожалуйста, введите оценку скидки</value>
+    <value>Пожалуйста, введите оценку скидки.</value>
   </data>
   <data name="DiscountDescription" xml:space="preserve">
-    <value>Пожалуйста, введите описание скидки</value>
+    <value>Пожалуйста, введите описание скидки.</value>
   </data>
   <data name="DiscountName" xml:space="preserve">
-    <value>Пожалуйста, введите название скидки</value>
+    <value>Пожалуйста, введите название скидки.</value>
   </data>
   <data name="DiscountVendorId" xml:space="preserve">
-    <value>Пожалуйста, введите идентификатор поставщика скидки</value>
+    <value>Пожалуйста, введите идентификатор поставщика скидки.</value>
   </data>
   <data name="EndDate" xml:space="preserve">
-    <value>Пожалуйста, введите дату конца скидки</value>
+    <value>Пожалуйста, введите дату конца скидки.</value>
   </data>
   <data name="PointOfSaleAddress" xml:space="preserve">
-    <value>Пожалуйста, введите адресс точки продаж</value>
+    <value>Пожалуйста, введите адрес точки продаж.</value>
   </data>
   <data name="PointOfSaleLatitude" xml:space="preserve">
-    <value>Пожалуйста, введите широту точки продаж</value>
+    <value>Пожалуйста, введите широту точки продаж.</value>
   </data>
   <data name="PointOfSaleLongitude" xml:space="preserve">
-    <value>Пожалуйста, введите долготу точки продаж</value>
+    <value>Пожалуйста, введите долготу точки продаж.</value>
   </data>
   <data name="PointOfSaleName" xml:space="preserve">
-    <value>Пожалуйста, введите имя точки продаж</value>
+    <value>Пожалуйста, введите имя точки продаж.</value>
   </data>
   <data name="StartDate" xml:space="preserve">
-    <value>Пожалуйста, введите дату начала скидки</value>
+    <value>Пожалуйста, введите дату начала скидки.</value>
   </data>
   <data name="VendorAddress" xml:space="preserve">
-    <value>Пожалуйста, введите адресс поставщика</value>
+    <value>Пожалуйста, введите адрес поставщика.</value>
   </data>
   <data name="VendorDescription" xml:space="preserve">
-    <value>Пожалуйста, введите описание поставщика</value>
+    <value>Пожалуйста, введите описание поставщика.</value>
   </data>
   <data name="VendorEmail" xml:space="preserve">
-    <value>Пожалуйста, введите электронную почту поставщика</value>
+    <value>Пожалуйста, введите электронную почту поставщика.</value>
   </data>
   <data name="VendorId" xml:space="preserve">
-    <value>Пожалуйста, введите идентификатор поставщика</value>
+    <value>Пожалуйста, введите идентификатор поставщика.</value>
   </data>
   <data name="VendorName" xml:space="preserve">
-    <value>Пожалуйста, введите имя поставщика</value>
+    <value>Пожалуйста, введите имя поставщика.</value>
   </data>
   <data name="VendorPhone" xml:space="preserve">
-    <value>Пожалуйста, введите номер поставщика</value>
+    <value>Пожалуйста, введите номер поставщика.</value>
   </data>
 </root>

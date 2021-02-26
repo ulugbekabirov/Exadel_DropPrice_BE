@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActivityStatus" xml:space="preserve">
-    <value>Please enter the discount's ActivityStatus.</value>
+    <value>Please, enter the discount's ActivityStatus.</value>
   </data>
   <data name="DiscountAmount" xml:space="preserve">
-    <value>Please enter the discount's DiscountAmount.</value>
+    <value>Please, enter the discount's DiscountAmount.</value>
   </data>
   <data name="DiscountAssessmentValue" xml:space="preserve">
-    <value>Please enter the discount's AssessmentValue.</value>
+    <value>Please, enter the discount's AssessmentValue.</value>
   </data>
   <data name="DiscountDescription" xml:space="preserve">
-    <value>Please enter the discount's Description.</value>
+    <value>Please, enter the discount's Description.</value>
   </data>
   <data name="DiscountName" xml:space="preserve">
-    <value>Please enter the discount's Name.</value>
+    <value>Please, enter the discount's Name.</value>
   </data>
   <data name="DiscountVendorId" xml:space="preserve">
-    <value>Please enter the discount's VendorId.</value>
+    <value>Please, enter the discount's VendorId.</value>
   </data>
   <data name="EndDate" xml:space="preserve">
-    <value>Please enter the discount's EndDate.</value>
+    <value>Please, enter the discount's EndDate.</value>
   </data>
   <data name="PointOfSaleAddress" xml:space="preserve">
-    <value>Please enter the pointOfSale's Address.</value>
+    <value>Please, enter the pointOfSale's Address.</value>
   </data>
   <data name="PointOfSaleLatitude" xml:space="preserve">
-    <value>Please enter the pointOfSale's Latitude.</value>
+    <value>Please, enter the pointOfSale's Latitude.</value>
   </data>
   <data name="PointOfSaleLongitude" xml:space="preserve">
-    <value>Please enter the pointOfSale's Longitude.</value>
+    <value>Please, enter the pointOfSale's Longitude.</value>
   </data>
   <data name="PointOfSaleName" xml:space="preserve">
-    <value>Please enter the pointOfSale's Name.</value>
+    <value>Please, enter the pointOfSale's Name.</value>
   </data>
   <data name="StartDate" xml:space="preserve">
-    <value>Please enter the discount's StartDate.</value>
+    <value>Please, enter the discount's StartDate.</value>
   </data>
   <data name="VendorAddress" xml:space="preserve">
-    <value>Please enter the vendor's Address.</value>
+    <value>Please, enter the vendor's Address.</value>
   </data>
   <data name="VendorDescription" xml:space="preserve">
-    <value>Please enter the vendor's Description.</value>
+    <value>Please, enter the vendor's Description.</value>
   </data>
   <data name="VendorEmail" xml:space="preserve">
-    <value>Please enter the vendor's Email.</value>
+    <value>Please, enter the vendor's Email.</value>
   </data>
   <data name="VendorId" xml:space="preserve">
-    <value>Please enter the vendor's Id.</value>
+    <value>Please, enter the vendor's Id.</value>
   </data>
   <data name="VendorName" xml:space="preserve">
-    <value>Please enter the vendor's Name.</value>
+    <value>Please, enter the vendor's Name.</value>
   </data>
   <data name="VendorPhone" xml:space="preserve">
-    <value>Please enter the vendor's Phone.</value>
+    <value>Please, enter the vendor's Phone.</value>
   </data>
 </root>

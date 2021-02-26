@@ -61,7 +61,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s ActivityStatus..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s ActivityStatus..
         /// </summary>
         internal static string ActivityStatus {
             get {
@@ -70,7 +70,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s DiscountAmount..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s DiscountAmount..
         /// </summary>
         internal static string DiscountAmount {
             get {
@@ -79,7 +79,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s AssessmentValue..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s AssessmentValue..
         /// </summary>
         internal static string DiscountAssessmentValue {
             get {
@@ -88,7 +88,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s Description..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s Description..
         /// </summary>
         internal static string DiscountDescription {
             get {
@@ -97,7 +97,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s Name..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s Name..
         /// </summary>
         internal static string DiscountName {
             get {
@@ -106,7 +106,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s VendorId..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s VendorId..
         /// </summary>
         internal static string DiscountVendorId {
             get {
@@ -115,7 +115,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s EndDate..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s EndDate..
         /// </summary>
         internal static string EndDate {
             get {
@@ -124,7 +124,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the pointOfSale&apos;s Address..
+        ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Address..
         /// </summary>
         internal static string PointOfSaleAddress {
             get {
@@ -133,7 +133,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the pointOfSale&apos;s Latitude..
+        ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Latitude..
         /// </summary>
         internal static string PointOfSaleLatitude {
             get {
@@ -142,7 +142,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the pointOfSale&apos;s Longitude..
+        ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Longitude..
         /// </summary>
         internal static string PointOfSaleLongitude {
             get {
@@ -151,7 +151,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the pointOfSale&apos;s Name..
+        ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Name..
         /// </summary>
         internal static string PointOfSaleName {
             get {
@@ -160,7 +160,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the discount&apos;s StartDate..
+        ///   Looks up a localized string similar to Please, enter the discount&apos;s StartDate..
         /// </summary>
         internal static string StartDate {
             get {
@@ -169,7 +169,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Address..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Address..
         /// </summary>
         internal static string VendorAddress {
             get {
@@ -178,7 +178,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Description..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Description..
         /// </summary>
         internal static string VendorDescription {
             get {
@@ -187,7 +187,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Email..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Email..
         /// </summary>
         internal static string VendorEmail {
             get {
@@ -196,7 +196,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Id..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Id..
         /// </summary>
         internal static string VendorId {
             get {
@@ -205,7 +205,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Name..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Name..
         /// </summary>
         internal static string VendorName {
             get {
@@ -214,7 +214,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter the vendor&apos;s Phone..
+        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Phone..
         /// </summary>
         internal static string VendorPhone {
             get {
