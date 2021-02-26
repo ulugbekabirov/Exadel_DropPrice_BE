@@ -30,10 +30,10 @@ namespace UnitTests.EmailService
                 };
 
             //act
-            var outpuSting = replacer.Replacer(inputString, dictionary);
+            var outputSting = replacer.Replacer(inputString, dictionary);
 
             //assert
-            Assert.Equal(expectedOutputString, outpuSting);
+            Assert.Equal(expectedOutputString, outputSting);
         }
     }
 }
