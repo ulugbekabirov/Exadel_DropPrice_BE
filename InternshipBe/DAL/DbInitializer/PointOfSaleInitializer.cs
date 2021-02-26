@@ -99,7 +99,6 @@ namespace DAL.DbInitializer
 
             AddPointOfSales("Canon Walnut Creek", "1350 Treat Blvd Suite 150, Walnut Creek, CA 94597, United States", 37.926605, -122.056194);
             AddPointOfSales("Canon Warszawa", "Daimlera 2 / V piętro, 02 - 460 Warszawa, Poland", 52.205285, 20.939259);
-            
         }
     }
 }
