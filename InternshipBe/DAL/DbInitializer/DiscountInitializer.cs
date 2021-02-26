@@ -483,68 +483,67 @@ namespace DAL.DbInitializer
             25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
             _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
-            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
 
             AddDiscount(14, "Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл)", @"Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл).",
             30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(14),
             _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
-            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
 
             AddDiscount(14, "Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл)", @"Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
-           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
+           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
 
             AddDiscount(14, "Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл)", @"Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл).",
            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(14),
            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
-           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
+           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
 
             //Samsung
             AddDiscount(15, "Информационная панель Samsung UD46E-B / LH46UDEBLBB/RU", @"Высочайшее качество изображения благодаря улучшенной технологии заводской калибровки параметров дисплея.",
            50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Внешний жесткий диск Samsung T5 2TB MU-PA2T0B/WW", @"Портативный SSD накопитель Samsung серии T5 поднимает скорость передачи данных на новый уровень и открывает новую страницу в использовании внешней памяти.",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Смартфон Samsung Galaxy S21 128GB / SM-G991BZADSER (серый фантом)", @"Уникальный дизайн камеры, 8К видео, Лучшая производительность в Galaxy, Dynamic AMOLED 2X, Адаптивный экран 120Гц.",
           35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный)", @"Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный).",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица).",
           25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль).",
            25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
-           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото)", @"Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото).",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
-          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
             AddDiscount(15, "Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный)", @"Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный).",
