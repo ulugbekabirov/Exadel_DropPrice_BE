@@ -17,7 +17,7 @@ namespace BL.EmailService
         {
             var dictionary = InizializeDictionary(user, ticket);
 
-            return _replacer.Replacer(emailTemplate, dictionary);
+            return _replacer.Replace(emailTemplate, dictionary);
         }
 
         private Dictionary<string, string> InizializeDictionary(User user, Ticket ticket)

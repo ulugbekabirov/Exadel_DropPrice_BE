@@ -7,7 +7,7 @@ namespace UnitTests.EmailService
     public class ReplacerServiceTest
     {
         [Fact]
-        public void Replacer_TransmittedString_StringModifiedWithRegulars()
+        public void Replace_TransmittedString_StringModifiedWithRegulars()
         {
             //arrange
             var replacer = new ReplacerService()
@@ -30,7 +30,7 @@ namespace UnitTests.EmailService
                 };
 
             //act
-            var outputSting = replacer.Replacer(inputString, dictionary);
+            var outputSting = replacer.Replace(inputString, dictionary);
 
             //assert
             Assert.Equal(expectedOutputString, outputSting);

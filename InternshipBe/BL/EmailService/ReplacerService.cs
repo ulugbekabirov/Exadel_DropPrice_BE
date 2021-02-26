@@ -28,7 +28,7 @@ namespace BL.EmailService
             return lookup[key];
         }
 
-        public string Replacer(string inputString, Dictionary<string, string> dictionary)
+        public string Replace(string inputString, Dictionary<string, string> dictionary)
         {
             var outputString = Format(inputString, dictionary);
 

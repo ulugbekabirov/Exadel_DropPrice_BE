@@ -4,6 +4,6 @@ namespace BL.Interfaces
 {
     public interface IReplacerService
     {
-        string Replacer(string inputString, Dictionary<string, string> dictionary);
+        string Replace(string inputString, Dictionary<string, string> dictionary);
     }
 }
