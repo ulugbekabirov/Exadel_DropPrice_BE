@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Shared.Middleware.Localization;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading;
 
 namespace DAL.Entities
@@ -17,8 +18,8 @@ namespace DAL.Entities
         {
             get => (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName) switch
                 {
-                    "ru" => Russian,
-                    "en" => English,
+                    Cultures.Russian => Russian,
+                    Cultures.English => English,
                     _ => English,
                 };
         }

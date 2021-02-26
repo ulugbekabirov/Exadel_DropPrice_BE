@@ -33,6 +33,9 @@ namespace DAL.Entities
         [Required]
         public bool ActivityStatus { get; set; }
 
+        [Required]
+        public string DefaultLanguage { get; set; }
+
         public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
