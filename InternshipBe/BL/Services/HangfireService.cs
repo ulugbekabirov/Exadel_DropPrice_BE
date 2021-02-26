@@ -32,16 +32,16 @@ namespace BL.Services
 
             if (job.Key is null)
             {
-                await _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, false);
+                await _discountRepository.UpdateDiscountActivityStatusAsync(discountId, false);
 
-                BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
+                BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
                 return _stringLocalizer["A session for editing a discount has been created."];
             }
 
             BackgroundJob.Delete(job.Key);
 
-            BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
+            BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
             return _stringLocalizer["A session on editing a discount is open. Time has been updated."];
         }
@@ -56,7 +56,7 @@ namespace BL.Services
                 return _stringLocalizer["There is no session to edit the discount."];
             }
 
-            await _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true);
+            await _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true);
 
             BackgroundJob.Delete(job.Key);
 

@@ -46,6 +46,6 @@ namespace DAL.Interfaces
 
         Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take);
 
-        Task ArchiveOrUnArchiveDiscountAsync(int id, bool activityStatus);
+        Task UpdateDiscountActivityStatusAsync(int id, bool activityStatus);
     }
 }
