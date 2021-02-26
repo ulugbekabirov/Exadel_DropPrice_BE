@@ -7,7 +7,7 @@ namespace UnitTests.EmailService
     public class ReplacerServiceTests
     {
         [Fact]
-        public void Replace_TransmittedString_StringModifiedWithRegulars()
+        public void Replace_WhenCalled_StringModifiedWithRegulars()
         {
             //arrange
             var replacer = new ReplacerService()
