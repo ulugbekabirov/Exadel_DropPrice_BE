@@ -38,6 +38,8 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization();
+
             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationModel>();
             services.AddSingleton(emailConfig);
 

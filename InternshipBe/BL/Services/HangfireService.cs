@@ -1,7 +1,9 @@
 ﻿using BL.Interfaces;
 using DAL.Interfaces;
 using Hangfire;
+using Microsoft.Extensions.Localization;
 using Shared.Infrastructure;
+using Shared.Resources;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +14,13 @@ namespace BL.Services
     {
         private readonly IDiscountRepository _discountRepository;
         private readonly IConfigRepository _configRepository;
+        private readonly IStringLocalizer<NotificationResource> _stringLocalizer;
 
-        public HangfireService(IDiscountRepository discountRepository, IConfigRepository configRepository)
+        public HangfireService(IDiscountRepository discountRepository, IConfigRepository configRepository, IStringLocalizer<NotificationResource> stringLocalizer)
         {
             _discountRepository = discountRepository;
             _configRepository = configRepository;
+            _stringLocalizer = stringLocalizer;
         }
 
         public async Task<string> BeginEditDiscountJobAsync(int discountId)
@@ -32,14 +36,14 @@ namespace BL.Services
 
                 BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-                return "Создана сессия по редактированию скидки.";
+                return _stringLocalizer["A session for editing a discount has been created."];
             }
 
             BackgroundJob.Delete(job.Key);
 
             BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-            return $"Открыта сессия по редактированию скидки. Время обновлено.";
+            return _stringLocalizer["A session on editing a discount is open. Time has been updated."];
         }
 
         public async Task<string> EndEditDiscountJobAsync(int discountId)
@@ -49,14 +53,14 @@ namespace BL.Services
 
             if (job.Key is null)
             {
-                return "Сессия по редактированию скидки отсутствует.";
+                return _stringLocalizer["There is no session to edit the discount."];
             }
 
             await _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true);
 
             BackgroundJob.Delete(job.Key);
 
-            return "Сессия по редактированию скидки завершена.";
+            return _stringLocalizer["The session on editing the discount is over."];
         }
 
         public void DeleteDiscountEditJob(int discountId)
