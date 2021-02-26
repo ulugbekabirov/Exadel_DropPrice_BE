@@ -218,11 +218,11 @@ namespace BL.Services
                 discount.Tags = tags;
                 discount.PointOfSales = resultPointOfSales;
 
+                _hangfireService.DeleteDiscountEditJob(discount.Id);
+
                 await _discountRepository.SaveChangesAsync();
 
                 await transaction.CommitAsync();
-
-                _hangfireService.DeleteDiscountEditJob(discount.Id);
 
                 var createDiscountViewModel = _mapper.Map<DiscountViewModel>(discount);
                 createDiscountViewModel.Tags = discount.Tags.Select(t => t.Name).ToArray();
