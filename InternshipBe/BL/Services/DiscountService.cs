@@ -139,12 +139,12 @@ namespace BL.Services
             var discount = await _discountRepository.GetByIdAsync(id);
             discount.ActivityStatus = !discount.ActivityStatus;
 
-            await _discountRepository.SaveChangesAsync();
-
             if (!discount.ActivityStatus)
             {
                 _hangfireService.DeleteDiscountEditJob(discount.Id);
             }
+
+            await _discountRepository.SaveChangesAsync();
 
             return _mapper.Map<ArchivedDiscountDTO>(discount);
         }
