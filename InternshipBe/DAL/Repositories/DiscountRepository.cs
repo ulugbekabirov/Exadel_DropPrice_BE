@@ -192,5 +192,14 @@ namespace DAL.Repositories
         {
             return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).ToListAsync();
         }
+
+        public async Task UpdateDiscountActivityStatusAsync(int id, bool activityStatus)
+        {
+            var discount = await GetByIdAsync(id);
+
+            discount.ActivityStatus = activityStatus;
+
+            await SaveChangesAsync();
+        }
     }
 }

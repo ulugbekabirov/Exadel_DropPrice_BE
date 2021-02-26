@@ -14,5 +14,7 @@ namespace DAL.Interfaces
         Task<bool> IsSendingEmailsEnabled(int id);
 
         Task<MessageTemplates> SetEmailLocalizationAsync();
+
+        Task<int> GetDiscountEditTimeAsync(int id);
     }
 }

@@ -17,12 +17,14 @@ namespace WebApi.Controllers
     {
         private readonly IDiscountService _discountService;
         private readonly ITicketService _ticketService;
+        private readonly IHangfireService _hangfireService;
         private readonly UserManager<User> _userManager;
 
-        public DiscountController(IDiscountService discountService, ITicketService ticketService, UserManager<User> userManager)
+        public DiscountController(IDiscountService discountService, ITicketService ticketService, IHangfireService hangfireService, UserManager<User> userManager)
         {
             _discountService = discountService;
             _ticketService = ticketService;
+            _hangfireService = hangfireService;
             _userManager = userManager;
         }
 
@@ -75,6 +77,20 @@ namespace WebApi.Controllers
         public async Task<IActionResult> CreateDiscount([FromBody] DiscountViewModel discountViewModel)
         {
             return Ok(await _discountService.CreateDiscountWithPointOfSalesAndTagsAsync(discountViewModel));
+        }
+
+        [HttpPut("{id}/beginEdit")]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> BeginEditJob(int id)
+        {
+            return Content(await _hangfireService.BeginEditDiscountJobAsync(id));
+        }
+
+        [HttpDelete("{id}/endEdit")]
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> EndEditJob(int id)
+        {
+            return Content(await _hangfireService.EndEditDiscountJobAsync(id));
         }
 
         [HttpPut("{id}")]

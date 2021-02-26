@@ -23,6 +23,7 @@ using System;
 using System.Text;
 using System.Text.Json;
 using BL.Models;
+using Hangfire;
 
 namespace WebApi
 {
@@ -37,6 +38,8 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization();
+
             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationModel>();
             services.AddSingleton(emailConfig);
 
@@ -89,6 +92,12 @@ namespace WebApi
                 });
             });
 
+            services.AddHangfire(options =>
+            {
+                options.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            services.AddHangfireServer();
+
             services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -125,6 +134,8 @@ namespace WebApi
 
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IImageRepository, ImageRepository>();
+
+            services.AddScoped<IHangfireService, HangfireService>();
 
             services.AddScoped<ValidateModelFilterAttribute>();
 
@@ -171,6 +182,9 @@ namespace WebApi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
 
             app.UseEndpoints(endpoints =>
             {

@@ -22,6 +22,13 @@ namespace DAL.Repositories
             return await _entities.ToListAsync();
         }
 
+        public async Task<int> GetDiscountEditTimeAsync(int id)
+        {
+            var discountEditTimer = await GetByIdAsync(id);
+
+            return int.Parse(discountEditTimer.Value);
+        }
+
         public async Task<int> GetRadiusAsync(int id)
         {
             var radius = await GetByIdAsync(id);
