@@ -8,8 +8,8 @@ namespace BL.Interfaces
 {
     public interface IHangfireService
     {
-        Task<string> BeginDiscountEditJobAsync(int discountId);
-
-        Task<string> EndDiscountEditJobAsync(int discountId);
+        Task<string> BeginEditDiscountJobAsync(int discountId);
+        void DeleteDiscountEditJob(int discountId);
+        Task<string> EndEditDiscountJobAsync(int discountId);
     }
 }

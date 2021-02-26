@@ -21,7 +21,7 @@ namespace BL.Services
             _configRepository = configRepository;
         }
 
-        public async Task<string> BeginDiscountEditJobAsync(int discountId)
+        public async Task<string> BeginEditDiscountJobAsync(int discountId)
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
@@ -30,23 +30,21 @@ namespace BL.Services
 
             if (job.Key is null)
             {
-                await _discountRepository.ArchiveDiscountAsync(discountId);
+                await _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, false);
 
-                BackgroundJob.Schedule(() => _discountRepository.UnArchiveDiscountAsync(discountId), TimeSpan.FromMinutes(discountEditTime));
+                BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-                return "Создана сессия по редактированию скидки";
+                return "Создана сессия по редактированию скидки.";
             }
-
-            var leftTime = (job.Value.EnqueueAt - DateTime.UtcNow).TotalMinutes;
 
             BackgroundJob.Delete(job.Key);
 
-            BackgroundJob.Schedule(() => _discountRepository.UnArchiveDiscountAsync(discountId), TimeSpan.FromMinutes(discountEditTime + leftTime));
+            BackgroundJob.Schedule(() => _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-            return $"Открыта сессия по редактированию скидки. Добавлено {discountEditTime} минут к редактированию. Оставалось {leftTime} минут";
+            return $"Открыта сессия по редактированию скидки. Время обновлено.";
         }
 
-        public async Task<string> EndDiscountEditJobAsync(int discountId)
+        public async Task<string> EndEditDiscountJobAsync(int discountId)
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
@@ -56,9 +54,19 @@ namespace BL.Services
                 return "Сессия по редактированию скидки отсутствует.";
             }
 
+            await _discountRepository.ArchiveOrUnArchiveDiscountAsync(discountId, true);
+
             BackgroundJob.Delete(job.Key);
 
             return "Сессия по редактированию скидки завершена.";
+        }
+
+        public void DeleteDiscountEditJob(int discountId)
+        {
+            var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
+                .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
+
+            BackgroundJob.Delete(job.Key);
         }
     }
 }
