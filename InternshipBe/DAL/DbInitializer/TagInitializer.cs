@@ -3,7 +3,7 @@ using DAL.Entities;
 
 namespace DAL.DbInitializer
 {
-    public class TagInitializer
+    public class TagInitializer 
     {
         private readonly ApplicationDbContext _context;
 
@@ -35,7 +35,7 @@ namespace DAL.DbInitializer
             AddTag("Курица");
             AddTag("Мебель");
             AddTag("Дешево");
-            AddTag("Для дома");
+            AddTag("Для дома"); 
             AddTag("Выгодно");
             AddTag("Быстро");
             AddTag("Вкусно");
@@ -52,11 +52,13 @@ namespace DAL.DbInitializer
             AddTag("Голод");
             AddTag("Лекарство");
             AddTag("Духи");
-            AddTag("Светильник");
+            AddTag("Светильник");       
             AddTag("Сантеника");
             AddTag("Уют");
-            AddTag("Электротехника");
+            AddTag("Электротехника");   
             AddTag("Комфорт");
+            AddTag("Equipment");
+            AddTag("For home");
         }
     }
 }

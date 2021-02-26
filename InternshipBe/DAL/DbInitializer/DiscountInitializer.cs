@@ -252,37 +252,37 @@ namespace DAL.DbInitializer
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "Комплект встраиваемой техники Bosch HBF134ES0R + PBH6C2B90R", @"Отличный набор из духоого шкафа со всесторонним нагревом и меанизированной варочной панели.",
                 25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "ДРЕЛЬ-ШУРУПОВЁРТ BOSCH GSR 12V-35 SOLO", @"Аккумуляторная дрель-шуруповёрт Bosch GSR 12V-35 Solo – практичный инструмент, который рассчитан на эффективное выполнение работ в самых разнообразных условиях. Он служит для закручивания и выкручивания крепежных изделий, а также для создания отверстий в материалах разной плотности.",
                 30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "ЭЛЕКТРИЧЕСКИЙ ЛОБЗИК BOSCH GST 150 CE 0.601.512.009", @"Электрический лобзик Bosch GST 150 CE 0.601.512.009 – это сетевой инструмент класса Professional, предназначенный для резки таких материалов, как древесина и различные металлы.",
                 40, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "КРАСКОПУЛЬТ BOSCH PFS 2000", @"Отличный, простой и практичный краскопульт от Bosch. Качество и надежность гарантированы.",
                 15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "Холодильник Bosch Serie 8 VitaFresh Plus KGN39LB32R", @"Увеличенный объём холодильника при тех же габаритах. Можно реже посещать магазины или заказывать доставку товаров, зная, что всему найдётся место в холодильнике, и все запасы дольше сохранятся свежими. В специальной зоне хранения с технологией VitaFresh Plus овощи и фрукты хранятся до 2 раз дольше.",
                 20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "Холодильник Bosch Serie 4 Side by Side KAI93VL30R", @"Никакой разморозки. Равномерная циркуляция воздуха в холодильнике. Достаточно места для всех ваших свежих продуктов.",
                 10, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
@@ -300,55 +300,55 @@ namespace DAL.DbInitializer
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Дешево").ToList());
-           
+
             AddDiscount(10, "Тостер Bosch TAT3P424", @"Сделайте Ваш завтрак особенным. Идеальный тост ждет вас.",
                 20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "Тостер BOSCH TAT3A011", @"Хороший завтрак невозможен без хороших тостов. И этот тоестер с легкостю и вам предоставит!",
                 18, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-          
+
             AddDiscount(10, "Мясорубка BOSCH MFW2520W", @"Компактный размер — большие возможности.",
                 15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дешево" || t.Name == "Для дома").ToList());
-          
+
             AddDiscount(10, "Стиральная машина узкая Bosch Serie | 4 PerfectCare WHA122XMBL", @"Барабан SoftCare drum с бесшовной поверхностью сберегут вашу одежду, а режим автоматического замачивания Pre-Soaking сэкономит ваше время и силы.",
                 14, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-            
+
             AddDiscount(10, "Миксер погружной BOSCH MFQ3010", @"Мощный мотор и множество сменны насадок из нержавеющей стали. что ещё нужно для орошего миксера?",
                 10, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-          
+
             AddDiscount(10, "Холодильник Bosch KIV87VS20R", @"Холодильно-морозильная комбинация с зоной свежести, которая позволяет сохранить мясо и рыбу свежими до 2 раз дольше.",
                 25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-         
+
             AddDiscount(10, "Холодильник Serie 6 VitaFresh Plus KGN39AD31R", @"Экономит пространство и заботиться о вашем комфорте благодаря системе идеального расположения PerfectFit.",
                 18, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома").ToList());
-          
+
             AddDiscount(10, "Перфоратор Bosch GBH 2-26 DRE Professional (0611253708)", @"Хороший, универсальный перфоратор, подойдет для любых задач. Все под рукой, мощно, надежно и аккуратно.",
                 15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Дорого" || t.Name == "Для дома").ToList());
-          
+
             AddDiscount(10, "Перфоратор Bosch GBH 2-23 REA Professional (0611250500)", @"Можете забыть о неободимости таскать с собой пылесос, ведь этот перфоратор практическ н оставляет мусора!",
                 20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
                 _context.Vendors.Find(10),
@@ -385,30 +385,263 @@ namespace DAL.DbInitializer
                 _context.Vendors.Find(11),
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
-           
+
             AddDiscount(11, "Пылесос Electrolux USORIGINDB", @"Очень тихий, мощный и удобный пылесос. Прост в использовании и надёжен. Вы всегда можете на него положиться. сколь бы тяжела не была уборка.",
                 15, DateTime.Now, DateTime.Now.AddDays(32), true, "0138291",
                 _context.Vendors.Find(11),
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
-           
+
             AddDiscount(11, "Варочная панель Electrolux EHH56240IK", @"Очень комфортная и приятная варочная панель с матовой поверхнстью. Станет идеальным дополнением для вашей кухни.",
                 20, DateTime.Now, DateTime.Now.AddDays(32), true, "0002606",
                 _context.Vendors.Find(11),
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
-          
+
             AddDiscount(11, "Электрический духовой шкаф Electrolux OPEA2350R", @"Новая коллекция Electrolux Rococo сочетает в себе изящные формы и профессиональный функционал. Ваша кухня, как и ваши блюда, станут настоящими произведениями искусства.",
                 30, DateTime.Now, DateTime.Now.AddDays(32), true, "480.862",
                 _context.Vendors.Find(11),
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
-          
+
             AddDiscount(11, "Стиральная машина Electrolux EW6S4R26W", @"Компактная стиральная машина PerfectCare 600 с системой SensiCare корректирует длительность программы согласно размерам загрузки, экономя электричество и воду и не допуская перестирывания одежды.",
                 35, DateTime.Now, DateTime.Now.AddDays(32), true, "767.438",
                 _context.Vendors.Find(11),
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList(),
                 _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
+
+            //Stanley 
+            AddDiscount(12, "Demolition hammer SDS-MAX", @"Demolition hammer STANLEY STHM5KS (STHM5KS) with SDS-Max chuck is a reliable tool for slotting works of varying complexity and work with different materials. Equipped with a powerful motor for high tool performance.",
+               20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+               _context.Vendors.Find(12),
+               _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+               _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Industrial dryer Stanley STXH2000", @"Construction hair dryer (thermal blower) STANLEY STXH2000 (STXH2000) is used for gluing materials, as well as for soldering and molding plastics.",
+              35, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+              _context.Vendors.Find(12),
+              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+              _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Construction stapler Stanley 6-TR35", @"Construction stapler STANLEY FatMax 6-TR400 (FMHT6-70411) has the ability to adjust the force of impact, so you can work with a wide variety of materials.",
+             15, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+              _context.Vendors.Find(12),
+              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+              _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Nail hammer STANLEY Blue Strike 0,45 kg (1-51-488)", @"The STANLEY Blue Strike nailer 0.45 kg (1-51-488) is a carpentry percussion tool that combines a flat working part on one side, and a bent nailer on the other.",
+            25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Side cutters STANLEY FatMax 150 mm (0-89-858)", @"Side cutters STANLEY FatMax 150 mm (0-89-858) are used for cutting wire and removing insulation from wires.",
+            15, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+  
+            AddDiscount(12, "Mini cutting pliers Stanley FMHT0-80519", @"Mini cutting pliers Stanley FATMAX FMHT0-80519 are designed for cutting wires, wire, small elements and thin rods.",
+            20, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Tool box Stanley 1-97-514", @"STANLEY 1-97-514 is a professional box for storing and transporting tools with a maximum load of 18 kg. Equipped with a removable organizer with compartments that allow convenient placement of fasteners and accessories.",
+            25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Reciprocating saw STANLEY SPT900 (SPT900)", @"Reciprocating saw STANLEY SPT900 (SPT900) is designed to work with wood, plastic, metal, foam / aerated concrete, plaster, brick during dismantling and installation works, as well as for work in the garden.",
+            30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            AddDiscount(12, "Combination pliers STANLEY FatMax Compound Action (FMHT0-70813)", @"Combination pliers STANLEY FatMax Compound Action (FMHT0-70813) due to its design, provides more force transfer to the jaws / cutting edges for better clamping / cutting.",
+            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+             _context.Vendors.Find(12),
+             _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
+             _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
+
+            //Head & Shoulders
+            AddDiscount(13, "Шампунь для волос Head & Shoulders Мгновенная помощь против перхоти (400мл)", @"Шампунь против перхоти с усиленной формулой Head & Shoulders Men Ultra Мгновенная помощь при зуде кожи головы с экстрактом мяты и женьшеня для мгновенного облегчения и ощущения свежести.",
+            20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+            _context.Vendors.Find(13),
+            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList(),
+            _context.Tags.Where(t => t.Name == "Уход за кожей" || t.Name == "Красота" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
+
+            AddDiscount(13, "Гель для душа + шампунь HEAD & SHOULDERS Для чувствительной кожи, 360 мл", @"Гель для душа и шампунь против перхоти для волос, лица и тела Head & Shoulders.",
+            15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+            _context.Vendors.Find(13),
+            _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList(),
+            _context.Tags.Where(t => t.Name == "Уход за кожей" || t.Name == "Красота" || t.Name == "Комфорт" || t.Name == "Дешево").ToList());
+
+            //Gillette
+            AddDiscount(14, "Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы", @"Набор косметики для бритья Gillette Fusion5 ProGlide бритва+1 сменная кассета+подставка для бритвы.",
+            25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+            _context.Vendors.Find(14),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
+            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            AddDiscount(14, "Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл)", @"Набор для бритья Gillette Mach3 Turbo бритва+1 смен. кассета Red+гель д/б Экстракомфорт (75мл).",
+            30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+            _context.Vendors.Find(14),
+            _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
+            _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            AddDiscount(14, "Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл)", @"Гель для бритья Gillette Satin Care Olay Violet Swirl (200мл).",
+           15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(14),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            AddDiscount(14, "Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл)", @"Набор косметики для бритья Gillette Skinguard Sensitive пена д/б д/чувств. кожи алоэ+бальзам п/брит. (250мл+75мл).",
+           15, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(14),
+           _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Витебск" || p.Name == "Gillette Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Красота" || t.Name == "Уход за кожей" || t.Name == "Для дома" || t.Name == "Комфорт").ToList());
+
+            //Samsung
+            AddDiscount(15, "Информационная панель Samsung UD46E-B / LH46UDEBLBB/RU", @"Высочайшее качество изображения благодаря улучшенной технологии заводской калибровки параметров дисплея.",
+           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Внешний жесткий диск Samsung T5 2TB MU-PA2T0B/WW", @"Портативный SSD накопитель Samsung серии T5 поднимает скорость передачи данных на новый уровень и открывает новую страницу в использовании внешней памяти.",
+           35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Смартфон Samsung Galaxy S21 128GB / SM-G991BZADSER (серый фантом)", @"Уникальный дизайн камеры, 8К видео, Лучшая производительность в Galaxy, Dynamic AMOLED 2X, Адаптивный экран 120Гц.",
+          35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный)", @"Смартфон Samsung Galaxy M21 64GB / SM-M215FZKUSER (черный).",
+           35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица).",
+          25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль)", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль).",
+           25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+           _context.Vendors.Find(15),
+           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+           _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото)", @"Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото).",
+          50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный)", @"Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный).",
+          50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Микроволновая печь Samsung MG23F301TQW/BW", @"Микроволновая печь Samsung MG23F301TQW/BW.",
+          50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            AddDiscount(15, "Микроволновая печь Samsung ME88SUG/BW", @"Микроволновая печь Samsung ME88SUG/BW.",
+          50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+          _context.Vendors.Find(15),
+          _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
+          _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+
+            //Canon
+            AddDiscount(16, "EOS R5", @"The EOS R5 builds off of the powerful legacy of Canon’s full frame cameras offering next generation refinements in image quality, performance and reliability.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "EOS R6", @"The EOS R6 full-frame mirrorless camera is designed to meet the demands of both photographers and video content creators who want a strong and versatile camera to keep up with their active lives.",
+         20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "RF70-200mm F4 L IS USM", @"The RF70-200mm F4 L IS USM is a telephoto zoom lens delivering impressive image quality along with superb mobility as our shortest and lightest 70-200mm f/4 lens to date.",
+         30, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "RF70-200mm F4 L IS USM", @"The RF70-200mm F4 L IS USM is a telephoto zoom lens delivering impressive image quality along with superb mobility as our shortest and lightest 70-200mm f/4 lens to date.",
+         35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "imageRUNNER ADVANCE DX C3725i", @"Canon's comprehensive portfolio of imageRUNNER ADVANCE multifunction printers and integrated solutions can help simplify the end user experience and management of technology, better control sensitive information and print-related costs, and help ensure that technology investments proactively evolve with changing needs.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "PIXMA TS6420 Black", @"Introducing the PIXMA TS6420, a compact and sleek All-in-One printer built for your busy lifestyle. It's easy to setup and simple to use - featuring a 1.44 OLED window which delivers clear, easy to read status messages as well as Front & Rear Paper feeding so you can print on a variety of paper types.",
+         20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "imagePROGRAF PRO-2100", @"The 24-inch imagePROGRAF PRO-2100 printer is designed to exceed expectations for image quality and color consistency in a large format printer.",
+         50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "VIXIA HF G60", @"The VIXIA HF G60 is a high-quality camcorder that can deliver serious results, providing an outstanding combination of 4K UHD image quality, features and functionality in a compact, portable design.",
+         50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "Color imageCLASS X MF1127C", @"Designed for small workgroups within an office or home environments used as part of an organization's extended print fleet, the Canon Color imageCLASS X MF1127C offers feature-rich capabilities with high-quality imaging and minimal maintenance.",
+         25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "PowerShot ZOOM Compact Telephoto Monocular", @"The sleek, PowerShot ZOOM is a compact telephoto monocular that lets you quickly, easily and clearly see the sights wherever you may roam.",
+         35, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+             
+            AddDiscount(16, "15 x 50 IS All Weather", @"The 15 x 50 IS All Weather binoculars with one-touch Image Stabilizer technology instantly compensates for binocular shake.",
+         20, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+            
+            AddDiscount(16, "IX-R7000 Dye-sublimation", @"Engineered with speed and high-quality output in mind, the Canon IX-R7000 Dual-Sided ID Card Printer produces ID Cards to Visitor Badges, & Security Passes with speed, security and ease.",
+         50, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" ).ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
+           
+            AddDiscount(16, "PR1100-R", @"The PR1100-R Wireless Presenter allows you to make your point, with a standard red laser1 to point clearly on projector screens, with a push of a button.",
+         30, DateTime.Now, DateTime.Now.AddDays(50), true, null,
+         _context.Vendors.Find(16),
+         _context.PointOfSales.Where(p => p.Name == "Canon Walnut Creek" || p.Name == "Canon Warszawa").ToList(),
+         _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
         }
     }
 }

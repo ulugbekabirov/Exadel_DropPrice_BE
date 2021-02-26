@@ -86,6 +86,19 @@ namespace DAL.DbInitializer
             AddPointOfSales("Electrolux Ташкент", "Amir Temur Avenue, Tashkent, Узбекистан", 41.3312303, 69.2846146);
             AddPointOfSales("Электросила Минск", "ул. Красная 22, Минск 220005", 53.9197060, 27.5856844);
             AddPointOfSales("Электросила Гродно", "ТЦ Корона, просп.Космонавтов 81, Гродно 230019", 53.7059679, 23.8408464);
+
+            AddPointOfSales("Stanley Walnut Creek", "2044 MT DIABLO BLVD WALNUT CREEK, CA 94596", 37.897450, -122.069288);
+
+            AddPointOfSales("Head & Shoulders Минск", "г.Минск, пр-т Дзержинского, 106", 53.858273, 27.475387);
+            AddPointOfSales("Head & Shoulders Гомель", "г.Гомель, улица Кирова 23", 52.426476, 30.990455);
+            AddPointOfSales("Head & Shoulders Витебск", "г.Витебск, улица Петруся Бровки", 55.162177, 30.237293);
+
+            AddPointOfSales("Gillette Минск", "г.Минск, пр-т Дзержинского, 106", 53.858273, 27.475387);
+            AddPointOfSales("Gillette Гомель", "г.Гомель, улица Кирова 23", 52.426476, 30.990455);
+            AddPointOfSales("Gillette Витебск", "г.Витебск, улица Петруся Бровки", 55.162177, 30.237293);
+
+            AddPointOfSales("Canon Walnut Creek", "1350 Treat Blvd Suite 150, Walnut Creek, CA 94597, United States", 37.926605, -122.056194);
+            AddPointOfSales("Canon Warszawa", "Daimlera 2 / V piętro, 02 - 460 Warszawa, Poland", 52.205285, 20.939259);
         }
     }
 }
