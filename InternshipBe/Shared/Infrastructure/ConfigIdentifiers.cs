@@ -8,6 +8,6 @@
         EnMessageForUser,
         EnMessageForVendor,
         RuMessageForUser,
-        RuMessageForVendor,
+        RuMessageForVendor
     }
 }
