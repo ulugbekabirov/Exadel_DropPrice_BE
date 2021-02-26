@@ -9,6 +9,7 @@ namespace BL.Interfaces
     public interface IHangfireService
     {
         Task<string> BeginDiscountEditJobAsync(int discountId);
+
         Task<string> EndDiscountEditJobAsync(int discountId);
     }
 }
