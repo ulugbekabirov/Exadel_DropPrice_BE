@@ -4,7 +4,7 @@ using Xunit;
 
 namespace UnitTests.EmailService
 {
-    public class ReplacerServiceTest
+    public class ReplacerServiceTests
     {
         [Fact]
         public void Replace_TransmittedString_StringModifiedWithRegulars()
