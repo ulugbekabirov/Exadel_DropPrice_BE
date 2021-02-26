@@ -73,10 +73,20 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "Сервисный центр ИП \"Роберт Бош\"" || p.Name == "MAJSTER BOSCH" || p.Name == "Bosch Hrodna" || p.Name == "Magazin Bosh").ToList());
 
             AddVendor("Electrolux", @"Опираясь на наши шведские ценности и прочную связь с природой, мы создаем продукты с очевидной целью. Мы делаем все, что можем, чтобы заботиться о здоровье нашей планеты ради будущих поколений.",
-                "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/?hl=ru\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ",
+                "vendorexadel@gmail.com", @"Götgatan 58, 118 26 Stockholm, Швеция", "+7 495 248 44 44", "{\"instagram\": \"https://www.instagram.com/electrolux/\", \"facebook\": \"https://www.facebook.com/Electrolux\", \"webSite\" : \"https://www.electrolux.ru\"} ",
                 _context.PointOfSales.Where(p => p.Name == "Electrolux Ташкент" || p.Name == "Электросила Минск" || p.Name == "Электросила Гродно").ToList());
 
+            AddVendor("Stanley", @"Since 1843 STANLEY® tools have been on the belt and in the hands of professional contractors and accomplished homeowners. Synonymous with quality, reliability, innovation, and value, STANLEY is the first name in tape measures and trusted worldwide for accuracy and dependability. We’re proud of our reputation for excellence and dedicated to continually testing, designing and improving our products to ensure quality and maximum function. Maintaining our standing as the world's best at what we do is vital to us and what you expect from a name like STANLEY. For more than 175 years our innovative products have helped build, repair and protect our world. Today that legacy continues. Explore our history by using the interactive timeline below.",
+                "vendorexadel@gmail.com", @"WALNUT CREEK HARDWARE 14844S 2044 MT DIABLO BLVD WALNUT CREEK, CA 94596", "(925) 705-7500", "{\"instagram\": \"https://www.instagram.com/stanleytools/\", \"facebook\": \"https://www.facebook.com/STANLEYTools\", \"webSite\" : \"https://www.stanleytools.com/\"} ",
+                _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList());
 
+            AddVendor("Head & Shoulders", @"Head & Shoulders — американский бренд, специализирующийся на шампунях против перхоти. Бренд Head & Shoulders был основан американской компанией Procter & Gamble в 1961 году.",
+                "vendorexadel@gmail.com", "Ленинградское шоссе, 16А корп. 2, Москва, Россия, 125171", "+7 495 258-58-88", "{\"instagram\": \"https://www.instagram.com/headandshoulderseu\", \"facebook\": \"https://www.facebook.com/headandshoulders/\", \"webSite\" : \"https://www.headandshoulders.ru/ru-ru\"} ",
+                 _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList());
+
+            AddVendor("Gillette", @"Gillette — бренд компании Procter & Gamble, производитель аксессуаров для бритья и ухода за телом. Созданный в 1901 году американским изобретателем Кингом Кэмпом Жиллеттом, фирма производит бритвенные системы, станки и лезвия к ним, аксессуары для бритья."
+                "vendorexadel@gmail.com", "Ленинградское шоссе, 16А корп. 2, Москва, Россия, 125171", "+7 495 258 - 58 - 88", "{\"instagram\": \"https://www.instagram.com/gillette/\", \"facebook\": \"https://www.facebook.com/gillette\", \"webSite\" : \"https://gillette.com/\"} ",
+                 _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList());
         }
     }
 }
