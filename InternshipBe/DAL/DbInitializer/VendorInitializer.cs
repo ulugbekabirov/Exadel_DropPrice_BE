@@ -87,6 +87,10 @@ namespace DAL.DbInitializer
             AddVendor("Gillette", @"Gillette — бренд компании Procter & Gamble, производитель аксессуаров для бритья и ухода за телом. Созданный в 1901 году американским изобретателем Кингом Кэмпом Жиллеттом, фирма производит бритвенные системы, станки и лезвия к ним, аксессуары для бритья."
                 "vendorexadel@gmail.com", "Ленинградское шоссе, 16А корп. 2, Москва, Россия, 125171", "+7 495 258 - 58 - 88", "{\"instagram\": \"https://www.instagram.com/gillette/\", \"facebook\": \"https://www.facebook.com/gillette\", \"webSite\" : \"https://gillette.com/\"} ",
                  _context.PointOfSales.Where(p => p.Name == "Gillette Минск" || p.Name == "Gillette Гомель" || p.Name == "Gillette Витебск").ToList());
+
+            AddVendor("Samsung", @"Samsung Group — южнокорейская группа компаний, один из крупнейших чеболей, основанный в 1938 году. На мировом рынке известен как производитель высокотехнологичных компонентов, включая полноцикловое производство интегральных микросхем, телекоммуникационного оборудования, бытовой техники, аудио- и видеоустройств. Главный офис компании расположен в Сеуле.",
+                "vendorexadel@gmail.com", "40-й этаж Samsung Electronics, 11, Сеул, Южная Корея", "+7 495 258 - 58 - 88", "{\"instagram\": \"https://www.instagram.com/samsungmobileusa/\", \"facebook\": \"https://www.facebook.com/SamsungUS\", \"webSite\" : \"https://www.samsung.com/\"} ",
+                 _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Гомель" || p.Name == "Samsung Витебск").ToList());
         }
     }
 }
