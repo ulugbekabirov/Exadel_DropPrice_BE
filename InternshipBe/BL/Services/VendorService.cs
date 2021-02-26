@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Localization;
+using Shared.Resources;
 
 namespace BL.Services
 {
@@ -18,16 +20,18 @@ namespace BL.Services
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IPointOfSaleService _pointOfSaleService;
+        private readonly IStringLocalizer<NotificationResource> _stringLocalizer;
         private readonly IDiscountRepository _discountRepository;
         private readonly IDiscountService _discountSevice;
         private readonly IMapper _mapper;
         private readonly IImageRepository _imageRepository;
         public static readonly string[] AllowedExtensions = { ".jpeg", ".png", ".jpg" };
 
-        public VendorService(IVendorRepository vendorRepository, IPointOfSaleService pointOfSaleService, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
+        public VendorService(IVendorRepository vendorRepository, IPointOfSaleService pointOfSaleService, IStringLocalizer<NotificationResource> stringLocalizer, IDiscountRepository discountRepository, IDiscountService discountSevice, IMapper mapper, IImageRepository imageRepository)
         {
             _vendorRepository = vendorRepository;
             _pointOfSaleService = pointOfSaleService;
+            _stringLocalizer = stringLocalizer;
             _discountRepository = discountRepository;
             _discountSevice = discountSevice;
             _mapper = mapper;
@@ -174,7 +178,7 @@ namespace BL.Services
 
             if (!AllowedExtensions.Contains(extension))
             {
-                throw new ValidationException($"Not a valid extension. The only extensions allowed are {string.Join(",", AllowedExtensions)}");
+                throw new ValidationException(string.Format($"{_stringLocalizer["Not a valid extension.The only extensions allowed are"]} {0}", string.Join(",", AllowedExtensions)));
             }
             var memoryStream = new MemoryStream();
             file.CopyTo(memoryStream);
