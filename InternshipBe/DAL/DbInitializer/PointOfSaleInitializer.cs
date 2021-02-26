@@ -96,6 +96,10 @@ namespace DAL.DbInitializer
             AddPointOfSales("Gillette Минск", "г.Минск, пр-т Дзержинского, 106", 53.858273, 27.475387);
             AddPointOfSales("Gillette Гомель", "г.Гомель, улица Кирова 23", 52.426476, 30.990455);
             AddPointOfSales("Gillette Витебск", "г.Витебск, улица Петруся Бровки", 55.162177, 30.237293);
+
+            AddPointOfSales("Canon Walnut Creek", "1350 Treat Blvd Suite 150, Walnut Creek, CA 94597, United States", 37.926605, -122.056194);
+            AddPointOfSales("Canon Warszawa", "Daimlera 2 / V piętro, 02 - 460 Warszawa, Poland", 52.205285, 20.939259);
+            
         }
     }
 }
