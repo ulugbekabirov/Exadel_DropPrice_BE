@@ -59,6 +59,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/assess")]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> UpdateUserAssessmentForDiscount(int id, [FromBody] AssessmentViewModel assessmentViewModel)
         {
             return Ok(await _discountService.UpdateUserAssessmentForDiscountAsync(id, assessmentViewModel, await _userManager.FindByNameAsync(User.Identity.Name)));

@@ -8,29 +8,29 @@ namespace WebApi.ViewModels
     {
         public int DiscountId { get; set; }
 
-        [Required(ErrorMessageResourceName = "DiscountVendorId", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "DiscountVendorIdIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public int? VendorId { get; set; }
 
         public string VendorName { get; set; }
 
-        [Required(ErrorMessageResourceName = "DiscountName", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "DiscountNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string DiscountName { get; set; }
 
-        [Required(ErrorMessageResourceName = "DiscountDescription", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "DiscountDescriptionIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Description { get; set; }
 
-        [Required(ErrorMessageResourceName = "DiscountAmount", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "DiscountAmountIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public int? DiscountAmount { get; set; }
 
         public string PromoCode { get; set; }
 
-        [Required(ErrorMessageResourceName = "StartDate", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "StartDateIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public DateTime? StartDate { get; set; }
 
-        [Required(ErrorMessageResourceName = "EndDate", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "EndDateIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public DateTime? EndDate { get; set; }
 
-        [Required(ErrorMessageResourceName = "ActivityStatus", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "ActivityStatusIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public bool? ActivityStatus { get; set; }
 
         public string[] Tags { get; set; }

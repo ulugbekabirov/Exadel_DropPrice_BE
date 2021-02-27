@@ -5,7 +5,7 @@ namespace Shared.ViewModels
 {
     public class AssessmentViewModel
     {
-        [Required(ErrorMessageResourceName = "DiscountAssessmentValue", ErrorMessageResourceType = typeof(ValidationResource))]
+        [Required(ErrorMessageResourceName = "DiscountAssessmentValueIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public int? AssessmentValue { get; set; }
     }
 }

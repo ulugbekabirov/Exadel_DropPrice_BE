@@ -63,162 +63,180 @@ namespace Shared.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s ActivityStatus..
         /// </summary>
-        internal static string ActivityStatus {
+        internal static string ActivityStatusIsEmpty {
             get {
-                return ResourceManager.GetString("ActivityStatus", resourceCulture);
+                return ResourceManager.GetString("ActivityStatusIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter the config Id.
+        /// </summary>
+        internal static string ConfigIdIsEmpty {
+            get {
+                return ResourceManager.GetString("ConfigIdIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter the config Value.
+        /// </summary>
+        internal static string ConfigValueIsEmpty {
+            get {
+                return ResourceManager.GetString("ConfigValueIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s DiscountAmount..
         /// </summary>
-        internal static string DiscountAmount {
+        internal static string DiscountAmountIsEmpty {
             get {
-                return ResourceManager.GetString("DiscountAmount", resourceCulture);
+                return ResourceManager.GetString("DiscountAmountIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s AssessmentValue..
         /// </summary>
-        internal static string DiscountAssessmentValue {
+        internal static string DiscountAssessmentValueIsEmpty {
             get {
-                return ResourceManager.GetString("DiscountAssessmentValue", resourceCulture);
+                return ResourceManager.GetString("DiscountAssessmentValueIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s Description..
         /// </summary>
-        internal static string DiscountDescription {
+        internal static string DiscountDescriptionIsEmpty {
             get {
-                return ResourceManager.GetString("DiscountDescription", resourceCulture);
+                return ResourceManager.GetString("DiscountDescriptionIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s Name..
         /// </summary>
-        internal static string DiscountName {
+        internal static string DiscountNameIsEmpty {
             get {
-                return ResourceManager.GetString("DiscountName", resourceCulture);
+                return ResourceManager.GetString("DiscountNameIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s VendorId..
         /// </summary>
-        internal static string DiscountVendorId {
+        internal static string DiscountVendorIdIsEmpty {
             get {
-                return ResourceManager.GetString("DiscountVendorId", resourceCulture);
+                return ResourceManager.GetString("DiscountVendorIdIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s EndDate..
         /// </summary>
-        internal static string EndDate {
+        internal static string EndDateIsEmpty {
             get {
-                return ResourceManager.GetString("EndDate", resourceCulture);
+                return ResourceManager.GetString("EndDateIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Address..
         /// </summary>
-        internal static string PointOfSaleAddress {
+        internal static string PointOfSaleAddressIsEmpty {
             get {
-                return ResourceManager.GetString("PointOfSaleAddress", resourceCulture);
+                return ResourceManager.GetString("PointOfSaleAddressIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Latitude..
         /// </summary>
-        internal static string PointOfSaleLatitude {
+        internal static string PointOfSaleLatitudeIsEmpty {
             get {
-                return ResourceManager.GetString("PointOfSaleLatitude", resourceCulture);
+                return ResourceManager.GetString("PointOfSaleLatitudeIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Longitude..
         /// </summary>
-        internal static string PointOfSaleLongitude {
+        internal static string PointOfSaleLongitudeIsEmpty {
             get {
-                return ResourceManager.GetString("PointOfSaleLongitude", resourceCulture);
+                return ResourceManager.GetString("PointOfSaleLongitudeIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the pointOfSale&apos;s Name..
         /// </summary>
-        internal static string PointOfSaleName {
+        internal static string PointOfSaleNameIsEmpty {
             get {
-                return ResourceManager.GetString("PointOfSaleName", resourceCulture);
+                return ResourceManager.GetString("PointOfSaleNameIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s StartDate..
         /// </summary>
-        internal static string StartDate {
+        internal static string StartDateIsEmpty {
             get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
+                return ResourceManager.GetString("StartDateIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Address..
         /// </summary>
-        internal static string VendorAddress {
+        internal static string VendorAddressIsEmpty {
             get {
-                return ResourceManager.GetString("VendorAddress", resourceCulture);
+                return ResourceManager.GetString("VendorAddressIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Description..
         /// </summary>
-        internal static string VendorDescription {
+        internal static string VendorDescriptionIsEmpty {
             get {
-                return ResourceManager.GetString("VendorDescription", resourceCulture);
+                return ResourceManager.GetString("VendorDescriptionIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Email..
         /// </summary>
-        internal static string VendorEmail {
+        internal static string VendorEmailIsEmpty {
             get {
-                return ResourceManager.GetString("VendorEmail", resourceCulture);
+                return ResourceManager.GetString("VendorEmailIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Id..
         /// </summary>
-        internal static string VendorId {
+        internal static string VendorIdIsEmpty {
             get {
-                return ResourceManager.GetString("VendorId", resourceCulture);
+                return ResourceManager.GetString("VendorIdIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Name..
         /// </summary>
-        internal static string VendorName {
+        internal static string VendorNameIsEmpty {
             get {
-                return ResourceManager.GetString("VendorName", resourceCulture);
+                return ResourceManager.GetString("VendorNameIsEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Phone..
         /// </summary>
-        internal static string VendorPhone {
+        internal static string VendorPhoneIsEmpty {
             get {
-                return ResourceManager.GetString("VendorPhone", resourceCulture);
+                return ResourceManager.GetString("VendorPhoneIsEmpty", resourceCulture);
             }
         }
     }
