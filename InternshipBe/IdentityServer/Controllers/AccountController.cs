@@ -13,6 +13,9 @@ using DAL.Entities;
 
 namespace IdentityServer.Controllers
 {
+    /// <summary>
+    /// Сontains a method for authentication and authorization
+    /// </summary>
     [Route("api")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -20,12 +23,23 @@ namespace IdentityServer.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// AccountController constructor
+        /// </summary>
+        /// <param name="userManager">User management object</param>
+        /// <param name="configuration">Object containing basic application settings</param>
         public AccountController(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Method for authentication and authorization
+        /// </summary>
+        /// <param name="model">Model for authorization</param>
+        /// <returns>JWT Token</returns>
+        /// <response code="401">Unauthorized</response>
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
