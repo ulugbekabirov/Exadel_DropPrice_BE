@@ -158,7 +158,7 @@ namespace BL.Services
             {
                 var discount = _mapper.Map<Discount>(discountViewModel);
 
-                var vendorDiscount = await _vendorRepository.GetByIdAsync((int)discountViewModel.VendorId);
+                var vendorDiscount = await _vendorRepository.GetByIdAsync(discountViewModel.VendorId.Value);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
@@ -245,7 +245,7 @@ namespace BL.Services
             if (assessment is null)
             {
                 var discount = await _discountRepository.GetByIdAsync(id);
-                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, (int)assessmentViewModel.AssessmentValue);
+                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, assessmentViewModel.AssessmentValue.Value);
             }
             else
             {

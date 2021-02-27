@@ -117,7 +117,7 @@ namespace BL.Services
 
         public async Task<VendorViewModel> UpdateVendorAsync(VendorViewModel vendorViewModel)
         {
-            var vendor = await _vendorRepository.GetByIdAsync((int)vendorViewModel.VendorId);
+            var vendor = await _vendorRepository.GetByIdAsync(vendorViewModel.VendorId.Value);
 
             var pointOfSales = _mapper.Map<PointOfSale[]>(vendorViewModel.PointOfSales);
 
