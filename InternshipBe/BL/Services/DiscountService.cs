@@ -212,10 +212,10 @@ namespace BL.Services
                 discount.Name = discountViewModel.DiscountName;
                 discount.Description = discountViewModel.Description;
                 discount.PromoCode = discountViewModel.PromoCode;
-                discount.DiscountAmount = (int)discountViewModel.DiscountAmount;
-                discount.ActivityStatus = (bool)discountViewModel.ActivityStatus;
-                discount.StartDate = (DateTime)discountViewModel.StartDate;
-                discount.EndDate = (DateTime)discountViewModel.EndDate;
+                discount.DiscountAmount = discountViewModel.DiscountAmount.Value;
+                discount.ActivityStatus = discountViewModel.ActivityStatus.Value;
+                discount.StartDate = discountViewModel.StartDate.Value;
+                discount.EndDate = discountViewModel.EndDate.Value;
                 discount.Tags = tags;
                 discount.PointOfSales = resultPointOfSales;
 

@@ -49,7 +49,7 @@ namespace BL.Mapping
             CreateMap<PointOfSaleViewModel, PointOfSale>()
                 .AfterMap((source, pointOFSale) =>
                 {
-                    pointOFSale.Location = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326).CreatePoint(new Coordinate((double)source.Longitude, (double)source.Latitude));
+                    pointOFSale.Location = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326).CreatePoint(new Coordinate(source.Longitude.Value, source.Latitude.Value));
                 });
 
             CreateMap<AssessmentViewModel, Assessment>()
