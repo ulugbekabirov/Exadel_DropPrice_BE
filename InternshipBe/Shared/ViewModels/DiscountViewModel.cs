@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Properties;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.ViewModels
@@ -7,30 +8,30 @@ namespace WebApi.ViewModels
     {
         public int DiscountId { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's VendorId.")]
-        public int VendorId { get; set; }
+        [Required(ErrorMessageResourceName = "DiscountVendorIdIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public int? VendorId { get; set; }
 
         public string VendorName { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's Name.")]
+        [Required(ErrorMessageResourceName = "DiscountNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string DiscountName { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's Description.")]
+        [Required(ErrorMessageResourceName = "DiscountDescriptionIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's DiscountAmount.")]
-        public int DiscountAmount { get; set; }
+        [Required(ErrorMessageResourceName = "DiscountAmountIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public int? DiscountAmount { get; set; }
 
         public string PromoCode { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's StartDate.")]
-        public DateTime StartDate { get; set; }
+        [Required(ErrorMessageResourceName = "StartDateIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public DateTime? StartDate { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's EndDate.")]
-        public DateTime EndDate { get; set; }
+        [Required(ErrorMessageResourceName = "EndDateIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public DateTime? EndDate { get; set; }
 
-        [Required(ErrorMessage = "Please enter the discount's ActivityStatus.")]
-        public bool ActivityStatus { get; set; }
+        [Required(ErrorMessageResourceName = "ActivityStatusIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public bool? ActivityStatus { get; set; }
 
         public string[] Tags { get; set; }
 

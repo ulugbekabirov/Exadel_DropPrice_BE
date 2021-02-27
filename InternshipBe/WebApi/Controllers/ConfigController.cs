@@ -1,6 +1,7 @@
 ﻿using BL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Infrastructure.Filters;
 using Shared.ViewModels;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace WebApi.Controllers
 
         [HttpPut("changeConfigs/{id}")]
         [Authorize(Roles = "Admin")]
+        [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> ChangeConfigs(int id, [FromBody] ConfigViewModel configModel)
         {
             configModel.Id = id;

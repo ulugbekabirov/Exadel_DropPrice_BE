@@ -1,26 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Shared.Properties;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.ViewModels
 {
     public class VendorViewModel
     {
+        [Required(ErrorMessageResourceName = "VendorIdIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        public int? VendorId { get; set; }
 
-        [Required(ErrorMessage = "Please enter the vendor's VendorId.")]
-        public int VendorId { get; set; }
-
-        [Required(ErrorMessage = "Please enter the vendor's Name.")]
+        [Required(ErrorMessageResourceName = "VendorNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string VendorName { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Description.")]
+
+        [Required(ErrorMessageResourceName = "VendorDescriptionIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Description { get; set; }
-       
-        [Required(ErrorMessage = "Please enter the vendor's Email.")]
+
+        [Required(ErrorMessageResourceName = "VendorEmailIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Email { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Address.")]
+
+        [Required(ErrorMessageResourceName = "VendorAddressIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Address { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Phone.")]
+
+        [Required(ErrorMessageResourceName = "VendorPhoneIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Phone { get; set; }
 
         public string SocialLinks { get; set; }
