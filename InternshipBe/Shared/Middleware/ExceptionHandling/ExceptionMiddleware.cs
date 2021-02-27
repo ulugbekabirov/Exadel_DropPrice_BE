@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
 
 namespace Shared.ExceptionHandling
 {
@@ -11,10 +12,12 @@ namespace Shared.ExceptionHandling
     {
         private const string JsonContentType = "application/json";
         private readonly RequestDelegate _request;
+        private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _request = next;
+            _logger = loggerFactory.CreateLogger< ExceptionMiddleware>();
         }
 
 
@@ -35,6 +38,8 @@ namespace Shared.ExceptionHandling
                         {
                             Message = message
                         }));
+
+                    _logger.LogError($"Message: {message}. Endpoint: {context.Request.Path}. StatusCode: {context.Response.StatusCode}");
                 }
 
                 switch (exception)

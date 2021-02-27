@@ -24,6 +24,7 @@ using System.Text;
 using System.Text.Json;
 using BL.Models;
 using Hangfire;
+using Shared.ExceptionHandling;
 
 namespace WebApi
 {
@@ -167,6 +168,8 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
             }
+
+            app.UseGlobalExceptionMiddleware();
 
             app.UseCulture();
 
