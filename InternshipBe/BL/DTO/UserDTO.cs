@@ -15,5 +15,7 @@
         public string Phone { get; set; }
 
         public string Office { get; set; }
+
+        public string DefaultLanguage { get; set; }
     }
 }
