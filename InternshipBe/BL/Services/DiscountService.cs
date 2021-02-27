@@ -157,7 +157,7 @@ namespace BL.Services
             {
                 var discount = _mapper.Map<Discount>(discountViewModel);
 
-                var vendorDiscount = await _vendorRepository.GetByIdAsync(discountViewModel.VendorId);
+                var vendorDiscount = await _vendorRepository.GetByIdAsync(discountViewModel.VendorId.Value);
 
                 var tags = await _tagRepository.GetTagsAndCreateIfNotExistAsync(discountViewModel.Tags);
 
@@ -211,10 +211,10 @@ namespace BL.Services
                 discount.Name = discountViewModel.DiscountName;
                 discount.Description = discountViewModel.Description;
                 discount.PromoCode = discountViewModel.PromoCode;
-                discount.DiscountAmount = discountViewModel.DiscountAmount;
-                discount.ActivityStatus = discountViewModel.ActivityStatus;
-                discount.StartDate = discountViewModel.StartDate;
-                discount.EndDate = discountViewModel.EndDate;
+                discount.DiscountAmount = discountViewModel.DiscountAmount.Value;
+                discount.ActivityStatus = discountViewModel.ActivityStatus.Value;
+                discount.StartDate = discountViewModel.StartDate.Value;
+                discount.EndDate = discountViewModel.EndDate.Value;
                 discount.Tags = tags;
                 discount.PointOfSales = resultPointOfSales;
 
@@ -244,7 +244,7 @@ namespace BL.Services
             if (assessment is null)
             {
                 var discount = await _discountRepository.GetByIdAsync(id);
-                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, assessmentViewModel.AssessmentValue);
+                assessment = await _discountRepository.CreateAssessmentAsync(discount, user, assessmentViewModel.AssessmentValue.Value);
             }
             else
             {
