@@ -1,6 +1,8 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Shared.Middleware.Localization;
 using System;
 using System.Threading.Tasks;
 
@@ -76,6 +78,8 @@ namespace DAL.DbInitializer
                 var officeId = random.Next(1, 5);
                 await AddUser(officeId, $"user{i}@test.com", $"firstName{i}", $"lastName{i}", $"patronymic{i}", $"+375447777777", true, _context.Offices.Find(officeId), RoleNames.User);
             }
+
+            await _context.Database.ExecuteSqlRawAsync($"UPDATE AspNetUsers SET DefaultLanguage = '{Cultures.Russian}' WHERE Id <= 5;");
         }
     }
 }

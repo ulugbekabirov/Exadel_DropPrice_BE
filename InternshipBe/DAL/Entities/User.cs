@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Shared.Middleware.Localization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -34,7 +35,7 @@ namespace DAL.Entities
         public bool ActivityStatus { get; set; }
 
         [Required]
-        public string DefaultLanguage { get; set; }
+        public string DefaultLanguage { get; set; } = Cultures.English;
 
         public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
 

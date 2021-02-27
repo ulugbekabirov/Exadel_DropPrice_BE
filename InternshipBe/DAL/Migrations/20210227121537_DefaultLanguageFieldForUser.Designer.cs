@@ -11,8 +11,8 @@ using NetTopologySuite.Geometries;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210226175503_DefaultLanguageFieldToUser")]
-    partial class DefaultLanguageFieldToUser
+    [Migration("20210227121537_DefaultLanguageFieldForUser")]
+    partial class DefaultLanguageFieldForUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -304,7 +304,6 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DefaultLanguage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")

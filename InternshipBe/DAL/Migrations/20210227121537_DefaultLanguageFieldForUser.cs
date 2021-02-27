@@ -3,7 +3,7 @@ using Shared.Middleware.Localization;
 
 namespace DAL.Migrations
 {
-    public partial class DefaultLanguageFieldToUser : Migration
+    public partial class DefaultLanguageFieldForUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,10 +11,8 @@ namespace DAL.Migrations
                 name: "DefaultLanguage",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: false,
+                nullable: true,
                 defaultValue: Cultures.DefaultCulture);
-
-            migrationBuilder.Sql($"UPDATE AspNetUsers SET DefaultLanguage = '{Cultures.Russian}' WHERE Id <= 5;");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
