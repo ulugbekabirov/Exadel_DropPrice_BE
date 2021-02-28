@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi.Controllers.DiscountController">
+            <summary>
+            Сontains methods for working with discounts
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.GetDiscounts(BL.Models.SortModel)">
+            <summary>
+            Action to get discounts
+            </summary>
+            <param name="sortModel">Model to get specified amount of closest and sorted discounts</param>
+            <returns>Returns the discounts</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.GetDiscountById(System.Int32,BL.Models.LocationModel)">
+            <summary>
+            Action to get discount by ID
+            </summary>
+            <param name="id">Discount ID</param>
+            <param name="locationModel">Model to get discount</param>
+            <returns>Returns discount</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.SearchDiscounts(BL.Models.SearchModel)">
+            <summary>
+            Action for searching a discount
+            </summary>
+            <param name="searchmodel">Model for search discounts</param>
+            <returns>Returns found discounts</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.CreateTicket(System.Int32)">
+            <summary>
+            Action for ordering a discount
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns the ticket</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.SaveDiscount(System.Int32)">
+            <summary>
+            Action to add a discount to favorites
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns conservation status</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.UpdateUserAssessmentForDiscount(System.Int32,Shared.ViewModels.AssessmentViewModel)">
+            <summary>
+            Action to assess the discount
+            </summary>
+            <param name="id">Dicount ID</param>
+            <param name="assessmentViewModel">Model to assess discount</param>
+            <returns>Returns assessment of discount</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.ArchiveOrUnarchiveDiscount(System.Int32)">
+            <summary>
+            Action to archive or unarchive discount
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns activity status</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.CreateDiscount(WebApi.ViewModels.DiscountViewModel)">
+            <summary>
+            Action to create a new discount in the database. 
+            </summary>
+            <param name="discountViewModel">Model to create a new discount</param>
+            <returns>Returns the created discount</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.BeginEditJob(System.Int32)">
+            <summary>
+            Action to begin edit discount job
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns message of begin edit</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.EndEditJob(System.Int32)">
+            <summary>
+            Action to end edit discount job
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns message of edit job</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.UpdateDiscount(System.Int32,WebApi.ViewModels.DiscountViewModel)">
+            <summary>
+            Action to update a discount in the database. 
+            </summary>
+            <param name="id">Discount ID</param>
+            <param name="discountViewModel">Model to update a discount</param>
+            <returns>Returns updated discount</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.SearchDiscountsForStatistics(BL.Models.AdminSearchModel)">
+            <summary>
+            Action for searching stats of discounts
+            </summary>
+            <param name="adminSearchModel">Model to get statis of discounts</param>
+            <returns>Returns the discounts</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.PointOfSalesAsync(System.Int32)">
+            <summary>
+            Action to get discount pointOfSales
+            </summary>
+            <param name="id">Discount ID</param>
+            <returns>Returns pointOfSales</returns>
+        </member>
+        <member name="M:WebApi.Controllers.DiscountController.GetSearchHints(System.String,BL.Models.SpecifiedAmountModel)">
+            <summary>
+            Action to get hints for search
+            </summary>
+            <param name="subSearchQuery">Search string</param>
+            <param name="specifiedAmountModel">Model to get specified amount of discount</param>
+            <returns>Returns discount names</returns>
+        </member>
+    </members>
+</doc>

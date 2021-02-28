@@ -24,6 +24,8 @@ using System.Text;
 using System.Text.Json;
 using BL.Models;
 using Hangfire;
+using System.IO;
+using System.Reflection;
 
 namespace WebApi
 {
@@ -90,6 +92,10 @@ namespace WebApi
                             Array.Empty<string>()                     
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                swagger.IncludeXmlComments(xmlPath);
             });
 
             services.AddHangfire(options =>
