@@ -68,6 +68,11 @@ namespace BL.Services
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
 
+            if (job.Key is null)
+            {
+                return;
+            }
+
             BackgroundJob.Delete(job.Key);
         }
     }
