@@ -7,26 +7,24 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {   
     /// <summary>
-    /// Controller contains a method for display tag info
+    /// Contains actions for working with tags
     /// </summary>
     [Route("api/")]
     [Authorize]
     public class TagController : ControllerBase
     {
-        public ITagService _tagService;
-        /// <summary>
-        /// TagController constructor
-        /// </summary>
-        /// <param name="tagService"></param>
+        private readonly ITagService _tagService;
+
         public TagController(ITagService tagService)
         {
             _tagService = tagService;
         }
+
         /// <summary>
-        ///  Method for get all tags
+        ///  Action to get all tags
         /// </summary>
-        /// <param name="specifiedAmountModel"></param>
-        /// <returns></returns>
+        /// <param name="specifiedAmountModel">Model to get tags</param>
+        /// <returns>Returns all tags</returns>
         [HttpGet("tags")]
         public async Task<IActionResult> GetTags(SpecifiedAmountModel specifiedAmountModel)
         {
