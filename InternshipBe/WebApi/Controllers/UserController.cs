@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {   
     /// <summary>
-    /// Controller contains a methods for display user info, saved discounts and tickets
+    /// Contains actions for working with user
     /// </summary>
     [Route("api/user")]
     [Authorize]
@@ -17,11 +17,7 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly UserManager<User> _userManager;
-        /// <summary>
-        /// UserController constructor
-        /// </summary>
-        /// <param name="userService"></param>
-        /// <param name="userManager"></param>
+
         public UserController(IUserService userService, UserManager<User> userManager)
         {
             _userService = userService;
@@ -29,29 +25,31 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Method of get user info by id
+        /// Action to get user info by ID
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns user info</returns>
         [HttpGet]
         public async Task<IActionResult> GetUserInfo()
         {
             return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
+
         /// <summary>
-        ///  Method of get user saved discounts
+        ///  Action to get user saved discounts
         /// </summary>
-        /// <param name="locationModel"></param>
-        /// <returns></returns>
+        /// <param name="locationModel">Model to get saved discounts</param>
+        /// <returns>Returns discounts</returns>
         [HttpGet("saved")]
         public async Task<IActionResult> GetUserSavedDiscounts(LocationModel locationModel)
         {
             return Ok(await _userService.GetUserSavedDiscountsAsync(locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
+
         /// <summary>
-        ///  Method of get user tickets
+        ///  Action to get user tickets
         /// </summary>
-        /// <param name="specifiedAmountModel"></param>
-        /// <returns></returns>
+        /// <param name="specifiedAmountModel">Model to get user tickets</param>
+        /// <returns>Returns tickets</returns>
         [HttpGet("tickets")]
         public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
         {
