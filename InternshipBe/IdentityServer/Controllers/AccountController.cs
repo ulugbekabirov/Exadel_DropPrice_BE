@@ -14,7 +14,7 @@ using DAL.Entities;
 namespace IdentityServer.Controllers
 {
     /// <summary>
-    /// Сontains a method for authentication and authorization
+    /// Сontains a method for authentication 
     /// </summary>
     [Route("api")]
     [ApiController]
@@ -30,7 +30,7 @@ namespace IdentityServer.Controllers
         }
 
         /// <summary>
-        /// Method for authentication and authorization
+        /// Method for authentication
         /// </summary>
         /// <param name="model">Model for authorization</param>
         /// <returns>JWT Token</returns>
