@@ -84,14 +84,14 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> BeginEditJob(int id)
         {
-            return Content(await _hangfireService.BeginEditDiscountJobAsync(id));
+            return Ok(await _hangfireService.BeginEditDiscountJobAsync(id));
         }
 
         [HttpDelete("{id}/endEdit")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> EndEditJob(int id)
         {
-            return Content(await _hangfireService.EndEditDiscountJobAsync(id));
+            return Ok(await _hangfireService.EndEditDiscountJobAsync(id));
         }
 
         [HttpPut("{id}")]
