@@ -40,7 +40,7 @@ namespace BL.Services
                 return new HangfireDTO()
                 {
                     Message = _stringLocalizer["A session for editing a discount has been created."],
-                    IsEditingDisount = false,
+                    IsEditedDisount = false,
                     EditTime = discountEditTime,
                 };
             }
@@ -52,7 +52,7 @@ namespace BL.Services
             return new HangfireDTO()
             {
                 Message = _stringLocalizer["A session on editing a discount is open. Time has been updated."],
-                IsEditingDisount = true,
+                IsEditedDisount = true,
                 EditTime = discountEditTime,
             };
         }
