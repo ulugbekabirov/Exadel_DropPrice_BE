@@ -12,7 +12,7 @@ using WebApi.ViewModels;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Сontains methods for working with discounts
+    /// Сontains actions for working with discounts
     /// </summary>
     [Route("api/discounts")]
     [Authorize]
