@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {   
     /// <summary>
-    /// Controller contains a method for display towns info
+    /// Contains actions for working with towns
     /// </summary>
     [Route("api/towns")]
     [ApiController]
@@ -14,18 +14,16 @@ namespace WebApi.Controllers
     public class TownController : ControllerBase
     {
         private readonly ITownService _townService;
-        /// <summary>
-        /// TownController constructor
-        /// </summary>
-        /// <param name="service"></param>
+
         public TownController(ITownService service) 
         {
             _townService = service;
         }
+
         /// <summary>
-        /// Method for get all towns 
+        /// Action to get all towns 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns all towns</returns>
         [HttpGet]
         public async Task<IActionResult> GetTowns()
         {
