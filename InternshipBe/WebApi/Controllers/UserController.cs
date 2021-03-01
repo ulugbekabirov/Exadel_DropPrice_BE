@@ -38,7 +38,7 @@ namespace WebApi.Controllers
         ///  Action to get user saved discounts
         /// </summary>
         /// <param name="locationModel">Model to get saved discounts</param>
-        /// <returns>Returns discounts</returns>
+        /// <returns>Returns saved discounts</returns>
         [HttpGet("saved")]
         public async Task<IActionResult> GetUserSavedDiscounts(LocationModel locationModel)
         {

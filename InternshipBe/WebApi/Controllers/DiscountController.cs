@@ -113,7 +113,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to create a new discount in the database. 
+        /// Action to create a new discount in the database
         /// </summary>
         /// <param name="discountViewModel">Model to create a new discount</param>
         /// <returns>Returns the created discount</returns>

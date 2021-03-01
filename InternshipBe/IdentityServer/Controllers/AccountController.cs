@@ -23,11 +23,6 @@ namespace IdentityServer.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        /// <summary>
-        /// AccountController constructor
-        /// </summary>
-        /// <param name="userManager">User management object</param>
-        /// <param name="configuration">Object containing basic application settings</param>
         public AccountController(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
