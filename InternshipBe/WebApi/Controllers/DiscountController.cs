@@ -113,7 +113,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to create a new discount in the database
+        /// Action to create a new discount
         /// </summary>
         /// <param name="discountViewModel">Model to create a new discount</param>
         /// <returns>Returns created discount</returns>
@@ -150,7 +150,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to update the discount in the database. 
+        /// Action to update discount by id
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <param name="discountViewModel">Model to update a discount</param>

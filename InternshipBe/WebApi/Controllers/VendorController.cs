@@ -61,7 +61,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to create a new vendor in database 
+        /// Action to create a new vendor
         /// </summary>
         /// <param name="vendorViewModel">Model to create a new vendor</param>
         /// <returns>Returns created vendor</returns>
@@ -74,7 +74,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to update vendor in the database
+        /// Action to update vendor by id
         /// </summary>
         /// <param name="id">Vendor ID</param>
         /// <param name="vendorViewModel">Model to update a vendor</param>
