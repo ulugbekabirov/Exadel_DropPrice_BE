@@ -8,44 +8,42 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Controller contains a methods for display config info
+    /// Contains actions for working with configs
     /// </summary>
     [Route("api/")]
     [Authorize]
     public class ConfigController : ControllerBase
     {
         private readonly IConfigService _configService;
-        /// <summary>
-        /// ConfigController constructor
-        /// </summary>
-        /// <param name="service"></param>
+
         public ConfigController(IConfigService service)
         {
             _configService = service;
         }
+
         /// <summary>
-        /// Method for get all configs 
+        /// Action to get all configs 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns all configs</returns>
         [HttpGet("configs")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetConfigs()
         {
             return Ok(await _configService.GetConfigsAsync());
         }
+
         /// <summary>
-        ///  Method for change configs by id
+        ///  Action to change configs by ID
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="configModel"></param>
-        /// <returns></returns>
+        /// <param name="id">Config ID</param>
+        /// <param name="configModel">Model to update config</param>
+        /// <returns>Returns updated config</returns>
         [HttpPut("changeConfigs/{id}")]
         [Authorize(Roles = "Admin")]
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
         public async Task<IActionResult> ChangeConfigs(int id, [FromBody] ConfigViewModel configModel)
         {
             configModel.Id = id;
-
             return Ok(await _configService.ChangeConfigAsync(configModel));
         }
     }
