@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Controller contains a method for display point of sales
+    ///  Contains actions for working with points of sale
     /// </summary>
     [Route("api/pointOfSales")]
     [Authorize]
     public class PointOfSaleController : ControllerBase
     {
         private readonly IPointOfSaleService _pointOfSaleService;
-        /// <summary>
-        /// PointOfSaleController constructor
-        /// </summary>
-        /// <param name="pointOfSaleService"></param>
+
         public PointOfSaleController(IPointOfSaleService pointOfSaleService)
         {
             _pointOfSaleService = pointOfSaleService;
         }
+
         /// <summary>
-        /// Method for get all points of sales
+        /// Action to get all points of sales
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns points of sale</returns>
         [HttpGet]
         public async Task<IActionResult> GetPointOfSales()
         {
