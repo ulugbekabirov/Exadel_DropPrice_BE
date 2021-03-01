@@ -14,6 +14,11 @@ namespace UnitTests.Middleware
     {
         private readonly ILoggerFactory loggerFactory;
 
+        public ExceptionMiddlewareTests()
+        {
+            loggerFactory = new LoggerFactory();
+        }
+
         [Fact]
         public async Task InvokeAsync_NoExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
         {
