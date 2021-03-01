@@ -3,30 +3,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Controller contains a method for display image
+    /// Contains actions for working with image
     /// </summary>
     [Route("api/images")]
     [Authorize]
     public class ImageController : ControllerBase
     {
         private readonly IImageService _imageService;
-        /// <summary>
-        /// ImageController constructor
-        /// </summary>
-        /// <param name="imageService"></param>
+
         public ImageController(IImageService imageService)
         {
             _imageService = imageService;
         }
+
         /// <summary>
-        /// Method for get image by id
+        /// Action to get image by ID
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Image ID</param>
+        /// <returns>Returns image</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetImage(int id)
         {
