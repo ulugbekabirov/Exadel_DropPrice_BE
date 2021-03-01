@@ -10,11 +10,14 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
 
 namespace UnitTests.Middleware
 {
     public class ExceptionMiddlewareTests
     {
+        private readonly ILoggerFactory loggerFactory;
+
         [Fact]
         public async Task InvokeAsync_NoExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
         {
@@ -25,7 +28,7 @@ namespace UnitTests.Middleware
                     {
                         return HttpStatusCode.OK;
                     });
-                });
+                },  loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -50,7 +53,7 @@ namespace UnitTests.Middleware
                     {
                         throw new Exception();
                     });
-                });
+                }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -75,7 +78,7 @@ namespace UnitTests.Middleware
                 {
                     throw new ValidationException();
                 });
-            });
+            }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -100,7 +103,7 @@ namespace UnitTests.Middleware
                 {
                     throw new UnauthorizedAccessException();
                 });
-            });
+            }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 

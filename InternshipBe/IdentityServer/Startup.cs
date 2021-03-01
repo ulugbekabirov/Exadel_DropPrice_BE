@@ -13,6 +13,7 @@ using DAL.Entities;
 using System.Text.Json;
 using Shared.ExceptionHandling;
 using Microsoft.OpenApi.Models;
+using Shared.Middleware.RequestResponceLogger;
 using System.IO;
 using System.Reflection;
 using System;
@@ -102,6 +103,8 @@ namespace IdentityServer
             }
 
             app.UseGlobalExceptionMiddleware();
+
+            app.UseRequestResponseLogging();
 
             app.UseRouting();
 
