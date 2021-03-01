@@ -15,7 +15,6 @@ namespace WebApi
 
         public static async Task Main(string[] args)
         {
-
             Configuration = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .AddJsonFile("appsettings.json")
@@ -32,7 +31,7 @@ namespace WebApi
             {
                 Log.Information("Starting up...");
                 var host = CreateHostBuilder(args).Build();
-            await Initializer.InitializeDatabase(host.Services);
+                await Initializer.InitializeDatabase(host.Services);
                 host.Run();
                 Log.Information("Shutting down...");
             }
