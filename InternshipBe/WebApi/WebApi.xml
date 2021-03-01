@@ -4,6 +4,31 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="T:WebApi.Controllers.ConfigController">
+            <summary>
+            Controller contains a methods for display config info
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ConfigController.#ctor(BL.Interfaces.IConfigService)">
+            <summary>
+            ConfigController constructor
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="M:WebApi.Controllers.ConfigController.GetConfigs">
+            <summary>
+            Method for get all configs 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.ConfigController.ChangeConfigs(System.Int32,Shared.ViewModels.ConfigViewModel)">
+            <summary>
+             Method for change configs by id
+            </summary>
+            <param name="id"></param>
+            <param name="configModel"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebApi.Controllers.DiscountController">
             <summary>
             Сontains methods for working with discounts
@@ -110,6 +135,178 @@
             <param name="subSearchQuery">Search string</param>
             <param name="specifiedAmountModel">Model to get specified amount of discount</param>
             <returns>Returns discount names</returns>
+        </member>
+        <member name="T:WebApi.Controllers.ImageController">
+            <summary>
+            Controller contains a method for display image
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ImageController.#ctor(BL.Interfaces.IImageService)">
+            <summary>
+            ImageController constructor
+            </summary>
+            <param name="imageService"></param>
+        </member>
+        <member name="M:WebApi.Controllers.ImageController.GetImage(System.Int32)">
+            <summary>
+            Method for get image by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.PointOfSaleController">
+            <summary>
+            Controller contains a method for display point of sales
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.PointOfSaleController.#ctor(BL.Interfaces.IPointOfSaleService)">
+            <summary>
+            PointOfSaleController constructor
+            </summary>
+            <param name="pointOfSaleService"></param>
+        </member>
+        <member name="M:WebApi.Controllers.PointOfSaleController.GetPointOfSales">
+            <summary>
+            Method for get all points of sales
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.TagController">
+            <summary>
+            Controller contains a method for display tag info
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.TagController.#ctor(BL.Interfaces.ITagService)">
+            <summary>
+            TagController constructor
+            </summary>
+            <param name="tagService"></param>
+        </member>
+        <member name="M:WebApi.Controllers.TagController.GetTags(BL.Models.SpecifiedAmountModel)">
+            <summary>
+             Method for get all tags
+            </summary>
+            <param name="specifiedAmountModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.TownController">
+            <summary>
+            Controller contains a method for display towns info
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.TownController.#ctor(BL.Interfaces.ITownService)">
+            <summary>
+            TownController constructor
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="M:WebApi.Controllers.TownController.GetTowns">
+            <summary>
+            Method for get all towns 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.UserController">
+            <summary>
+            Controller contains a methods for display user info, saved discounts and tickets
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.#ctor(BL.Interfaces.IUserService,Microsoft.AspNetCore.Identity.UserManager{DAL.Entities.User})">
+            <summary>
+            UserController constructor
+            </summary>
+            <param name="userService"></param>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.GetUserInfo">
+            <summary>
+            Method of get user info by id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.GetUserSavedDiscounts(BL.Models.LocationModel)">
+            <summary>
+             Method of get user saved discounts
+            </summary>
+            <param name="locationModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.GetUserTickets(BL.Models.SpecifiedAmountModel)">
+            <summary>
+             Method of get user tickets
+            </summary>
+            <param name="specifiedAmountModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.VendorController">
+            <summary>
+            Controller contains a methods for display Vendors info
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.#ctor(BL.Interfaces.IVendorService,Microsoft.AspNetCore.Identity.UserManager{DAL.Entities.User})">
+            <summary>
+            VendorController constructor
+            </summary>
+            <param name="vendorService"></param>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.GetVendors">
+            <summary>
+            Method of get all Vendors
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.GetVendorById(System.Int32)">
+            <summary>
+            Method of get Vendors by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.GetVendorDiscounts(System.Int32,BL.Models.SortModel)">
+            <summary>
+            Method of get discounts by Vendor id 
+            </summary>
+            <param name="id"></param>
+            <param name="sortModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.CreateVendor(WebApi.ViewModels.VendorViewModel)">
+            <summary>
+            Method for create Vendor 
+            </summary>
+            <param name="vendorViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.UpdateVendor(System.Int32,WebApi.ViewModels.VendorViewModel)">
+            <summary>
+            Method for update Vendor by id
+            </summary>
+            <param name="id"></param>
+            <param name="vendorViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.SearchVendors(BL.Models.AdminSearchModel)">
+            <summary>
+            Method for search Vendors 
+            </summary>
+            <param name="searchmodel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.AddImage(System.Int32,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Method for add image by id and file
+            </summary>
+            <param name="id"></param>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.VendorController.GetVendorPointOfSales(System.Int32)">
+            <summary>
+             Method for get point of sales by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
