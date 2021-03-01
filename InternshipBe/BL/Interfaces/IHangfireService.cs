@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using BL.DTO;
+using System.Threading.Tasks;
 
 namespace BL.Interfaces
 {
     public interface IHangfireService
     {
-        Task<string> BeginEditDiscountJobAsync(int discountId);
+        Task<HangfireDTO> BeginEditDiscountJobAsync(int discountId);
 
         void DeleteDiscountEditJob(int discountId);
 
