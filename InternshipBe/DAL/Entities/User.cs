@@ -34,8 +34,7 @@ namespace DAL.Entities
         [Required]
         public bool ActivityStatus { get; set; }
 
-        [Required]
-        public string DefaultLanguage { get; set; } = Cultures.English;
+        public string DefaultLanguage { get; set; } = Cultures.DefaultCulture;
 
         public virtual ICollection<SavedDiscount> SavedDiscounts { get; set; }
 

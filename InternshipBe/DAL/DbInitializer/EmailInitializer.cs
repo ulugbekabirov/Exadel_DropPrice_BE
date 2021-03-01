@@ -32,7 +32,7 @@ namespace DAL.DbInitializer
 
         public void InitializeEmails()
         {
-            AddEmailTemplate("EnMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            AddEmailTemplate("Email body for User in English", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:helvetica, courier,   serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
@@ -470,7 +470,7 @@ namespace DAL.DbInitializer
 </body>
 </html>
 ", "Email template for user in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("EnMessageForVendor", @"
+            AddEmailTemplate("Email body for Vendor in English", @"
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:helvetica, courier,   serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
@@ -909,7 +909,7 @@ namespace DAL.DbInitializer
 </body>
 </html>
 ", "Email template for vendor in english. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RuMessageForUser", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            AddEmailTemplate("Email body for User in Russian", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:helvetica, courier,   serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
@@ -1346,7 +1346,7 @@ namespace DAL.DbInitializer
     </div>
 </body>
 </html>", "Email template for user in russian. Words like ##Word## are replaced with values from the database.");
-            AddEmailTemplate("RuMessageForVendor", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            AddEmailTemplate("Email body for Vendor in Russian", @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' style='width:100%;font-family:helvetica, courier,   serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
