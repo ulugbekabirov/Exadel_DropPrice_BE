@@ -17,7 +17,7 @@ namespace Shared.ExceptionHandling
         public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _request = next;
-            _logger = loggerFactory.CreateLogger< ExceptionMiddleware>();
+            _logger = loggerFactory.CreateLogger<ExceptionMiddleware>();
         }
 
 
