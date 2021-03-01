@@ -55,9 +55,9 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action for searching a discount
+        /// Action for searching discounts
         /// </summary>
-        /// <param name="searchmodel">Model for search discounts</param>
+        /// <param name="searchmodel">Model for searching discounts</param>
         /// <returns>Returns found discounts</returns>
         [HttpGet("search")]
         public async Task<IActionResult> SearchDiscounts(SearchModel searchmodel)
@@ -66,7 +66,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action for ordering a discount
+        /// Action for creating a ticket for discount
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <returns>Returns the ticket</returns>
@@ -116,7 +116,7 @@ namespace WebApi.Controllers
         /// Action to create a new discount in the database
         /// </summary>
         /// <param name="discountViewModel">Model to create a new discount</param>
-        /// <returns>Returns the created discount</returns>
+        /// <returns>Returns created discount</returns>
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
@@ -126,7 +126,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to begin edit discount job
+        /// Action to indicate start of discount editing
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <returns>Returns message of begin edit</returns>
@@ -138,7 +138,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to end edit discount job
+        /// Action to indicate end of discount editing
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <returns>Returns message of edit job</returns>
@@ -150,7 +150,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to update a discount in the database. 
+        /// Action to update the discount in the database. 
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <param name="discountViewModel">Model to update a discount</param>
@@ -167,7 +167,7 @@ namespace WebApi.Controllers
         /// <summary>
         /// Action for searching stats of discounts
         /// </summary>
-        /// <param name="adminSearchModel">Model to get statis of discounts</param>
+        /// <param name="adminSearchModel">Model to get statics of discounts</param>
         /// <returns>Returns the discounts</returns>
         [HttpGet("stats/search")]
         [Authorize(Roles = "Admin")]
@@ -177,7 +177,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to get discount pointOfSales
+        /// Action to get pointOfSales of discount
         /// </summary>
         /// <param name="id">Discount ID</param>
         /// <returns>Returns pointOfSales</returns>
@@ -189,7 +189,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to get hints for search
+        /// Action to get search hints 
         /// </summary>
         /// <param name="subSearchQuery">Search string</param>
         /// <param name="specifiedAmountModel">Model to get specified amount of discount</param>
