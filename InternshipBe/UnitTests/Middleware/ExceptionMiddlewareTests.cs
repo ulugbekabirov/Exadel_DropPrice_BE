@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shared.ExceptionHandling;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using Newtonsoft.Json;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Logging;
