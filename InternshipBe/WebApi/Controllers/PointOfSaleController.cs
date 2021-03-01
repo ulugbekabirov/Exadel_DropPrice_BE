@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     /// <summary>
-    ///  Contains actions for working with points of sale
+    ///  Contains actions for working with points of sales
     /// </summary>
     [Route("api/pointOfSales")]
     [Authorize]
@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         /// <summary>
         /// Action to get all points of sales
         /// </summary>
-        /// <returns>Returns points of sale</returns>
+        /// <returns>Returns points of sales</returns>
         [HttpGet]
         public async Task<IActionResult> GetPointOfSales()
         {
