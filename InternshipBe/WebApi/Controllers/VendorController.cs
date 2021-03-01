@@ -12,7 +12,7 @@ using WebApi.ViewModels;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Controller contains a methods for display Vendors info
+    /// Contains actions for working with vendors
     /// </summary>
     [Route("api/vendors")]
     [Authorize]
@@ -20,51 +20,51 @@ namespace WebApi.Controllers
     {
         private readonly IVendorService _vendorService;
         private readonly UserManager<User> _userManager;
-        /// <summary>
-        /// VendorController constructor
-        /// </summary>
-        /// <param name="vendorService"></param>
-        /// <param name="userManager"></param>
+
         public VendorController(IVendorService vendorService, UserManager<User> userManager)
         {
             _vendorService = vendorService;
             _userManager = userManager;
         }
+
         /// <summary>
-        /// Method of get all Vendors
+        /// Action to get all vendors
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns all vendors</returns>
         [HttpGet]
         public async Task<IActionResult> GetVendors()
         {
             return Ok(await _vendorService.GetVendorsAsync());
         }
+
         /// <summary>
-        /// Method of get Vendors by id
+        /// Action to get vendor by ID
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Vendor ID</param>
+        /// <returns>Returns vendor by ID</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVendorById(int id)
         {
             return Ok(await _vendorService.GetVendorByIdAsync(id));
         }
+
         /// <summary>
-        /// Method of get discounts by Vendor id 
+        /// Action to get discounts by vendor ID 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="sortModel"></param>
-        /// <returns></returns>
+        /// <param name="id">Vendor ID</param>
+        /// <param name="sortModel">Model to get discounts</param>
+        /// <returns>Returns vendor discounts</returns>
         [HttpGet("{id}/discounts")]
         public async Task<IActionResult> GetVendorDiscounts(int id, SortModel sortModel)
         {
             return Ok(await _vendorService.GetVendorDiscountsAsync(id, sortModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
+
         /// <summary>
-        /// Method for create Vendor 
+        /// Actiob to create a new vendor in database 
         /// </summary>
-        /// <param name="vendorViewModel"></param>
-        /// <returns></returns>
+        /// <param name="vendorViewModel">Model to create a new vendor</param>
+        /// <returns>Returns created vendor</returns>
         [HttpPost]
         [Authorize(Roles = "Admin, Moderator")]
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
@@ -72,12 +72,13 @@ namespace WebApi.Controllers
         {
             return Ok(await _vendorService.CreateVendorAsync(vendorViewModel));
         }
+
         /// <summary>
-        /// Method for update Vendor by id
+        /// Action to update vendor in the database
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="vendorViewModel"></param>
-        /// <returns></returns>
+        /// <param name="id">Vendor ID</param>
+        /// <param name="vendorViewModel">Model to update a vendor</param>
+        /// <returns>Returns updated vendor</returns>
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Moderator")]
         [ServiceFilter(typeof(ValidateModelFilterAttribute))]
@@ -86,34 +87,37 @@ namespace WebApi.Controllers
             vendorViewModel.VendorId = id;
             return Ok(await _vendorService.UpdateVendorAsync(vendorViewModel));
         }
+
         /// <summary>
-        /// Method for search Vendors 
+        /// Action to search vendors 
         /// </summary>
-        /// <param name="searchmodel"></param>
-        /// <returns></returns>
+        /// <param name="searchmodel">Model for seacrhing vendors</param>
+        /// <returns>Returns vendors</returns>
         [HttpGet("search")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SearchVendors(AdminSearchModel searchmodel)
         {
             return Ok(await _vendorService.SearchVendorsAsync(searchmodel));
         }
+
         /// <summary>
-        /// Method for add image by id and file
+        /// Action to add image to vendor
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="id">Vendor ID</param>
+        /// <param name="file">Image with (".jpeg", ".png", ".jpg") extensions</param>
+        /// <returns>Returns vendor with image</returns>
         [HttpPost("{id}/image")]
         [Authorize(Roles ="Admin,Moderator")]
         public async Task<IActionResult> AddImage(int id, IFormFile file)
         {
             return Ok(await _vendorService.AddImageToVendorAsync(file, id));
         }
+
         /// <summary>
-        ///  Method for get point of sales by id
+        ///  Action to get vendor points of sale
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Vendor ID</param>
+        /// <returns>Returns points of sale</returns>
         [HttpGet("{id}/pointOfSales")]
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> GetVendorPointOfSales(int id)
