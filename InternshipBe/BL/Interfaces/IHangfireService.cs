@@ -5,7 +5,7 @@ namespace BL.Interfaces
 {
     public interface IHangfireService
     {
-        Task<HangfireDTO> BeginEditDiscountJobAsync(int discountId);
+        Task<DiscountJobDTO> BeginEditDiscountJobAsync(int discountId);
 
         void DeleteDiscountEditJob(int discountId);
 

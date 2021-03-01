@@ -1,6 +1,6 @@
 ﻿namespace BL.DTO
 {
-    public class HangfireDTO
+    public class DiscountJobDTO
     {
         public string Message { get; set; }
 

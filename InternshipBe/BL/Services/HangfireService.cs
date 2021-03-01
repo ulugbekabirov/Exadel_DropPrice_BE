@@ -24,7 +24,7 @@ namespace BL.Services
             _stringLocalizer = stringLocalizer;
         }
 
-        public async Task<HangfireDTO> BeginEditDiscountJobAsync(int discountId)
+        public async Task<DiscountJobDTO> BeginEditDiscountJobAsync(int discountId)
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
@@ -37,7 +37,7 @@ namespace BL.Services
 
                 BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-                return new HangfireDTO()
+                return new DiscountJobDTO()
                 {
                     Message = _stringLocalizer["A session for editing a discount has been created."],
                     IsEditedDisount = false,
@@ -49,7 +49,7 @@ namespace BL.Services
 
             BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-            return new HangfireDTO()
+            return new DiscountJobDTO()
             {
                 Message = _stringLocalizer["A session on editing a discount is open. Time has been updated."],
                 IsEditedDisount = true,
