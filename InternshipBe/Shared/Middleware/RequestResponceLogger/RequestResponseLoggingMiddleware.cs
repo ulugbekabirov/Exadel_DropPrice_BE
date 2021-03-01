@@ -34,7 +34,6 @@ namespace Shared.Middleware.RequestResponceLogger
             await context.Request.Body.CopyToAsync(requestStream);
 
             _logger.LogInformation($"Http Request Information:{Environment.NewLine}" +
-                                   $"Schema:{context.Request.Scheme} " +
                                    $"Host: {context.Request.Host} " +
                                    $"Path: {context.Request.Path} " +
                                    $"QueryString: {context.Request.QueryString} " +
@@ -56,11 +55,11 @@ namespace Shared.Middleware.RequestResponceLogger
 
             do
             {
-                readChunkLength = reader.ReadBlock(readChunk,
-                                                   0,
-                                                   readChunkBufferLength);
+                readChunkLength = reader.ReadBlock(readChunk, 0, readChunkBufferLength);
                 textWriter.Write(readChunk, 0, readChunkLength);
-            } while (readChunkLength > 0);
+            } 
+            while (readChunkLength > 0);
+
             return textWriter.ToString();
         }
 
@@ -78,7 +77,6 @@ namespace Shared.Middleware.RequestResponceLogger
             context.Response.Body.Seek(0, SeekOrigin.Begin);
 
             _logger.LogInformation($"Http Response Information:{Environment.NewLine}" +
-                                   $"Schema:{context.Request.Scheme} " +
                                    $"Host: {context.Request.Host} " +
                                    $"Path: {context.Request.Path} " +
                                    $"QueryString: {context.Request.QueryString} " +
