@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        ///  Action to get user saved discounts
+        ///  Action to get saved discounts of user
         /// </summary>
         /// <param name="locationModel">Model to get saved discounts</param>
         /// <returns>Returns saved discounts</returns>
@@ -46,9 +46,9 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        ///  Action to get user tickets
+        ///  Action to get tickets of user
         /// </summary>
-        /// <param name="specifiedAmountModel">Model to get user tickets</param>
+        /// <param name="specifiedAmountModel">Model to spicify tickets amount</param>
         /// <returns>Returns tickets</returns>
         [HttpGet("tickets")]
         public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
