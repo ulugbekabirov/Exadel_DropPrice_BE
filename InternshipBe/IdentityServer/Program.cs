@@ -46,8 +46,10 @@ namespace IdentityServer
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                    .UseConfiguration(Configuration)
-                    .UseSerilog(); ;
+                    .UseSerilog();
+
+                    if (Configuration is not null)
+                        webBuilder.UseConfiguration(Configuration);
                 });
     }
 }

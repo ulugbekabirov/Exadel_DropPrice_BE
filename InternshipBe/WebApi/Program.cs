@@ -1,9 +1,11 @@
+using DAL.DbInitializer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using System;
+using System.Threading.Tasks;
 
 namespace WebApi
 {
@@ -11,8 +13,9 @@ namespace WebApi
     {
         public static IConfiguration Configuration { get; private set; }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+
             Configuration = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .AddJsonFile("appsettings.json")
@@ -28,7 +31,9 @@ namespace WebApi
             try
             {
                 Log.Information("Starting up...");
-                CreateHostBuilder(args).Build().Run();
+                var host = CreateHostBuilder(args).Build();
+            await Initializer.InitializeDatabase(host.Services);
+                host.Run();
                 Log.Information("Shutting down...");
             }
             catch (Exception ex)
@@ -47,7 +52,7 @@ namespace WebApi
                 {
                     webBuilder.UseStartup<Startup>()
                     .UseConfiguration(Configuration)
-                    .UseSerilog(); ;
+                    .UseSerilog();
                 });
     }
 }
