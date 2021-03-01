@@ -22,9 +22,9 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to get all configs 
+        /// Action to get all config variables
         /// </summary>
-        /// <returns>Returns all configs</returns>
+        /// <returns>Returns config variables</returns>
         [HttpGet("configs")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetConfigs()
@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        ///  Action to change configs by ID
+        ///  Action to update config variable by ID
         /// </summary>
         /// <param name="id">Config ID</param>
         /// <param name="configModel">Model to update config</param>
