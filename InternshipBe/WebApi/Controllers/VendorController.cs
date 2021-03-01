@@ -49,11 +49,11 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to get discounts by vendor ID 
+        /// Action to get discounts of vendor by ID 
         /// </summary>
         /// <param name="id">Vendor ID</param>
-        /// <param name="sortModel">Model to get discounts</param>
-        /// <returns>Returns vendor discounts</returns>
+        /// <param name="sortModel">Model to sort the discounts</param>
+        /// <returns>Returns discounts of vendor</returns>
         [HttpGet("{id}/discounts")]
         public async Task<IActionResult> GetVendorDiscounts(int id, SortModel sortModel)
         {
@@ -61,7 +61,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Actiob to create a new vendor in database 
+        /// Action to create a new vendor in database 
         /// </summary>
         /// <param name="vendorViewModel">Model to create a new vendor</param>
         /// <returns>Returns created vendor</returns>
@@ -101,10 +101,10 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to add image to vendor
+        /// Action for adding image to vendor
         /// </summary>
         /// <param name="id">Vendor ID</param>
-        /// <param name="file">Image with (".jpeg", ".png", ".jpg") extensions</param>
+        /// <param name="file">Image supports (".jpeg", ".png", ".jpg") extensions</param>
         /// <returns>Returns vendor with image</returns>
         [HttpPost("{id}/image")]
         [Authorize(Roles ="Admin,Moderator")]
@@ -114,7 +114,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        ///  Action to get vendor points of sale
+        ///  Action to get points of sales of vendor 
         /// </summary>
         /// <param name="id">Vendor ID</param>
         /// <returns>Returns points of sale</returns>
