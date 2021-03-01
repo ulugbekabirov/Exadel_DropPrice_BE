@@ -56,7 +56,7 @@ namespace DAL.DbInitializer
                 "vendorexadel@gmail.com", @"4-6 Rue Bertrand Sincholle, 92110 Clichy, Франция", "+7 (495) 258 31 91", "{\"instagram\": \"https://www.instagram.com/lorealparis/ \", \"facebook\": \"https://www.facebook.com/loreal \", \"webSite\" : \"https://loreal-paris.ru \"} ",
                 _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList());
             
-            AddVendor("Belwest", @" Belwest - этомультибрендовая торговая сеть, представляющая мужскую, женскую, детскую обувь и аксессуары из натуральной кожи. В интернет-магазине belwest.by представлен широкий ассортимент высококачественной обуви разного стиля и сезона. ",
+            AddVendor("Belwest", @" Belwest - это мультибрендовая торговая сеть, представляющая мужскую, женскую, детскую обувь и аксессуары из натуральной кожи. В интернет-магазине belwest.by представлен широкий ассортимент высококачественной обуви разного стиля и сезона. ",
                 "vendorexadel@gmail.com", @" Беларусь, 210026 г. Витебск, пр-т Генерала Людникова, 10", "+375(29) 899 11 88", "{\"instagram\": \"https://www.instagram.com/adidas/?hl=ru \", \"facebook\": \"https://www.facebook.com/belwest.shoes \", \"webSite\" : \"https://belwest.by/ru \"} ",
                 _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList());
             
