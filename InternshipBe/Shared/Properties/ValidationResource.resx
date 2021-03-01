@@ -168,9 +168,6 @@
   <data name="VendorEmailIsEmpty" xml:space="preserve">
     <value>Please, enter the vendor's Email.</value>
   </data>
-  <data name="VendorIdIsEmpty" xml:space="preserve">
-    <value>Please, enter the vendor's Id.</value>
-  </data>
   <data name="VendorNameIsEmpty" xml:space="preserve">
     <value>Please, enter the vendor's Name.</value>
   </data>

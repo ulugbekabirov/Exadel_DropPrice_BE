@@ -168,9 +168,6 @@
   <data name="VendorEmailIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите электронную почту поставщика.</value>
   </data>
-  <data name="VendorIdIsEmpty" xml:space="preserve">
-    <value>Пожалуйста, введите идентификатор поставщика.</value>
-  </data>
   <data name="VendorNameIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите имя поставщика.</value>
   </data>

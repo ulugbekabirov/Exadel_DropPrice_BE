@@ -214,15 +214,6 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please, enter the vendor&apos;s Id..
-        /// </summary>
-        internal static string VendorIdIsEmpty {
-            get {
-                return ResourceManager.GetString("VendorIdIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Name..
         /// </summary>
         internal static string VendorNameIsEmpty {
