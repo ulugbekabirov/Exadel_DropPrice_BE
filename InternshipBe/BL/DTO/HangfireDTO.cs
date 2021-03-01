@@ -6,6 +6,6 @@
 
         public int EditTime { get; set; }
 
-        public bool IsEdit { get; set; }
+        public bool IsEditedDisount { get; set; }
     }
 }
