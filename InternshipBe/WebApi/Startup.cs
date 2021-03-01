@@ -25,6 +25,7 @@ using System.Text.Json;
 using BL.Models;
 using Hangfire;
 using Shared.ExceptionHandling;
+using Shared.Middleware.RequestResponceLogger;
 
 namespace WebApi
 {
@@ -170,6 +171,8 @@ namespace WebApi
             }
 
             app.UseGlobalExceptionMiddleware();
+
+            app.UseRequestResponseLogging();
 
             app.UseCulture();
 
