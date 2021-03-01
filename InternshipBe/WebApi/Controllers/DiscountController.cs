@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         /// <param name="discountService"></param>
         /// <param name="ticketService"></param>
         /// <param name="userManager"></param>
-        public DiscountController(IDiscountService discountService, ITicketService ticketService, UserManager<User> userManager)
+        public DiscountController(IDiscountService discountService, ITicketService ticketService, UserManager<User> userManager, IHangfireService hangfireService)
         {
             _discountService = discountService;
             _ticketService = ticketService;
