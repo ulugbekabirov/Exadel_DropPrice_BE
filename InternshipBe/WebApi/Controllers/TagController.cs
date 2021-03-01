@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         /// <summary>
         ///  Action to get all tags
         /// </summary>
-        /// <param name="specifiedAmountModel">Model to get tags</param>
+        /// <param name="specifiedAmountModel">Model to specify tags amount</param>
         /// <returns>Returns all tags</returns>
         [HttpGet("tags")]
         public async Task<IActionResult> GetTags(SpecifiedAmountModel specifiedAmountModel)
