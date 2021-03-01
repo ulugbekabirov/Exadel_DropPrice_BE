@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace WebApi.Controllers
-{
+{   
+    /// <summary>
+    /// Contains actions for working with user
+    /// </summary>
     [Route("api/user")]
     [Authorize]
     public class UserController : ControllerBase
@@ -21,18 +24,32 @@ namespace WebApi.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Action to get user info by ID
+        /// </summary>
+        /// <returns>Returns user info</returns>
         [HttpGet]
         public async Task<IActionResult> GetUserInfo()
         {
             return Ok(await _userService.GetUserInfoAsync(await _userManager.FindByNameAsync(User.Identity.Name)));
         }
 
+        /// <summary>
+        ///  Action to get user saved discounts
+        /// </summary>
+        /// <param name="locationModel">Model to get saved discounts</param>
+        /// <returns>Returns saved discounts</returns>
         [HttpGet("saved")]
         public async Task<IActionResult> GetUserSavedDiscounts(LocationModel locationModel)
         {
             return Ok(await _userService.GetUserSavedDiscountsAsync(locationModel, await _userManager.FindByNameAsync(User.Identity.Name)));
         }
-        
+
+        /// <summary>
+        ///  Action to get user tickets
+        /// </summary>
+        /// <param name="specifiedAmountModel">Model to get user tickets</param>
+        /// <returns>Returns tickets</returns>
         [HttpGet("tickets")]
         public async Task<IActionResult> GetUserTickets(SpecifiedAmountModel specifiedAmountModel)
         {
