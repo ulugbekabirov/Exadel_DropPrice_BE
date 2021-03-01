@@ -5,8 +5,7 @@ namespace WebApi.ViewModels
 {
     public class VendorViewModel
     {
-        [Required(ErrorMessageResourceName = "VendorIdIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
-        public int? VendorId { get; set; }
+        public int VendorId { get; set; }
 
         [Required(ErrorMessageResourceName = "VendorNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string VendorName { get; set; }

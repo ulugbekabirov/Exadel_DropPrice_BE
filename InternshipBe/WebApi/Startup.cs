@@ -26,6 +26,8 @@ using BL.Models;
 using Hangfire;
 using Shared.ExceptionHandling;
 using Shared.Middleware.RequestResponceLogger;
+using System.IO;
+using System.Reflection;
 
 namespace WebApi
 {
@@ -92,6 +94,10 @@ namespace WebApi
                             Array.Empty<string>()                     
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                swagger.IncludeXmlComments(xmlPath);
             });
 
             services.AddHangfire(options =>

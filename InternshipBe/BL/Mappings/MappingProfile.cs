@@ -104,8 +104,7 @@ namespace BL.Mapping
                 .ForAllOtherMembers(d => d.Ignore());
             CreateMap<Discount, DiscountDTO>()
                 .ForMember(d => d.DiscountName, source => source.MapFrom(s => s.Name))
-                .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id))
-                .ForMember(d => d.PromoCode, act => act.NullSubstitute("Not Available"));
+                .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id));
 
             CreateMap<Discount, ArchivedDiscountDTO>()
                 .ForMember(d => d.DiscountId, source => source.MapFrom(s => s.Id));

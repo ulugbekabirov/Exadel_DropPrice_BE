@@ -1,4 +1,5 @@
-﻿using BL.Interfaces;
+﻿using BL.DTO;
+using BL.Interfaces;
 using DAL.Interfaces;
 using Hangfire;
 using Microsoft.Extensions.Localization;
@@ -23,7 +24,7 @@ namespace BL.Services
             _stringLocalizer = stringLocalizer;
         }
 
-        public async Task<string> BeginEditDiscountJobAsync(int discountId)
+        public async Task<DiscountJobDTO> BeginEditDiscountJobAsync(int discountId)
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
@@ -36,14 +37,24 @@ namespace BL.Services
 
                 BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-                return _stringLocalizer["A session for editing a discount has been created."];
+                return new DiscountJobDTO()
+                {
+                    Message = _stringLocalizer["A session for editing a discount has been created."],
+                    IsEditedDisount = false,
+                    EditTime = discountEditTime,
+                };
             }
 
             BackgroundJob.Delete(job.Key);
 
             BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
-            return _stringLocalizer["A session on editing a discount is open. Time has been updated."];
+            return new DiscountJobDTO()
+            {
+                Message = _stringLocalizer["A session on editing a discount is open. Time has been updated."],
+                IsEditedDisount = true,
+                EditTime = discountEditTime,
+            };
         }
 
         public async Task<string> EndEditDiscountJobAsync(int discountId)
@@ -67,6 +78,11 @@ namespace BL.Services
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
+
+            if (job.Key is null)
+            {
+                return;
+            }
 
             BackgroundJob.Delete(job.Key);
         }

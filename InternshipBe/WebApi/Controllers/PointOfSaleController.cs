@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
+    /// <summary>
+    ///  Contains actions for working with points of sales
+    /// </summary>
     [Route("api/pointOfSales")]
     [Authorize]
     public class PointOfSaleController : ControllerBase
@@ -16,6 +19,10 @@ namespace WebApi.Controllers
             _pointOfSaleService = pointOfSaleService;
         }
 
+        /// <summary>
+        /// Action to get all points of sales
+        /// </summary>
+        /// <returns>Returns points of sales</returns>
         [HttpGet]
         public async Task<IActionResult> GetPointOfSales()
         {
