@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Action to get user info by ID
+        /// Action to get user info
         /// </summary>
         /// <returns>Returns user info</returns>
         [HttpGet]
