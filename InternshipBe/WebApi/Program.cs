@@ -49,8 +49,5 @@ namespace WebApi
                     .UseConfiguration(Configuration)
                     .UseSerilog(); ;
                 });
-
-
-
     }
 }

@@ -49,8 +49,5 @@ namespace IdentityServer
                     .UseConfiguration(Configuration)
                     .UseSerilog(); ;
                 });
-
-
-
     }
 }
