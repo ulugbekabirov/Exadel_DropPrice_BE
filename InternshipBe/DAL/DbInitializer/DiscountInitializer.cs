@@ -441,7 +441,7 @@ namespace DAL.DbInitializer
              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
              _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
   
-            AddDiscount(12, "Mini cutting pliers Stanley FMHT0-80519", @"Mini cutting pliers Stanley FATMAX FMHT0-80519 are designed for cutting wires, wire, small elements and thin rods.",
+            AddDiscount(12, "Mini cutting pliers Stanley", @"Mini cutting pliers Stanley FATMAX FMHT0-80519 are designed for cutting wires, wire, small elements and thin rods.",
             20, DateTime.Now, DateTime.Now.AddDays(50), true, null,
              _context.Vendors.Find(12),
              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
@@ -459,14 +459,14 @@ namespace DAL.DbInitializer
              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
              _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
 
-            AddDiscount(12, "Combination pliers STANLEY FatMax (FMHT0-70813)", @"Combination pliers STANLEY FatMax Compound Action (FMHT0-70813) due to its design, provides more force transfer to the jaws / cutting edges for better clamping / cutting.",
+            AddDiscount(12, "Combination pliers STANLEY FatMax", @"Combination pliers STANLEY FatMax Compound Action (FMHT0-70813) due to its design, provides more force transfer to the jaws / cutting edges for better clamping / cutting.",
             35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
              _context.Vendors.Find(12),
              _context.PointOfSales.Where(p => p.Name == "Stanley Walnut Creek").ToList(),
              _context.Tags.Where(t => t.Name == "Equipment" || t.Name == "For home").ToList());
 
             //Head & Shoulders
-            AddDiscount(13, "Шампунь для волос Head&Shoulders Мгновенная помощь против перхоти", @"Шампунь против перхоти с усиленной формулой Head & Shoulders Men Ultra Мгновенная помощь при зуде кожи головы с экстрактом мяты и женьшеня для мгновенного облегчения и ощущения свежести.",
+            AddDiscount(13, "Шампунь для волос Head&Shoulders", @"Шампунь против перхоти с усиленной формулой Head&Shoulders Men Ultra Мгновенная помощь при зуде кожи головы с экстрактом мяты и женьшеня для мгновенного облегчения и ощущения свежести.",
             20, DateTime.Now, DateTime.Now.AddDays(32), true, null,
             _context.Vendors.Find(13),
             _context.PointOfSales.Where(p => p.Name == "Head & Shoulders Минск" || p.Name == "Head & Shoulders Гомель" || p.Name == "Head & Shoulders Витебск").ToList(),
@@ -510,13 +510,13 @@ namespace DAL.DbInitializer
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
-            AddDiscount(15, "Внешний жесткий диск Samsung T5 2TB MU-PA2T0B/WW", @"Портативный SSD накопитель Samsung серии T5 поднимает скорость передачи данных на новый уровень и открывает новую страницу в использовании внешней памяти.",
+            AddDiscount(15, "Внешний жесткий диск Samsung T5", @"Портативный SSD накопитель Samsung серии T5 на 2 террабайта поднимает скорость передачи данных на новый уровень и открывает новую страницу в использовании внешней памяти.",
            35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
            _context.Vendors.Find(15),
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
-            AddDiscount(15, "Смартфон Samsung Galaxy S21 128GB/SM-G991BZADSER", @"Уникальный дизайн камеры, 8К видео, Лучшая производительность в Galaxy, Dynamic AMOLED 2X, Адаптивный экран 120Гц.",
+            AddDiscount(15, "Смартфон Samsung Galaxy S21", @"Уникальный дизайн камеры, 8К видео, Лучшая производительность в Galaxy, Dynamic AMOLED 2X, Адаптивный экран 120Гц.",
           35, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
@@ -528,7 +528,7 @@ namespace DAL.DbInitializer
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
-            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium/SM-R830NZKASER", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица).",
+            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZKASER (лакрица).",
           25, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
@@ -540,13 +540,13 @@ namespace DAL.DbInitializer
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
            _context.Tags.Where(t => t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
-            AddDiscount(15, "Планшет Samsung Galaxy Tab A7 32GB LTE/SM-T505NZDASER", @"Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото).",
+            AddDiscount(15, "Планшет Samsung Galaxy Tab A7", @"Планшет Samsung Galaxy Tab A7 32GB LTE / SM-T505NZDASER (золото).",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
           _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "Роскошь" || t.Name == "Электротехника" || t.Name == "Уют" || t.Name == "Для дома" || t.Name == "Комфорт" || t.Name == "Дорого").ToList());
 
-            AddDiscount(15, "Планшет Samsung Tab A 8.0 (2019) Wi-Fi/SM-T290", @"Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный).",
+            AddDiscount(15, "Планшет Samsung Tab A 8.0", @"Планшет Samsung Tab A 8.0 (2019) Wi-Fi / SM-T290 (черный).",
           50, DateTime.Now, DateTime.Now.AddDays(32), true, null,
           _context.Vendors.Find(15),
           _context.PointOfSales.Where(p => p.Name == "Samsung Минск"  || p.Name == "Samsung Гродно" || p.Name == "Samsung Гомель").ToList(),
