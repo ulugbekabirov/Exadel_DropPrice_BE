@@ -46,15 +46,15 @@ namespace DAL.DbInitializer
             AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 32, 85);
             AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 61, 98);
             AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 32, 85);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user0@test.com").Id, 86, 96);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user3@test.com").Id, 86, 98);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user1@test.com").Id, 1, 32);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user2@test.com").Id, 26, 53);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user4@test.com").Id, 4, 60);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user5@test.com").Id, 1, 85);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user7@test.com").Id, 64, 85);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user8@test.com").Id, 32, 70);
-            AddAssesment(_context.Users.SingleOrDefault(u => u.Email == "user9@test.com").Id, 1, 76);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user0@test.com").Id, 86, 96);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user3@test.com").Id, 86, 98);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user1@test.com").Id, 1, 32);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user2@test.com").Id, 26, 53);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user4@test.com").Id, 4, 60);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user5@test.com").Id, 1, 85);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user7@test.com").Id, 64, 85);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user8@test.com").Id, 32, 70);
+            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user9@test.com").Id, 1, 76);
         }
     }
 }
