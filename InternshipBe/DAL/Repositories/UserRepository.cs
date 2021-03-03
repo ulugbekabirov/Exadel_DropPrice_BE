@@ -17,12 +17,12 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<string>> GetUserRolesAsync(int userId)
         {
-            return await _context.Roles.Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id)).Select(r => r.Name).ToListAsync();
+            return await _context.Roles.Where(r => _context.UserRoles.Where(u => u.UserId == userId).Select(u => u.RoleId).Contains(r.Id)).Select(r => r.Name).AsNoTracking().ToListAsync();
         }
 
         public async Task<IEnumerable<Discount>> GetSavedDiscountsAsync(int userId, int skip, int take)
         {
-            return await _context.SavedDiscounts.Where(s => s.UserId == userId && s.IsSaved == true).Skip(skip).Take(take).Select(d => d.Discount).ToListAsync();
+            return await _context.SavedDiscounts.Where(s => s.UserId == userId && s.IsSaved == true).Skip(skip).Take(take).Select(d => d.Discount).AsNoTracking().ToListAsync();
         }
     }
 }
