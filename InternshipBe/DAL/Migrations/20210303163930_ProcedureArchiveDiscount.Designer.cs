@@ -11,12 +11,11 @@ using NetTopologySuite.Geometries;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210303162429_ProcedureArchiveDiscount")]
+    [Migration("20210303163930_ProcedureArchiveDiscount")]
     partial class ProcedureArchiveDiscount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
-#pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)

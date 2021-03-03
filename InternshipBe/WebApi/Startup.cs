@@ -55,7 +55,7 @@ namespace WebApi
 
             services.AddScoped<IReplacerService, ReplacerService>();
 
-            services.AddScoped<IDapperRepository, DapperRepository>();
+            services.AddScoped<IDapperRepository, DiscountDapperRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
@@ -200,7 +200,7 @@ namespace WebApi
             app.UseHangfireServer();
             app.UseHangfireDashboard();
 
-            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveInvalidDiscount(), Cron.Daily);
+            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveExpiredDiscountAsync(), Cron.Daily());
 
             app.UseEndpoints(endpoints =>
             {

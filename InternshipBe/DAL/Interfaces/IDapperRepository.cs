@@ -4,6 +4,6 @@ namespace DAL.Interfaces
 {
     public interface IDapperRepository
     {
-        Task ArchiveInvalidDiscount();
+        Task ArchiveExpiredDiscountAsync();
     }
 }
