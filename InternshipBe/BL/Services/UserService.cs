@@ -34,10 +34,10 @@ namespace BL.Services
         }
 
         public async Task<IEnumerable<DiscountDTO>> GetUserSavedDiscountsAsync(LocationModel locationModel, User user)
-        {
-            var savedDiscounts = await _userRepository.GetSavedDiscountsAsync(user.Id, locationModel.Skip, locationModel.Take);
-
+        {          
             var location = _userRepository.GetLocation(user.Office.Latitude, user.Office.Longitude, locationModel.Latitude, locationModel.Longitude);
+
+            var savedDiscounts = await _userRepository.GetSavedDiscountsAsync(user.Id, locationModel.Skip, locationModel.Take);
 
             var savedDiscountDTOs = _mapper.Map<DiscountDTO[]>(savedDiscounts);
 
