@@ -55,7 +55,7 @@ namespace WebApi
 
             services.AddScoped<IReplacerService, ReplacerService>();
 
-            services.AddScoped<IDapperRepository, DiscountDapperRepository>();
+            services.AddScoped<IDiscountDapperRepository, DiscountDapperRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
@@ -169,7 +169,7 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDapperRepository dapperRepository)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscountDapperRepository dapperRepository)
         {
             if (env.IsDevelopment())
             {

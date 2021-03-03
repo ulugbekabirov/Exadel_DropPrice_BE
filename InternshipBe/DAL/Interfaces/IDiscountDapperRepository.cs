@@ -2,7 +2,7 @@
 
 namespace DAL.Interfaces
 {
-    public interface IDapperRepository
+    public interface IDiscountDapperRepository
     {
         Task ArchiveExpiredDiscountAsync();
     }

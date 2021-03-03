@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class DiscountDapperRepository : IDapperRepository
+    public class DiscountDapperRepository : IDiscountDapperRepository
     {
         private readonly string _connectionString;
 
