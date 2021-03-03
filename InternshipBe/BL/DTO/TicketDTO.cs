@@ -61,6 +61,10 @@ namespace BL.DTO
                     }
                 }
             }
+            else
+            {
+                return false;
+            }
 
             return result;
         }
