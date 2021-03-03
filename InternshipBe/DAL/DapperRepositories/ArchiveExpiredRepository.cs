@@ -6,13 +6,13 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.DapperRepositories
 {
-    public class DiscountDapperRepository : IDiscountDapperRepository
+    public class ArchiveExpiredRepository : IArchiveExpiredRepository
     {
         private readonly string _connectionString;
 
-        public DiscountDapperRepository(IConfiguration configuration)
+        public ArchiveExpiredRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }

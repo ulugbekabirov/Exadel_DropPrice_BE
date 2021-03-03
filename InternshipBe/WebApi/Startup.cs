@@ -28,6 +28,7 @@ using Shared.ExceptionHandling;
 using Shared.Middleware.RequestResponceLogger;
 using System.IO;
 using System.Reflection;
+using DAL.DapperRepositories;
 
 namespace WebApi
 {
@@ -55,7 +56,7 @@ namespace WebApi
 
             services.AddScoped<IReplacerService, ReplacerService>();
 
-            services.AddScoped<IDiscountDapperRepository, DiscountDapperRepository>();
+            services.AddScoped<IArchiveExpiredRepository, ArchiveExpiredRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
@@ -169,7 +170,7 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscountDapperRepository dapperRepository)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IArchiveExpiredRepository dapperRepository)
         {
             if (env.IsDevelopment())
             {
