@@ -16,8 +16,9 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
-        public void AddTicket(int userId, int discountId, DateTime orderDate)
+        private void AddTicket(string email, int discountId, DateTime orderDate)
         {
+            var userId = _context.Users.SingleOrDefault(u => u.Email == email).Id;
             var user = _context.Users.Find(userId);
             var discount = _context.Discounts.Find(discountId);
 
@@ -35,8 +36,19 @@ namespace DAL.DbInitializer
             _context.SaveChanges();
         }
 
+        private void AddMultipleTickets(string email, int discountIdStart, int discountIdStop)
+        {
+            var randomDay = new Random();
+            for (; discountIdStart < discountIdStop; discountIdStart++)
+            {
+                AddTicket(email, discountIdStart, DateTime.Now.AddDays(randomDay.Next(-5,0)));
+            }
+        }
+
         public void InitializeTickets()
         {
+            AddMultipleTickets("user0@test.com", 6, 34);
+
             /*            //admin
                         AddTicket(2, 3, DateTime.Now.AddDays(-1));
                         AddTicket(1, 5, DateTime.Now.AddDays(-1));
@@ -70,26 +82,27 @@ namespace DAL.DbInitializer
                         AddTicket(6, 6, DateTime.Now.AddDays(-1));
                         */
 
-            Random rnd = new Random();
 
-            foreach (User user in _context.Users)
-            {
-                int i = 25;
-                while (i > 0)
-                {
-                    Console.WriteLine(i);
-                    i--;
-                }
+            /*            foreach (User user in _context.Users)
+                        {
+                            var existingTickets = new List<int>();
 
-                var existingTickets = new List<int>();
-                var discountId = rnd.Next(1, 98);
+                            int i = 2;
+                            while (i > 0)
+                            {
+                                var discountId = rnd.Next(1, 98);
 
-                if (!existingTickets.Contains(discountId))
-                {
-                    AddTicket(user.Id, discountId, DateTime.Now.AddDays(rnd.Next(-5, 0)));
-                }
-            }
+                                if (!existingTickets.Contains(discountId))
+                                {
+                                    var userId = user.Id;
+                                    existingTickets.Add(discountId);
+                                    AddTicket(userId, discountId, DateTime.Now.AddDays(-1));
+                                }
 
-        }
+                                i--;
+                            }
+                        }
+            */
+          }
     }
 }
