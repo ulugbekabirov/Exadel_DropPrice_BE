@@ -31,9 +31,9 @@ namespace DAL.Repositories
             return _context.Vendors.Where(v => v.Name.Contains(searchQuery)).AsNoTracking();
         }
 
-        public IQueryable<Discount> GetDiscounts(int id)
+        public IQueryable<Discount> GetDiscountsOfVendor(int id)
         {
-            return _context.Discounts.Where(d => d.VendorId == id);
+            return _context.Discounts.Where(d => d.VendorId == id).AsNoTracking();
         }
 
         public IOrderedQueryable<Vendor> SortBy(IQueryable<Vendor> vendors, SortTypes sortBy)
