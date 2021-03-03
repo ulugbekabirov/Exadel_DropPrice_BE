@@ -19,7 +19,7 @@ namespace DAL.Repositories
 
         public IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius)
         {
-            return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius).AsNoTracking();
         }
 
         public IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius)
@@ -39,7 +39,7 @@ namespace DAL.Repositories
                 }
             };
 
-            return searchResults.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            return searchResults.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius).AsNoTracking();
         }
 
         public IQueryable<Discount> SortDiscounts(IQueryable<Discount> discounts, SortTypes sortBy, Point location)
@@ -60,12 +60,12 @@ namespace DAL.Repositories
                 return sortedDiscounts;
             }
 
-            return sortedDiscounts.ThenBy(d => d.PointOfSales.Min(p => p.Location.Distance(location)));
+            return sortedDiscounts.ThenBy(d => d.PointOfSales.Min(p => p.Location.Distance(location))).AsNoTracking();
         }
 
         public async Task<double?> GetDiscountRatingAsync(int id)
         {
-            return await _context.Assessments.Where(d => d.DiscountId == id).AverageAsync(d => d.AssessmentValue);
+            return await _context.Assessments.Where(d => d.DiscountId == id).AsNoTracking().AverageAsync(d => d.AssessmentValue);
         }
 
         public async Task<ICollection<string>> GetDiscountTagsAsync(int id)
