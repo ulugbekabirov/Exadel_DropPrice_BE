@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace BL.DTO
 {
@@ -33,5 +34,40 @@ namespace BL.DTO
         public bool DiscountActivity { get; set; }
 
         public bool IsSavedDiscount { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var result = true;
+
+            if (obj is TicketDTO ticketDTO)
+            {
+                var typeOfTicket = typeof(TicketDTO);
+                var ticketFields = typeOfTicket.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+
+                foreach (var field in ticketFields)
+                {
+                    var objValue = field.GetValue(this);
+                    var ticketDTOValue = field.GetValue(ticketDTO);
+
+                    if (!Equals(objValue, ticketDTOValue))
+                    {
+                        if (objValue is DateTime objDate)
+                        {
+                            result = objDate.Date == ((DateTime)ticketDTOValue).Date;
+                            continue;
+                        }
+
+                        result = false;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public override int GetHashCode()
+        {
+            return Guid.NewGuid().GetHashCode();
+        }
     }
 }
