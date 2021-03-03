@@ -7,13 +7,13 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"GO
-                                  CREATE PROCEDURE ArchiveInvalidDiscount AS
+                                  CREATE PROCEDURE ArchiveExpiredDiscount AS
                                   UPDATE Discounts SET ActivityStatus = 0 WHERE ActivityStatus = 1 and EndDate < GETDATE();");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DROP PROCEDURE ArchiveInvalidDiscount;");
+            migrationBuilder.Sql("DROP PROCEDURE ArchiveExpiredDiscount;");
         }
     }
 }

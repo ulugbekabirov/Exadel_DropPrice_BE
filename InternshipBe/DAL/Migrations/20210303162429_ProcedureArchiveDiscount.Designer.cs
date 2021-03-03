@@ -11,7 +11,7 @@ using NetTopologySuite.Geometries;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210303135939_ProcedureArchiveDiscount")]
+    [Migration("20210303162429_ProcedureArchiveDiscount")]
     partial class ProcedureArchiveDiscount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
