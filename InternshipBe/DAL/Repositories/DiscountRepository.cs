@@ -70,7 +70,7 @@ namespace DAL.Repositories
 
         public async Task<ICollection<string>> GetDiscountTagsAsync(int id)
         {
-            return await _context.Tags.Where(t => t.Discounts.Select(d => d.Id).Contains(id)).Select(t => t.Name).ToListAsync();
+            return await _context.Tags.Where(t => t.Discounts.Select(d => d.Id).Contains(id)).Select(t => t.Name).AsNoTracking().ToListAsync();
         }
 
         public async Task<bool> IsSavedDiscountAsync(int id, int userId)
