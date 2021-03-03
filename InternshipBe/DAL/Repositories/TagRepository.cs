@@ -21,7 +21,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Tag>> GetExistingTagsAsync(IEnumerable<string> tagNames)
         {
-            return await _context.Tags.Where(t => tagNames.Contains(t.Name)).ToListAsync();
+            return await _context.Tags.Where(t => tagNames.Contains(t.Name)).AsNoTracking().ToListAsync();
         }
     }
 }
