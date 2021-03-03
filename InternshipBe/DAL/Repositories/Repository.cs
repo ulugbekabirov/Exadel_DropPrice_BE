@@ -30,7 +30,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _entities.ToListAsync();
+            return await _entities.AsNoTracking().ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int id)
