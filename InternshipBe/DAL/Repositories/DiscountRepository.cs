@@ -90,7 +90,8 @@ namespace DAL.Repositories
                     .Select(p => new { p.Address, DistanceBetweenPoints = p.Location.Distance(location) })
                     .OrderBy(p => p.DistanceBetweenPoints)
                     .FirstOrDefault())
-                .FirstAsync();
+                    .AsNoTracking()
+                    .FirstAsync();
 
             return (pointOfSale.Address, (int)pointOfSale.DistanceBetweenPoints);
         }
