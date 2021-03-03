@@ -59,12 +59,14 @@ namespace DAL.Repositories
         public async Task<double?> GetVendorRatingAsync(int id)
         {
             return await _context.Assessments.Where(a => _context.Discounts.Where(d => d.VendorId == id).Select(d => d.Id).Contains(a.DiscountId))
+                .AsNoTracking()
                 .AverageAsync(a => a.AssessmentValue);
         }
 
         public async Task<int> GetVendorTicketCountAsync(int id)
         {
             return await _context.Tickets.Where(t => _context.Discounts.Where(d => d.VendorId == id).Select(d => d.Id).Contains(t.DiscountId))
+                .AsNoTracking()
                 .CountAsync();
         }
 
