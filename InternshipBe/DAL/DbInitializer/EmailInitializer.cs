@@ -44,7 +44,7 @@ namespace DAL.DbInitializer
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i' rel='stylesheet' />
     <style type='text/css'>
         .ticket {
-            font-size: 1.2em;
+            font-size: 1.1em;
             top: 0;
         }
 
@@ -58,7 +58,7 @@ namespace DAL.DbInitializer
             align-items: center;
             box-sizing: border-box;
             height: 100%;
-            width: 25%;
+            width: 30%;
             margin: 0 auto;
         }
 
@@ -242,7 +242,7 @@ namespace DAL.DbInitializer
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i' rel='stylesheet' />
     <style type='text/css'>
         .ticket {
-            font-size: 1.2em;
+            font-size: 1.1em;
             top: 0;
         }
 
@@ -256,7 +256,7 @@ namespace DAL.DbInitializer
             align-items: center;
             box-sizing: border-box;
             height: 100%;
-            width: 25%;
+            width: 30%;
             margin: 0 auto;
         }
 
@@ -440,7 +440,7 @@ namespace DAL.DbInitializer
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i' rel='stylesheet' />
     <style type='text/css'>
         .ticket {
-            font-size: 1.2em;
+            font-size: 1.1em;
             top: 0;
         }
 
@@ -454,7 +454,7 @@ namespace DAL.DbInitializer
             align-items: center;
             box-sizing: border-box;
             height: 100%;
-            width: 25%;
+            width: 30%;
             margin: 0 auto;
         }
 
@@ -638,7 +638,7 @@ namespace DAL.DbInitializer
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i' rel='stylesheet' />
     <style type='text/css'>
         .ticket {
-            font-size: 1.2em;
+            font-size: 1.1em;
             top: 0;
         }
 
@@ -652,7 +652,7 @@ namespace DAL.DbInitializer
             align-items: center;
             box-sizing: border-box;
             height: 100%;
-            width: 25%;
+            width: 30%;
             margin: 0 auto;
         }
 
