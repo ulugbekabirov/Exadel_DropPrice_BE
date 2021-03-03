@@ -62,7 +62,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<TEntity>> GetSpecifiedAmountAsync(IQueryable<TEntity> entities, int skip, int take)
         {
-            return await entities.Skip(skip).Take(take).ToListAsync();
+            return await entities.Skip(skip).Take(take).AsNoTracking().ToListAsync();
         }
 
         public SortTypes GetSortType(string sortBy)
