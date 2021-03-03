@@ -55,6 +55,8 @@ namespace WebApi
 
             services.AddScoped<IReplacerService, ReplacerService>();
 
+            services.AddScoped<IDapperRepository, DapperRepository>();
+
             services.AddControllers()
                     .AddJsonOptions(options =>
                     { options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; });
@@ -91,7 +93,7 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                            Array.Empty<string>()                     
+                            Array.Empty<string>()
                     }
                 });
 
@@ -167,13 +169,13 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDapperRepository dapperRepository)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
 
             app.UseGlobalExceptionMiddleware();
@@ -197,6 +199,8 @@ namespace WebApi
 
             app.UseHangfireServer();
             app.UseHangfireDashboard();
+
+            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveInvalidDiscount(), Cron.Daily);
 
             app.UseEndpoints(endpoints =>
             {
