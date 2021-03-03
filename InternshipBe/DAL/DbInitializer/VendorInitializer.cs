@@ -57,11 +57,11 @@ namespace DAL.DbInitializer
                 _context.PointOfSales.Where(p => p.Name == "Магазин косметики в Минске на Боровой" || p.Name == "УП Дипмаркет" || p.Name == "Магазин профессиональной косметики Cosmopro.by" || p.Name == "L'Oreal Poland Sp. zoo").ToList());
             
             AddVendor("Belwest", @" Belwest - это мультибрендовая торговая сеть, представляющая мужскую, женскую, детскую обувь и аксессуары из натуральной кожи. В интернет-магазине belwest.by представлен широкий ассортимент высококачественной обуви разного стиля и сезона. ",
-                "vendorexadel@gmail.com", @"Беларусь, 210026 г. Витебск, пр-т Генерала Людникова, 10", "+375(29) 899 11 88", "{\"instagram\": \"https://www.instagram.com/adidas/?hl=ru \", \"facebook\": \"https://www.facebook.com/belwest.shoes \", \"webSite\" : \"https://belwest.by/ru \"} ",
+                "vendorexadel@gmail.com", @"Беларусь, 210026 г. Витебск, пр-т Генерала Людникова, 10", "+375(29) 899 11 88", "{\"instagram\": \"https://www.instagram.com/belwest.shoes/?hl=ru \", \"facebook\": \"https://www.facebook.com/belwest.shoes \", \"webSite\" : \"https://belwest.by/ru \"} ",
                 _context.PointOfSales.Where(p => p.Name == "Belwest ТЦ Столица" || p.Name == "Belwest Минск" || p.Name == "Belwest ТД Неман" || p.Name == "BELWEST Витебск" || p.Name == "Belwest ТК Корона").ToList());
             
             AddVendor("Adidas", @" Adidas - крупнейший бренд, создающий одежду и обувь для занятий спортом с использованием передовых технологий. Это коллекции, которые помогают добиваться максимальных результатов в любом виде спорта как начинающим, так и профессиональным атлетам.",
-                "vendorexadel@gmail.com", @"220121, Беларусь, г. Минск, ул. Глебки, д.2, офис 13а", "+375(29) 2 495 495", "{\"instagram\": \"https://www.instagram.com/lorealparis/ \", \"facebook\": \"https://www.facebook.com/adidas \", \"webSite\" : \"https://www.adidas.ru \"} ",
+                "vendorexadel@gmail.com", @"220121, Беларусь, г. Минск, ул. Глебки, д.2, офис 13а", "+375(29) 2 495 495", "{\"instagram\": \"https://www.instagram.com/adidas/?hl=ru/ \", \"facebook\": \"https://www.facebook.com/adidas \", \"webSite\" : \"https://www.adidas.ru \"} ",
                 _context.PointOfSales.Where(p => p.Name == "Adidas Гродно" || p.Name == "Футбольный магазин soccershop.by" || p.Name == "Adidas Минск" || p.Name == "Adidas Ташкент").ToList());
             
             AddVendor("Vitra", @" Компания Vitra специализируется на производстве сантехники, керамической плитки и керамогранита. У ней вы сможете приобрести все необходимые товары для вашего дома",
