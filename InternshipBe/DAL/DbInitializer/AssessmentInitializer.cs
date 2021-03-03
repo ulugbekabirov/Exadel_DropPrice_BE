@@ -44,18 +44,18 @@ namespace DAL.DbInitializer
         {
             AddMultipleAssesments("userGomel@test.com", 8, 43);
             AddMultipleAssesments("userWarszawa@test.com", 1, 64);
-            AddMultipleAssesments("userTashkent@test.com"), 32, 85);
-            AddMultipleAssesments("userUsa@test.com"), 61, 98);
-            AddMultipleAssesments("userTashkent@test.com"), 32, 85);
-            AddMultipleAssesments("user0@test.com"), 86, 96);
-            AddMultipleAssesments("user3@test.com"), 86, 98);
-            AddMultipleAssesments("user1@test.com"), 1, 32);
-            AddMultipleAssesments("user2@test.com"), 26, 53);
-            AddMultipleAssesments("user4@test.com"), 4, 60);
-            AddMultipleAssesments("user5@test.com"), 1, 85);
-            AddMultipleAssesments("user7@test.com"), 64, 85);
-            AddMultipleAssesments("user8@test.com"), 32, 70);
-            AddMultipleAssesments("user9@test.com"), 1, 76);
+            AddMultipleAssesments("userTashkent@test.com", 32, 85);
+            AddMultipleAssesments("userUsa@test.com", 61, 98);
+            AddMultipleAssesments("userTashkent@test.com", 32, 85);
+            AddMultipleAssesments("user0@test.com", 86, 96);
+            AddMultipleAssesments("user3@test.com", 86, 98);
+            AddMultipleAssesments("user1@test.com", 1, 32);
+            AddMultipleAssesments("user2@test.com", 26, 53);
+            AddMultipleAssesments("user4@test.com", 4, 60);
+            AddMultipleAssesments("user5@test.com", 1, 85);
+            AddMultipleAssesments("user7@test.com", 64, 85);
+            AddMultipleAssesments("user8@test.com", 32, 70);
+            AddMultipleAssesments("user9@test.com", 1, 76);
         }
     }
 }
