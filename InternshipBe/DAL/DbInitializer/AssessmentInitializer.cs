@@ -14,8 +14,9 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
-        public void AddAssesment(int userId, int discountId, int value)
+        public void AddAssesment(string email, int discountId, int value)
         {
+            var userId = _context.Users.SingleOrDefault(u => u.Email == email).Id;
             var assessment = new Assessment()
             {
                 UserId = userId,
@@ -29,32 +30,32 @@ namespace DAL.DbInitializer
 
             _context.SaveChanges();
         }
-        private void AddMultipleAssesments(int userId, int discountIdStart, int discountIdStop)
+        private void AddMultipleAssesments(string email, int discountIdStart, int discountIdStop)
         {
             var rnd = new Random();
 
             for(; discountIdStart <= discountIdStop; discountIdStart++)
             {
-                AddAssesment(userId, discountIdStart, rnd.Next(1,5));
+                AddAssesment(email, discountIdStart, rnd.Next(1,5));
             }
         }
 
         public void InitializerAssesments()
         {
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userGomel@test.com").Id, 8, 43);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userWarszawa@test.com").Id, 1, 64);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 32, 85);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userUsa@test.com").Id, 61, 98);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "userTashkent@test.com").Id, 32, 85);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user0@test.com").Id, 86, 96);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user3@test.com").Id, 86, 98);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user1@test.com").Id, 1, 32);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user2@test.com").Id, 26, 53);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user4@test.com").Id, 4, 60);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user5@test.com").Id, 1, 85);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user7@test.com").Id, 64, 85);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user8@test.com").Id, 32, 70);
-            AddMultipleAssesments(_context.Users.SingleOrDefault(u => u.Email == "user9@test.com").Id, 1, 76);
+            AddMultipleAssesments("userGomel@test.com", 8, 43);
+            AddMultipleAssesments("userWarszawa@test.com", 1, 64);
+            AddMultipleAssesments("userTashkent@test.com"), 32, 85);
+            AddMultipleAssesments("userUsa@test.com"), 61, 98);
+            AddMultipleAssesments("userTashkent@test.com"), 32, 85);
+            AddMultipleAssesments("user0@test.com"), 86, 96);
+            AddMultipleAssesments("user3@test.com"), 86, 98);
+            AddMultipleAssesments("user1@test.com"), 1, 32);
+            AddMultipleAssesments("user2@test.com"), 26, 53);
+            AddMultipleAssesments("user4@test.com"), 4, 60);
+            AddMultipleAssesments("user5@test.com"), 1, 85);
+            AddMultipleAssesments("user7@test.com"), 64, 85);
+            AddMultipleAssesments("user8@test.com"), 32, 70);
+            AddMultipleAssesments("user9@test.com"), 1, 76);
         }
     }
 }
