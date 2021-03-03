@@ -16,7 +16,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<PointOfSale>> GetExistingPointOfSalesAsync(IEnumerable<string> pointOfSalesName)
         {
-            return await _context.PointOfSales.Where(p => pointOfSalesName.Contains(p.Name)).ToListAsync();
+            return await _context.PointOfSales.Where(p => pointOfSalesName.Contains(p.Name)).AsNoTracking().ToListAsync();
         }
     }
 }
