@@ -40,7 +40,7 @@ namespace BL.Services
 
         public async Task<IEnumerable<PointOfSaleDTO>> GetVendorPointOfSalesAsync(int id)
         {
-            var pointOfSales = await _vendorRepository.GetVendorPointOfSalesAsync(id);
+            var pointOfSales = await _vendorRepository.GetPointOfSalesAsync(id);
 
             return _mapper.Map<PointOfSaleDTO[]>(pointOfSales);
         }
