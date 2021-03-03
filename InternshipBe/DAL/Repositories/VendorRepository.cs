@@ -28,10 +28,10 @@ namespace DAL.Repositories
                 return _context.Vendors;
             }
 
-            return _context.Vendors.Where(v => v.Name.Contains(searchQuery));
+            return _context.Vendors.Where(v => v.Name.Contains(searchQuery)).AsNoTracking();
         }
 
-        public IQueryable<Discount> GetVendorDiscounts(int id)
+        public IQueryable<Discount> GetDiscounts(int id)
         {
             return _context.Discounts.Where(d => d.VendorId == id);
         }

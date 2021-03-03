@@ -82,7 +82,7 @@ namespace BL.Services
 
             var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
-            var discounts = _vendorRepository.GetVendorDiscounts(id);
+            var discounts = _vendorRepository.GetDiscounts(id);
 
             var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
 

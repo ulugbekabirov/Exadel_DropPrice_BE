@@ -11,7 +11,7 @@ namespace DAL.Interfaces
         Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id);
         Task<int> GetTotalNumberOfVendorsAsync(IQueryable<Vendor> vendors);
 
-        IQueryable<Discount> GetVendorDiscounts(int id);
+        IQueryable<Discount> GetDiscounts(int id);
 
         Task<double?> GetVendorRatingAsync(int id);
 
