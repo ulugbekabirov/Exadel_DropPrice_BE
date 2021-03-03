@@ -149,7 +149,7 @@ namespace DAL.Repositories
                 return  _context.Discounts;
             }
 
-            return _context.Discounts.Where(v => v.Name.Contains(searchQuery));
+            return _context.Discounts.Where(v => v.Name.Contains(searchQuery)).AsNoTracking();
         }
 
         public IOrderedQueryable<Discount> SortBy(IQueryable<Discount> discounts, SortTypes sortBy)
@@ -191,7 +191,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take)
         {
-            return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).ToListAsync();
+            return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).AsNoTracking().ToListAsync();
         }
 
         public async Task UpdateDiscountActivityStatusAsync(int id, bool activityStatus)
