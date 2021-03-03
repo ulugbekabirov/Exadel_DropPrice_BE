@@ -39,15 +39,15 @@ namespace BL.EmailService
 
         private async Task<EmailTemplateModel> GetTemplateAsync()
         {
-            var emailTemplate = await _сonfigRepository.SetEmailLocalizationAsync();
+            var emailTemplate = await _сonfigRepository.GetMessageTemplateFromCurrentCultureAsync();
             var emailTemplateModel = _mapper.Map<EmailTemplateModel>(emailTemplate);
 
             return emailTemplateModel;
         }
 
-        private MimeMessage CreateEmailMessage(User user, Ticket ticket, string address, string messgaeTemplate)
+        private MimeMessage CreateEmailMessage(User user, Ticket ticket, string address, string messageTemplate)
         {
-            var message = GenerateMessageTemplate(user, ticket, address, messgaeTemplate);
+            var message = GenerateMessageTemplate(user, ticket, address, messageTemplate);
 
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfiguration.From));

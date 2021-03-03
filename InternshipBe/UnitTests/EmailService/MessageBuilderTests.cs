@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.Mapping;
+using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repositories;
@@ -19,15 +20,20 @@ namespace UnitTests.EmailService
         {
             _mapper = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile())).CreateMapper();
             _configRepository = new Mock<IConfigRepository>();
-            _configRepository.Setup(rep => rep.SetEmailLocalizationAsync()).Returns(SetEmailLocalizationAsyncTest());
+            _configRepository.Setup(rep => rep.GetMessageTemplateFromCurrentCultureAsync()).Returns(GetMessageTemplateFromCurrentCultureAsyncTest());
         }
 
-        private async Task<MessageTemplates> SetEmailLocalizationAsyncTest()
+        private async Task<MessageTemplates> GetMessageTemplateFromCurrentCultureAsyncTest()
         {
             return new MessageTemplates
             {
-                UserTemplate = "fe",
+                UserTemplate = "",
             };
+        }
+
+        private async Task<EmailTemplateModel> GetTemplateAsyncTest()
+        {
+
         }
 
         [Fact]
@@ -41,6 +47,7 @@ namespace UnitTests.EmailService
                 LastName = "Эйнштейн",
                 Patronymic = "Германович",
                 Phone = "+375447777777",
+                Email = "userexadel@gmail.com"
             };
 
             var vendor = new Vendor()
@@ -68,7 +75,6 @@ namespace UnitTests.EmailService
                 Discount = discount,
                 OrderDate = DateTime.Now,
             };
-
 
             //Act
              
