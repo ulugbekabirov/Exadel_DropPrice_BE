@@ -1,7 +1,9 @@
-﻿namespace DAL.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace DAL.Interfaces
 {
     public interface IDapperRepository
     {
-        void ArchiveInvalidDiscount();
+        Task ArchiveInvalidDiscount();
     }
 }

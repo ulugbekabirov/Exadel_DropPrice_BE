@@ -3,6 +3,7 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -15,10 +16,10 @@ namespace DAL.Repositories
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public void ArchiveInvalidDiscount()
+        public async Task ArchiveInvalidDiscount()
         {
             using IDbConnection context = new SqlConnection(_connectionString);
-            context.Execute("EXEC ArchiveInvalidDiscount");
+            await context.ExecuteAsync("EXEC ArchiveInvalidDiscount");
         }
     }
 }
