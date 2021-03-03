@@ -1,6 +1,9 @@
 ﻿using DAL.DataContext;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.DbInitializer
 {
@@ -13,8 +16,9 @@ namespace DAL.DbInitializer
             _context = context;
         }
 
-        public void AddTicket(int userId, int discountId, DateTime orderDate)
+        private void AddTicket(string email, int discountId, DateTime orderDate)
         {
+            var userId = _context.Users.SingleOrDefault(u => u.Email == email).Id;
             var user = _context.Users.Find(userId);
             var discount = _context.Discounts.Find(discountId);
 
@@ -32,39 +36,32 @@ namespace DAL.DbInitializer
             _context.SaveChanges();
         }
 
+        private void AddMultipleTickets(string email, int discountIdStart, int discountIdStop)
+        {
+            var randomDay = new Random();
+            for (; discountIdStart < discountIdStop; discountIdStart++)
+            {
+                AddTicket(email, discountIdStart, DateTime.Now.AddDays(randomDay.Next(-5,0)));
+            }
+        }
+
         public void InitializeTickets()
         {
-            //admin
-            AddTicket(2, 3, DateTime.Now.AddDays(-1));
-            AddTicket(1, 5, DateTime.Now.AddDays(-1));
-            AddTicket(1, 5, DateTime.Now);
-            AddTicket(1, 6, DateTime.Now);
-            AddTicket(1, 7, DateTime.Now);
-            AddTicket(1, 12, DateTime.Now.AddDays(-3));
-
-            //moderator
-            AddTicket(2, 3, DateTime.Now.AddDays(-1));
-            AddTicket(2, 5, DateTime.Now.AddDays(-2));
-            AddTicket(2, 17, DateTime.Now.AddDays(-1));
-            AddTicket(2, 7, DateTime.Now);
-            AddTicket(2, 11, DateTime.Now.AddDays(-3));
-
-            //user
-            AddTicket(3, 5, DateTime.Now.AddDays(-1));
-            AddTicket(3, 5, DateTime.Now);
-            AddTicket(3, 6, DateTime.Now);
-            AddTicket(3, 21, DateTime.Now.AddDays(-1));
-            AddTicket(3, 25, DateTime.Now.AddDays(-2));
-
-            //userGomel
-            AddTicket(4, 13, DateTime.Now.AddDays(-3));
-            AddTicket(4, 8, DateTime.Now.AddDays(-1));
-            AddTicket(4, 11, DateTime.Now.AddDays(-1));
-
-            //userTashkent
-            AddTicket(6, 13, DateTime.Now.AddDays(-2));
-            AddTicket(6, 1, DateTime.Now.AddDays(-1));
-            AddTicket(6, 6, DateTime.Now.AddDays(-1));  
+            AddMultipleTickets("userGomel@test.com", 8, 43);
+            AddMultipleTickets("userWarszawa@test.com", 1, 64);
+            AddMultipleTickets("userTashkent@test.com", 32, 85);
+            AddMultipleTickets("userUsa@test.com", 61, 98);
+            AddMultipleTickets("userTashkent@test.com", 32, 85);
+            AddMultipleTickets("user0@test.com", 86, 96);
+            AddMultipleTickets("user3@test.com", 86, 98);
+            AddMultipleTickets("user1@test.com", 1, 32);
+            AddMultipleTickets("user2@test.com", 26, 53);
+            AddMultipleTickets("user4@test.com", 4, 60);
+            AddMultipleTickets("user5@test.com", 1, 85);
+            AddMultipleTickets("user7@test.com", 64, 85);
+            AddMultipleTickets("user8@test.com", 32, 70);
+            AddMultipleTickets("user9@test.com", 1, 76);
+            AddMultipleTickets("user0@test.com", 6, 34);
         }
     }
 }
