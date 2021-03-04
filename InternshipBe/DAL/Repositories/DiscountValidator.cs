@@ -23,10 +23,12 @@ namespace DAL.Repositories
             var discount = await GetByIdAsync(id);
 
             var dateTimeNow = DateTime.Now;
-
-            if (discount.StartDate > dateTimeNow || discount.EndDate < dateTimeNow)
+            var startDate = discount.StartDate;
+            var endDate = discount.EndDate;
+            
+            if (startDate > dateTimeNow || endDate < dateTimeNow)
             {
-                throw new ValidationException($"{_stringLocalizer[$"Discount will only become available at"]} {discount.StartDate}");
+                throw new ValidationException(_stringLocalizer["Discount available from {0} to {1}", startDate, endDate]);
             }
         }
     }
