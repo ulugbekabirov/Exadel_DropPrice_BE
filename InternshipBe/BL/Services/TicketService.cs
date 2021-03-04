@@ -12,17 +12,17 @@ namespace BL.Services
     {
         private readonly ITicketRepository _ticketRepository;
         private readonly IDiscountRepository _discountRepository;
-        private readonly IDiscountValidation _discountValidationRepository;
+        private readonly IDiscountValidatior _discountValidator;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IMessageBuilder _messageBuilder;
         private readonly IConfigRepository _configRepository;
 
-        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IDiscountValidation discountValidationRepository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
+        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IDiscountValidatior discountValidator, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
         {
             _ticketRepository = repository;
             _discountRepository = discountRepository;
-            _discountValidationRepository = discountValidationRepository;
+            _discountValidator = discountValidator;
             _mapper = mapper;
             _emailSender = emailSender;
             _messageBuilder = messageBuilder;
@@ -35,7 +35,7 @@ namespace BL.Services
 
             if (userTicket is null)
             {
-                await _discountValidationRepository.CheckDiscountValidationAsync(discountId);
+                await _discountValidator.CheckDiscountValidationAsync(discountId);
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
                 await _ticketRepository.SaveChangesAsync();
                 await SendEmailIfAllowed(user, userTicket);

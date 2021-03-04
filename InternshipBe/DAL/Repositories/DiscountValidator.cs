@@ -1,5 +1,4 @@
-﻿using DAL.DataContext;
-using DAL.Entities;
+﻿using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.Extensions.Localization;
 using Shared.Resources;
@@ -9,18 +8,20 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class DiscountValidator : Repository<Discount>, IDiscountValidation
+    public class DiscountValidator : Validator<Discount>, IDiscountValidatior
     {
+        private readonly IDiscountRepository _discountRepository;
         private readonly IStringLocalizer<NotificationResource> _stringLocalizer;
 
-        public DiscountValidator(ApplicationDbContext context, IStringLocalizer<NotificationResource> stringLocalizer) : base(context)
+        public DiscountValidator(IDiscountRepository discountRepository, IStringLocalizer<NotificationResource> stringLocalizer)
         {
+            _discountRepository = discountRepository;
             _stringLocalizer = stringLocalizer;
         }
 
         public async Task CheckDiscountValidationAsync(int id)
         {
-            var discount = await GetByIdAsync(id);
+            var discount = await _discountRepository.GetByIdAsync(id);
 
             var dateTimeNow = DateTime.Now;
             var startDate = discount.StartDate;
@@ -28,7 +29,7 @@ namespace DAL.Repositories
             
             if (startDate > dateTimeNow || endDate < dateTimeNow)
             {
-                throw new ValidationException(_stringLocalizer["Discount available from {0} to {1}", startDate, endDate]);
+                throw new ValidationException(_stringLocalizer["Discount available from {0} to {1}", startDate.ToShortDateString(), endDate.ToShortDateString()]);
             }
         }
     }
