@@ -124,7 +124,7 @@
     <value>Открыта сессия по редактированию скидки. Время обновлено.</value>
   </data>
   <data name="Discount available from {0} to {1}" xml:space="preserve">
-    <value>Скидка будет доступна c {0} по {1}</value>
+    <value>Скидка доступна c {0} по {1}</value>
   </data>
   <data name="Not a valid extension.The only extensions allowed are" xml:space="preserve">
     <value>Недействительное расширение. Разрешены только расширения: {0}</value>
