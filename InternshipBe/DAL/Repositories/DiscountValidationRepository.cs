@@ -18,7 +18,7 @@ namespace DAL.Repositories
             _stringLocalizer = stringLocalizer;
         }
 
-        public async Task CheckDiscountDateAsync(int id)
+        public async Task CheckDiscountStartDateAsync(int id)
         {
             var discount = await GetByIdAsync(id);
 
