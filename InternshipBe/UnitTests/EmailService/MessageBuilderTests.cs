@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BL.EmailService;
+using BL.Interfaces;
 using BL.Mapping;
 using BL.Models;
 using DAL.Entities;
@@ -16,32 +18,32 @@ namespace UnitTests.EmailService
     {
         private Mock<IConfigRepository> _configRepository;
         private IMapper _mapper;
+        private Mock<IEmailBodyGenerator> _emailBodyGenerator;
 
         public MessageBuilderTests()
         {
             _mapper = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile())).CreateMapper();
             _configRepository = new Mock<IConfigRepository>();
             _configRepository.Setup(rep => rep.GetMessageTemplateFromCurrentCultureAsync()).Returns(GetMessageTemplateFromCurrentCultureAsyncTest());
+            _emailBodyGenerator = new Mock<IEmailBodyGenerator>();
+            _emailBodyGenerator.Setup(rep => rep.GenerateMessageBody(null, null, null)).Returns(GenerateMessageBodyTest());
         }
 
         private async Task<MessageTemplates> GetMessageTemplateFromCurrentCultureAsyncTest()
         {
             return new MessageTemplates
             {
-                UserTemplate = "test 1",
+                UserTemplate = "content",
             };
         }
 
-        private MessageModel GenerateMessageTemplateTest()
+        private string GenerateMessageBodyTest()
         {
-            return new MessageModel()
-            {
-                MailboxAddress To = new MailboxAddress() {"userexadel@gmail.com" }
-            }
+            return "content";
         }
 
         [Fact]
-        public void GenerateMessageForUserAsync_WhenCalled_StringModifiedWithRegulars()
+        public async Task GenerateMessageForUserAsync_WhenCalled_StringModifiedWithRegulars()
         {
             //Arrange
             var user = new User()
@@ -57,6 +59,7 @@ namespace UnitTests.EmailService
             var vendor = new Vendor()
             {
                 Id = 1,
+                Name = "KFC",
                 Email = "vendorexadel@gmail.com",
                 Phone = "+998 71 2031212"
             };
@@ -64,7 +67,7 @@ namespace UnitTests.EmailService
             var discount = new Discount()
             {
                 Id = 1,
-                Name = "Пицца темпо",
+                Name = "kfc",
                 Vendor = vendor,
                 DiscountAmount = 12,
                 PromoCode = null,
@@ -80,12 +83,24 @@ namespace UnitTests.EmailService
                 OrderDate = DateTime.Now,
             };
 
+            var emailConfiguration = new EmailConfigurationModel()
+            {
+                From = "dropprice@gmail.com"
+            };
+
+            var messageBuilder = new MessageBuilder(_emailBodyGenerator.Object, emailConfiguration, _configRepository.Object, _mapper);
+
+            var expectedOutput = new MimeMessage();
+            expectedOutput.From.Add(new MailboxAddress("dropprice@gmail.com"));
+            expectedOutput.To.Add(new MailboxAddress("userexadel@gmail.com"));
+            expectedOutput.Subject = "KFC - kfc";
+            expectedOutput.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = "content" };
+
             //Act
-             
+            var output = await messageBuilder.GenerateMessageForUserAsync(user, ticket);
 
-
-
-
+            //Assert
+            Assert.Equal(output, expectedOutput);
         }
     }
 }

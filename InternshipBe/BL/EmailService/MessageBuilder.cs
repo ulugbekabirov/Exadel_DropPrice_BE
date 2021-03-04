@@ -60,7 +60,7 @@ namespace BL.EmailService
 
         private MessageModel GenerateMessageTemplate(User user, Ticket ticket, string emailAddress, string messgaeTemplate)
         {
-            var contentForUser = _emailBodyGenerator.GenerateMessageBody(user, ticket, messgaeTemplate);
+            var content = _emailBodyGenerator.GenerateMessageBody(user, ticket, messgaeTemplate);
 
             var subject = $"{ticket.Discount.Vendor.Name} - { ticket.Discount.Name }";
 
@@ -68,7 +68,7 @@ namespace BL.EmailService
             {
                 To = new MailboxAddress(emailAddress),
                 Subject = subject,
-                Content = contentForUser
+                Content = content
             };
             return message;
         }
