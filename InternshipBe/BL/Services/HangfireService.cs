@@ -57,21 +57,27 @@ namespace BL.Services
             };
         }
 
-        public async Task<string> EndEditDiscountJobAsync(int discountId)
+        public async Task<DiscountJobDTO> EndEditDiscountJobAsync(int discountId)
         {
             var job = JobStorage.Current.GetMonitoringApi().ScheduledJobs(0, int.MaxValue)
                 .FirstOrDefault(j => j.Value.Job.Args.Contains(discountId));
 
             if (job.Key is null)
             {
-                return _stringLocalizer["There is no session to edit the discount."];
+                return new DiscountJobDTO()
+                {
+                    Message = _stringLocalizer["There is no session to edit the discount."]
+                };
             }
 
             await _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true);
 
             BackgroundJob.Delete(job.Key);
 
-            return _stringLocalizer["The session on editing the discount is over."];
+            return new DiscountJobDTO()
+            {
+                Message = _stringLocalizer["The session on editing the discount is over."]
+            };
         }
 
         public void DeleteDiscountEditJob(int discountId)

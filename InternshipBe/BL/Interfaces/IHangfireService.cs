@@ -9,6 +9,6 @@ namespace BL.Interfaces
 
         void DeleteDiscountEditJob(int discountId);
 
-        Task<string> EndEditDiscountJobAsync(int discountId);
+        Task<DiscountJobDTO> EndEditDiscountJobAsync(int discountId);
     }
 }
