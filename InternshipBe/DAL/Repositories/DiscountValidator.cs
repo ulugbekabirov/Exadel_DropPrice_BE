@@ -19,7 +19,7 @@ namespace DAL.Repositories
             _stringLocalizer = stringLocalizer;
         }
 
-        public async Task CheckDiscountValidationAsync(int id)
+        public async Task ValidateDiscountAsync(int id)
         {
             var discount = await _discountRepository.GetByIdAsync(id);
 

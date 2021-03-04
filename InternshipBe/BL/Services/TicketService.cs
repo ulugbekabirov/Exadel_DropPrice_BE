@@ -35,7 +35,7 @@ namespace BL.Services
 
             if (userTicket is null)
             {
-                await _discountValidator.CheckDiscountValidationAsync(discountId);
+                await _discountValidator.ValidateDiscountAsync(discountId);
                 userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
                 await _ticketRepository.SaveChangesAsync();
                 await SendEmailIfAllowed(user, userTicket);
