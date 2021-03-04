@@ -58,7 +58,7 @@ namespace BL.EmailService
             return emailMessage;
         }
 
-        private MessageModel GenerateMessageTemplate(User user, Ticket ticket, string address, string messgaeTemplate)
+        private MessageModel GenerateMessageTemplate(User user, Ticket ticket, string emailAddress, string messgaeTemplate)
         {
             var contentForUser = _emailBodyGenerator.GenerateMessageBody(user, ticket, messgaeTemplate);
 
@@ -66,7 +66,7 @@ namespace BL.EmailService
 
             var message = new MessageModel()
             {
-                To = new MailboxAddress(address),
+                To = new MailboxAddress(emailAddress),
                 Subject = subject,
                 Content = contentForUser
             };

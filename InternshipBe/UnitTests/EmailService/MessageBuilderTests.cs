@@ -4,6 +4,7 @@ using BL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
 using DAL.Repositories;
+using MimeKit;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -27,13 +28,16 @@ namespace UnitTests.EmailService
         {
             return new MessageTemplates
             {
-                UserTemplate = "",
+                UserTemplate = "test 1",
             };
         }
 
-        private async Task<EmailTemplateModel> GetTemplateAsyncTest()
+        private MessageModel GenerateMessageTemplateTest()
         {
-
+            return new MessageModel()
+            {
+                MailboxAddress To = new MailboxAddress() {"userexadel@gmail.com" }
+            }
         }
 
         [Fact]
