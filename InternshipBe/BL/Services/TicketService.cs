@@ -12,13 +12,13 @@ namespace BL.Services
     {
         private readonly ITicketRepository _ticketRepository;
         private readonly IDiscountRepository _discountRepository;
-        private readonly IDiscountValidationRepository _discountValidationRepository;
+        private readonly IDiscountValidation _discountValidationRepository;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IMessageBuilder _messageBuilder;
         private readonly IConfigRepository _configRepository;
 
-        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IDiscountValidationRepository discountValidationRepository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
+        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IDiscountValidation discountValidationRepository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
         {
             _ticketRepository = repository;
             _discountRepository = discountRepository;

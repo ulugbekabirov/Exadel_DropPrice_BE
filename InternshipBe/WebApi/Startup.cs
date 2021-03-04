@@ -148,7 +148,7 @@ namespace WebApi
 
             services.AddScoped<IHangfireService, HangfireService>();
 
-            services.AddScoped<IDiscountValidationRepository, DiscountValidationRepository>();
+            services.AddScoped<IDiscountValidation, DiscountValidator>();
 
             services.AddScoped<ValidateModelFilterAttribute>();
 

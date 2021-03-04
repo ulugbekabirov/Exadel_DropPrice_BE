@@ -123,8 +123,8 @@
   <data name="A session on editing a discount is open. Time has been updated." xml:space="preserve">
     <value>Открыта сессия по редактированию скидки. Время обновлено.</value>
   </data>
-  <data name="Discount is not started yet" xml:space="preserve">
-    <value>Скидка ещё не началась</value>
+  <data name="Discount will only become available at" xml:space="preserve">
+    <value>Скидка будет доступна</value>
   </data>
   <data name="Not a valid extension.The only extensions allowed are" xml:space="preserve">
     <value>Недействительное расширение. Разрешены только расширения: {0}</value>

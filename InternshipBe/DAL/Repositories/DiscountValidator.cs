@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class DiscountValidationRepository : Repository<Discount>, IDiscountValidationRepository
+    public class DiscountValidator : Repository<Discount>, IDiscountValidation
     {
         private readonly IStringLocalizer<NotificationResource> _stringLocalizer;
 
-        public DiscountValidationRepository(ApplicationDbContext context, IStringLocalizer<NotificationResource> stringLocalizer) : base(context)
+        public DiscountValidator(ApplicationDbContext context, IStringLocalizer<NotificationResource> stringLocalizer) : base(context)
         {
             _stringLocalizer = stringLocalizer;
         }
@@ -22,9 +22,11 @@ namespace DAL.Repositories
         {
             var discount = await GetByIdAsync(id);
 
-            if (discount.StartDate > DateTime.Now)
+            var dateTimeNow = DateTime.Now;
+
+            if (discount.StartDate > dateTimeNow || discount.EndDate < dateTimeNow)
             {
-                throw new ValidationException(_stringLocalizer["Discount is not started yet"]);
+                throw new ValidationException($"{_stringLocalizer[$"Discount will only become available at"]} {discount.StartDate}");
             }
         }
     }

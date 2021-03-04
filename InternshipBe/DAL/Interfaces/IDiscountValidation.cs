@@ -2,7 +2,7 @@
 
 namespace DAL.Interfaces
 {
-    public interface IDiscountValidationRepository
+    public interface IDiscountValidation
     {
         Task CheckDiscountStartDateAsync(int id);
     }
