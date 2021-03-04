@@ -100,6 +100,8 @@ namespace UnitTests.EmailService
             var output = await messageBuilder.GenerateMessageForUserAsync(user, ticket);
 
             //Assert
+            //Now it compares by object adress
+            //To be fixed later
             Assert.Equal(output, expectedOutput);
         }
     }
