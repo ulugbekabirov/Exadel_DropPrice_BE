@@ -28,6 +28,7 @@ using Shared.ExceptionHandling;
 using Shared.Middleware.RequestResponceLogger;
 using System.IO;
 using System.Reflection;
+using DAL.DapperRepositories;
 
 namespace WebApi
 {
@@ -54,6 +55,8 @@ namespace WebApi
             services.AddScoped<IEmailBodyGenerator, EmailBodyGenerator>();
 
             services.AddScoped<IReplacerService, ReplacerService>();
+
+            services.AddScoped<IArchiveExpiredRepository, ArchiveExpiredRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
@@ -91,7 +94,7 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                            Array.Empty<string>()                     
+                            Array.Empty<string>()
                     }
                 });
 
@@ -167,13 +170,13 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IArchiveExpiredRepository dapperRepository)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
 
             app.UseGlobalExceptionMiddleware();
@@ -197,6 +200,8 @@ namespace WebApi
 
             app.UseHangfireServer();
             app.UseHangfireDashboard();
+
+            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveExpiredDiscountAsync(), Cron.Daily());
 
             app.UseEndpoints(endpoints =>
             {
