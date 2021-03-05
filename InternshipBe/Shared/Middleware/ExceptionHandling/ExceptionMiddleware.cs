@@ -46,7 +46,7 @@ namespace Shared.ExceptionHandling
                 {
                     case var _ when exception is ValidationException:
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        SetErrorMessage("Bad Request");
+                        SetErrorMessage(exception.Message);
                         break;
                     case var _ when exception is UnauthorizedAccessException:
                         context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
