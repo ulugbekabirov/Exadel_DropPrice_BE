@@ -97,10 +97,6 @@ namespace WebApi
                             Array.Empty<string>()
                     }
                 });
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                swagger.IncludeXmlComments(xmlPath);
             });
 
             services.AddHangfire(options =>
