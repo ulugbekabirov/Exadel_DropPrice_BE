@@ -8,29 +8,27 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class DiscountValidator : Validator<Discount>, IDiscountValidatior
+    public class DiscountValidator : IValidator<Discount>
     {
-        private readonly IDiscountRepository _discountRepository;
         private readonly IStringLocalizer<NotificationResource> _stringLocalizer;
 
-        public DiscountValidator(IDiscountRepository discountRepository, IStringLocalizer<NotificationResource> stringLocalizer)
+        public DiscountValidator(IStringLocalizer<NotificationResource> stringLocalizer)
         {
-            _discountRepository = discountRepository;
             _stringLocalizer = stringLocalizer;
         }
 
-        public async Task ValidateDiscountAsync(int id)
+        public Task ValidateAsync(Discount entity)
         {
-            var discount = await _discountRepository.GetByIdAsync(id);
-
             var dateTimeNow = DateTime.Now;
-            var startDate = discount.StartDate;
-            var endDate = discount.EndDate;
-            
+            var startDate = entity.StartDate;
+            var endDate = entity.EndDate;
+
             if (startDate > dateTimeNow || endDate < dateTimeNow)
             {
                 throw new ValidationException(_stringLocalizer["Discount available from {0} to {1}", startDate.ToShortDateString(), endDate.ToShortDateString()]);
             }
+
+            return Task.CompletedTask;
         }
     }
 }
