@@ -115,6 +115,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount&apos;s name exceeded maximum length.
+        /// </summary>
+        internal static string DiscountNameExceededMaxLength {
+            get {
+                return ResourceManager.GetString("DiscountNameExceededMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, enter the discount&apos;s Name..
         /// </summary>
         internal static string DiscountNameIsEmpty {
@@ -187,6 +196,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag&apos;s name exceeded maximum length.
+        /// </summary>
+        internal static string TagNameExceededMaxLength {
+            get {
+                return ResourceManager.GetString("TagNameExceededMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, enter the vendor&apos;s Address..
         /// </summary>
         internal static string VendorAddressIsEmpty {
@@ -210,6 +228,15 @@ namespace Shared.Properties {
         internal static string VendorEmailIsEmpty {
             get {
                 return ResourceManager.GetString("VendorEmailIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendor&apos;s name exceeded maximum length.
+        /// </summary>
+        internal static string VendorNameExceededMaxLength {
+            get {
+                return ResourceManager.GetString("VendorNameExceededMaxLength", resourceCulture);
             }
         }
         
