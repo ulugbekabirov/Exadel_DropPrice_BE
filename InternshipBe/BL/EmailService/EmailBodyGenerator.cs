@@ -30,7 +30,7 @@ namespace BL.EmailService
                 { "Date", ticket.OrderDate.ToString() },
                 { "DiscountName", ticket.Discount.Name },
                 { "DiscountValue", ticket.Discount.DiscountAmount.ToString() },
-                { "Vendor", ticket.Discount.Vendor.Name },
+                { "VendorName", ticket.Discount.Vendor.Name },
                 { "VendorPhone", ticket.Discount.Vendor.Phone },
                 { "VendorEmail", ticket.Discount.Vendor.Email },
                 { "Promocode", ticket.Discount.PromoCode }

@@ -77,7 +77,7 @@ namespace UnitTests.Middleware
             {
                 await Task.Run(() =>
                 {
-                    throw new ValidationException();
+                    throw new ValidationException("Bad Request");
                 });
             }, loggerFactory);
             var context = new DefaultHttpContext();

@@ -33,7 +33,7 @@ namespace BL.Services
         {
             var result = new List<Tag>();
 
-            tagNames = tagNames.Distinct().ToArray();
+            tagNames = tagNames.Select(t => t.ToLower()).Distinct().ToArray();
 
             var existingTags = await _tagRepository.GetExistingTagsAsync(tagNames);
 
