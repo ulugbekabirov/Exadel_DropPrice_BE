@@ -54,6 +54,11 @@ namespace IdentityServer
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Identity Server" });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "IdentityServer.xml");
+                c.IncludeXmlComments(xmlPath);
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
