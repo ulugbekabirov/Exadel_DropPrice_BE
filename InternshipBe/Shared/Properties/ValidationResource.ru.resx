@@ -135,6 +135,9 @@
   <data name="DiscountDescriptionIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите описание скидки.</value>
   </data>
+  <data name="DiscountNameExceededMaxLength" xml:space="preserve">
+    <value>Название скидки превышает максимальную длину</value>
+  </data>
   <data name="DiscountNameIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите название скидки.</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="StartDateIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите дату начала скидки.</value>
   </data>
+  <data name="TagNameExceededMaxLength" xml:space="preserve">
+    <value>Название тэга превышает максимальную длину</value>
+  </data>
   <data name="VendorAddressIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите адрес поставщика.</value>
   </data>
@@ -167,6 +173,9 @@
   </data>
   <data name="VendorEmailIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите электронную почту поставщика.</value>
+  </data>
+  <data name="VendorNameExceededMaxLength" xml:space="preserve">
+    <value>Название вендора превышает максимальную длину</value>
   </data>
   <data name="VendorNameIsEmpty" xml:space="preserve">
     <value>Пожалуйста, введите имя поставщика.</value>
