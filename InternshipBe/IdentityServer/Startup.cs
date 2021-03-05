@@ -15,7 +15,6 @@ using Shared.ExceptionHandling;
 using Microsoft.OpenApi.Models;
 using Shared.Middleware.RequestResponceLogger;
 using System.IO;
-using System.Reflection;
 using System;
 
 namespace IdentityServer

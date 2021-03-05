@@ -27,7 +27,6 @@ using Hangfire;
 using Shared.ExceptionHandling;
 using Shared.Middleware.RequestResponceLogger;
 using System.IO;
-using System.Reflection;
 using DAL.DapperRepositories;
 
 namespace WebApi
@@ -97,6 +96,10 @@ namespace WebApi
                             Array.Empty<string>()
                     }
                 });
+
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "WebApi.xml");
+                swagger.IncludeXmlComments(xmlPath);
             });
 
             services.AddHangfire(options =>
