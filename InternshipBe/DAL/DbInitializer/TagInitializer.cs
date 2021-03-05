@@ -24,41 +24,41 @@ namespace DAL.DbInitializer
 
         public void InitializeTags()
         {
-            AddTag("Кондитерские изделия");
-            AddTag("Фастфуд");
-            AddTag("Напитки");
-            AddTag("Пицца");
-            AddTag("Уютное место");
-            AddTag("Еда навынос");
-            AddTag("Доставка");
+            AddTag("кондитерские изделия");
+            AddTag("фастфуд");
+            AddTag("напитки");
+            AddTag("пицца");
+            AddTag("уютное место");
+            AddTag("еда навынос");
+            AddTag("доставка");
             AddTag("KFC");
-            AddTag("Курица");
-            AddTag("Мебель");
-            AddTag("Дешево");
-            AddTag("Для дома"); 
-            AddTag("Выгодно");
-            AddTag("Быстро");
-            AddTag("Вкусно");
-            AddTag("Мода");
-            AddTag("Парфюмерия");
-            AddTag("Уход за кожей");
-            AddTag("Роскошь");
-            AddTag("Одежда");
-            AddTag("Обувь");
-            AddTag("Красота");
-            AddTag("Макияж");
-            AddTag("Дорого");
-            AddTag("Тренировка");
-            AddTag("Голод");
-            AddTag("Лекарство");
-            AddTag("Духи");
-            AddTag("Светильник");       
-            AddTag("Сантеника");
-            AddTag("Уют");
-            AddTag("Электротехника");   
-            AddTag("Комфорт");
-            AddTag("Equipment");
-            AddTag("For home");
+            AddTag("курица");
+            AddTag("мебель");
+            AddTag("дешево");
+            AddTag("для дома"); 
+            AddTag("выгодно");
+            AddTag("быстро");
+            AddTag("вкусно");
+            AddTag("мода");
+            AddTag("парфюмерия");
+            AddTag("уход за кожей");
+            AddTag("роскошь");
+            AddTag("одежда");
+            AddTag("обувь");
+            AddTag("красота");
+            AddTag("макияж");
+            AddTag("дорого");
+            AddTag("тренировка");
+            AddTag("голод");
+            AddTag("лекарство");
+            AddTag("духи");
+            AddTag("светильник");       
+            AddTag("сантеника");
+            AddTag("уют");
+            AddTag("электротехника");   
+            AddTag("комфорт");
+            AddTag("equipment");
+            AddTag("for home");
         }
     }
 }
