@@ -10,9 +10,9 @@ namespace DAL.Migrations
                                    ALTER TABLE Vendors ADD TempName nvarchar(100) NOT NULL default '';
                                    ALTER TABLE Tags ADD TempName nvarchar(100) NOT NULL default'';");
 
-            migrationBuilder.Sql("update Discounts set TempName = Name;");
-            migrationBuilder.Sql("UPDATE Tags set TempName = Name;");
-            migrationBuilder.Sql("UPDATE Vendors set TempName = Name;");
+            migrationBuilder.Sql("UPDATE Discounts SET TempName = Discounts.Name;");
+            migrationBuilder.Sql("UPDATE Tags SET TempName = Tags.Name;");
+            migrationBuilder.Sql("UPDATE Vendors SET TempName = Vendors.Name;");
 
             migrationBuilder.DropColumn(
                 name: "Name",
