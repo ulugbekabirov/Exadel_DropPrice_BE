@@ -21,19 +21,12 @@
         </member>
         <member name="T:IdentityServer.Controllers.AccountController">
             <summary>
-            Сontains a method for authentication and authorization
+            Сontains a method for authentication 
             </summary>
-        </member>
-        <member name="M:IdentityServer.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{DAL.Entities.User},Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            AccountController constructor
-            </summary>
-            <param name="userManager">User management object</param>
-            <param name="configuration">Object containing basic application settings</param>
         </member>
         <member name="M:IdentityServer.Controllers.AccountController.Login(IdentityServer.Authentication.LoginModel)">
             <summary>
-            Method for authentication and authorization
+            Method for authentication
             </summary>
             <param name="model">Model for authorization</param>
             <returns>JWT Token</returns>
