@@ -8,6 +8,7 @@ namespace WebApi.ViewModels
         public int VendorId { get; set; }
 
         [Required(ErrorMessageResourceName = "VendorNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        [MaxLength(200, ErrorMessageResourceName = "VendorNameExceededMaxLength", ErrorMessageResourceType = typeof(ValidationResource))]
         public string VendorName { get; set; }
 
         [Required(ErrorMessageResourceName = "VendorDescriptionIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
