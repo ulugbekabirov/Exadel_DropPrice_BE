@@ -106,7 +106,7 @@ namespace BL.Services
         {
             var assessment = await _discountRepository.GetUserAssessmentAsync(discountDTO.DiscountId, userId);
 
-            var (Address, Distance) = await _discountRepository.GetInformationOfPointOfSaleAsync(discountDTO.DiscountId, location);
+            var (Address, Distance) = await _discountRepository.GetAddressAndDistanceToClosestPointOfSaleAsync(discountDTO.DiscountId, location);
 
             discountDTO.DiscountRating = await _discountRepository.GetDiscountRatingAsync(discountDTO.DiscountId);
             discountDTO.Tags = await _discountRepository.GetDiscountTagsAsync(discountDTO.DiscountId);

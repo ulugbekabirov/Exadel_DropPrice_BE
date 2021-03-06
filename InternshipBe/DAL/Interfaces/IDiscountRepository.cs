@@ -34,7 +34,7 @@ namespace DAL.Interfaces
 
         Task<bool> IsOrderedDiscountAsync(int id, int userId);
 
-        Task<(string, int)> GetInformationOfPointOfSaleAsync(int id, Point location);
+        Task<(string, int)> GetAddressAndDistanceToClosestPointOfSaleAsync(int id, Point location);
 
         IOrderedQueryable<Discount> SortBy(IQueryable<Discount> discounts, SortTypes sortBy);
 
