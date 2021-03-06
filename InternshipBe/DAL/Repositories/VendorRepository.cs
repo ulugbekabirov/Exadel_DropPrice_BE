@@ -16,7 +16,7 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<PointOfSale>> GetPointOfSalesAsync(int id)
         {
-            var vendor = await _context.Vendors.FirstAsync(v => v.Id == id);
+            var vendor = await GetByIdAsync(id);
 
             return vendor.PointOfSales;
         }
