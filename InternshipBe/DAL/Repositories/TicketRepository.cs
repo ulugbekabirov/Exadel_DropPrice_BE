@@ -25,7 +25,7 @@ namespace DAL.Repositories
             return await _context.Tickets.Where(d => d.UserId == userId).OrderByDescending(t => t.OrderDate).Skip(skip).Take(take).ToListAsync();
         }
 
-        public async Task<Ticket> CreateTicketAsync(int discountId, User user)
+        public async Task<Ticket> CreateAndReturnTicketAsync(int discountId, User user)
         {
             var discount = await _context.Discounts.FindAsync(discountId);
 
