@@ -87,12 +87,12 @@ namespace DAL.Repositories
         {
             var pointOfSale = await _context.Discounts.Where(d => d.Id == id)
                 .Select(d => d.PointOfSales
-                    .Select(p => new { p.Address, Location = p.Location.Distance(location) })
-                    .OrderBy(p => p.Location)
+                    .Select(p => new { p.Address, DistanceBetweenPoints = p.Location.Distance(location) })
+                    .OrderBy(p => p.DistanceBetweenPoints)
                     .FirstOrDefault())
                 .FirstAsync();
 
-            return (pointOfSale.Address, (int)pointOfSale.Location);
+            return (pointOfSale.Address, (int)pointOfSale.DistanceBetweenPoints);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
