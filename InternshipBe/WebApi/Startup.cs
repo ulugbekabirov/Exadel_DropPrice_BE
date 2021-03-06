@@ -27,7 +27,6 @@ using Hangfire;
 using Shared.ExceptionHandling;
 using Shared.Middleware.RequestResponceLogger;
 using System.IO;
-using DAL.DapperRepositories;
 
 namespace WebApi
 {
@@ -55,7 +54,7 @@ namespace WebApi
 
             services.AddScoped<IReplacerService, ReplacerService>();
 
-            services.AddScoped<IArchiveExpiredRepository, ArchiveExpiredRepository>();
+            services.AddScoped<IArchiveExpiredRepository, DAL.DapperRepositories.ArchiveExpiredRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
