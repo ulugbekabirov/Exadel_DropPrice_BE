@@ -36,7 +36,7 @@ namespace DAL.DbInitializer
 
             for(; discountIdStart <= discountIdStop; discountIdStart++)
             {
-                AddAssesment(email, discountIdStart, rnd.Next(3,5));
+                AddAssesment(email, discountIdStart, rnd.Next(3,6));
             }
         }
 
