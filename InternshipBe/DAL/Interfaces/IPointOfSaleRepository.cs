@@ -1,9 +1,8 @@
 ﻿using DAL.Entities;
-using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Interfaces
 {
     public interface IPointOfSaleRepository : IRepository<PointOfSale>
     {
