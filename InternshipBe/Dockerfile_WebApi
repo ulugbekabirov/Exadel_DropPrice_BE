@@ -9,13 +9,7 @@ RUN dotnet restore "WebApi/WebApi.csproj"
 # copy and publish app and libraries
 COPY . .
 
-# DB Update
-#RUN echo 'export PATH="$PATH:/root/.dotnet/tools"' >>  ~/.bash_profile
-#RUN dotnet tool install --global dotnet-ef
-#RUN export PATH="$PATH:/root/.dotnet/tools"
-
 WORKDIR /source/WebApi
-#RUN /root/.dotnet/tools/./dotnet-ef database update
 
 # Build
 RUN dotnet build "WebApi.csproj" -c Release -o /app/build
