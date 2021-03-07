@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Shared.Infrastructure.Attributes
 {
@@ -14,13 +15,7 @@ namespace Shared.Infrastructure.Attributes
         {
             if (value is List<string> ListOfStrings)
             {
-                foreach (var str in ListOfStrings)
-                {
-                    if (str.Length > Length)
-                        return false;
-                }
-
-                return true;
+                return ListOfStrings.All(l => l.Length < Length);
             }
 
             return false;
