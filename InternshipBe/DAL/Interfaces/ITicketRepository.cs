@@ -10,6 +10,6 @@ namespace DAL.Interfaces
 
         Task<IEnumerable<Ticket>> GetTicketsAsync(int userId, int skip, int take);
 
-        Task<Ticket> CreateTicketAsync(int discountId, User user);
+        Task<Ticket> CreateAndReturnTicketAsync(int discountId, User user);
     }
 }

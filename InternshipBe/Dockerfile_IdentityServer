@@ -1,0 +1,33 @@
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /source
+
+COPY . .
+
+RUN dotnet restore "IdentityServer/IdentityServer.csproj"
+
+# Copy and publish app and libraries
+COPY . .
+
+# DB Update
+RUN echo 'export PATH="$PATH:/root/.dotnet/tools"' >>  ~/.bash_profile
+RUN export PATH="$PATH:/root/.dotnet/tools"
+RUN dotnet tool install --global dotnet-ef
+
+WORKDIR /source/IdentityServer
+RUN /root/.dotnet/tools/./dotnet-ef database update
+
+# Build and Publish
+RUN dotnet build "IdentityServer.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "IdentityServer.csproj" -c Release -o /app/publish
+
+# Run
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+EXPOSE 44360 44361
+
+ENTRYPOINT ["dotnet", "IdentityServer.dll"]

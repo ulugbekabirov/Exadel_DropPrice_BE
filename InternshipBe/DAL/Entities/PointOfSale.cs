@@ -9,6 +9,7 @@ namespace DAL.Entities
         public PointOfSale()
         {
             Discounts = new List<Discount>();
+            Vendors = new List<Vendor>();
         }
 
         public int Id { get; set; }
@@ -23,5 +24,7 @@ namespace DAL.Entities
         public Point Location { get; set; }
 
         public virtual ICollection<Discount> Discounts { get; set; }
+
+        public virtual ICollection<Vendor> Vendors { get; set; }
     }
 }

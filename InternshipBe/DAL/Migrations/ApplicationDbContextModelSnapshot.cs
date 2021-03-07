@@ -301,6 +301,9 @@ namespace DAL.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DefaultLanguage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -572,6 +575,21 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PointOfSaleVendor", b =>
+                {
+                    b.Property<int>("PointOfSalesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendorsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PointOfSalesId", "VendorsId");
+
+                    b.HasIndex("VendorsId");
+
+                    b.ToTable("PointOfSaleVendor");
+                });
+
             modelBuilder.Entity("DAL.Entities.Assessment", b =>
                 {
                     b.HasOne("DAL.Entities.Discount", "Discount")
@@ -737,6 +755,21 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PointOfSaleVendor", b =>
+                {
+                    b.HasOne("DAL.Entities.PointOfSale", null)
+                        .WithMany()
+                        .HasForeignKey("PointOfSalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entities.Vendor", null)
+                        .WithMany()
+                        .HasForeignKey("VendorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

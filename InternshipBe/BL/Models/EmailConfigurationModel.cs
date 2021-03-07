@@ -1,6 +1,6 @@
-﻿namespace Shared.EmailService
+﻿namespace BL.Models
 {
-    public class EmailConfiguration
+    public class EmailConfigurationModel
     {
         public string From { get; set; }
 

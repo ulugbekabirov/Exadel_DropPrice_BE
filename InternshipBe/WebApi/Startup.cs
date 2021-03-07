@@ -2,6 +2,7 @@ using AutoMapper;
 using BL.Interfaces;
 using BL.Mapping;
 using BL.Services;
+using BL.EmailService;
 using DAL.DataContext;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -16,12 +17,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Shared.EmailService;
 using Shared.Infrastructure.Filters;
 using Shared.Middleware.Localization;
 using System;
 using System.Text;
 using System.Text.Json;
+using BL.Models;
+using Hangfire;
+using Shared.ExceptionHandling;
+using Shared.Middleware.RequestResponceLogger;
+using System.IO;
+using DAL.DapperRepositories;
 
 namespace WebApi
 {
@@ -36,12 +42,20 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddLocalization();
+
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationModel>();
             services.AddSingleton(emailConfig);
 
             services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddScoped<IMessageBuilder, MessageBuilder>();
+
+            services.AddScoped<IEmailBodyGenerator, EmailBodyGenerator>();
+
+            services.AddScoped<IReplacerService, ReplacerService>();
+
+            services.AddScoped<IArchiveExpiredRepository, ArchiveExpiredRepository>();
 
             services.AddControllers()
                     .AddJsonOptions(options =>
@@ -79,10 +93,20 @@ namespace WebApi
                                     Id = "Bearer"
                                 }
                             },
-                            Array.Empty<string>()                     
+                            Array.Empty<string>()
                     }
                 });
+
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "WebApi.xml");
+                swagger.IncludeXmlComments(xmlPath);
             });
+
+            services.AddHangfire(options =>
+            {
+                options.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            services.AddHangfireServer();
 
             services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
 
@@ -121,6 +145,10 @@ namespace WebApi
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IImageRepository, ImageRepository>();
 
+            services.AddScoped<IHangfireService, HangfireService>();
+
+            services.AddScoped<IValidator<Discount>, DiscountValidator>();
+
             services.AddScoped<ValidateModelFilterAttribute>();
 
             services.AddAuthentication(options =>
@@ -143,14 +171,18 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IArchiveExpiredRepository dapperRepository)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Web API"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
+
+            app.UseGlobalExceptionMiddleware();
+
+            app.UseRequestResponseLogging();
 
             app.UseCulture();
 
@@ -166,6 +198,11 @@ namespace WebApi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
+
+            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveExpiredDiscountAsync(), Cron.Daily());
 
             app.UseEndpoints(endpoints =>
             {

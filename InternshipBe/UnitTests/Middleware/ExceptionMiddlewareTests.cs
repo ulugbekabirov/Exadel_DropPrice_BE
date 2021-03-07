@@ -1,20 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shared.ExceptionHandling;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using Newtonsoft.Json;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
 
 namespace UnitTests.Middleware
 {
     public class ExceptionMiddlewareTests
     {
+        private readonly ILoggerFactory loggerFactory;
+
+        public ExceptionMiddlewareTests()
+        {
+            loggerFactory = new LoggerFactory();
+        }
+
         [Fact]
         public async Task InvokeAsync_NoExceptionThrownInsideMiddleware_ContextResponseNotModifiedAsync()
         {
@@ -25,7 +29,7 @@ namespace UnitTests.Middleware
                     {
                         return HttpStatusCode.OK;
                     });
-                });
+                },  loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -50,7 +54,7 @@ namespace UnitTests.Middleware
                     {
                         throw new Exception();
                     });
-                });
+                }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -73,9 +77,9 @@ namespace UnitTests.Middleware
             {
                 await Task.Run(() =>
                 {
-                    throw new ValidationException();
+                    throw new ValidationException("Bad Request");
                 });
-            });
+            }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
@@ -100,7 +104,7 @@ namespace UnitTests.Middleware
                 {
                     throw new UnauthorizedAccessException();
                 });
-            });
+            }, loggerFactory);
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 

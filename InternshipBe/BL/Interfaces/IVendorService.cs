@@ -23,5 +23,7 @@ namespace BL.Interfaces
         Task<TotalVendorDTO> SearchVendorsAsync(AdminSearchModel searchModel);
 
         Task<VendorDTO> AddImageToVendorAsync(IFormFile file, int vendorId);
+
+        Task<IEnumerable<PointOfSaleDTO>> GetVendorPointOfSalesAsync(int id);
     }
 }

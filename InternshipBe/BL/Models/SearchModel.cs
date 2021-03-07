@@ -6,6 +6,6 @@ namespace BL.Models
     {
         public string SearchQuery { get; set; }
 
-        public string[] Tags { get; set; } = Array.Empty<string>();
+        public int[] Tags { get; set; } = Array.Empty<int>();
     }
 }

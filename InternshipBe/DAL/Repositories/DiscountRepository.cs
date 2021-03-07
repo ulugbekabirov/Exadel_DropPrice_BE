@@ -17,25 +17,35 @@ namespace DAL.Repositories
         {
         }
 
-        public IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius)
+        public IQueryable<Discount> GetClosestDiscounts(Point location, int radius, bool isUser)
         {
-            return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            if (isUser)
+            {
+                return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            }
+
+            return _entities.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
         }
 
-        public IQueryable<Discount> SearchDiscounts(string searchQuery, string[] tags, Point location, int radius)
+        public IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius, bool isUser)
         {
-            var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
+            var searchResults = _context.Discounts.AsQueryable();
+
+            if (isUser)
+            {
+                searchResults = searchResults.Where(d => d.ActivityStatus == true);
+            }
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
             }
 
-            if (tags.Length != 0)
+            if (tagIDs.Length != 0)
             {
-                foreach (var tag in tags)
+                foreach (var tagID in tagIDs)
                 {
-                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Name).Contains(tag));
+                    searchResults = searchResults.Where(d => d.Tags.Select(t => t.Id).Contains(tagID));
                 }
             };
 
@@ -83,16 +93,16 @@ namespace DAL.Repositories
             return await _context.Tickets.AnyAsync(t => t.DiscountId == id && t.UserId == userId);
         }
 
-        public async Task<(string, int)> GetInformationOfPointOfSaleAsync(int id, Point location)
+        public async Task<(string, int)> GetAddressAndDistanceToClosestPointOfSaleAsync(int id, Point location)
         {
             var pointOfSale = await _context.Discounts.Where(d => d.Id == id)
                 .Select(d => d.PointOfSales
-                    .Select(p => new { p.Address, Location = p.Location.Distance(location) })
-                    .OrderBy(p => p.Location)
+                    .Select(p => new { p.Address, DistanceBetweenPoints = p.Location.Distance(location) })
+                    .OrderBy(p => p.DistanceBetweenPoints)
                     .FirstOrDefault())
                 .FirstAsync();
 
-            return (pointOfSale.Address, (int)pointOfSale.Location);
+            return (pointOfSale.Address, (int)pointOfSale.DistanceBetweenPoints);
         }
 
         public async Task<SavedDiscount> GetSavedDiscountAsync(int discountId, int userId)
@@ -116,11 +126,6 @@ namespace DAL.Repositories
             await _context.SaveChangesAsync();
 
             return newSavedDiscount;
-        }
-
-        public async Task<Vendor> GetVendorByNameAsync(string vendorName)
-        {
-            return await _context.Vendors.SingleAsync(v => v.Name == vendorName);
         }
 
         public async Task<Assessment> GetUserAssessmentAsync(int discountId, int userId)
@@ -150,7 +155,7 @@ namespace DAL.Repositories
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                return  _context.Discounts;
+                return _context.Discounts;
             }
 
             return _context.Discounts.Where(v => v.Name.Contains(searchQuery));
@@ -196,6 +201,15 @@ namespace DAL.Repositories
         public async Task<IEnumerable<string>> SearchHintsAsync(string subSearchQuery, int take)
         {
             return await _entities.Where(d => d.Name.Contains(subSearchQuery) || d.Vendor.Name.Contains(subSearchQuery)).Take(take).Select(d => d.Name).ToListAsync();
+        }
+
+        public async Task UpdateDiscountActivityStatusAsync(int id, bool activityStatus)
+        {
+            var discount = await GetByIdAsync(id);
+
+            discount.ActivityStatus = activityStatus;
+
+            await SaveChangesAsync();
         }
     }
 }

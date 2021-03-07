@@ -1,26 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Shared.Properties;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.ViewModels
 {
     public class VendorViewModel
     {
-        public int Id { get; set; }
+        public int VendorId { get; set; }
 
-        [Required(ErrorMessage = "Please enter the vendor's Name.")]
+        [Required(ErrorMessageResourceName = "VendorNameIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
+        [MaxLength(200, ErrorMessageResourceName = "VendorNameExceededMaxLength", ErrorMessageResourceType = typeof(ValidationResource))]
         public string VendorName { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Description.")]
+
+        [Required(ErrorMessageResourceName = "VendorDescriptionIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Description { get; set; }
-       
-        [Required(ErrorMessage = "Please enter the vendor's Email.")]
+
+        [Required(ErrorMessageResourceName = "VendorEmailIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Email { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Address.")]
+
+        [Required(ErrorMessageResourceName = "VendorAddressIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Address { get; set; }
-        
-        [Required(ErrorMessage = "Please enter the vendor's Phone.")]
+
+        [Required(ErrorMessageResourceName = "VendorPhoneIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public string Phone { get; set; }
 
         public string SocialLinks { get; set; }
+
+        public PointOfSaleViewModel[] PointOfSales { get; set; }
     }
 }

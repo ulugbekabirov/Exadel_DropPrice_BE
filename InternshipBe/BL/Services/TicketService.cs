@@ -3,7 +3,6 @@ using BL.DTO;
 using BL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using Shared.EmailService;
 using Shared.Infrastructure;
 using System.Threading.Tasks;
 
@@ -13,15 +12,17 @@ namespace BL.Services
     {
         private readonly ITicketRepository _ticketRepository;
         private readonly IDiscountRepository _discountRepository;
+        private readonly IValidator<Discount> _validator;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IMessageBuilder _messageBuilder;
         private readonly IConfigRepository _configRepository;
 
-        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
+        public TicketService(ITicketRepository repository, IDiscountRepository discountRepository, IValidator<Discount> validator, IMapper mapper, IEmailSender emailSender, IMessageBuilder messageBuilder, IConfigRepository configRepository)
         {
             _ticketRepository = repository;
             _discountRepository = discountRepository;
+            _validator = validator;
             _mapper = mapper;
             _emailSender = emailSender;
             _messageBuilder = messageBuilder;
@@ -31,10 +32,12 @@ namespace BL.Services
         public async Task<TicketDTO> GetOrCreateTicketAsync(int discountId, User user)
         {
             var userTicket = await _ticketRepository.GetTicketAsync(discountId, user.Id);
+            var discount = await _discountRepository.GetByIdAsync(discountId);
 
             if (userTicket is null)
             {
-                userTicket = await _ticketRepository.CreateTicketAsync(discountId, user);
+                await _validator.ValidateAsync(discount);
+                userTicket = await _ticketRepository.CreateAndReturnTicketAsync(discountId, user);
                 await _ticketRepository.SaveChangesAsync();
                 await SendEmailIfAllowed(user, userTicket);
             }
@@ -45,12 +48,15 @@ namespace BL.Services
             return ticketDTO;
         }
 
-        public async Task SendEmailIfAllowed(User user, Ticket ticket)
+        private async Task SendEmailIfAllowed(User user, Ticket ticket)
         {
             if (await _configRepository.IsSendingEmailsEnabled((int)ConfigIdentifiers.SendingEmailToggler))
             {
-                var message = _messageBuilder.GenerateMessageTemplate(user, ticket);
-                await _emailSender.SendEmailAsync(message);
+                var userMessage = await _messageBuilder.GenerateMessageForUserAsync(user, ticket);
+                await _emailSender.SendAsync(userMessage);
+
+                var vendorMessage = await _messageBuilder.GenerateMessageForVendorAsync(user, ticket);
+                await _emailSender.SendAsync(vendorMessage);
             }
         }
     }

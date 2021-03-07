@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
 
 namespace Shared.ExceptionHandling
 {
@@ -11,16 +12,17 @@ namespace Shared.ExceptionHandling
     {
         private const string JsonContentType = "application/json";
         private readonly RequestDelegate _request;
+        private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _request = next;
+            _logger = loggerFactory.CreateLogger<ExceptionMiddleware>();
         }
 
 
         public async Task InvokeAsync(HttpContext context)
         {
-
             try
             {
                 await _request(context);
@@ -36,13 +38,15 @@ namespace Shared.ExceptionHandling
                         {
                             Message = message
                         }));
+
+                    _logger.LogError($"Message: {message}. Endpoint: {context.Request.Path}. StatusCode: {context.Response.StatusCode}");
                 }
 
                 switch (exception)
                 {
                     case var _ when exception is ValidationException:
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        SetErrorMessage("Bad Request");
+                        SetErrorMessage(exception.Message);
                         break;
                     case var _ when exception is UnauthorizedAccessException:
                         context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;

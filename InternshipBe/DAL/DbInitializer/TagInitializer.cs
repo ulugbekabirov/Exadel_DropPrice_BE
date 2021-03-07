@@ -3,48 +3,13 @@ using DAL.Entities;
 
 namespace DAL.DbInitializer
 {
-    public class TagInitializer
+    public class TagInitializer 
     {
         private readonly ApplicationDbContext _context;
 
         public TagInitializer(ApplicationDbContext context)
         {
             _context = context;
-        }
-
-        public void InitializeTags()
-        {
-            AddTag("Кондитерские изделия");
-            AddTag("Фастфуд");
-            AddTag("Напитки");
-            AddTag("Пицца");
-            AddTag("Уютное место");
-            AddTag("Еда навынос");
-            AddTag("Доставка");
-            AddTag("KFC");
-            AddTag("Курица");
-            AddTag("Мебель");
-            AddTag("Дешево");
-            AddTag("Для дома");
-            AddTag("Выгодно");
-            AddTag("Быстро");
-            AddTag("Вкусно");
-            AddTag("Мода");
-            AddTag("Парфюмерия");
-            AddTag("Уход за кожей");
-            AddTag("Роскошь");
-            AddTag("Одежда");
-            AddTag("Обувь");
-            AddTag("Красота");
-            AddTag("Макияж");
-            AddTag("Дорого");
-            AddTag("Тренировка");
-            AddTag("Голод");
-            AddTag("Лекарство");
-            AddTag("Духи");
-            AddTag("Светильник");
-            AddTag("Сантеника");
-            AddTag("Уют");
         }
 
         public void AddTag(string name)
@@ -55,6 +20,45 @@ namespace DAL.DbInitializer
             });
 
             _context.SaveChanges();
+        }
+
+        public void InitializeTags()
+        {
+            AddTag("кондитерские изделия");
+            AddTag("фастфуд");
+            AddTag("напитки");
+            AddTag("пицца");
+            AddTag("уютное место");
+            AddTag("еда навынос");
+            AddTag("доставка");
+            AddTag("KFC");
+            AddTag("курица");
+            AddTag("мебель");
+            AddTag("дешево");
+            AddTag("для дома"); 
+            AddTag("выгодно");
+            AddTag("быстро");
+            AddTag("вкусно");
+            AddTag("мода");
+            AddTag("парфюмерия");
+            AddTag("уход за кожей");
+            AddTag("роскошь");
+            AddTag("одежда");
+            AddTag("обувь");
+            AddTag("красота");
+            AddTag("макияж");
+            AddTag("дорого");
+            AddTag("тренировка");
+            AddTag("голод");
+            AddTag("лекарство");
+            AddTag("духи");
+            AddTag("светильник");       
+            AddTag("сантеника");
+            AddTag("уют");
+            AddTag("электротехника");   
+            AddTag("комфорт");
+            AddTag("equipment");
+            AddTag("for home");
         }
     }
 }

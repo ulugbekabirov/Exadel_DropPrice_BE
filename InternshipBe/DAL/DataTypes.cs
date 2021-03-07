@@ -2,10 +2,10 @@
 {
     public static class DataTypes
     {
-        public static string Number = "number";
+        public const string Number = "number";
 
-        public static string Boolean = "bool";
+        public const string Boolean = "bool";
 
-        public static string String = "string";
+        public const string String = "string";
     }
 }
