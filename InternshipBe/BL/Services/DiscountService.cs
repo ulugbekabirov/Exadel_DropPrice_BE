@@ -6,6 +6,7 @@ using AutoMapper;
 using BL.DTO;
 using BL.Interfaces;
 using BL.Models;
+using DAL.DbInitializer;
 using DAL.Entities;
 using DAL.Interfaces;
 using NetTopologySuite.Geometries;
@@ -18,6 +19,7 @@ namespace BL.Services
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IVendorRepository _vendorRepository;
         private readonly IHangfireService _hangfireService;
         private readonly ITagService _tagRepository;
@@ -25,9 +27,10 @@ namespace BL.Services
         private readonly IMapper _mapper;
         private readonly IConfigRepository _configRepository;
 
-        public DiscountService(IDiscountRepository discountRepository, IVendorRepository vendorRepository, IHangfireService hangfireService, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
+        public DiscountService(IDiscountRepository discountRepository, IUserRepository userRepository, IVendorRepository vendorRepository, IHangfireService hangfireService, ITagService tagRepository, IPointOfSaleService pointOfSaleService, IMapper mapper, IConfigRepository configRepository)
         {
             _discountRepository = discountRepository;
+            _userRepository = userRepository;
             _vendorRepository = vendorRepository;
             _hangfireService = hangfireService;
             _tagRepository = tagRepository;
@@ -43,8 +46,12 @@ namespace BL.Services
             var sortBy = _discountRepository.GetSortType(sortModel.SortBy);
 
             var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
-                
-            var closestActiveDiscounts = _discountRepository.GetClosestActiveDiscounts(location, radius);
+
+            var userRoles = await _userRepository.GetUserRolesAsync(user.Id);
+
+            var isUser = !userRoles.Contains(RoleNames.Moderator);
+
+            var closestActiveDiscounts = _discountRepository.GetClosestDiscounts(location, radius, isUser);
 
             var sortedDiscounts = _discountRepository.SortDiscounts(closestActiveDiscounts, sortBy, location);
 
@@ -86,7 +93,11 @@ namespace BL.Services
 
             var radius = await _configRepository.GetRadiusAsync((int)ConfigIdentifiers.Radius);
 
-            var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius);
+            var userRoles = await _userRepository.GetUserRolesAsync(user.Id);
+
+            var isUser = !userRoles.Contains(RoleNames.Moderator);
+
+            var discounts =  _discountRepository.SearchDiscounts(searchModel.SearchQuery, searchModel.Tags, location, radius, isUser);
 
             var sortedDiscounts = _discountRepository.SortDiscounts(discounts, sortBy, location);
 

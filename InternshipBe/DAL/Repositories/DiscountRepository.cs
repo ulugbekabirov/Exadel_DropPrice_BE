@@ -17,14 +17,25 @@ namespace DAL.Repositories
         {
         }
 
-        public IQueryable<Discount> GetClosestActiveDiscounts(Point location, int radius)
+        public IQueryable<Discount> GetClosestDiscounts(Point location, int radius, bool isUser)
         {
-            return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            if (isUser)
+            {
+                return _entities.Where(d => d.ActivityStatus == true && d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
+            }
+
+            return _entities.Where(d => d.PointOfSales.Min(p => p.Location.Distance(location)) < radius);
         }
 
-        public IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius)
+        public IQueryable<Discount> SearchDiscounts(string searchQuery, int[] tagIDs, Point location, int radius, bool isUser)
         {
-            var searchResults = _context.Discounts.Where(d => d.ActivityStatus == true);
+            var searchResults = _context.Discounts.AsQueryable();
+
+            if (isUser)
+            {
+                searchResults = searchResults.Where(d => d.ActivityStatus == true);
+            }
+
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -145,7 +156,7 @@ namespace DAL.Repositories
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                return  _context.Discounts;
+                return _context.Discounts;
             }
 
             return _context.Discounts.Where(v => v.Name.Contains(searchQuery));
