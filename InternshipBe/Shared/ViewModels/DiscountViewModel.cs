@@ -1,4 +1,5 @@
-﻿using Shared.Properties;
+﻿using Shared.Infrastructure.Attributes;
+using Shared.Properties;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -33,7 +34,8 @@ namespace WebApi.ViewModels
 
         [Required(ErrorMessageResourceName = "ActivityStatusIsEmpty", ErrorMessageResourceType = typeof(ValidationResource))]
         public bool? ActivityStatus { get; set; }
-        
+
+        [StringArrayMaxLength(200)]
         public string[] Tags { get; set; }
 
         public PointOfSaleViewModel[] PointOfSales { get; set; }
