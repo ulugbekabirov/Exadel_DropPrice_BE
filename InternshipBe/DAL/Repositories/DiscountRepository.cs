@@ -36,7 +36,6 @@ namespace DAL.Repositories
                 searchResults = searchResults.Where(d => d.ActivityStatus == true);
             }
 
-
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchResults = searchResults.Where(d => d.Name.Contains(searchQuery) || d.Description.Contains(searchQuery) || d.Vendor.Name.Contains(searchQuery));
