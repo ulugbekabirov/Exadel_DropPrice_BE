@@ -135,6 +135,9 @@
   <data name="DiscountDescriptionIsEmpty" xml:space="preserve">
     <value>Please, enter the discount's Description.</value>
   </data>
+  <data name="DiscountNameExceededMaxLength" xml:space="preserve">
+    <value>Discount's name exceeded maximum length</value>
+  </data>
   <data name="DiscountNameIsEmpty" xml:space="preserve">
     <value>Please, enter the discount's Name.</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="StartDateIsEmpty" xml:space="preserve">
     <value>Please, enter the discount's StartDate.</value>
   </data>
+  <data name="TagNameExceededMaxLength" xml:space="preserve">
+    <value>Tag's name exceeded maximum length</value>
+  </data>
   <data name="VendorAddressIsEmpty" xml:space="preserve">
     <value>Please, enter the vendor's Address.</value>
   </data>
@@ -167,6 +173,9 @@
   </data>
   <data name="VendorEmailIsEmpty" xml:space="preserve">
     <value>Please, enter the vendor's Email.</value>
+  </data>
+  <data name="VendorNameExceededMaxLength" xml:space="preserve">
+    <value>Vendor's name exceeded maximum length</value>
   </data>
   <data name="VendorNameIsEmpty" xml:space="preserve">
     <value>Please, enter the vendor's Name.</value>

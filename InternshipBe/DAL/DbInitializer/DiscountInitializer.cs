@@ -504,7 +504,7 @@ namespace DAL.DbInitializer
            _context.Tags.Where(t => t.Name == "красота" || t.Name == "уход за кожей" || t.Name == "для дома" || t.Name == "комфорт").ToList());
 
             //Samsung
-            AddDiscount(15, "Информационная панель Samsung UD46E-B / LH46UDEBLBB/RU", @"Высочайшее качество изображения благодаря улучшенной технологии заводской калибровки параметров дисплея.",
+            AddDiscount(15, "Информационная панель Samsung UD46E-B", @"Высочайшее качество изображения благодаря улучшенной технологии заводской калибровки параметров дисплея.",
            50, DateTime.Now.Date, DateTime.Now.Date.AddDays(32), true, null,
            _context.Vendors.Find(15),
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
@@ -534,7 +534,8 @@ namespace DAL.DbInitializer
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
           _context.Tags.Where(t => t.Name == "электротехника" || t.Name == "уют" || t.Name == "для дома" || t.Name == "комфорт" || t.Name == "дорого").ToList());
 
-            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2 40mm Aluminium/SM-R830NZDASER", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль).",
+
+            AddDiscount(15, "Умные часы Samsung Galaxy Watch Active2", @"Умные часы Samsung Galaxy Watch Active2 40mm Aluminium / SM-R830NZDASER (ваниль).",
            25, DateTime.Now.Date, DateTime.Now.Date.AddDays(32), true, null,
            _context.Vendors.Find(15),
            _context.PointOfSales.Where(p => p.Name == "Samsung Минск" || p.Name == "Samsung Витебск" || p.Name == "Samsung Гомель").ToList(),
