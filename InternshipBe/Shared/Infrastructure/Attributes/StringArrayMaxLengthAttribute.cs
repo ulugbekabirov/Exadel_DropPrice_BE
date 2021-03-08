@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Shared.Infrastructure.Attributes
@@ -13,7 +12,7 @@ namespace Shared.Infrastructure.Attributes
 
         public override bool IsValid(object value)
         {
-            if (value is List<string> ListOfStrings)
+            if (value is string[] ListOfStrings)
             {
                 return ListOfStrings.All(l => l.Length < Length);
             }
