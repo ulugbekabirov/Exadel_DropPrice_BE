@@ -8,6 +8,7 @@ RUN dotnet restore "WebApi/WebApi.csproj"
 
 # copy and publish app and libraries
 COPY . .
+
 WORKDIR /source/WebApi
 
 # Build
