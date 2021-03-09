@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -224,8 +225,8 @@ namespace BL.Services
                 discount.PromoCode = discountViewModel.PromoCode;
                 discount.DiscountAmount = discountViewModel.DiscountAmount.Value;
                 discount.ActivityStatus = discountViewModel.ActivityStatus.Value;
-                discount.StartDate = discountViewModel.StartDate.Value;
-                discount.EndDate = discountViewModel.EndDate.Value;
+                discount.StartDate = discountViewModel.StartDate.Value.AddHours(12).Date;
+                discount.EndDate = discountViewModel.EndDate.Value.AddHours(12).Date;
                 discount.Tags = tags;
                 discount.PointOfSales = resultPointOfSales;
 
