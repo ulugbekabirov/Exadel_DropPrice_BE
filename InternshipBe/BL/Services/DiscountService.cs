@@ -181,6 +181,8 @@ namespace BL.Services
                 discount.Vendor = vendorDiscount;
                 discount.Tags = tags;
                 discount.PointOfSales = resultPointOfSales;
+                discount.StartDate = discountViewModel.StartDate.Value.AddHours(12).Date;
+                discount.EndDate = discountViewModel.EndDate.Value.AddHours(12).Date;
 
                 await _discountRepository.CreateAsync(discount);
 
