@@ -23,6 +23,11 @@ namespace DAL.Repositories
             var startDate = entity.StartDate;
             var endDate = entity.EndDate;
 
+            if (!entity.ActivityStatus)
+            {
+                throw new ValidationException(_stringLocalizer["Discount is not available"]);
+            }
+
             if (startDate > dateTimeNow || endDate < dateTimeNow)
             {
                 throw new ValidationException(_stringLocalizer["Discount available from {0} to {1}", startDate.ToShortDateString(), endDate.ToShortDateString()]);
