@@ -182,7 +182,6 @@ namespace WebApi.Controllers
         /// <param name="id">Discount ID</param>
         /// <returns>Returns pointOfSales</returns>
         [HttpGet("{id}/pointOfSales")]
-        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> PointOfSalesAsync(int id)
         {
             return Ok(await _discountService.GetPointOfSalesAsync(id));
