@@ -27,11 +27,10 @@ namespace AutomatedTests
 
             var baseAdrress = config.GetSection("AppSettings").GetSection("BaseAddress").Value;
 
-            var requestForLogin = new HttpRequestMessage();
-            var requestContent = requestForLogin.Content = new StringContent("{\"Email\" : \"admnexadel@gmail.com\", \"Password\" : \"Qwerty123!\"}", Encoding.UTF8, "application/json");
+            var requestContent = new StringContent("{\"Email\" : \"admnexadel@gmail.com\", \"Password\" : \"Qwerty123!\"}", Encoding.UTF8, "application/json");
 
             var responseFromlogin = await client.PostAsync(baseAdrress + "login", requestContent);
-            string token = responseFromlogin.Content.ReadAsStringAsync().Result;
+            var token = responseFromlogin.Content.ReadAsStringAsync().Result;
 
             token = token.Substring(0, token.Length - 2).Remove(0, 10);
 
@@ -46,7 +45,7 @@ namespace AutomatedTests
 
             //act
             var response = await client.SendAsync(httpRequestMessage);
-            string result = response.Content.ReadAsStringAsync().Result;
+            var result = await response.Content.ReadAsStringAsync();
 
             //assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);

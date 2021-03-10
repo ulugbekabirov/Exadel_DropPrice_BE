@@ -18,22 +18,21 @@ namespace AutomatedTests
         public async Task Login_TransitionToEndPoint_GettingToken()
         {
             //arrange
+            
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(path)
                 .AddJsonFile("appsettings.json")
-                .Build(); ;
+                .Build();
 
-            //client.BaseAddress = new Uri("https://dropprice.click:8443/");
             client.BaseAddress = new Uri(config.GetSection("AppSettings").GetSection("BaseAddress").Value);
 
-            var request = new HttpRequestMessage();
-            var content = request.Content = new StringContent("{\"Email\" : \"admnexadel@gmail.com\", \"Password\" : \"Qwerty123!\"}", Encoding.UTF8, "application/json");
+            var content = new StringContent("{\"Email\" : \"admnexadel@gmail.com\", \"Password\" : \"Qwerty123!\"}", Encoding.UTF8, "application/json");
 
             //act
             var response = await client.PostAsync("login", content);
-            string result = response.Content.ReadAsStringAsync().Result;
+            var result = await response.Content.ReadAsStringAsync();
 
             //assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
