@@ -33,5 +33,9 @@ namespace BL.DTO
         public bool DiscountActivity { get; set; }
 
         public bool IsSavedDiscount { get; set; }
+
+        public DateTime DiscountStartDate { get; set; }
+
+        public DateTime DiscountEndDate { get; set; }
     }
 }
