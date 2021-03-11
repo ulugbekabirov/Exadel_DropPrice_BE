@@ -18,7 +18,8 @@ namespace AutomatedTests
             //arrange
             using var client = new HttpClient();
 
-            var path = AppContext.BaseDirectory.Replace(@"\bin\Debug\net5.0","");
+            var basePath = AppContext.BaseDirectory;
+            var path = basePath.Substring(0, basePath.Length - 18);
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(path)
