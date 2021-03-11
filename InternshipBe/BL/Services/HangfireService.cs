@@ -39,7 +39,7 @@ namespace BL.Services
 
                 return new DiscountJobDTO()
                 {
-                    Message = _stringLocalizer["A session for editing a discount has been created."],
+                    Message = _stringLocalizer["A session for editing discount has been created."],
                     IsEditedDisount = false,
                     EditTime = discountEditTime,
                 };
@@ -51,7 +51,7 @@ namespace BL.Services
 
             return new DiscountJobDTO()
             {
-                Message = _stringLocalizer["A session on editing a discount is open. Time has been updated."],
+                Message = _stringLocalizer["A session for editing discount already exists."],
                 IsEditedDisount = true,
                 EditTime = discountEditTime,
             };

@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="A session for editing a discount has been created." xml:space="preserve">
-    <value>Создана сессия по редактированию скидки.</value>
+  <data name="A session for editing discount already exists." xml:space="preserve">
+    <value>Cессия для редактирования скидки уже существует.</value>
   </data>
-  <data name="A session on editing a discount is open. Time has been updated." xml:space="preserve">
-    <value>Открыта сессия по редактированию скидки. Время обновлено.</value>
+  <data name="A session for editing discount has been created." xml:space="preserve">
+    <value>Создана сессия для редактирования скидки.</value>
   </data>
   <data name="Discount available from {0} to {1}" xml:space="preserve">
     <value>Скидка доступна c {0} по {1}</value>
