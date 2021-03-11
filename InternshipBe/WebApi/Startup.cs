@@ -171,7 +171,7 @@ namespace WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IArchiveExpiredRepository dapperRepository)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IArchiveExpiredRepository archiveExpiredRepository)
         {
             if (env.IsDevelopment())
             {
@@ -201,7 +201,7 @@ namespace WebApi
             app.UseHangfireServer();
             app.UseHangfireDashboard();
 
-            RecurringJob.AddOrUpdate(() => dapperRepository.ArchiveExpiredDiscountAsync(), Cron.Daily());
+            RecurringJob.AddOrUpdate(() => archiveExpiredRepository.ArchiveExpiredDiscountAsync(), Cron.Daily());
 
             app.UseEndpoints(endpoints =>
             {

@@ -31,9 +31,10 @@ namespace BL.Services
 
             var discountEditTime = await _configRepository.GetDiscountEditTimeAsync((int)ConfigIdentifiers.DiscountEditTimeInMinutes);
 
+            await _discountRepository.UpdateDiscountActivityStatusAsync(discountId, false);
+
             if (job.Key is null)
             {
-                await _discountRepository.UpdateDiscountActivityStatusAsync(discountId, false);
 
                 BackgroundJob.Schedule(() => _discountRepository.UpdateDiscountActivityStatusAsync(discountId, true), TimeSpan.FromMinutes(discountEditTime));
 
