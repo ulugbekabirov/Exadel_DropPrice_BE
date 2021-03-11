@@ -67,6 +67,8 @@ namespace BL.Mapping
                 .ForMember(t => t.DiscountAmount, source => source.MapFrom(s => s.Discount.DiscountAmount))
                 .ForMember(t => t.PromoCode, source => source.MapFrom(s => s.Discount.PromoCode))
                 .ForMember(t => t.DiscountActivity, source => source.MapFrom(s => s.Discount.ActivityStatus))
+                .ForMember(t => t.DiscountStartDate, source => source.MapFrom(s => s.Discount.StartDate))
+                .ForMember(t => t.DiscountEndDate, source => source.MapFrom(s => s.Discount.EndDate))
                 .AfterMap((source, dto) =>
                 {
                     dto.IsExpired = source.OrderDate.Date != DateTime.Now.Date;

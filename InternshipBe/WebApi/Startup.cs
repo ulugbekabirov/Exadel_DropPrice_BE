@@ -179,10 +179,9 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
+            app.UseRequestResponseLogging();
 
             app.UseGlobalExceptionMiddleware();
-
-            app.UseRequestResponseLogging();
 
             app.UseCulture();
 

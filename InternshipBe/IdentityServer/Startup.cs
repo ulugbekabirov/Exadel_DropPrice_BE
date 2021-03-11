@@ -101,9 +101,9 @@ namespace IdentityServer
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API"));
             }
 
-            app.UseGlobalExceptionMiddleware();
-
             app.UseRequestResponseLogging();
+
+            app.UseGlobalExceptionMiddleware();
 
             app.UseRouting();
 
