@@ -12,12 +12,12 @@ namespace AutomatedTests
 {
     public class TestForTowns
     {
-        static readonly HttpClient client = new HttpClient();
-
         [Fact]
         public async Task Towns_TransitionToEndPoint_GettingListOfTowns()
         {
             //arrange
+            using var client = new HttpClient();
+
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
 
             var config = new ConfigurationBuilder()

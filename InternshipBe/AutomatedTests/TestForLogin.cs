@@ -12,13 +12,12 @@ namespace AutomatedTests
 {
     public class TestForLogin
     {
-        static readonly HttpClient client = new HttpClient();
-
         [Fact]
         public async Task Login_TransitionToEndPoint_GettingToken()
         {
             //arrange
-            
+            using var client = new HttpClient();
+
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
 
             var config = new ConfigurationBuilder()
