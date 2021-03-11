@@ -119,7 +119,6 @@ namespace WebApi.Controllers
         /// <param name="id">Vendor ID</param>
         /// <returns>Returns points of sale</returns>
         [HttpGet("{id}/pointOfSales")]
-        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> GetVendorPointOfSales(int id)
         {
             return Ok(await _vendorService.GetVendorPointOfSalesAsync(id));

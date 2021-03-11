@@ -20,7 +20,7 @@ namespace DAL.DapperRepositories
         public async Task ArchiveExpiredDiscountAsync()
         {
             using IDbConnection context = new SqlConnection(_connectionString);
-            await context.ExecuteAsync($"EXEC ArchiveExpiredDiscount @dateNow = '{DateTime.UtcNow.Date}'");
+            await context.ExecuteAsync($"EXEC ArchiveExpiredDiscount @dateNow = '{DateTime.UtcNow.Date:MM/dd/yyyy hh:mm:ss}'");
         }
     }
 }
