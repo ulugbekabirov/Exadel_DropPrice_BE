@@ -18,7 +18,9 @@ namespace AutomatedTests
             //arrange
             using var client = new HttpClient();
 
-            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
+            //var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
+            var basePath = AppContext.BaseDirectory;
+            var path = basePath.Substring(0, basePath.Length - 18);
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(path)
